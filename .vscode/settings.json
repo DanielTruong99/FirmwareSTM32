@@ -1,0 +1,17 @@
+{
+    "files.associations": {
+        "main.h": "c",
+        "stm32f4xx_hal.h": "c",
+        "stm32f4xx_hal_conf.h": "c",
+        "stm32f4xx_hal_uart.h": "c",
+        "serial_communicator.h": "c",
+        "string.h": "c",
+        "state_estimator.h": "c",
+        "compare": "cpp",
+        "cstdint": "cpp",
+        "active_object.h": "c",
+        "math.h": "c",
+        "arm_math.h": "c",
+        "core_cm4.h": "c"
+    }
+}

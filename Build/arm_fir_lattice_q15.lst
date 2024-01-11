@@ -1,0 +1,2326 @@
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"arm_fir_lattice_q15.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c"
+  20              		.section	.text.arm_fir_lattice_q15,"ax",%progbits
+  21              		.align	1
+  22              		.global	arm_fir_lattice_q15
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	arm_fir_lattice_q15:
+  28              	.LVL0:
+  29              	.LFB135:
+   1:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** /* ----------------------------------------------------------------------
+   2:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****  * Project:      CMSIS DSP Library
+   3:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****  * Title:        arm_fir_lattice_q15.c
+   4:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****  * Description:  Q15 FIR lattice filter processing function
+   5:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****  *
+   6:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****  * $Date:        27. January 2017
+   7:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****  * $Revision:    V.1.5.1
+   8:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****  *
+   9:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****  * Target Processor: Cortex-M cores
+  10:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****  * -------------------------------------------------------------------- */
+  11:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** /*
+  12:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****  * Copyright (C) 2010-2017 ARM Limited or its affiliates. All rights reserved.
+  13:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****  *
+  14:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****  * SPDX-License-Identifier: Apache-2.0
+  15:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****  *
+  16:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****  * Licensed under the Apache License, Version 2.0 (the License); you may
+  17:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****  * not use this file except in compliance with the License.
+  18:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****  * You may obtain a copy of the License at
+  19:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****  *
+  20:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****  * www.apache.org/licenses/LICENSE-2.0
+  21:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****  *
+  22:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****  * Unless required by applicable law or agreed to in writing, software
+  23:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****  * distributed under the License is distributed on an AS IS BASIS, WITHOUT
+  24:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  25:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****  * See the License for the specific language governing permissions and
+  26:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****  * limitations under the License.
+  27:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****  */
+  28:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+  29:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** #include "arm_math.h"
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 2
+
+
+  30:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+  31:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** /**
+  32:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****  * @ingroup groupFilters
+  33:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****  */
+  34:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+  35:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** /**
+  36:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****  * @addtogroup FIR_Lattice
+  37:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****  * @{
+  38:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****  */
+  39:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+  40:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+  41:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** /**
+  42:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****  * @brief Processing function for the Q15 FIR lattice filter.
+  43:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****  * @param[in]  *S        points to an instance of the Q15 FIR lattice structure.
+  44:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****  * @param[in]  *pSrc     points to the block of input data.
+  45:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****  * @param[out] *pDst     points to the block of output data
+  46:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****  * @param[in]  blockSize number of samples to process.
+  47:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****  * @return none.
+  48:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****  */
+  49:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+  50:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** void arm_fir_lattice_q15(
+  51:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****   const arm_fir_lattice_instance_q15 * S,
+  52:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****   q15_t * pSrc,
+  53:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****   q15_t * pDst,
+  54:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****   uint32_t blockSize)
+  55:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** {
+  30              		.loc 1 55 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 48
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 55 1 is_stmt 0 view .LVU1
+  35 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 36
+  38              		.cfi_offset 4, -36
+  39              		.cfi_offset 5, -32
+  40              		.cfi_offset 6, -28
+  41              		.cfi_offset 7, -24
+  42              		.cfi_offset 8, -20
+  43              		.cfi_offset 9, -16
+  44              		.cfi_offset 10, -12
+  45              		.cfi_offset 11, -8
+  46              		.cfi_offset 14, -4
+  47 0004 8DB0     		sub	sp, sp, #52
+  48              	.LCFI1:
+  49              		.cfi_def_cfa_offset 88
+  50 0006 0692     		str	r2, [sp, #24]
+  51 0008 1D46     		mov	r5, r3
+  56:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****   q15_t *pState;                                 /* State pointer */
+  52              		.loc 1 56 3 is_stmt 1 view .LVU2
+  57:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****   q15_t *pCoeffs = S->pCoeffs;                   /* Coefficient pointer */
+  53              		.loc 1 57 3 view .LVU3
+  54              		.loc 1 57 10 is_stmt 0 view .LVU4
+  55 000a 8368     		ldr	r3, [r0, #8]
+  56              	.LVL1:
+  57              		.loc 1 57 10 view .LVU5
+  58 000c 0793     		str	r3, [sp, #28]
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 3
+
+
+  59              	.LVL2:
+  58:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****   q15_t *px;                                     /* temporary state pointer */
+  60              		.loc 1 58 3 is_stmt 1 view .LVU6
+  59:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****   q15_t *pk;                                     /* temporary coefficient pointer */
+  61              		.loc 1 59 3 view .LVU7
+  60:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+  61:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+  62:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** #if defined (ARM_MATH_DSP)
+  63:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+  64:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****   /* Run the below code for Cortex-M4 and Cortex-M3 */
+  65:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+  66:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****   q31_t fcurnt1, fnext1, gcurnt1 = 0, gnext1;    /* temporary variables for first sample in loop un
+  62              		.loc 1 66 3 view .LVU8
+  67:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****   q31_t fcurnt2, fnext2, gnext2;                 /* temporary variables for second sample in loop u
+  63              		.loc 1 67 3 view .LVU9
+  68:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****   q31_t fcurnt3, fnext3, gnext3;                 /* temporary variables for third sample in loop un
+  64              		.loc 1 68 3 view .LVU10
+  69:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****   q31_t fcurnt4, fnext4, gnext4;                 /* temporary variables for fourth sample in loop u
+  65              		.loc 1 69 3 view .LVU11
+  70:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****   uint32_t numStages = S->numStages;             /* Number of stages in the filter */
+  66              		.loc 1 70 3 view .LVU12
+  67              		.loc 1 70 25 is_stmt 0 view .LVU13
+  68 000e 0388     		ldrh	r3, [r0]
+  69              	.LVL3:
+  70              		.loc 1 70 25 view .LVU14
+  71 0010 0A93     		str	r3, [sp, #40]
+  72              	.LVL4:
+  71:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****   uint32_t blkCnt, stageCnt;                     /* temporary variables for counts */
+  73              		.loc 1 71 3 is_stmt 1 view .LVU15
+  72:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+  73:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****   pState = &S->pState[0];
+  74              		.loc 1 73 3 view .LVU16
+  75              		.loc 1 73 10 is_stmt 0 view .LVU17
+  76 0012 4368     		ldr	r3, [r0, #4]
+  77              	.LVL5:
+  78              		.loc 1 73 10 view .LVU18
+  79 0014 0593     		str	r3, [sp, #20]
+  80              	.LVL6:
+  74:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+  75:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****   blkCnt = blockSize >> 2U;
+  81              		.loc 1 75 3 is_stmt 1 view .LVU19
+  82              		.loc 1 75 10 is_stmt 0 view .LVU20
+  83 0016 AB08     		lsrs	r3, r5, #2
+  84              	.LVL7:
+  76:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+  77:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****   /* First part of the processing with loop unrolling.  Compute 4 outputs at a time.
+  78:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****    ** a second loop below computes the remaining 1 to 3 samples. */
+  79:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****   while (blkCnt > 0U)
+  85              		.loc 1 79 3 is_stmt 1 view .LVU21
+  86 0018 0493     		str	r3, [sp, #16]
+  87 001a 0B95     		str	r5, [sp, #44]
+  88              		.loc 1 79 9 is_stmt 0 view .LVU22
+  89 001c 50E1     		b	.L2
+  90              	.LVL8:
+  91              	.L4:
+  80:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****   {
+  81:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 4
+
+
+  82:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* Read two samples from input buffer */
+  83:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* f0(n) = x(n) */
+  84:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fcurnt1 = *pSrc++;
+  85:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fcurnt2 = *pSrc++;
+  86:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+  87:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* Initialize coeff pointer */
+  88:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     pk = (pCoeffs);
+  89:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+  90:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* Initialize state pointer */
+  91:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     px = pState;
+  92:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+  93:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* Read g0(n-1) from state */
+  94:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gcurnt1 = *px;
+  95:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+  96:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* Process first sample for first tap */
+  97:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* f1(n) = f0(n) +  K1 * g0(n-1) */
+  98:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fnext1 = (q31_t) ((gcurnt1 * (*pk)) >> 15U) + fcurnt1;
+  99:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fnext1 = __SSAT(fnext1, 16);
+ 100:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 101:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* g1(n) = f0(n) * K1  +  g0(n-1) */
+ 102:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gnext1 = (q31_t) ((fcurnt1 * (*pk)) >> 15U) + gcurnt1;
+ 103:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gnext1 = __SSAT(gnext1, 16);
+ 104:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 105:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* Process second sample for first tap */
+ 106:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* for sample 2 processing */
+ 107:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fnext2 = (q31_t) ((fcurnt1 * (*pk)) >> 15U) + fcurnt2;
+ 108:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fnext2 = __SSAT(fnext2, 16);
+ 109:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 110:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gnext2 = (q31_t) ((fcurnt2 * (*pk)) >> 15U) + fcurnt1;
+ 111:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gnext2 = __SSAT(gnext2, 16);
+ 112:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 113:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 114:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* Read next two samples from input buffer */
+ 115:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* f0(n+2) = x(n+2) */
+ 116:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fcurnt3 = *pSrc++;
+ 117:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fcurnt4 = *pSrc++;
+ 118:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 119:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* Copy only last input samples into the state buffer
+ 120:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****        which is used for next four samples processing */
+ 121:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     *px++ = (q15_t) fcurnt4;
+ 122:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 123:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* Process third sample for first tap */
+ 124:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fnext3 = (q31_t) ((fcurnt2 * (*pk)) >> 15U) + fcurnt3;
+ 125:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fnext3 = __SSAT(fnext3, 16);
+ 126:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gnext3 = (q31_t) ((fcurnt3 * (*pk)) >> 15U) + fcurnt2;
+ 127:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gnext3 = __SSAT(gnext3, 16);
+ 128:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 129:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* Process fourth sample for first tap */
+ 130:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fnext4 = (q31_t) ((fcurnt3 * (*pk)) >> 15U) + fcurnt4;
+ 131:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fnext4 = __SSAT(fnext4, 16);
+ 132:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gnext4 = (q31_t) ((fcurnt4 * (*pk++)) >> 15U) + fcurnt3;
+ 133:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gnext4 = __SSAT(gnext4, 16);
+ 134:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 135:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* Update of f values for next coefficient set processing */
+ 136:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fcurnt1 = fnext1;
+ 137:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fcurnt2 = fnext2;
+ 138:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fcurnt3 = fnext3;
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 5
+
+
+ 139:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fcurnt4 = fnext4;
+ 140:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 141:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 142:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* Loop unrolling.  Process 4 taps at a time . */
+ 143:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     stageCnt = (numStages - 1U) >> 2;
+ 144:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 145:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 146:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* Loop over the number of taps.  Unroll by a factor of 4.
+ 147:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****      ** Repeat until we've computed numStages-3 coefficients. */
+ 148:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 149:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* Process 2nd, 3rd, 4th and 5th taps ... here */
+ 150:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     while (stageCnt > 0U)
+ 151:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     {
+ 152:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* Read g1(n-1), g3(n-1) .... from state */
+ 153:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gcurnt1 = *px;
+  92              		.loc 1 153 7 is_stmt 1 view .LVU23
+  93              		.loc 1 153 17 is_stmt 0 view .LVU24
+  94 001e 0099     		ldr	r1, [sp]
+  95              	.LVL9:
+  96              		.loc 1 153 17 view .LVU25
+  97 0020 B1F900E0 		ldrsh	lr, [r1]
+  98              	.LVL10:
+ 154:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 155:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* save g1(n) in state buffer */
+ 156:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       *px++ = (q15_t) gnext4;
+  99              		.loc 1 156 7 is_stmt 1 view .LVU26
+ 100              		.loc 1 156 13 is_stmt 0 view .LVU27
+ 101 0024 0A80     		strh	r2, [r1]	@ movhi
+ 157:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 158:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* Process first sample for 2nd, 6th .. tap */
+ 159:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* Sample processing for K2, K6.... */
+ 160:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* f1(n) = f0(n) +  K1 * g0(n-1) */
+ 161:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fnext1 = (q31_t) ((gcurnt1 * (*pk)) >> 15U) + fcurnt1;
+ 102              		.loc 1 161 7 is_stmt 1 view .LVU28
+ 103              		.loc 1 161 37 is_stmt 0 view .LVU29
+ 104 0026 0199     		ldr	r1, [sp, #4]
+ 105              	.LVL11:
+ 106              		.loc 1 161 37 view .LVU30
+ 107 0028 B1F90020 		ldrsh	r2, [r1]
+ 108              	.LVL12:
+ 109              		.loc 1 161 34 view .LVU31
+ 110 002c 0EFB02F6 		mul	r6, lr, r2
+ 111              		.loc 1 161 14 view .LVU32
+ 112 0030 08EBE636 		add	r6, r8, r6, asr #15
+ 113              	.LVL13:
+ 162:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fnext1 = __SSAT(fnext1, 16);
+ 114              		.loc 1 162 7 is_stmt 1 view .LVU33
+ 115              	.LBB2:
+ 116              		.loc 1 162 16 view .LVU34
+ 117              		.loc 1 162 16 view .LVU35
+ 118              		.syntax unified
+ 119              	@ 162 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 120 0034 06F30F06 		ssat r6, #16, r6
+ 121              	@ 0 "" 2
+ 122              	.LVL14:
+ 123              		.loc 1 162 16 is_stmt 0 view .LVU36
+ 124              		.thumb
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 6
+
+
+ 125              		.syntax unified
+ 126 0038 0296     		str	r6, [sp, #8]
+ 127              	.LVL15:
+ 128              		.loc 1 162 16 is_stmt 1 view .LVU37
+ 129              		.loc 1 162 16 is_stmt 0 view .LVU38
+ 130              	.LBE2:
+ 163:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 164:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 165:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* Process second sample for 2nd, 6th .. tap */
+ 166:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* for sample 2 processing */
+ 167:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fnext2 = (q31_t) ((gnext1 * (*pk)) >> 15U) + fcurnt2;
+ 131              		.loc 1 167 7 is_stmt 1 view .LVU39
+ 132              		.loc 1 167 33 is_stmt 0 view .LVU40
+ 133 003a 00FB02F7 		mul	r7, r0, r2
+ 134              		.loc 1 167 14 view .LVU41
+ 135 003e 0BEBE737 		add	r7, fp, r7, asr #15
+ 136              	.LVL16:
+ 168:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fnext2 = __SSAT(fnext2, 16);
+ 137              		.loc 1 168 7 is_stmt 1 view .LVU42
+ 138              	.LBB3:
+ 139              		.loc 1 168 16 view .LVU43
+ 140              		.loc 1 168 16 view .LVU44
+ 141              		.syntax unified
+ 142              	@ 168 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 143 0042 07F30F07 		ssat r7, #16, r7
+ 144              	@ 0 "" 2
+ 145              	.LVL17:
+ 146              		.loc 1 168 16 view .LVU45
+ 147              		.loc 1 168 16 is_stmt 0 view .LVU46
+ 148              		.thumb
+ 149              		.syntax unified
+ 150              	.LBE3:
+ 169:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* Process third sample for 2nd, 6th .. tap */
+ 170:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fnext3 = (q31_t) ((gnext2 * (*pk)) >> 15U) + fcurnt3;
+ 151              		.loc 1 170 7 is_stmt 1 view .LVU47
+ 152              		.loc 1 170 33 is_stmt 0 view .LVU48
+ 153 0046 03FB02FC 		mul	ip, r3, r2
+ 154              		.loc 1 170 14 view .LVU49
+ 155 004a 09EBEC3C 		add	ip, r9, ip, asr #15
+ 156              	.LVL18:
+ 171:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fnext3 = __SSAT(fnext3, 16);
+ 157              		.loc 1 171 7 is_stmt 1 view .LVU50
+ 158              	.LBB4:
+ 159              		.loc 1 171 16 view .LVU51
+ 160              		.loc 1 171 16 view .LVU52
+ 161              		.syntax unified
+ 162              	@ 171 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 163 004e 0CF30F0C 		ssat ip, #16, ip
+ 164              	@ 0 "" 2
+ 165              	.LVL19:
+ 166              		.loc 1 171 16 view .LVU53
+ 167              		.loc 1 171 16 is_stmt 0 view .LVU54
+ 168              		.thumb
+ 169              		.syntax unified
+ 170              	.LBE4:
+ 172:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* Process fourth sample for 2nd, 6th .. tap */
+ 173:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* fnext4 = fcurnt4 + (*pk) * gnext3; */
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 7
+
+
+ 174:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fnext4 = (q31_t) ((gnext3 * (*pk)) >> 15U) + fcurnt4;
+ 171              		.loc 1 174 7 is_stmt 1 view .LVU55
+ 172              		.loc 1 174 33 is_stmt 0 view .LVU56
+ 173 0052 04FB02FA 		mul	r10, r4, r2
+ 174              		.loc 1 174 14 view .LVU57
+ 175 0056 05EBEA3A 		add	r10, r5, r10, asr #15
+ 176              	.LVL20:
+ 175:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fnext4 = __SSAT(fnext4, 16);
+ 177              		.loc 1 175 7 is_stmt 1 view .LVU58
+ 178              	.LBB5:
+ 179              		.loc 1 175 16 view .LVU59
+ 180              		.loc 1 175 16 view .LVU60
+ 181              		.syntax unified
+ 182              	@ 175 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 183 005a 0AF30F0A 		ssat r10, #16, r10
+ 184              	@ 0 "" 2
+ 185              	.LVL21:
+ 186              		.loc 1 175 16 view .LVU61
+ 187              		.loc 1 175 16 is_stmt 0 view .LVU62
+ 188              		.thumb
+ 189              		.syntax unified
+ 190              	.LBE5:
+ 176:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 177:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* g1(n) = f0(n) * K1  +  g0(n-1) */
+ 178:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* Calculation of state values for next stage */
+ 179:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext4 = (q31_t) ((fcurnt4 * (*pk)) >> 15U) + gnext3;
+ 191              		.loc 1 179 7 is_stmt 1 view .LVU63
+ 192              		.loc 1 179 34 is_stmt 0 view .LVU64
+ 193 005e 02FB05F5 		mul	r5, r2, r5
+ 194              	.LVL22:
+ 195              		.loc 1 179 14 view .LVU65
+ 196 0062 04EBE535 		add	r5, r4, r5, asr #15
+ 197              	.LVL23:
+ 180:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext4 = __SSAT(gnext4, 16);
+ 198              		.loc 1 180 7 is_stmt 1 view .LVU66
+ 199              	.LBB6:
+ 200              		.loc 1 180 16 view .LVU67
+ 201              		.loc 1 180 16 view .LVU68
+ 202              		.syntax unified
+ 203              	@ 180 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 204 0066 05F30F06 		ssat r6, #16, r5
+ 205              	@ 0 "" 2
+ 206              	.LVL24:
+ 207              		.loc 1 180 16 view .LVU69
+ 208              		.loc 1 180 16 is_stmt 0 view .LVU70
+ 209              		.thumb
+ 210              		.syntax unified
+ 211              	.LBE6:
+ 181:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext3 = (q31_t) ((fcurnt3 * (*pk)) >> 15U) + gnext2;
+ 212              		.loc 1 181 7 is_stmt 1 view .LVU71
+ 213              		.loc 1 181 34 is_stmt 0 view .LVU72
+ 214 006a 09FB02F9 		mul	r9, r9, r2
+ 215              	.LVL25:
+ 216              		.loc 1 181 14 view .LVU73
+ 217 006e 03EBE939 		add	r9, r3, r9, asr #15
+ 218              	.LVL26:
+ 182:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext3 = __SSAT(gnext3, 16);
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 8
+
+
+ 219              		.loc 1 182 7 is_stmt 1 view .LVU74
+ 220              	.LBB7:
+ 221              		.loc 1 182 16 view .LVU75
+ 222              		.loc 1 182 16 view .LVU76
+ 223              		.syntax unified
+ 224              	@ 182 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 225 0072 09F30F03 		ssat r3, #16, r9
+ 226              	@ 0 "" 2
+ 227              	.LVL27:
+ 228              		.loc 1 182 16 view .LVU77
+ 229              		.loc 1 182 16 is_stmt 0 view .LVU78
+ 230              		.thumb
+ 231              		.syntax unified
+ 232              	.LBE7:
+ 183:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 184:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext2 = (q31_t) ((fcurnt2 * (*pk)) >> 15U) + gnext1;
+ 233              		.loc 1 184 7 is_stmt 1 view .LVU79
+ 234              		.loc 1 184 34 is_stmt 0 view .LVU80
+ 235 0076 0BFB02FB 		mul	fp, fp, r2
+ 236              	.LVL28:
+ 237              		.loc 1 184 14 view .LVU81
+ 238 007a 00EBEB3B 		add	fp, r0, fp, asr #15
+ 239              	.LVL29:
+ 185:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext2 = __SSAT(gnext2, 16);
+ 240              		.loc 1 185 7 is_stmt 1 view .LVU82
+ 241              	.LBB8:
+ 242              		.loc 1 185 16 view .LVU83
+ 243              		.loc 1 185 16 view .LVU84
+ 244              		.syntax unified
+ 245              	@ 185 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 246 007e 0BF30F05 		ssat r5, #16, fp
+ 247              	@ 0 "" 2
+ 248              	.LVL30:
+ 249              		.loc 1 185 16 view .LVU85
+ 250              		.loc 1 185 16 is_stmt 0 view .LVU86
+ 251              		.thumb
+ 252              		.syntax unified
+ 253              	.LBE8:
+ 186:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 187:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext1 = (q31_t) ((fcurnt1 * (*pk++)) >> 15U) + gcurnt1;
+ 254              		.loc 1 187 7 is_stmt 1 view .LVU87
+ 255              		.loc 1 187 34 is_stmt 0 view .LVU88
+ 256 0082 08FB02F2 		mul	r2, r8, r2
+ 257              	.LVL31:
+ 258              		.loc 1 187 14 view .LVU89
+ 259 0086 0EEBE23E 		add	lr, lr, r2, asr #15
+ 260              	.LVL32:
+ 188:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext1 = __SSAT(gnext1, 16);
+ 261              		.loc 1 188 7 is_stmt 1 view .LVU90
+ 262              	.LBB9:
+ 263              		.loc 1 188 16 view .LVU91
+ 264              		.loc 1 188 16 view .LVU92
+ 265              		.syntax unified
+ 266              	@ 188 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 267 008a 0EF30F02 		ssat r2, #16, lr
+ 268              	@ 0 "" 2
+ 269              	.LVL33:
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 9
+
+
+ 270              		.loc 1 188 16 view .LVU93
+ 271              		.loc 1 188 16 is_stmt 0 view .LVU94
+ 272              		.thumb
+ 273              		.syntax unified
+ 274              	.LBE9:
+ 189:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 190:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 191:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* Read g2(n-1), g4(n-1) .... from state */
+ 192:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gcurnt1 = *px;
+ 275              		.loc 1 192 7 is_stmt 1 view .LVU95
+ 276              		.loc 1 192 17 is_stmt 0 view .LVU96
+ 277 008e 0098     		ldr	r0, [sp]
+ 278              		.loc 1 192 17 view .LVU97
+ 279 0090 B0F90240 		ldrsh	r4, [r0, #2]
+ 280              	.LVL34:
+ 193:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 194:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* save g1(n) in state buffer */
+ 195:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       *px++ = (q15_t) gnext4;
+ 281              		.loc 1 195 7 is_stmt 1 view .LVU98
+ 282              		.loc 1 195 13 is_stmt 0 view .LVU99
+ 283 0094 4680     		strh	r6, [r0, #2]	@ movhi
+ 196:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 197:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* Sample processing for K3, K7.... */
+ 198:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* Process first sample for 3rd, 7th .. tap */
+ 199:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* f3(n) = f2(n) +  K3 * g2(n-1) */
+ 200:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fcurnt1 = (q31_t) ((gcurnt1 * (*pk)) >> 15U) + fnext1;
+ 284              		.loc 1 200 7 is_stmt 1 view .LVU100
+ 285              		.loc 1 200 38 is_stmt 0 view .LVU101
+ 286 0096 B1F90200 		ldrsh	r0, [r1, #2]
+ 287              		.loc 1 200 35 view .LVU102
+ 288 009a 04FB00F6 		mul	r6, r4, r0
+ 289              	.LVL35:
+ 290              		.loc 1 200 15 view .LVU103
+ 291 009e 0299     		ldr	r1, [sp, #8]
+ 292              	.LVL36:
+ 293              		.loc 1 200 15 view .LVU104
+ 294 00a0 01EBE636 		add	r6, r1, r6, asr #15
+ 295              	.LVL37:
+ 201:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fcurnt1 = __SSAT(fcurnt1, 16);
+ 296              		.loc 1 201 7 is_stmt 1 view .LVU105
+ 297              	.LBB10:
+ 298              		.loc 1 201 17 view .LVU106
+ 299              		.loc 1 201 17 view .LVU107
+ 300              		.syntax unified
+ 301              	@ 201 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 302 00a4 06F30F09 		ssat r9, #16, r6
+ 303              	@ 0 "" 2
+ 304              	.LVL38:
+ 305              		.loc 1 201 17 view .LVU108
+ 306              		.loc 1 201 17 is_stmt 0 view .LVU109
+ 307              		.thumb
+ 308              		.syntax unified
+ 309              	.LBE10:
+ 202:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 203:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* Process second sample for 3rd, 7th .. tap */
+ 204:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fcurnt2 = (q31_t) ((gnext1 * (*pk)) >> 15U) + fnext2;
+ 310              		.loc 1 204 7 is_stmt 1 view .LVU110
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 10
+
+
+ 311              		.loc 1 204 34 is_stmt 0 view .LVU111
+ 312 00a8 02FB00F6 		mul	r6, r2, r0
+ 313              	.LVL39:
+ 314              		.loc 1 204 15 view .LVU112
+ 315 00ac 07EBE636 		add	r6, r7, r6, asr #15
+ 316              	.LVL40:
+ 205:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fcurnt2 = __SSAT(fcurnt2, 16);
+ 317              		.loc 1 205 7 is_stmt 1 view .LVU113
+ 318              	.LBB11:
+ 319              		.loc 1 205 17 view .LVU114
+ 320              		.loc 1 205 17 view .LVU115
+ 321              		.syntax unified
+ 322              	@ 205 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 323 00b0 06F30F06 		ssat r6, #16, r6
+ 324              	@ 0 "" 2
+ 325              	.LVL41:
+ 326              		.loc 1 205 17 view .LVU116
+ 327              		.loc 1 205 17 is_stmt 0 view .LVU117
+ 328              		.thumb
+ 329              		.syntax unified
+ 330              	.LBE11:
+ 206:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 207:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* Process third sample for 3rd, 7th .. tap */
+ 208:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fcurnt3 = (q31_t) ((gnext2 * (*pk)) >> 15U) + fnext3;
+ 331              		.loc 1 208 7 is_stmt 1 view .LVU118
+ 332              		.loc 1 208 34 is_stmt 0 view .LVU119
+ 333 00b4 05FB00FE 		mul	lr, r5, r0
+ 334              	.LVL42:
+ 335              		.loc 1 208 15 view .LVU120
+ 336 00b8 0CEBEE3E 		add	lr, ip, lr, asr #15
+ 337              	.LVL43:
+ 209:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fcurnt3 = __SSAT(fcurnt3, 16);
+ 338              		.loc 1 209 7 is_stmt 1 view .LVU121
+ 339              	.LBB12:
+ 340              		.loc 1 209 17 view .LVU122
+ 341              		.loc 1 209 17 view .LVU123
+ 342              		.syntax unified
+ 343              	@ 209 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 344 00bc 0EF30F0E 		ssat lr, #16, lr
+ 345              	@ 0 "" 2
+ 346              	.LVL44:
+ 347              		.loc 1 209 17 view .LVU124
+ 348              		.loc 1 209 17 is_stmt 0 view .LVU125
+ 349              		.thumb
+ 350              		.syntax unified
+ 351              	.LBE12:
+ 210:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 211:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* Process fourth sample for 3rd, 7th .. tap */
+ 212:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fcurnt4 = (q31_t) ((gnext3 * (*pk)) >> 15U) + fnext4;
+ 352              		.loc 1 212 7 is_stmt 1 view .LVU126
+ 353              		.loc 1 212 34 is_stmt 0 view .LVU127
+ 354 00c0 03FB00F8 		mul	r8, r3, r0
+ 355              		.loc 1 212 15 view .LVU128
+ 356 00c4 0AEBE838 		add	r8, r10, r8, asr #15
+ 357              	.LVL45:
+ 213:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fcurnt4 = __SSAT(fcurnt4, 16);
+ 358              		.loc 1 213 7 is_stmt 1 view .LVU129
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 11
+
+
+ 359              	.LBB13:
+ 360              		.loc 1 213 17 view .LVU130
+ 361              		.loc 1 213 17 view .LVU131
+ 362              		.syntax unified
+ 363              	@ 213 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 364 00c8 08F30F08 		ssat r8, #16, r8
+ 365              	@ 0 "" 2
+ 366              	.LVL46:
+ 367              		.loc 1 213 17 view .LVU132
+ 368              		.loc 1 213 17 is_stmt 0 view .LVU133
+ 369              		.thumb
+ 370              		.syntax unified
+ 371              	.LBE13:
+ 214:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 215:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* Calculation of state values for next stage */
+ 216:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* g3(n) = f2(n) * K3  +  g2(n-1) */
+ 217:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext4 = (q31_t) ((fnext4 * (*pk)) >> 15U) + gnext3;
+ 372              		.loc 1 217 7 is_stmt 1 view .LVU134
+ 373              		.loc 1 217 33 is_stmt 0 view .LVU135
+ 374 00cc 0AFB00FA 		mul	r10, r10, r0
+ 375              	.LVL47:
+ 376              		.loc 1 217 14 view .LVU136
+ 377 00d0 03EBEA33 		add	r3, r3, r10, asr #15
+ 378              	.LVL48:
+ 218:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext4 = __SSAT(gnext4, 16);
+ 379              		.loc 1 218 7 is_stmt 1 view .LVU137
+ 380              	.LBB14:
+ 381              		.loc 1 218 16 view .LVU138
+ 382              		.loc 1 218 16 view .LVU139
+ 383              		.syntax unified
+ 384              	@ 218 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 385 00d4 03F30F03 		ssat r3, #16, r3
+ 386              	@ 0 "" 2
+ 387              	.LVL49:
+ 388              		.loc 1 218 16 view .LVU140
+ 389              		.loc 1 218 16 is_stmt 0 view .LVU141
+ 390              		.thumb
+ 391              		.syntax unified
+ 392              	.LBE14:
+ 219:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 220:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext3 = (q31_t) ((fnext3 * (*pk)) >> 15U) + gnext2;
+ 393              		.loc 1 220 7 is_stmt 1 view .LVU142
+ 394              		.loc 1 220 33 is_stmt 0 view .LVU143
+ 395 00d8 0CFB00FC 		mul	ip, ip, r0
+ 396              	.LVL50:
+ 397              		.loc 1 220 14 view .LVU144
+ 398 00dc 05EBEC35 		add	r5, r5, ip, asr #15
+ 399              	.LVL51:
+ 221:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext3 = __SSAT(gnext3, 16);
+ 400              		.loc 1 221 7 is_stmt 1 view .LVU145
+ 401              	.LBB15:
+ 402              		.loc 1 221 16 view .LVU146
+ 403              		.loc 1 221 16 view .LVU147
+ 404              		.syntax unified
+ 405              	@ 221 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 406 00e0 05F30F05 		ssat r5, #16, r5
+ 407              	@ 0 "" 2
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 12
+
+
+ 408              	.LVL52:
+ 409              		.loc 1 221 16 view .LVU148
+ 410              		.loc 1 221 16 is_stmt 0 view .LVU149
+ 411              		.thumb
+ 412              		.syntax unified
+ 413              	.LBE15:
+ 222:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 223:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext2 = (q31_t) ((fnext2 * (*pk)) >> 15U) + gnext1;
+ 414              		.loc 1 223 7 is_stmt 1 view .LVU150
+ 415              		.loc 1 223 33 is_stmt 0 view .LVU151
+ 416 00e4 00FB07F7 		mul	r7, r0, r7
+ 417              	.LVL53:
+ 418              		.loc 1 223 14 view .LVU152
+ 419 00e8 02EBE732 		add	r2, r2, r7, asr #15
+ 420              	.LVL54:
+ 224:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext2 = __SSAT(gnext2, 16);
+ 421              		.loc 1 224 7 is_stmt 1 view .LVU153
+ 422              	.LBB16:
+ 423              		.loc 1 224 16 view .LVU154
+ 424              		.loc 1 224 16 view .LVU155
+ 425              		.syntax unified
+ 426              	@ 224 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 427 00ec 02F30F02 		ssat r2, #16, r2
+ 428              	@ 0 "" 2
+ 429              	.LVL55:
+ 430              		.loc 1 224 16 view .LVU156
+ 431              		.loc 1 224 16 is_stmt 0 view .LVU157
+ 432              		.thumb
+ 433              		.syntax unified
+ 434              	.LBE16:
+ 225:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 226:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext1 = (q31_t) ((fnext1 * (*pk++)) >> 15U) + gcurnt1;
+ 435              		.loc 1 226 7 is_stmt 1 view .LVU158
+ 436              		.loc 1 226 33 is_stmt 0 view .LVU159
+ 437 00f0 01FB00F0 		mul	r0, r1, r0
+ 438              	.LVL56:
+ 439              		.loc 1 226 14 view .LVU160
+ 440 00f4 04EBE034 		add	r4, r4, r0, asr #15
+ 441              	.LVL57:
+ 227:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext1 = __SSAT(gnext1, 16);
+ 442              		.loc 1 227 7 is_stmt 1 view .LVU161
+ 443              	.LBB17:
+ 444              		.loc 1 227 16 view .LVU162
+ 445              		.loc 1 227 16 view .LVU163
+ 446              		.syntax unified
+ 447              	@ 227 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 448 00f8 04F30F04 		ssat r4, #16, r4
+ 449              	@ 0 "" 2
+ 450              	.LVL58:
+ 451              		.loc 1 227 16 view .LVU164
+ 452              		.loc 1 227 16 is_stmt 0 view .LVU165
+ 453              		.thumb
+ 454              		.syntax unified
+ 455              	.LBE17:
+ 228:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 229:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* Read g1(n-1), g3(n-1) .... from state */
+ 230:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gcurnt1 = *px;
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 13
+
+
+ 456              		.loc 1 230 7 is_stmt 1 view .LVU166
+ 457              		.loc 1 230 17 is_stmt 0 view .LVU167
+ 458 00fc 0099     		ldr	r1, [sp]
+ 459 00fe B1F90400 		ldrsh	r0, [r1, #4]
+ 460              	.LVL59:
+ 231:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 232:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* save g1(n) in state buffer */
+ 233:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       *px++ = (q15_t) gnext4;
+ 461              		.loc 1 233 7 is_stmt 1 view .LVU168
+ 462              		.loc 1 233 13 is_stmt 0 view .LVU169
+ 463 0102 8B80     		strh	r3, [r1, #4]	@ movhi
+ 234:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 235:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* Sample processing for K4, K8.... */
+ 236:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* Process first sample for 4th, 8th .. tap */
+ 237:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* f4(n) = f3(n) +  K4 * g3(n-1) */
+ 238:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fnext1 = (q31_t) ((gcurnt1 * (*pk)) >> 15U) + fcurnt1;
+ 464              		.loc 1 238 7 is_stmt 1 view .LVU170
+ 465              		.loc 1 238 37 is_stmt 0 view .LVU171
+ 466 0104 019B     		ldr	r3, [sp, #4]
+ 467              	.LVL60:
+ 468              		.loc 1 238 37 view .LVU172
+ 469 0106 B3F90430 		ldrsh	r3, [r3, #4]
+ 470              		.loc 1 238 34 view .LVU173
+ 471 010a 00FB03F7 		mul	r7, r0, r3
+ 472              		.loc 1 238 14 view .LVU174
+ 473 010e 09EBE737 		add	r7, r9, r7, asr #15
+ 474              	.LVL61:
+ 239:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fnext1 = __SSAT(fnext1, 16);
+ 475              		.loc 1 239 7 is_stmt 1 view .LVU175
+ 476              	.LBB18:
+ 477              		.loc 1 239 16 view .LVU176
+ 478              		.loc 1 239 16 view .LVU177
+ 479              		.syntax unified
+ 480              	@ 239 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 481 0112 07F30F01 		ssat r1, #16, r7
+ 482              	@ 0 "" 2
+ 483              	.LVL62:
+ 484              		.loc 1 239 16 view .LVU178
+ 485              		.loc 1 239 16 is_stmt 0 view .LVU179
+ 486              		.thumb
+ 487              		.syntax unified
+ 488              	.LBE18:
+ 240:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 241:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* Process second sample for 4th, 8th .. tap */
+ 242:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* for sample 2 processing */
+ 243:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fnext2 = (q31_t) ((gnext1 * (*pk)) >> 15U) + fcurnt2;
+ 489              		.loc 1 243 7 is_stmt 1 view .LVU180
+ 490              		.loc 1 243 33 is_stmt 0 view .LVU181
+ 491 0116 04FB03F7 		mul	r7, r4, r3
+ 492              	.LVL63:
+ 493              		.loc 1 243 14 view .LVU182
+ 494 011a 06EBE737 		add	r7, r6, r7, asr #15
+ 495              	.LVL64:
+ 244:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fnext2 = __SSAT(fnext2, 16);
+ 496              		.loc 1 244 7 is_stmt 1 view .LVU183
+ 497              	.LBB19:
+ 498              		.loc 1 244 16 view .LVU184
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 14
+
+
+ 499              		.loc 1 244 16 view .LVU185
+ 500              		.syntax unified
+ 501              	@ 244 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 502 011e 07F30F0A 		ssat r10, #16, r7
+ 503              	@ 0 "" 2
+ 504              	.LVL65:
+ 505              		.loc 1 244 16 view .LVU186
+ 506              		.loc 1 244 16 is_stmt 0 view .LVU187
+ 507              		.thumb
+ 508              		.syntax unified
+ 509              	.LBE19:
+ 245:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 246:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* Process third sample for 4th, 8th .. tap */
+ 247:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fnext3 = (q31_t) ((gnext2 * (*pk)) >> 15U) + fcurnt3;
+ 510              		.loc 1 247 7 is_stmt 1 view .LVU188
+ 511              		.loc 1 247 33 is_stmt 0 view .LVU189
+ 512 0122 02FB03F7 		mul	r7, r2, r3
+ 513              	.LVL66:
+ 514              		.loc 1 247 14 view .LVU190
+ 515 0126 0EEBE737 		add	r7, lr, r7, asr #15
+ 516              	.LVL67:
+ 248:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fnext3 = __SSAT(fnext3, 16);
+ 517              		.loc 1 248 7 is_stmt 1 view .LVU191
+ 518              	.LBB20:
+ 519              		.loc 1 248 16 view .LVU192
+ 520              		.loc 1 248 16 view .LVU193
+ 521              		.syntax unified
+ 522              	@ 248 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 523 012a 07F30F07 		ssat r7, #16, r7
+ 524              	@ 0 "" 2
+ 525              	.LVL68:
+ 526              		.loc 1 248 16 view .LVU194
+ 527              		.loc 1 248 16 is_stmt 0 view .LVU195
+ 528              		.thumb
+ 529              		.syntax unified
+ 530              	.LBE20:
+ 249:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 250:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* Process fourth sample for 4th, 8th .. tap */
+ 251:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fnext4 = (q31_t) ((gnext3 * (*pk)) >> 15U) + fcurnt4;
+ 531              		.loc 1 251 7 is_stmt 1 view .LVU196
+ 532              		.loc 1 251 33 is_stmt 0 view .LVU197
+ 533 012e 05FB03FC 		mul	ip, r5, r3
+ 534              		.loc 1 251 14 view .LVU198
+ 535 0132 08EBEC3C 		add	ip, r8, ip, asr #15
+ 536              	.LVL69:
+ 252:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fnext4 = __SSAT(fnext4, 16);
+ 537              		.loc 1 252 7 is_stmt 1 view .LVU199
+ 538              	.LBB21:
+ 539              		.loc 1 252 16 view .LVU200
+ 540              		.loc 1 252 16 view .LVU201
+ 541              		.syntax unified
+ 542              	@ 252 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 543 0136 0CF30F0C 		ssat ip, #16, ip
+ 544              	@ 0 "" 2
+ 545              	.LVL70:
+ 546              		.loc 1 252 16 view .LVU202
+ 547              		.loc 1 252 16 is_stmt 0 view .LVU203
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 15
+
+
+ 548              		.thumb
+ 549              		.syntax unified
+ 550              	.LBE21:
+ 253:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 254:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* g4(n) = f3(n) * K4  +  g3(n-1) */
+ 255:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* Calculation of state values for next stage */
+ 256:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext4 = (q31_t) ((fcurnt4 * (*pk)) >> 15U) + gnext3;
+ 551              		.loc 1 256 7 is_stmt 1 view .LVU204
+ 552              		.loc 1 256 34 is_stmt 0 view .LVU205
+ 553 013a 08FB03F8 		mul	r8, r8, r3
+ 554              	.LVL71:
+ 555              		.loc 1 256 14 view .LVU206
+ 556 013e 05EBE835 		add	r5, r5, r8, asr #15
+ 557              	.LVL72:
+ 257:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext4 = __SSAT(gnext4, 16);
+ 558              		.loc 1 257 7 is_stmt 1 view .LVU207
+ 559              	.LBB22:
+ 560              		.loc 1 257 16 view .LVU208
+ 561              		.loc 1 257 16 view .LVU209
+ 562              		.syntax unified
+ 563              	@ 257 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 564 0142 05F30F05 		ssat r5, #16, r5
+ 565              	@ 0 "" 2
+ 566              	.LVL73:
+ 567              		.loc 1 257 16 view .LVU210
+ 568              		.loc 1 257 16 is_stmt 0 view .LVU211
+ 569              		.thumb
+ 570              		.syntax unified
+ 571              	.LBE22:
+ 258:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 259:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext3 = (q31_t) ((fcurnt3 * (*pk)) >> 15U) + gnext2;
+ 572              		.loc 1 259 7 is_stmt 1 view .LVU212
+ 573              		.loc 1 259 34 is_stmt 0 view .LVU213
+ 574 0146 0EFB03FE 		mul	lr, lr, r3
+ 575              	.LVL74:
+ 576              		.loc 1 259 14 view .LVU214
+ 577 014a 02EBEE32 		add	r2, r2, lr, asr #15
+ 578              	.LVL75:
+ 260:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext3 = __SSAT(gnext3, 16);
+ 579              		.loc 1 260 7 is_stmt 1 view .LVU215
+ 580              	.LBB23:
+ 581              		.loc 1 260 16 view .LVU216
+ 582              		.loc 1 260 16 view .LVU217
+ 583              		.syntax unified
+ 584              	@ 260 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 585 014e 02F30F02 		ssat r2, #16, r2
+ 586              	@ 0 "" 2
+ 587              	.LVL76:
+ 588              		.loc 1 260 16 view .LVU218
+ 589              		.loc 1 260 16 is_stmt 0 view .LVU219
+ 590              		.thumb
+ 591              		.syntax unified
+ 592              	.LBE23:
+ 261:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 262:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext2 = (q31_t) ((fcurnt2 * (*pk)) >> 15U) + gnext1;
+ 593              		.loc 1 262 7 is_stmt 1 view .LVU220
+ 594              		.loc 1 262 34 is_stmt 0 view .LVU221
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 16
+
+
+ 595 0152 03FB06F6 		mul	r6, r3, r6
+ 596              	.LVL77:
+ 597              		.loc 1 262 14 view .LVU222
+ 598 0156 04EBE634 		add	r4, r4, r6, asr #15
+ 599              	.LVL78:
+ 263:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext2 = __SSAT(gnext2, 16);
+ 600              		.loc 1 263 7 is_stmt 1 view .LVU223
+ 601              	.LBB24:
+ 602              		.loc 1 263 16 view .LVU224
+ 603              		.loc 1 263 16 view .LVU225
+ 604              		.syntax unified
+ 605              	@ 263 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 606 015a 04F30F04 		ssat r4, #16, r4
+ 607              	@ 0 "" 2
+ 608              	.LVL79:
+ 609              		.loc 1 263 16 view .LVU226
+ 610              		.loc 1 263 16 is_stmt 0 view .LVU227
+ 611              		.thumb
+ 612              		.syntax unified
+ 613              	.LBE24:
+ 264:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext1 = (q31_t) ((fcurnt1 * (*pk++)) >> 15U) + gcurnt1;
+ 614              		.loc 1 264 7 is_stmt 1 view .LVU228
+ 615              		.loc 1 264 34 is_stmt 0 view .LVU229
+ 616 015e 09FB03F3 		mul	r3, r9, r3
+ 617              	.LVL80:
+ 618              		.loc 1 264 14 view .LVU230
+ 619 0162 00EBE333 		add	r3, r0, r3, asr #15
+ 620              	.LVL81:
+ 265:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext1 = __SSAT(gnext1, 16);
+ 621              		.loc 1 265 7 is_stmt 1 view .LVU231
+ 622              	.LBB25:
+ 623              		.loc 1 265 16 view .LVU232
+ 624              		.loc 1 265 16 view .LVU233
+ 625              		.syntax unified
+ 626              	@ 265 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 627 0166 03F30F03 		ssat r3, #16, r3
+ 628              	@ 0 "" 2
+ 629              	.LVL82:
+ 630              		.loc 1 265 16 view .LVU234
+ 631              		.loc 1 265 16 is_stmt 0 view .LVU235
+ 632              		.thumb
+ 633              		.syntax unified
+ 634              	.LBE25:
+ 266:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 267:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 268:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* Read g2(n-1), g4(n-1) .... from state */
+ 269:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gcurnt1 = *px;
+ 635              		.loc 1 269 7 is_stmt 1 view .LVU236
+ 636              		.loc 1 269 17 is_stmt 0 view .LVU237
+ 637 016a 009E     		ldr	r6, [sp]
+ 638              		.loc 1 269 17 view .LVU238
+ 639 016c B6F90600 		ldrsh	r0, [r6, #6]
+ 640              	.LVL83:
+ 270:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 271:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* save g4(n) in state buffer */
+ 272:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       *px++ = (q15_t) gnext4;
+ 641              		.loc 1 272 7 is_stmt 1 view .LVU239
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 17
+
+
+ 642              		.loc 1 272 13 is_stmt 0 view .LVU240
+ 643 0170 F580     		strh	r5, [r6, #6]	@ movhi
+ 273:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 274:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* Sample processing for K5, K9.... */
+ 275:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* Process first sample for 5th, 9th .. tap */
+ 276:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* f5(n) = f4(n) +  K5 * g4(n-1) */
+ 277:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fcurnt1 = (q31_t) ((gcurnt1 * (*pk)) >> 15U) + fnext1;
+ 644              		.loc 1 277 7 is_stmt 1 view .LVU241
+ 645              		.loc 1 277 38 is_stmt 0 view .LVU242
+ 646 0172 019D     		ldr	r5, [sp, #4]
+ 647              	.LVL84:
+ 648              		.loc 1 277 38 view .LVU243
+ 649 0174 B5F90660 		ldrsh	r6, [r5, #6]
+ 650              		.loc 1 277 35 view .LVU244
+ 651 0178 00FB06F5 		mul	r5, r0, r6
+ 652              		.loc 1 277 15 view .LVU245
+ 653 017c 01EBE535 		add	r5, r1, r5, asr #15
+ 654              	.LVL85:
+ 278:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fcurnt1 = __SSAT(fcurnt1, 16);
+ 655              		.loc 1 278 7 is_stmt 1 view .LVU246
+ 656              	.LBB26:
+ 657              		.loc 1 278 17 view .LVU247
+ 658              		.loc 1 278 17 view .LVU248
+ 659              		.syntax unified
+ 660              	@ 278 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 661 0180 05F30F08 		ssat r8, #16, r5
+ 662              	@ 0 "" 2
+ 663              	.LVL86:
+ 664              		.loc 1 278 17 view .LVU249
+ 665              		.loc 1 278 17 is_stmt 0 view .LVU250
+ 666              		.thumb
+ 667              		.syntax unified
+ 668              	.LBE26:
+ 279:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 280:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* Process second sample for 5th, 9th .. tap */
+ 281:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fcurnt2 = (q31_t) ((gnext1 * (*pk)) >> 15U) + fnext2;
+ 669              		.loc 1 281 7 is_stmt 1 view .LVU251
+ 670              		.loc 1 281 34 is_stmt 0 view .LVU252
+ 671 0184 03FB06FB 		mul	fp, r3, r6
+ 672              	.LVL87:
+ 673              		.loc 1 281 15 view .LVU253
+ 674 0188 0AEBEB3B 		add	fp, r10, fp, asr #15
+ 675              	.LVL88:
+ 282:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fcurnt2 = __SSAT(fcurnt2, 16);
+ 676              		.loc 1 282 7 is_stmt 1 view .LVU254
+ 677              	.LBB27:
+ 678              		.loc 1 282 17 view .LVU255
+ 679              		.loc 1 282 17 view .LVU256
+ 680              		.syntax unified
+ 681              	@ 282 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 682 018c 0BF30F0B 		ssat fp, #16, fp
+ 683              	@ 0 "" 2
+ 684              	.LVL89:
+ 685              		.loc 1 282 17 view .LVU257
+ 686              		.loc 1 282 17 is_stmt 0 view .LVU258
+ 687              		.thumb
+ 688              		.syntax unified
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 18
+
+
+ 689              	.LBE27:
+ 283:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 284:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* Process third sample for 5th, 9th .. tap */
+ 285:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fcurnt3 = (q31_t) ((gnext2 * (*pk)) >> 15U) + fnext3;
+ 690              		.loc 1 285 7 is_stmt 1 view .LVU259
+ 691              		.loc 1 285 34 is_stmt 0 view .LVU260
+ 692 0190 04FB06F9 		mul	r9, r4, r6
+ 693              	.LVL90:
+ 694              		.loc 1 285 15 view .LVU261
+ 695 0194 07EBE939 		add	r9, r7, r9, asr #15
+ 696              	.LVL91:
+ 286:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fcurnt3 = __SSAT(fcurnt3, 16);
+ 697              		.loc 1 286 7 is_stmt 1 view .LVU262
+ 698              	.LBB28:
+ 699              		.loc 1 286 17 view .LVU263
+ 700              		.loc 1 286 17 view .LVU264
+ 701              		.syntax unified
+ 702              	@ 286 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 703 0198 09F30F09 		ssat r9, #16, r9
+ 704              	@ 0 "" 2
+ 705              	.LVL92:
+ 706              		.loc 1 286 17 view .LVU265
+ 707              		.loc 1 286 17 is_stmt 0 view .LVU266
+ 708              		.thumb
+ 709              		.syntax unified
+ 710              	.LBE28:
+ 287:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 288:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* Process fourth sample for 5th, 9th .. tap */
+ 289:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fcurnt4 = (q31_t) ((gnext3 * (*pk)) >> 15U) + fnext4;
+ 711              		.loc 1 289 7 is_stmt 1 view .LVU267
+ 712              		.loc 1 289 34 is_stmt 0 view .LVU268
+ 713 019c 02FB06F5 		mul	r5, r2, r6
+ 714              	.LVL93:
+ 715              		.loc 1 289 15 view .LVU269
+ 716 01a0 0CEBE535 		add	r5, ip, r5, asr #15
+ 717              	.LVL94:
+ 290:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fcurnt4 = __SSAT(fcurnt4, 16);
+ 718              		.loc 1 290 7 is_stmt 1 view .LVU270
+ 719              	.LBB29:
+ 720              		.loc 1 290 17 view .LVU271
+ 721              		.loc 1 290 17 view .LVU272
+ 722              		.syntax unified
+ 723              	@ 290 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 724 01a4 05F30F05 		ssat r5, #16, r5
+ 725              	@ 0 "" 2
+ 726              	.LVL95:
+ 727              		.loc 1 290 17 view .LVU273
+ 728              		.loc 1 290 17 is_stmt 0 view .LVU274
+ 729              		.thumb
+ 730              		.syntax unified
+ 731              	.LBE29:
+ 291:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 292:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* Calculation of state values for next stage */
+ 293:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* g5(n) = f4(n) * K5  +  g4(n-1) */
+ 294:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext4 = (q31_t) ((fnext4 * (*pk)) >> 15U) + gnext3;
+ 732              		.loc 1 294 7 is_stmt 1 view .LVU275
+ 733              		.loc 1 294 33 is_stmt 0 view .LVU276
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 19
+
+
+ 734 01a8 0CFB06FC 		mul	ip, ip, r6
+ 735              	.LVL96:
+ 736              		.loc 1 294 14 view .LVU277
+ 737 01ac 02EBEC32 		add	r2, r2, ip, asr #15
+ 738              	.LVL97:
+ 295:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext4 = __SSAT(gnext4, 16);
+ 739              		.loc 1 295 7 is_stmt 1 view .LVU278
+ 740              	.LBB30:
+ 741              		.loc 1 295 16 view .LVU279
+ 742              		.loc 1 295 16 view .LVU280
+ 743              		.syntax unified
+ 744              	@ 295 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 745 01b0 02F30F02 		ssat r2, #16, r2
+ 746              	@ 0 "" 2
+ 747              	.LVL98:
+ 748              		.loc 1 295 16 view .LVU281
+ 749              		.loc 1 295 16 is_stmt 0 view .LVU282
+ 750              		.thumb
+ 751              		.syntax unified
+ 752              	.LBE30:
+ 296:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext3 = (q31_t) ((fnext3 * (*pk)) >> 15U) + gnext2;
+ 753              		.loc 1 296 7 is_stmt 1 view .LVU283
+ 754              		.loc 1 296 33 is_stmt 0 view .LVU284
+ 755 01b4 06FB07F7 		mul	r7, r6, r7
+ 756              	.LVL99:
+ 757              		.loc 1 296 14 view .LVU285
+ 758 01b8 04EBE734 		add	r4, r4, r7, asr #15
+ 759              	.LVL100:
+ 297:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext3 = __SSAT(gnext3, 16);
+ 760              		.loc 1 297 7 is_stmt 1 view .LVU286
+ 761              	.LBB31:
+ 762              		.loc 1 297 16 view .LVU287
+ 763              		.loc 1 297 16 view .LVU288
+ 764              		.syntax unified
+ 765              	@ 297 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 766 01bc 04F30F04 		ssat r4, #16, r4
+ 767              	@ 0 "" 2
+ 768              	.LVL101:
+ 769              		.loc 1 297 16 view .LVU289
+ 770              		.loc 1 297 16 is_stmt 0 view .LVU290
+ 771              		.thumb
+ 772              		.syntax unified
+ 773              	.LBE31:
+ 298:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext2 = (q31_t) ((fnext2 * (*pk)) >> 15U) + gnext1;
+ 774              		.loc 1 298 7 is_stmt 1 view .LVU291
+ 775              		.loc 1 298 33 is_stmt 0 view .LVU292
+ 776 01c0 0AFB06FA 		mul	r10, r10, r6
+ 777              	.LVL102:
+ 778              		.loc 1 298 14 view .LVU293
+ 779 01c4 03EBEA33 		add	r3, r3, r10, asr #15
+ 780              	.LVL103:
+ 299:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext2 = __SSAT(gnext2, 16);
+ 781              		.loc 1 299 7 is_stmt 1 view .LVU294
+ 782              	.LBB32:
+ 783              		.loc 1 299 16 view .LVU295
+ 784              		.loc 1 299 16 view .LVU296
+ 785              		.syntax unified
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 20
+
+
+ 786              	@ 299 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 787 01c8 03F30F03 		ssat r3, #16, r3
+ 788              	@ 0 "" 2
+ 789              	.LVL104:
+ 790              		.loc 1 299 16 view .LVU297
+ 791              		.loc 1 299 16 is_stmt 0 view .LVU298
+ 792              		.thumb
+ 793              		.syntax unified
+ 794              	.LBE32:
+ 300:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext1 = (q31_t) ((fnext1 * (*pk++)) >> 15U) + gcurnt1;
+ 795              		.loc 1 300 7 is_stmt 1 view .LVU299
+ 796              		.loc 1 300 39 is_stmt 0 view .LVU300
+ 797 01cc 019F     		ldr	r7, [sp, #4]
+ 798              		.loc 1 300 39 view .LVU301
+ 799 01ce 0837     		adds	r7, r7, #8
+ 800 01d0 0197     		str	r7, [sp, #4]
+ 801              	.LVL105:
+ 802              		.loc 1 300 33 view .LVU302
+ 803 01d2 01FB06F6 		mul	r6, r1, r6
+ 804              	.LVL106:
+ 805              		.loc 1 300 14 view .LVU303
+ 806 01d6 00EBE630 		add	r0, r0, r6, asr #15
+ 807              	.LVL107:
+ 301:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext1 = __SSAT(gnext1, 16);
+ 808              		.loc 1 301 7 is_stmt 1 view .LVU304
+ 809              	.LBB33:
+ 810              		.loc 1 301 16 view .LVU305
+ 811              		.loc 1 301 16 view .LVU306
+ 812              		.syntax unified
+ 813              	@ 301 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 814 01da 00F30F00 		ssat r0, #16, r0
+ 815              	@ 0 "" 2
+ 816              	.LVL108:
+ 817              		.loc 1 301 16 view .LVU307
+ 818              		.loc 1 301 16 is_stmt 0 view .LVU308
+ 819              		.thumb
+ 820              		.syntax unified
+ 821              	.LBE33:
+ 302:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 303:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       stageCnt--;
+ 822              		.loc 1 303 7 is_stmt 1 view .LVU309
+ 823              		.loc 1 303 15 is_stmt 0 view .LVU310
+ 824 01de 0399     		ldr	r1, [sp, #12]
+ 825              	.LVL109:
+ 826              		.loc 1 303 15 view .LVU311
+ 827 01e0 0139     		subs	r1, r1, #1
+ 828 01e2 0391     		str	r1, [sp, #12]
+ 829              	.LVL110:
+ 272:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 830              		.loc 1 272 10 view .LVU312
+ 831 01e4 009E     		ldr	r6, [sp]
+ 272:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 832              		.loc 1 272 10 view .LVU313
+ 833 01e6 0836     		adds	r6, r6, #8
+ 834              	.LVL111:
+ 272:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 835              		.loc 1 272 10 view .LVU314
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 21
+
+
+ 836 01e8 0096     		str	r6, [sp]
+ 837              	.LVL112:
+ 838              	.L3:
+ 150:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     {
+ 839              		.loc 1 150 21 is_stmt 1 view .LVU315
+ 840 01ea 0399     		ldr	r1, [sp, #12]
+ 841 01ec 0029     		cmp	r1, #0
+ 842 01ee 7FF416AF 		bne	.L4
+ 304:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     }
+ 305:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 306:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* If the (filter length -1) is not a multiple of 4, compute the remaining filter taps */
+ 307:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     stageCnt = (numStages - 1U) % 0x4U;
+ 843              		.loc 1 307 14 is_stmt 0 view .LVU316
+ 844 01f2 DDF820C0 		ldr	ip, [sp, #32]
+ 845 01f6 0099     		ldr	r1, [sp]
+ 846 01f8 CDF80880 		str	r8, [sp, #8]
+ 847 01fc DDF82480 		ldr	r8, [sp, #36]
+ 848              	.LVL113:
+ 849              		.loc 1 307 5 is_stmt 1 view .LVU317
+ 850              		.loc 1 307 14 is_stmt 0 view .LVU318
+ 851 0200 0CF00306 		and	r6, ip, #3
+ 852              	.LVL114:
+ 308:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 309:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     while (stageCnt > 0U)
+ 853              		.loc 1 309 5 is_stmt 1 view .LVU319
+ 854 0204 9246     		mov	r10, r2
+ 855 0206 3246     		mov	r2, r6
+ 856              	.LVL115:
+ 857              		.loc 1 309 5 is_stmt 0 view .LVU320
+ 858 0208 CDF80C80 		str	r8, [sp, #12]
+ 859              		.loc 1 309 11 view .LVU321
+ 860 020c 42E0     		b	.L5
+ 861              	.LVL116:
+ 862              	.L6:
+ 310:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     {
+ 311:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gcurnt1 = *px;
+ 863              		.loc 1 311 7 is_stmt 1 view .LVU322
+ 864              		.loc 1 311 17 is_stmt 0 view .LVU323
+ 865 020e B1F900E0 		ldrsh	lr, [r1]
+ 866              	.LVL117:
+ 312:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 313:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* save g value in state buffer */
+ 314:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       *px++ = (q15_t) gnext4;
+ 867              		.loc 1 314 7 is_stmt 1 view .LVU324
+ 868              		.loc 1 314 10 is_stmt 0 view .LVU325
+ 869 0212 8846     		mov	r8, r1
+ 870              	.LVL118:
+ 871              		.loc 1 314 13 view .LVU326
+ 872 0214 28F802AB 		strh	r10, [r8], #2	@ movhi
+ 873              	.LVL119:
+ 315:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 316:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* Process four samples for last three taps here */
+ 317:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fnext1 = (q31_t) ((gcurnt1 * (*pk)) >> 15U) + fcurnt1;
+ 874              		.loc 1 317 7 is_stmt 1 view .LVU327
+ 875              		.loc 1 317 37 is_stmt 0 view .LVU328
+ 876 0218 019E     		ldr	r6, [sp, #4]
+ 877 021a 36F9021B 		ldrsh	r1, [r6], #2
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 22
+
+
+ 878 021e 0196     		str	r6, [sp, #4]
+ 879              	.LVL120:
+ 880              		.loc 1 317 34 view .LVU329
+ 881 0220 0EFB01F6 		mul	r6, lr, r1
+ 882              		.loc 1 317 14 view .LVU330
+ 883 0224 029F     		ldr	r7, [sp, #8]
+ 884 0226 07EBE636 		add	r6, r7, r6, asr #15
+ 885              	.LVL121:
+ 318:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fnext1 = __SSAT(fnext1, 16);
+ 886              		.loc 1 318 7 is_stmt 1 view .LVU331
+ 887              	.LBB34:
+ 888              		.loc 1 318 16 view .LVU332
+ 889              		.loc 1 318 16 view .LVU333
+ 890              		.syntax unified
+ 891              	@ 318 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 892 022a 06F30F06 		ssat r6, #16, r6
+ 893              	@ 0 "" 2
+ 894              	.LVL122:
+ 895              		.loc 1 318 16 is_stmt 0 view .LVU334
+ 896              		.thumb
+ 897              		.syntax unified
+ 898 022e 0096     		str	r6, [sp]
+ 899              	.LVL123:
+ 900              		.loc 1 318 16 is_stmt 1 view .LVU335
+ 901              		.loc 1 318 16 is_stmt 0 view .LVU336
+ 902              	.LBE34:
+ 319:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fnext2 = (q31_t) ((gnext1 * (*pk)) >> 15U) + fcurnt2;
+ 903              		.loc 1 319 7 is_stmt 1 view .LVU337
+ 904              		.loc 1 319 33 is_stmt 0 view .LVU338
+ 905 0230 00FB01F6 		mul	r6, r0, r1
+ 906              	.LVL124:
+ 907              		.loc 1 319 14 view .LVU339
+ 908 0234 0BEBE636 		add	r6, fp, r6, asr #15
+ 909              	.LVL125:
+ 320:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fnext2 = __SSAT(fnext2, 16);
+ 910              		.loc 1 320 7 is_stmt 1 view .LVU340
+ 911              	.LBB35:
+ 912              		.loc 1 320 16 view .LVU341
+ 913              		.loc 1 320 16 view .LVU342
+ 914              		.syntax unified
+ 915              	@ 320 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 916 0238 06F30F06 		ssat r6, #16, r6
+ 917              	@ 0 "" 2
+ 918              	.LVL126:
+ 919              		.loc 1 320 16 view .LVU343
+ 920              		.loc 1 320 16 is_stmt 0 view .LVU344
+ 921              		.thumb
+ 922              		.syntax unified
+ 923              	.LBE35:
+ 321:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 322:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fnext3 = (q31_t) ((gnext2 * (*pk)) >> 15U) + fcurnt3;
+ 924              		.loc 1 322 7 is_stmt 1 view .LVU345
+ 925              		.loc 1 322 33 is_stmt 0 view .LVU346
+ 926 023c 03FB01F7 		mul	r7, r3, r1
+ 927              	.LVL127:
+ 928              		.loc 1 322 14 view .LVU347
+ 929 0240 09EBE737 		add	r7, r9, r7, asr #15
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 23
+
+
+ 930              	.LVL128:
+ 323:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fnext3 = __SSAT(fnext3, 16);
+ 931              		.loc 1 323 7 is_stmt 1 view .LVU348
+ 932              	.LBB36:
+ 933              		.loc 1 323 16 view .LVU349
+ 934              		.loc 1 323 16 view .LVU350
+ 935              		.syntax unified
+ 936              	@ 323 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 937 0244 07F30F07 		ssat r7, #16, r7
+ 938              	@ 0 "" 2
+ 939              	.LVL129:
+ 940              		.loc 1 323 16 view .LVU351
+ 941              		.loc 1 323 16 is_stmt 0 view .LVU352
+ 942              		.thumb
+ 943              		.syntax unified
+ 944              	.LBE36:
+ 324:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 325:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fnext4 = (q31_t) ((gnext3 * (*pk)) >> 15U) + fcurnt4;
+ 945              		.loc 1 325 7 is_stmt 1 view .LVU353
+ 946              		.loc 1 325 33 is_stmt 0 view .LVU354
+ 947 0248 04FB01FC 		mul	ip, r4, r1
+ 948              		.loc 1 325 14 view .LVU355
+ 949 024c 05EBEC3C 		add	ip, r5, ip, asr #15
+ 950              	.LVL130:
+ 326:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fnext4 = __SSAT(fnext4, 16);
+ 951              		.loc 1 326 7 is_stmt 1 view .LVU356
+ 952              	.LBB37:
+ 953              		.loc 1 326 16 view .LVU357
+ 954              		.loc 1 326 16 view .LVU358
+ 955              		.syntax unified
+ 956              	@ 326 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 957 0250 0CF30F0C 		ssat ip, #16, ip
+ 958              	@ 0 "" 2
+ 959              	.LVL131:
+ 960              		.loc 1 326 16 view .LVU359
+ 961              		.loc 1 326 16 is_stmt 0 view .LVU360
+ 962              		.thumb
+ 963              		.syntax unified
+ 964              	.LBE37:
+ 327:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 328:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* g1(n) = f0(n) * K1  +  g0(n-1) */
+ 329:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext4 = (q31_t) ((fcurnt4 * (*pk)) >> 15U) + gnext3;
+ 965              		.loc 1 329 7 is_stmt 1 view .LVU361
+ 966              		.loc 1 329 34 is_stmt 0 view .LVU362
+ 967 0254 01FB05F5 		mul	r5, r1, r5
+ 968              	.LVL132:
+ 969              		.loc 1 329 14 view .LVU363
+ 970 0258 04EBE535 		add	r5, r4, r5, asr #15
+ 971              	.LVL133:
+ 330:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext4 = __SSAT(gnext4, 16);
+ 972              		.loc 1 330 7 is_stmt 1 view .LVU364
+ 973              	.LBB38:
+ 974              		.loc 1 330 16 view .LVU365
+ 975              		.loc 1 330 16 view .LVU366
+ 976              		.syntax unified
+ 977              	@ 330 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 978 025c 05F30F0A 		ssat r10, #16, r5
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 24
+
+
+ 979              	@ 0 "" 2
+ 980              	.LVL134:
+ 981              		.loc 1 330 16 view .LVU367
+ 982              		.loc 1 330 16 is_stmt 0 view .LVU368
+ 983              		.thumb
+ 984              		.syntax unified
+ 985              	.LBE38:
+ 331:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext3 = (q31_t) ((fcurnt3 * (*pk)) >> 15U) + gnext2;
+ 986              		.loc 1 331 7 is_stmt 1 view .LVU369
+ 987              		.loc 1 331 34 is_stmt 0 view .LVU370
+ 988 0260 09FB01F9 		mul	r9, r9, r1
+ 989              	.LVL135:
+ 990              		.loc 1 331 14 view .LVU371
+ 991 0264 03EBE939 		add	r9, r3, r9, asr #15
+ 992              	.LVL136:
+ 332:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext3 = __SSAT(gnext3, 16);
+ 993              		.loc 1 332 7 is_stmt 1 view .LVU372
+ 994              	.LBB39:
+ 995              		.loc 1 332 16 view .LVU373
+ 996              		.loc 1 332 16 view .LVU374
+ 997              		.syntax unified
+ 998              	@ 332 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 999 0268 09F30F04 		ssat r4, #16, r9
+ 1000              	@ 0 "" 2
+ 1001              	.LVL137:
+ 1002              		.loc 1 332 16 view .LVU375
+ 1003              		.loc 1 332 16 is_stmt 0 view .LVU376
+ 1004              		.thumb
+ 1005              		.syntax unified
+ 1006              	.LBE39:
+ 333:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext2 = (q31_t) ((fcurnt2 * (*pk)) >> 15U) + gnext1;
+ 1007              		.loc 1 333 7 is_stmt 1 view .LVU377
+ 1008              		.loc 1 333 34 is_stmt 0 view .LVU378
+ 1009 026c 0BFB01FB 		mul	fp, fp, r1
+ 1010              	.LVL138:
+ 1011              		.loc 1 333 14 view .LVU379
+ 1012 0270 00EBEB3B 		add	fp, r0, fp, asr #15
+ 1013              	.LVL139:
+ 334:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext2 = __SSAT(gnext2, 16);
+ 1014              		.loc 1 334 7 is_stmt 1 view .LVU380
+ 1015              	.LBB40:
+ 1016              		.loc 1 334 16 view .LVU381
+ 1017              		.loc 1 334 16 view .LVU382
+ 1018              		.syntax unified
+ 1019              	@ 334 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 1020 0274 0BF30F03 		ssat r3, #16, fp
+ 1021              	@ 0 "" 2
+ 1022              	.LVL140:
+ 1023              		.loc 1 334 16 view .LVU383
+ 1024              		.loc 1 334 16 is_stmt 0 view .LVU384
+ 1025              		.thumb
+ 1026              		.syntax unified
+ 1027              	.LBE40:
+ 335:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext1 = (q31_t) ((fcurnt1 * (*pk++)) >> 15U) + gcurnt1;
+ 1028              		.loc 1 335 7 is_stmt 1 view .LVU385
+ 1029              		.loc 1 335 34 is_stmt 0 view .LVU386
+ 1030 0278 0298     		ldr	r0, [sp, #8]
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 25
+
+
+ 1031              	.LVL141:
+ 1032              		.loc 1 335 34 view .LVU387
+ 1033 027a 00FB01F1 		mul	r1, r0, r1
+ 1034              	.LVL142:
+ 1035              		.loc 1 335 14 view .LVU388
+ 1036 027e 0EEBE13E 		add	lr, lr, r1, asr #15
+ 1037              	.LVL143:
+ 336:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext1 = __SSAT(gnext1, 16);
+ 1038              		.loc 1 336 7 is_stmt 1 view .LVU389
+ 1039              	.LBB41:
+ 1040              		.loc 1 336 16 view .LVU390
+ 1041              		.loc 1 336 16 view .LVU391
+ 1042              		.syntax unified
+ 1043              	@ 336 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 1044 0282 0EF30F00 		ssat r0, #16, lr
+ 1045              	@ 0 "" 2
+ 1046              	.LVL144:
+ 1047              		.loc 1 336 16 view .LVU392
+ 1048              		.loc 1 336 16 is_stmt 0 view .LVU393
+ 1049              		.thumb
+ 1050              		.syntax unified
+ 1051              	.LBE41:
+ 337:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 338:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* Update of f values for next coefficient set processing */
+ 339:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fcurnt1 = fnext1;
+ 1052              		.loc 1 339 7 is_stmt 1 view .LVU394
+ 340:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fcurnt2 = fnext2;
+ 1053              		.loc 1 340 7 view .LVU395
+ 341:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fcurnt3 = fnext3;
+ 1054              		.loc 1 341 7 view .LVU396
+ 342:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fcurnt4 = fnext4;
+ 1055              		.loc 1 342 7 view .LVU397
+ 343:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 344:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       stageCnt--;
+ 1056              		.loc 1 344 7 view .LVU398
+ 1057              		.loc 1 344 15 is_stmt 0 view .LVU399
+ 1058 0286 013A     		subs	r2, r2, #1
+ 1059              	.LVL145:
+ 342:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fcurnt4 = fnext4;
+ 1060              		.loc 1 342 15 view .LVU400
+ 1061 0288 6546     		mov	r5, ip
+ 1062              	.LVL146:
+ 341:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fcurnt4 = fnext4;
+ 1063              		.loc 1 341 15 view .LVU401
+ 1064 028a B946     		mov	r9, r7
+ 1065              	.LVL147:
+ 340:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fcurnt3 = fnext3;
+ 1066              		.loc 1 340 15 view .LVU402
+ 1067 028c B346     		mov	fp, r6
+ 1068              	.LVL148:
+ 339:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fcurnt2 = fnext2;
+ 1069              		.loc 1 339 15 view .LVU403
+ 1070 028e 009E     		ldr	r6, [sp]
+ 1071              	.LVL149:
+ 339:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fcurnt2 = fnext2;
+ 1072              		.loc 1 339 15 view .LVU404
+ 1073 0290 0296     		str	r6, [sp, #8]
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 26
+
+
+ 314:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1074              		.loc 1 314 10 view .LVU405
+ 1075 0292 4146     		mov	r1, r8
+ 1076              	.LVL150:
+ 1077              	.L5:
+ 309:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     {
+ 1078              		.loc 1 309 21 is_stmt 1 view .LVU406
+ 1079 0294 002A     		cmp	r2, #0
+ 1080 0296 BAD1     		bne	.L6
+ 345:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 346:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     }
+ 347:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 348:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* The results in the 4 accumulators, store in the destination buffer. */
+ 349:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* y(n) = fN(n) */
+ 350:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 351:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** #ifndef  ARM_MATH_BIG_ENDIAN
+ 352:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 353:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     *__SIMD32(pDst)++ = __PKHBT(fcurnt1, fcurnt2, 16);
+ 1081              		.loc 1 353 25 is_stmt 0 view .LVU407
+ 1082 0298 DDF80C80 		ldr	r8, [sp, #12]
+ 1083              		.loc 1 353 5 is_stmt 1 view .LVU408
+ 1084              	.LVL151:
+ 1085              		.loc 1 353 25 is_stmt 0 view .LVU409
+ 1086 029c BDF80830 		ldrh	r3, [sp, #8]
+ 1087              	.LVL152:
+ 1088              		.loc 1 353 25 view .LVU410
+ 1089 02a0 43EA0B43 		orr	r3, r3, fp, lsl #16
+ 1090              		.loc 1 353 23 view .LVU411
+ 1091 02a4 0699     		ldr	r1, [sp, #24]
+ 1092              	.LVL153:
+ 1093              		.loc 1 353 23 view .LVU412
+ 1094 02a6 0A46     		mov	r2, r1
+ 1095              	.LVL154:
+ 1096              		.loc 1 353 23 view .LVU413
+ 1097 02a8 42F8083B 		str	r3, [r2], #8
+ 354:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     *__SIMD32(pDst)++ = __PKHBT(fcurnt3, fcurnt4, 16);
+ 1098              		.loc 1 354 5 is_stmt 1 view .LVU414
+ 1099              	.LVL155:
+ 1100              		.loc 1 354 25 is_stmt 0 view .LVU415
+ 1101 02ac 1FFA89F9 		uxth	r9, r9
+ 1102              	.LVL156:
+ 1103              		.loc 1 354 25 view .LVU416
+ 1104 02b0 49EA0545 		orr	r5, r9, r5, lsl #16
+ 1105              	.LVL157:
+ 1106              		.loc 1 354 23 view .LVU417
+ 1107 02b4 4D60     		str	r5, [r1, #4]
+ 355:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 356:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** #else
+ 357:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 358:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     *__SIMD32(pDst)++ = __PKHBT(fcurnt2, fcurnt1, 16);
+ 359:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     *__SIMD32(pDst)++ = __PKHBT(fcurnt4, fcurnt3, 16);
+ 360:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 361:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** #endif /*      #ifndef  ARM_MATH_BIG_ENDIAN    */
+ 362:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 363:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     blkCnt--;
+ 1108              		.loc 1 363 5 is_stmt 1 view .LVU418
+ 1109              		.loc 1 363 11 is_stmt 0 view .LVU419
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 27
+
+
+ 1110 02b6 049B     		ldr	r3, [sp, #16]
+ 1111 02b8 013B     		subs	r3, r3, #1
+ 1112 02ba 0493     		str	r3, [sp, #16]
+ 1113              	.LVL158:
+ 354:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     *__SIMD32(pDst)++ = __PKHBT(fcurnt3, fcurnt4, 16);
+ 1114              		.loc 1 354 20 view .LVU420
+ 1115 02bc 0692     		str	r2, [sp, #24]
+ 117:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1116              		.loc 1 117 20 view .LVU421
+ 1117 02be 4146     		mov	r1, r8
+ 1118              	.LVL159:
+ 1119              	.L2:
+  79:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****   {
+ 1120              		.loc 1 79 17 is_stmt 1 view .LVU422
+ 1121 02c0 049B     		ldr	r3, [sp, #16]
+ 1122 02c2 002B     		cmp	r3, #0
+ 1123 02c4 51D0     		beq	.L13
+  84:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fcurnt2 = *pSrc++;
+ 1124              		.loc 1 84 5 view .LVU423
+ 1125              	.LVL160:
+  84:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fcurnt2 = *pSrc++;
+ 1126              		.loc 1 84 15 is_stmt 0 view .LVU424
+ 1127 02c6 B1F90030 		ldrsh	r3, [r1]
+ 1128              	.LVL161:
+  85:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1129              		.loc 1 85 5 is_stmt 1 view .LVU425
+  85:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1130              		.loc 1 85 15 is_stmt 0 view .LVU426
+ 1131 02ca B1F90240 		ldrsh	r4, [r1, #2]
+ 1132              	.LVL162:
+  88:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1133              		.loc 1 88 5 is_stmt 1 view .LVU427
+  91:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1134              		.loc 1 91 5 view .LVU428
+  94:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1135              		.loc 1 94 5 view .LVU429
+  94:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1136              		.loc 1 94 15 is_stmt 0 view .LVU430
+ 1137 02ce 059A     		ldr	r2, [sp, #20]
+ 1138 02d0 B2F90000 		ldrsh	r0, [r2]
+ 1139              	.LVL163:
+  98:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fnext1 = __SSAT(fnext1, 16);
+ 1140              		.loc 1 98 5 is_stmt 1 view .LVU431
+  98:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fnext1 = __SSAT(fnext1, 16);
+ 1141              		.loc 1 98 35 is_stmt 0 view .LVU432
+ 1142 02d4 079E     		ldr	r6, [sp, #28]
+ 1143 02d6 B6F90020 		ldrsh	r2, [r6]
+  98:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fnext1 = __SSAT(fnext1, 16);
+ 1144              		.loc 1 98 32 view .LVU433
+ 1145 02da 00FB02F5 		mul	r5, r0, r2
+  98:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fnext1 = __SSAT(fnext1, 16);
+ 1146              		.loc 1 98 12 view .LVU434
+ 1147 02de 03EBE535 		add	r5, r3, r5, asr #15
+ 1148              	.LVL164:
+  99:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1149              		.loc 1 99 5 is_stmt 1 view .LVU435
+ 1150              	.LBB42:
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 28
+
+
+  99:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1151              		.loc 1 99 14 view .LVU436
+  99:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1152              		.loc 1 99 14 view .LVU437
+ 1153              		.syntax unified
+ 1154              	@ 99 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 1155 02e2 05F30F05 		ssat r5, #16, r5
+ 1156              	@ 0 "" 2
+ 1157              	.LVL165:
+  99:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1158              		.loc 1 99 14 is_stmt 0 view .LVU438
+ 1159              		.thumb
+ 1160              		.syntax unified
+ 1161 02e6 0295     		str	r5, [sp, #8]
+ 1162              	.LVL166:
+  99:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1163              		.loc 1 99 14 is_stmt 1 view .LVU439
+  99:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1164              		.loc 1 99 14 is_stmt 0 view .LVU440
+ 1165              	.LBE42:
+ 102:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gnext1 = __SSAT(gnext1, 16);
+ 1166              		.loc 1 102 5 is_stmt 1 view .LVU441
+ 102:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gnext1 = __SSAT(gnext1, 16);
+ 1167              		.loc 1 102 32 is_stmt 0 view .LVU442
+ 1168 02e8 03FB02F5 		mul	r5, r3, r2
+ 1169              	.LVL167:
+ 102:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gnext1 = __SSAT(gnext1, 16);
+ 1170              		.loc 1 102 12 view .LVU443
+ 1171 02ec 00EBE530 		add	r0, r0, r5, asr #15
+ 1172              	.LVL168:
+ 103:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1173              		.loc 1 103 5 is_stmt 1 view .LVU444
+ 1174              	.LBB43:
+ 103:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1175              		.loc 1 103 14 view .LVU445
+ 103:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1176              		.loc 1 103 14 view .LVU446
+ 1177              		.syntax unified
+ 1178              	@ 103 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 1179 02f0 00F30F00 		ssat r0, #16, r0
+ 1180              	@ 0 "" 2
+ 1181              	.LVL169:
+ 103:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1182              		.loc 1 103 14 view .LVU447
+ 103:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1183              		.loc 1 103 14 is_stmt 0 view .LVU448
+ 1184              		.thumb
+ 1185              		.syntax unified
+ 1186              	.LBE43:
+ 107:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fnext2 = __SSAT(fnext2, 16);
+ 1187              		.loc 1 107 5 is_stmt 1 view .LVU449
+ 107:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fnext2 = __SSAT(fnext2, 16);
+ 1188              		.loc 1 107 12 is_stmt 0 view .LVU450
+ 1189 02f4 04EBE535 		add	r5, r4, r5, asr #15
+ 1190              	.LVL170:
+ 108:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1191              		.loc 1 108 5 is_stmt 1 view .LVU451
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 29
+
+
+ 1192              	.LBB44:
+ 108:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1193              		.loc 1 108 14 view .LVU452
+ 108:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1194              		.loc 1 108 14 view .LVU453
+ 1195              		.syntax unified
+ 1196              	@ 108 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 1197 02f8 05F30F0B 		ssat fp, #16, r5
+ 1198              	@ 0 "" 2
+ 1199              	.LVL171:
+ 108:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1200              		.loc 1 108 14 view .LVU454
+ 108:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1201              		.loc 1 108 14 is_stmt 0 view .LVU455
+ 1202              		.thumb
+ 1203              		.syntax unified
+ 1204              	.LBE44:
+ 110:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gnext2 = __SSAT(gnext2, 16);
+ 1205              		.loc 1 110 5 is_stmt 1 view .LVU456
+ 110:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gnext2 = __SSAT(gnext2, 16);
+ 1206              		.loc 1 110 32 is_stmt 0 view .LVU457
+ 1207 02fc 04FB02F2 		mul	r2, r4, r2
+ 1208              	.LVL172:
+ 110:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gnext2 = __SSAT(gnext2, 16);
+ 1209              		.loc 1 110 12 view .LVU458
+ 1210 0300 03EBE233 		add	r3, r3, r2, asr #15
+ 1211              	.LVL173:
+ 111:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1212              		.loc 1 111 5 is_stmt 1 view .LVU459
+ 1213              	.LBB45:
+ 111:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1214              		.loc 1 111 14 view .LVU460
+ 111:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1215              		.loc 1 111 14 view .LVU461
+ 1216              		.syntax unified
+ 1217              	@ 111 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 1218 0304 03F30F03 		ssat r3, #16, r3
+ 1219              	@ 0 "" 2
+ 1220              	.LVL174:
+ 111:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1221              		.loc 1 111 14 view .LVU462
+ 111:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1222              		.loc 1 111 14 is_stmt 0 view .LVU463
+ 1223              		.thumb
+ 1224              		.syntax unified
+ 1225              	.LBE45:
+ 116:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fcurnt4 = *pSrc++;
+ 1226              		.loc 1 116 5 is_stmt 1 view .LVU464
+ 116:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fcurnt4 = *pSrc++;
+ 1227              		.loc 1 116 15 is_stmt 0 view .LVU465
+ 1228 0308 B1F90420 		ldrsh	r2, [r1, #4]
+ 1229              	.LVL175:
+ 117:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1230              		.loc 1 117 5 is_stmt 1 view .LVU466
+ 117:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1231              		.loc 1 117 20 is_stmt 0 view .LVU467
+ 1232 030c 01F10808 		add	r8, r1, #8
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 30
+
+
+ 1233              	.LVL176:
+ 117:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1234              		.loc 1 117 15 view .LVU468
+ 1235 0310 B1F90670 		ldrsh	r7, [r1, #6]
+ 1236              	.LVL177:
+ 121:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1237              		.loc 1 121 5 is_stmt 1 view .LVU469
+ 121:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1238              		.loc 1 121 8 is_stmt 0 view .LVU470
+ 1239 0314 0599     		ldr	r1, [sp, #20]
+ 1240              	.LVL178:
+ 121:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1241              		.loc 1 121 11 view .LVU471
+ 1242 0316 21F8027B 		strh	r7, [r1], #2	@ movhi
+ 1243              	.LVL179:
+ 124:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fnext3 = __SSAT(fnext3, 16);
+ 1244              		.loc 1 124 5 is_stmt 1 view .LVU472
+ 124:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fnext3 = __SSAT(fnext3, 16);
+ 1245              		.loc 1 124 35 is_stmt 0 view .LVU473
+ 1246 031a 3546     		mov	r5, r6
+ 1247              	.LVL180:
+ 124:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fnext3 = __SSAT(fnext3, 16);
+ 1248              		.loc 1 124 35 view .LVU474
+ 1249 031c 35F9026B 		ldrsh	r6, [r5], #2
+ 1250 0320 0195     		str	r5, [sp, #4]
+ 124:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fnext3 = __SSAT(fnext3, 16);
+ 1251              		.loc 1 124 32 view .LVU475
+ 1252 0322 04FB06F5 		mul	r5, r4, r6
+ 124:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fnext3 = __SSAT(fnext3, 16);
+ 1253              		.loc 1 124 12 view .LVU476
+ 1254 0326 02EBE535 		add	r5, r2, r5, asr #15
+ 1255              	.LVL181:
+ 125:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gnext3 = (q31_t) ((fcurnt3 * (*pk)) >> 15U) + fcurnt2;
+ 1256              		.loc 1 125 5 is_stmt 1 view .LVU477
+ 1257              	.LBB46:
+ 125:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gnext3 = (q31_t) ((fcurnt3 * (*pk)) >> 15U) + fcurnt2;
+ 1258              		.loc 1 125 14 view .LVU478
+ 125:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gnext3 = (q31_t) ((fcurnt3 * (*pk)) >> 15U) + fcurnt2;
+ 1259              		.loc 1 125 14 view .LVU479
+ 1260              		.syntax unified
+ 1261              	@ 125 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 1262 032a 05F30F09 		ssat r9, #16, r5
+ 1263              	@ 0 "" 2
+ 1264              	.LVL182:
+ 125:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gnext3 = (q31_t) ((fcurnt3 * (*pk)) >> 15U) + fcurnt2;
+ 1265              		.loc 1 125 14 view .LVU480
+ 125:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gnext3 = (q31_t) ((fcurnt3 * (*pk)) >> 15U) + fcurnt2;
+ 1266              		.loc 1 125 14 is_stmt 0 view .LVU481
+ 1267              		.thumb
+ 1268              		.syntax unified
+ 1269              	.LBE46:
+ 126:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gnext3 = __SSAT(gnext3, 16);
+ 1270              		.loc 1 126 5 is_stmt 1 view .LVU482
+ 126:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gnext3 = __SSAT(gnext3, 16);
+ 1271              		.loc 1 126 32 is_stmt 0 view .LVU483
+ 1272 032e 02FB06F5 		mul	r5, r2, r6
+ 1273              	.LVL183:
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 31
+
+
+ 126:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gnext3 = __SSAT(gnext3, 16);
+ 1274              		.loc 1 126 12 view .LVU484
+ 1275 0332 04EBE534 		add	r4, r4, r5, asr #15
+ 1276              	.LVL184:
+ 127:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1277              		.loc 1 127 5 is_stmt 1 view .LVU485
+ 1278              	.LBB47:
+ 127:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1279              		.loc 1 127 14 view .LVU486
+ 127:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1280              		.loc 1 127 14 view .LVU487
+ 1281              		.syntax unified
+ 1282              	@ 127 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 1283 0336 04F30F04 		ssat r4, #16, r4
+ 1284              	@ 0 "" 2
+ 1285              	.LVL185:
+ 127:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1286              		.loc 1 127 14 view .LVU488
+ 127:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1287              		.loc 1 127 14 is_stmt 0 view .LVU489
+ 1288              		.thumb
+ 1289              		.syntax unified
+ 1290              	.LBE47:
+ 130:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fnext4 = __SSAT(fnext4, 16);
+ 1291              		.loc 1 130 5 is_stmt 1 view .LVU490
+ 130:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fnext4 = __SSAT(fnext4, 16);
+ 1292              		.loc 1 130 12 is_stmt 0 view .LVU491
+ 1293 033a 07EBE535 		add	r5, r7, r5, asr #15
+ 1294              	.LVL186:
+ 131:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gnext4 = (q31_t) ((fcurnt4 * (*pk++)) >> 15U) + fcurnt3;
+ 1295              		.loc 1 131 5 is_stmt 1 view .LVU492
+ 1296              	.LBB48:
+ 131:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gnext4 = (q31_t) ((fcurnt4 * (*pk++)) >> 15U) + fcurnt3;
+ 1297              		.loc 1 131 14 view .LVU493
+ 131:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gnext4 = (q31_t) ((fcurnt4 * (*pk++)) >> 15U) + fcurnt3;
+ 1298              		.loc 1 131 14 view .LVU494
+ 1299              		.syntax unified
+ 1300              	@ 131 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 1301 033e 05F30F05 		ssat r5, #16, r5
+ 1302              	@ 0 "" 2
+ 1303              	.LVL187:
+ 131:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gnext4 = (q31_t) ((fcurnt4 * (*pk++)) >> 15U) + fcurnt3;
+ 1304              		.loc 1 131 14 view .LVU495
+ 131:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gnext4 = (q31_t) ((fcurnt4 * (*pk++)) >> 15U) + fcurnt3;
+ 1305              		.loc 1 131 14 is_stmt 0 view .LVU496
+ 1306              		.thumb
+ 1307              		.syntax unified
+ 1308              	.LBE48:
+ 132:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gnext4 = __SSAT(gnext4, 16);
+ 1309              		.loc 1 132 5 is_stmt 1 view .LVU497
+ 132:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gnext4 = __SSAT(gnext4, 16);
+ 1310              		.loc 1 132 32 is_stmt 0 view .LVU498
+ 1311 0342 07FB06F6 		mul	r6, r7, r6
+ 1312              	.LVL188:
+ 132:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gnext4 = __SSAT(gnext4, 16);
+ 1313              		.loc 1 132 12 view .LVU499
+ 1314 0346 02EBE632 		add	r2, r2, r6, asr #15
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 32
+
+
+ 1315              	.LVL189:
+ 133:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1316              		.loc 1 133 5 is_stmt 1 view .LVU500
+ 1317              	.LBB49:
+ 133:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1318              		.loc 1 133 14 view .LVU501
+ 133:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1319              		.loc 1 133 14 view .LVU502
+ 1320              		.syntax unified
+ 1321              	@ 133 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 1322 034a 02F30F02 		ssat r2, #16, r2
+ 1323              	@ 0 "" 2
+ 1324              	.LVL190:
+ 133:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1325              		.loc 1 133 14 view .LVU503
+ 133:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1326              		.loc 1 133 14 is_stmt 0 view .LVU504
+ 1327              		.thumb
+ 1328              		.syntax unified
+ 1329              	.LBE49:
+ 136:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fcurnt2 = fnext2;
+ 1330              		.loc 1 136 5 is_stmt 1 view .LVU505
+ 137:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fcurnt3 = fnext3;
+ 1331              		.loc 1 137 5 view .LVU506
+ 138:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fcurnt4 = fnext4;
+ 1332              		.loc 1 138 5 view .LVU507
+ 139:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1333              		.loc 1 139 5 view .LVU508
+ 143:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1334              		.loc 1 143 5 view .LVU509
+ 143:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1335              		.loc 1 143 27 is_stmt 0 view .LVU510
+ 1336 034e 0A9E     		ldr	r6, [sp, #40]
+ 143:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1337              		.loc 1 143 27 view .LVU511
+ 1338 0350 06F1FF3C 		add	ip, r6, #-1
+ 143:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1339              		.loc 1 143 14 view .LVU512
+ 1340 0354 4FEA9C06 		lsr	r6, ip, #2
+ 1341 0358 0396     		str	r6, [sp, #12]
+ 1342              	.LVL191:
+ 150:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     {
+ 1343              		.loc 1 150 5 is_stmt 1 view .LVU513
+ 1344 035a CDF820C0 		str	ip, [sp, #32]
+ 1345 035e 0091     		str	r1, [sp]
+ 1346 0360 CDF82480 		str	r8, [sp, #36]
+ 1347 0364 DDF80880 		ldr	r8, [sp, #8]
+ 1348              	.LVL192:
+ 150:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     {
+ 1349              		.loc 1 150 11 is_stmt 0 view .LVU514
+ 1350 0368 3FE7     		b	.L3
+ 1351              	.LVL193:
+ 1352              	.L13:
+ 364:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****   }
+ 365:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 366:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****   /* If the blockSize is not a multiple of 4, compute any remaining output samples here.
+ 367:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****    ** No loop unrolling is used. */
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 33
+
+
+ 368:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****   blkCnt = blockSize % 0x4U;
+ 1353              		.loc 1 368 10 view .LVU515
+ 1354 036a 0B9D     		ldr	r5, [sp, #44]
+ 1355              		.loc 1 368 3 is_stmt 1 view .LVU516
+ 1356              		.loc 1 368 10 is_stmt 0 view .LVU517
+ 1357 036c 05F00307 		and	r7, r5, #3
+ 1358              	.LVL194:
+ 369:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 370:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****   while (blkCnt > 0U)
+ 1359              		.loc 1 370 3 is_stmt 1 view .LVU518
+ 1360 0370 DDF82880 		ldr	r8, [sp, #40]
+ 1361 0374 DDF814E0 		ldr	lr, [sp, #20]
+ 1362 0378 DDF818C0 		ldr	ip, [sp, #24]
+ 1363              		.loc 1 370 9 is_stmt 0 view .LVU519
+ 1364 037c 1AE0     		b	.L8
+ 1365              	.LVL195:
+ 1366              	.L10:
+ 371:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****   {
+ 372:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* f0(n) = x(n) */
+ 373:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fcurnt1 = *pSrc++;
+ 374:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 375:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* Initialize coeff pointer */
+ 376:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     pk = (pCoeffs);
+ 377:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 378:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* Initialize state pointer */
+ 379:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     px = pState;
+ 380:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 381:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* read g2(n) from state buffer */
+ 382:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gcurnt1 = *px;
+ 383:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 384:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* for sample 1 processing */
+ 385:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* f1(n) = f0(n) +  K1 * g0(n-1) */
+ 386:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fnext1 = (((q31_t) gcurnt1 * (*pk)) >> 15U) + fcurnt1;
+ 387:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fnext1 = __SSAT(fnext1, 16);
+ 388:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 389:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 390:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* g1(n) = f0(n) * K1  +  g0(n-1) */
+ 391:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gnext1 = (((q31_t) fcurnt1 * (*pk++)) >> 15U) + gcurnt1;
+ 392:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gnext1 = __SSAT(gnext1, 16);
+ 393:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 394:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* save g1(n) in state buffer */
+ 395:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     *px++ = (q15_t) fcurnt1;
+ 396:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 397:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* f1(n) is saved in fcurnt1
+ 398:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****        for next stage processing */
+ 399:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fcurnt1 = fnext1;
+ 400:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 401:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     stageCnt = (numStages - 1U);
+ 402:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 403:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* stage loop */
+ 404:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     while (stageCnt > 0U)
+ 405:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     {
+ 406:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* read g2(n) from state buffer */
+ 407:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gcurnt1 = *px;
+ 1367              		.loc 1 407 7 is_stmt 1 view .LVU520
+ 1368              		.loc 1 407 17 is_stmt 0 view .LVU521
+ 1369 037e B3F90000 		ldrsh	r0, [r3]
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 34
+
+
+ 1370              	.LVL196:
+ 408:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 409:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* save g1(n) in state buffer */
+ 410:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       *px++ = (q15_t) gnext1;
+ 1371              		.loc 1 410 7 is_stmt 1 view .LVU522
+ 1372              		.loc 1 410 13 is_stmt 0 view .LVU523
+ 1373 0382 23F8024B 		strh	r4, [r3], #2	@ movhi
+ 1374              	.LVL197:
+ 411:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 412:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* Sample processing for K2, K3.... */
+ 413:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* f2(n) = f1(n) +  K2 * g1(n-1) */
+ 414:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fnext1 = (((q31_t) gcurnt1 * (*pk)) >> 15U) + fcurnt1;
+ 1375              		.loc 1 414 7 is_stmt 1 view .LVU524
+ 1376              		.loc 1 414 37 is_stmt 0 view .LVU525
+ 1377 0386 36F9024B 		ldrsh	r4, [r6], #2
+ 1378              	.LVL198:
+ 1379              		.loc 1 414 34 view .LVU526
+ 1380 038a 00FB04F2 		mul	r2, r0, r4
+ 1381              		.loc 1 414 14 view .LVU527
+ 1382 038e 09EBE232 		add	r2, r9, r2, asr #15
+ 1383              	.LVL199:
+ 415:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fnext1 = __SSAT(fnext1, 16);
+ 1384              		.loc 1 415 7 is_stmt 1 view .LVU528
+ 1385              	.LBB50:
+ 1386              		.loc 1 415 16 view .LVU529
+ 1387              		.loc 1 415 16 view .LVU530
+ 1388              		.syntax unified
+ 1389              	@ 415 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 1390 0392 02F30F02 		ssat r2, #16, r2
+ 1391              	@ 0 "" 2
+ 1392              	.LVL200:
+ 1393              		.loc 1 415 16 view .LVU531
+ 1394              		.loc 1 415 16 is_stmt 0 view .LVU532
+ 1395              		.thumb
+ 1396              		.syntax unified
+ 1397              	.LBE50:
+ 416:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 417:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* g2(n) = f1(n) * K2  +  g1(n-1) */
+ 418:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext1 = (((q31_t) fcurnt1 * (*pk++)) >> 15U) + gcurnt1;
+ 1398              		.loc 1 418 7 is_stmt 1 view .LVU533
+ 1399              		.loc 1 418 34 is_stmt 0 view .LVU534
+ 1400 0396 09FB04F4 		mul	r4, r9, r4
+ 1401              	.LVL201:
+ 1402              		.loc 1 418 14 view .LVU535
+ 1403 039a 00EBE430 		add	r0, r0, r4, asr #15
+ 1404              	.LVL202:
+ 419:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext1 = __SSAT(gnext1, 16);
+ 1405              		.loc 1 419 7 is_stmt 1 view .LVU536
+ 1406              	.LBB51:
+ 1407              		.loc 1 419 16 view .LVU537
+ 1408              		.loc 1 419 16 view .LVU538
+ 1409              		.syntax unified
+ 1410              	@ 419 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 1411 039e 00F30F04 		ssat r4, #16, r0
+ 1412              	@ 0 "" 2
+ 1413              	.LVL203:
+ 1414              		.loc 1 419 16 view .LVU539
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 35
+
+
+ 1415              		.loc 1 419 16 is_stmt 0 view .LVU540
+ 1416              		.thumb
+ 1417              		.syntax unified
+ 1418              	.LBE51:
+ 420:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 421:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 422:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* f1(n) is saved in fcurnt1
+ 423:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****          for next stage processing */
+ 424:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fcurnt1 = fnext1;
+ 1419              		.loc 1 424 7 is_stmt 1 view .LVU541
+ 425:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 426:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       stageCnt--;
+ 1420              		.loc 1 426 7 view .LVU542
+ 1421              		.loc 1 426 15 is_stmt 0 view .LVU543
+ 1422 03a2 013D     		subs	r5, r5, #1
+ 1423              	.LVL204:
+ 424:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1424              		.loc 1 424 15 view .LVU544
+ 1425 03a4 9146     		mov	r9, r2
+ 1426              	.LVL205:
+ 1427              	.L9:
+ 404:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     {
+ 1428              		.loc 1 404 21 is_stmt 1 view .LVU545
+ 1429 03a6 002D     		cmp	r5, #0
+ 1430 03a8 E9D1     		bne	.L10
+ 427:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 428:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     }
+ 429:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 430:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* y(n) = fN(n) */
+ 431:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     *pDst++ = __SSAT(fcurnt1, 16);
+ 1431              		.loc 1 431 5 view .LVU546
+ 1432              	.LBB52:
+ 1433              		.loc 1 431 15 view .LVU547
+ 1434              	.LVL206:
+ 1435              		.loc 1 431 15 view .LVU548
+ 1436              		.syntax unified
+ 1437              	@ 431 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 1438 03aa 09F30F09 		ssat r9, #16, r9
+ 1439              	@ 0 "" 2
+ 1440              	.LVL207:
+ 1441              		.loc 1 431 15 view .LVU549
+ 1442              		.loc 1 431 15 is_stmt 0 view .LVU550
+ 1443              		.thumb
+ 1444              		.syntax unified
+ 1445              	.LBE52:
+ 1446              		.loc 1 431 13 view .LVU551
+ 1447 03ae 2CF8029B 		strh	r9, [ip], #2	@ movhi
+ 1448              	.LVL208:
+ 432:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 433:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 434:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     blkCnt--;
+ 1449              		.loc 1 434 5 is_stmt 1 view .LVU552
+ 1450              		.loc 1 434 11 is_stmt 0 view .LVU553
+ 1451 03b2 013F     		subs	r7, r7, #1
+ 1452              	.LVL209:
+ 1453              	.L8:
+ 370:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****   {
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 36
+
+
+ 1454              		.loc 1 370 17 is_stmt 1 view .LVU554
+ 1455 03b4 C7B1     		cbz	r7, .L14
+ 373:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1456              		.loc 1 373 5 view .LVU555
+ 1457              	.LVL210:
+ 373:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1458              		.loc 1 373 15 is_stmt 0 view .LVU556
+ 1459 03b6 31F9022B 		ldrsh	r2, [r1], #2
+ 1460              	.LVL211:
+ 376:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1461              		.loc 1 376 5 is_stmt 1 view .LVU557
+ 379:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1462              		.loc 1 379 5 view .LVU558
+ 382:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1463              		.loc 1 382 5 view .LVU559
+ 382:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1464              		.loc 1 382 15 is_stmt 0 view .LVU560
+ 1465 03ba BEF90040 		ldrsh	r4, [lr]
+ 1466              	.LVL212:
+ 386:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fnext1 = __SSAT(fnext1, 16);
+ 1467              		.loc 1 386 5 is_stmt 1 view .LVU561
+ 386:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fnext1 = __SSAT(fnext1, 16);
+ 1468              		.loc 1 386 35 is_stmt 0 view .LVU562
+ 1469 03be 079E     		ldr	r6, [sp, #28]
+ 1470 03c0 36F9023B 		ldrsh	r3, [r6], #2
+ 386:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fnext1 = __SSAT(fnext1, 16);
+ 1471              		.loc 1 386 32 view .LVU563
+ 1472 03c4 04FB03F9 		mul	r9, r4, r3
+ 386:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fnext1 = __SSAT(fnext1, 16);
+ 1473              		.loc 1 386 12 view .LVU564
+ 1474 03c8 02EBE939 		add	r9, r2, r9, asr #15
+ 1475              	.LVL213:
+ 387:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1476              		.loc 1 387 5 is_stmt 1 view .LVU565
+ 1477              	.LBB53:
+ 387:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1478              		.loc 1 387 14 view .LVU566
+ 387:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1479              		.loc 1 387 14 view .LVU567
+ 1480              		.syntax unified
+ 1481              	@ 387 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 1482 03cc 09F30F09 		ssat r9, #16, r9
+ 1483              	@ 0 "" 2
+ 1484              	.LVL214:
+ 387:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1485              		.loc 1 387 14 view .LVU568
+ 387:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1486              		.loc 1 387 14 is_stmt 0 view .LVU569
+ 1487              		.thumb
+ 1488              		.syntax unified
+ 1489              	.LBE53:
+ 391:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gnext1 = __SSAT(gnext1, 16);
+ 1490              		.loc 1 391 5 is_stmt 1 view .LVU570
+ 391:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gnext1 = __SSAT(gnext1, 16);
+ 1491              		.loc 1 391 32 is_stmt 0 view .LVU571
+ 1492 03d0 02FB03F3 		mul	r3, r2, r3
+ 1493              	.LVL215:
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 37
+
+
+ 391:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gnext1 = __SSAT(gnext1, 16);
+ 1494              		.loc 1 391 12 view .LVU572
+ 1495 03d4 04EBE334 		add	r4, r4, r3, asr #15
+ 1496              	.LVL216:
+ 392:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1497              		.loc 1 392 5 is_stmt 1 view .LVU573
+ 1498              	.LBB54:
+ 392:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1499              		.loc 1 392 14 view .LVU574
+ 392:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1500              		.loc 1 392 14 view .LVU575
+ 1501              		.syntax unified
+ 1502              	@ 392 "Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c" 1
+ 1503 03d8 04F30F04 		ssat r4, #16, r4
+ 1504              	@ 0 "" 2
+ 1505              	.LVL217:
+ 392:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1506              		.loc 1 392 14 view .LVU576
+ 392:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1507              		.loc 1 392 14 is_stmt 0 view .LVU577
+ 1508              		.thumb
+ 1509              		.syntax unified
+ 1510              	.LBE54:
+ 395:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1511              		.loc 1 395 5 is_stmt 1 view .LVU578
+ 395:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1512              		.loc 1 395 8 is_stmt 0 view .LVU579
+ 1513 03dc 7346     		mov	r3, lr
+ 1514              	.LVL218:
+ 395:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1515              		.loc 1 395 11 view .LVU580
+ 1516 03de 23F8022B 		strh	r2, [r3], #2	@ movhi
+ 1517              	.LVL219:
+ 399:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1518              		.loc 1 399 5 is_stmt 1 view .LVU581
+ 401:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1519              		.loc 1 401 5 view .LVU582
+ 401:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 1520              		.loc 1 401 14 is_stmt 0 view .LVU583
+ 1521 03e2 08F1FF35 		add	r5, r8, #-1
+ 1522              	.LVL220:
+ 404:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     {
+ 1523              		.loc 1 404 5 is_stmt 1 view .LVU584
+ 404:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     {
+ 1524              		.loc 1 404 11 is_stmt 0 view .LVU585
+ 1525 03e6 DEE7     		b	.L9
+ 1526              	.LVL221:
+ 1527              	.L14:
+ 435:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 436:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****   }
+ 437:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 438:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** #else
+ 439:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 440:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****   /* Run the below code for Cortex-M0 */
+ 441:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 442:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****   q31_t fcurnt, fnext, gcurnt, gnext;            /* temporary variables */
+ 443:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****   uint32_t numStages = S->numStages;             /* Length of the filter */
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 38
+
+
+ 444:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****   uint32_t blkCnt, stageCnt;                     /* temporary variables for counts */
+ 445:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 446:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****   pState = &S->pState[0];
+ 447:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 448:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****   blkCnt = blockSize;
+ 449:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 450:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****   while (blkCnt > 0U)
+ 451:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****   {
+ 452:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* f0(n) = x(n) */
+ 453:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fcurnt = *pSrc++;
+ 454:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 455:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* Initialize coeff pointer */
+ 456:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     pk = (pCoeffs);
+ 457:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 458:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* Initialize state pointer */
+ 459:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     px = pState;
+ 460:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 461:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* read g0(n-1) from state buffer */
+ 462:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gcurnt = *px;
+ 463:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 464:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* for sample 1 processing */
+ 465:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* f1(n) = f0(n) +  K1 * g0(n-1) */
+ 466:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fnext = ((gcurnt * (*pk)) >> 15U) + fcurnt;
+ 467:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fnext = __SSAT(fnext, 16);
+ 468:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 469:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 470:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* g1(n) = f0(n) * K1  +  g0(n-1) */
+ 471:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gnext = ((fcurnt * (*pk++)) >> 15U) + gcurnt;
+ 472:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     gnext = __SSAT(gnext, 16);
+ 473:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 474:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* save f0(n) in state buffer */
+ 475:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     *px++ = (q15_t) fcurnt;
+ 476:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 477:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* f1(n) is saved in fcurnt
+ 478:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****        for next stage processing */
+ 479:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     fcurnt = fnext;
+ 480:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 481:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     stageCnt = (numStages - 1U);
+ 482:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 483:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* stage loop */
+ 484:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     while (stageCnt > 0U)
+ 485:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     {
+ 486:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* read g1(n-1) from state buffer */
+ 487:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gcurnt = *px;
+ 488:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 489:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* save g0(n-1) in state buffer */
+ 490:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       *px++ = (q15_t) gnext;
+ 491:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 492:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* Sample processing for K2, K3.... */
+ 493:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* f2(n) = f1(n) +  K2 * g1(n-1) */
+ 494:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fnext = ((gcurnt * (*pk)) >> 15U) + fcurnt;
+ 495:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fnext = __SSAT(fnext, 16);
+ 496:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 497:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* g2(n) = f1(n) * K2  +  g1(n-1) */
+ 498:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext = ((fcurnt * (*pk++)) >> 15U) + gcurnt;
+ 499:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       gnext = __SSAT(gnext, 16);
+ 500:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 39
+
+
+ 501:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 502:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       /* f1(n) is saved in fcurnt
+ 503:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****          for next stage processing */
+ 504:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       fcurnt = fnext;
+ 505:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 506:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****       stageCnt--;
+ 507:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 508:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     }
+ 509:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 510:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     /* y(n) = fN(n) */
+ 511:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     *pDst++ = __SSAT(fcurnt, 16);
+ 512:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 513:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 514:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****     blkCnt--;
+ 515:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 516:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c ****   }
+ 517:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 518:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** #endif /*   #if defined (ARM_MATH_DSP) */
+ 519:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** 
+ 520:Drivers/CMSIS/DSP/Source/FilteringFunctions/arm_fir_lattice_q15.c **** }
+ 1528              		.loc 1 520 1 view .LVU586
+ 1529 03e8 0DB0     		add	sp, sp, #52
+ 1530              	.LCFI2:
+ 1531              		.cfi_def_cfa_offset 36
+ 1532              		@ sp needed
+ 1533 03ea BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 1534              		.loc 1 520 1 view .LVU587
+ 1535              		.cfi_endproc
+ 1536              	.LFE135:
+ 1538              		.text
+ 1539              	.Letext0:
+ 1540              		.file 2 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
+ 1541              		.file 3 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
+ 1542              		.file 4 "Drivers/CMSIS/DSP/Include/arm_math.h"
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s 			page 40
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 arm_fir_lattice_q15.c
+C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s:21     .text.arm_fir_lattice_q15:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccGUQL1a.s:27     .text.arm_fir_lattice_q15:00000000 arm_fir_lattice_q15
+
+NO UNDEFINED SYMBOLS

@@ -1,0 +1,241 @@
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cctG38mK.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"computer_communicator.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Core/Src/Application/Computer_Communicator/computer_communicator.c"
+  20              		.section	.text.UART_Init,"ax",%progbits
+  21              		.align	1
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	UART_Init:
+  27              	.LVL0:
+  28              	.LFB132:
+   1:Core/Src/Application/Computer_Communicator/computer_communicator.c **** #include "computer_communicator.h"
+   2:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+   3:Core/Src/Application/Computer_Communicator/computer_communicator.c **** /*Private Interfacce*/
+   4:Core/Src/Application/Computer_Communicator/computer_communicator.c **** static UART_HandleTypeDef huart3;
+   5:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+   6:Core/Src/Application/Computer_Communicator/computer_communicator.c **** static void UART_Init(UART_HandleTypeDef* huart);
+   7:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+   8:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+   9:Core/Src/Application/Computer_Communicator/computer_communicator.c **** /**
+  10:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   * @brief This function handles USART3 global interrupt.
+  11:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   */
+  12:Core/Src/Application/Computer_Communicator/computer_communicator.c **** void USART3_IRQHandler(void)
+  13:Core/Src/Application/Computer_Communicator/computer_communicator.c **** {
+  14:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   HAL_UART_IRQHandler(&huart3);
+  15:Core/Src/Application/Computer_Communicator/computer_communicator.c **** }
+  16:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+  17:Core/Src/Application/Computer_Communicator/computer_communicator.c **** /**
+  18:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   * @brief This function will be called if number of 
+  19:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   * recived bytes equal data Size declared in HAL_UART_Receive_IT.
+  20:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   */
+  21:Core/Src/Application/Computer_Communicator/computer_communicator.c **** // void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+  22:Core/Src/Application/Computer_Communicator/computer_communicator.c **** // {
+  23:Core/Src/Application/Computer_Communicator/computer_communicator.c **** //   // sprintf(tx_data, "Hello World Hi\n");
+  24:Core/Src/Application/Computer_Communicator/computer_communicator.c **** //   // HAL_UART_Transmit_IT(&huart3, tx_data, (unsigned)strlen(tx_data));
+  25:Core/Src/Application/Computer_Communicator/computer_communicator.c **** //   // HAL_UART_Receive_IT(&huart3, rx_data, 3);
+  26:Core/Src/Application/Computer_Communicator/computer_communicator.c **** // }
+  27:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+  28:Core/Src/Application/Computer_Communicator/computer_communicator.c **** /**
+  29:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   * @brief This function initialize USART1.
+  30:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   */
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cctG38mK.s 			page 2
+
+
+  31:Core/Src/Application/Computer_Communicator/computer_communicator.c **** void App_ComputerCommunicator_Init()
+  32:Core/Src/Application/Computer_Communicator/computer_communicator.c **** {
+  33:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   UART_Init(&huart3);
+  34:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   // HAL_UART_Receive_IT(&huart3, rx_data, 3);
+  35:Core/Src/Application/Computer_Communicator/computer_communicator.c **** }
+  36:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+  37:Core/Src/Application/Computer_Communicator/computer_communicator.c **** static void UART_Init(UART_HandleTypeDef* huart)
+  38:Core/Src/Application/Computer_Communicator/computer_communicator.c **** {
+  29              		.loc 1 38 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		.loc 1 38 1 is_stmt 0 view .LVU1
+  34 0000 08B5     		push	{r3, lr}
+  35              	.LCFI0:
+  36              		.cfi_def_cfa_offset 8
+  37              		.cfi_offset 3, -8
+  38              		.cfi_offset 14, -4
+  39:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   huart->Instance = USART3;
+  39              		.loc 1 39 3 is_stmt 1 view .LVU2
+  40              		.loc 1 39 19 is_stmt 0 view .LVU3
+  41 0002 084A     		ldr	r2, .L3
+  42 0004 0260     		str	r2, [r0]
+  40:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   huart->Init.BaudRate = 115200;
+  43              		.loc 1 40 3 is_stmt 1 view .LVU4
+  44              		.loc 1 40 24 is_stmt 0 view .LVU5
+  45 0006 4FF4E132 		mov	r2, #115200
+  46 000a 4260     		str	r2, [r0, #4]
+  41:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   huart->Init.WordLength = UART_WORDLENGTH_8B;
+  47              		.loc 1 41 3 is_stmt 1 view .LVU6
+  48              		.loc 1 41 26 is_stmt 0 view .LVU7
+  49 000c 0022     		movs	r2, #0
+  50 000e 8260     		str	r2, [r0, #8]
+  42:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   huart->Init.StopBits = UART_STOPBITS_1;
+  51              		.loc 1 42 3 is_stmt 1 view .LVU8
+  52              		.loc 1 42 24 is_stmt 0 view .LVU9
+  53 0010 C260     		str	r2, [r0, #12]
+  43:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   huart->Init.Parity = UART_PARITY_NONE;
+  54              		.loc 1 43 3 is_stmt 1 view .LVU10
+  55              		.loc 1 43 22 is_stmt 0 view .LVU11
+  56 0012 0261     		str	r2, [r0, #16]
+  44:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   huart->Init.Mode = UART_MODE_TX_RX;
+  57              		.loc 1 44 3 is_stmt 1 view .LVU12
+  58              		.loc 1 44 20 is_stmt 0 view .LVU13
+  59 0014 0C21     		movs	r1, #12
+  60 0016 4161     		str	r1, [r0, #20]
+  45:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   huart->Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  61              		.loc 1 45 3 is_stmt 1 view .LVU14
+  62              		.loc 1 45 25 is_stmt 0 view .LVU15
+  63 0018 8261     		str	r2, [r0, #24]
+  46:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   huart->Init.OverSampling = UART_OVERSAMPLING_16;
+  64              		.loc 1 46 3 is_stmt 1 view .LVU16
+  65              		.loc 1 46 28 is_stmt 0 view .LVU17
+  66 001a C261     		str	r2, [r0, #28]
+  47:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   if (HAL_UART_Init(huart) != HAL_OK)
+  67              		.loc 1 47 3 is_stmt 1 view .LVU18
+  68              		.loc 1 47 7 is_stmt 0 view .LVU19
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cctG38mK.s 			page 3
+
+
+  69 001c FFF7FEFF 		bl	HAL_UART_Init
+  70              	.LVL1:
+  48:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   {
+  49:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     // Error_Handler();
+  50:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   }
+  71              		.loc 1 50 3 is_stmt 1 view .LVU20
+  51:Core/Src/Application/Computer_Communicator/computer_communicator.c **** }...
+  72              		.loc 1 51 1 is_stmt 0 view .LVU21
+  73 0020 08BD     		pop	{r3, pc}
+  74              	.L4:
+  75 0022 00BF     		.align	2
+  76              	.L3:
+  77 0024 00480040 		.word	1073760256
+  78              		.cfi_endproc
+  79              	.LFE132:
+  81              		.section	.text.USART3_IRQHandler,"ax",%progbits
+  82              		.align	1
+  83              		.global	USART3_IRQHandler
+  84              		.syntax unified
+  85              		.thumb
+  86              		.thumb_func
+  88              	USART3_IRQHandler:
+  89              	.LFB130:
+  13:Core/Src/Application/Computer_Communicator/computer_communicator.c **** {
+  90              		.loc 1 13 1 is_stmt 1 view -0
+  91              		.cfi_startproc
+  92              		@ args = 0, pretend = 0, frame = 0
+  93              		@ frame_needed = 0, uses_anonymous_args = 0
+  94 0000 08B5     		push	{r3, lr}
+  95              	.LCFI1:
+  96              		.cfi_def_cfa_offset 8
+  97              		.cfi_offset 3, -8
+  98              		.cfi_offset 14, -4
+  14:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   HAL_UART_IRQHandler(&huart3);
+  99              		.loc 1 14 3 view .LVU23
+ 100 0002 0248     		ldr	r0, .L7
+ 101 0004 FFF7FEFF 		bl	HAL_UART_IRQHandler
+ 102              	.LVL2:
+  15:Core/Src/Application/Computer_Communicator/computer_communicator.c **** }
+ 103              		.loc 1 15 1 is_stmt 0 view .LVU24
+ 104 0008 08BD     		pop	{r3, pc}
+ 105              	.L8:
+ 106 000a 00BF     		.align	2
+ 107              	.L7:
+ 108 000c 00000000 		.word	huart3
+ 109              		.cfi_endproc
+ 110              	.LFE130:
+ 112              		.section	.text.App_ComputerCommunicator_Init,"ax",%progbits
+ 113              		.align	1
+ 114              		.global	App_ComputerCommunicator_Init
+ 115              		.syntax unified
+ 116              		.thumb
+ 117              		.thumb_func
+ 119              	App_ComputerCommunicator_Init:
+ 120              	.LFB131:
+  32:Core/Src/Application/Computer_Communicator/computer_communicator.c **** {
+ 121              		.loc 1 32 1 is_stmt 1 view -0
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cctG38mK.s 			page 4
+
+
+ 122              		.cfi_startproc
+ 123              		@ args = 0, pretend = 0, frame = 0
+ 124              		@ frame_needed = 0, uses_anonymous_args = 0
+ 125 0000 08B5     		push	{r3, lr}
+ 126              	.LCFI2:
+ 127              		.cfi_def_cfa_offset 8
+ 128              		.cfi_offset 3, -8
+ 129              		.cfi_offset 14, -4
+  33:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   UART_Init(&huart3);
+ 130              		.loc 1 33 3 view .LVU26
+ 131 0002 0248     		ldr	r0, .L11
+ 132 0004 FFF7FEFF 		bl	UART_Init
+ 133              	.LVL3:
+  35:Core/Src/Application/Computer_Communicator/computer_communicator.c **** }
+ 134              		.loc 1 35 1 is_stmt 0 view .LVU27
+ 135 0008 08BD     		pop	{r3, pc}
+ 136              	.L12:
+ 137 000a 00BF     		.align	2
+ 138              	.L11:
+ 139 000c 00000000 		.word	huart3
+ 140              		.cfi_endproc
+ 141              	.LFE131:
+ 143              		.section	.bss.huart3,"aw",%nobits
+ 144              		.align	2
+ 147              	huart3:
+ 148 0000 00000000 		.space	68
+ 148      00000000 
+ 148      00000000 
+ 148      00000000 
+ 148      00000000 
+ 149              		.text
+ 150              	.Letext0:
+ 151              		.file 2 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
+ 152              		.file 3 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
+ 153              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h"
+ 154              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 155              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 156              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h"
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cctG38mK.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 computer_communicator.c
+C:\Users\ACER\AppData\Local\Temp\cctG38mK.s:21     .text.UART_Init:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\cctG38mK.s:26     .text.UART_Init:00000000 UART_Init
+C:\Users\ACER\AppData\Local\Temp\cctG38mK.s:77     .text.UART_Init:00000024 $d
+C:\Users\ACER\AppData\Local\Temp\cctG38mK.s:82     .text.USART3_IRQHandler:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\cctG38mK.s:88     .text.USART3_IRQHandler:00000000 USART3_IRQHandler
+C:\Users\ACER\AppData\Local\Temp\cctG38mK.s:108    .text.USART3_IRQHandler:0000000c $d
+C:\Users\ACER\AppData\Local\Temp\cctG38mK.s:147    .bss.huart3:00000000 huart3
+C:\Users\ACER\AppData\Local\Temp\cctG38mK.s:113    .text.App_ComputerCommunicator_Init:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\cctG38mK.s:119    .text.App_ComputerCommunicator_Init:00000000 App_ComputerCommunicator_Init
+C:\Users\ACER\AppData\Local\Temp\cctG38mK.s:139    .text.App_ComputerCommunicator_Init:0000000c $d
+C:\Users\ACER\AppData\Local\Temp\cctG38mK.s:144    .bss.huart3:00000000 $d
+
+UNDEFINED SYMBOLS
+HAL_UART_Init
+HAL_UART_IRQHandler

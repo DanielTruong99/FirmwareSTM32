@@ -1,0 +1,627 @@
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQDrhE0.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"arm_shift_q7.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c"
+  20              		.section	.text.arm_shift_q7,"ax",%progbits
+  21              		.align	1
+  22              		.global	arm_shift_q7
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	arm_shift_q7:
+  28              	.LVL0:
+  29              	.LFB135:
+   1:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** /* ----------------------------------------------------------------------
+   2:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  * Project:      CMSIS DSP Library
+   3:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  * Title:        arm_shift_q7.c
+   4:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  * Description:  Processing function for the Q7 Shifting
+   5:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  *
+   6:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  * $Date:        27. January 2017
+   7:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  * $Revision:    V.1.5.1
+   8:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  *
+   9:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  * Target Processor: Cortex-M cores
+  10:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  * -------------------------------------------------------------------- */
+  11:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** /*
+  12:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  * Copyright (C) 2010-2017 ARM Limited or its affiliates. All rights reserved.
+  13:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  *
+  14:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  * SPDX-License-Identifier: Apache-2.0
+  15:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  *
+  16:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  * Licensed under the Apache License, Version 2.0 (the License); you may
+  17:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  * not use this file except in compliance with the License.
+  18:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  * You may obtain a copy of the License at
+  19:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  *
+  20:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  * www.apache.org/licenses/LICENSE-2.0
+  21:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  *
+  22:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  * Unless required by applicable law or agreed to in writing, software
+  23:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  * distributed under the License is distributed on an AS IS BASIS, WITHOUT
+  24:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  25:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  * See the License for the specific language governing permissions and
+  26:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  * limitations under the License.
+  27:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  */
+  28:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+  29:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** #include "arm_math.h"
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQDrhE0.s 			page 2
+
+
+  30:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+  31:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** /**
+  32:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  * @ingroup groupMath
+  33:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  */
+  34:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+  35:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** /**
+  36:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  * @addtogroup shift
+  37:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  * @{
+  38:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  */
+  39:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+  40:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+  41:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** /**
+  42:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  * @brief  Shifts the elements of a Q7 vector a specified number of bits.
+  43:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  * @param[in]  *pSrc points to the input vector
+  44:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  * @param[in]  shiftBits number of bits to shift.  A positive value shifts left; a negative value s
+  45:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  * @param[out]  *pDst points to the output vector
+  46:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  * @param[in]  blockSize number of samples in the vector
+  47:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  * @return none.
+  48:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  *
+  49:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  * \par Conditions for optimum performance
+  50:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  *  Input and output buffers should be aligned by 32-bit
+  51:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  *
+  52:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  *
+  53:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  * <b>Scaling and Overflow Behavior:</b>
+  54:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  * \par
+  55:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  * The function uses saturating arithmetic.
+  56:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  * Results outside of the allowable Q7 range [0x8 0x7F] will be saturated.
+  57:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****  */
+  58:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+  59:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** void arm_shift_q7(
+  60:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****   q7_t * pSrc,
+  61:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****   int8_t shiftBits,
+  62:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****   q7_t * pDst,
+  63:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****   uint32_t blockSize)
+  64:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** {
+  30              		.loc 1 64 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 64 1 is_stmt 0 view .LVU1
+  35 0000 70B5     		push	{r4, r5, r6, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 16
+  38              		.cfi_offset 4, -16
+  39              		.cfi_offset 5, -12
+  40              		.cfi_offset 6, -8
+  41              		.cfi_offset 14, -4
+  65:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****   uint32_t blkCnt;                               /* loop counter */
+  42              		.loc 1 65 3 is_stmt 1 view .LVU2
+  66:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****   uint8_t sign;                                  /* Sign of shiftBits */
+  43              		.loc 1 66 3 view .LVU3
+  67:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+  68:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** #if defined (ARM_MATH_DSP)
+  69:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+  70:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** /* Run the below code for Cortex-M4 and Cortex-M3 */
+  71:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****   q7_t in1;                                      /* Input value1 */
+  44              		.loc 1 71 3 view .LVU4
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQDrhE0.s 			page 3
+
+
+  72:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****   q7_t in2;                                      /* Input value2 */
+  45              		.loc 1 72 3 view .LVU5
+  73:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****   q7_t in3;                                      /* Input value3 */
+  46              		.loc 1 73 3 view .LVU6
+  74:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****   q7_t in4;                                      /* Input value4 */
+  47              		.loc 1 74 3 view .LVU7
+  75:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+  76:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+  77:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****   /*loop Unrolling */
+  78:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****   blkCnt = blockSize >> 2U;
+  48              		.loc 1 78 3 view .LVU8
+  49              		.loc 1 78 10 is_stmt 0 view .LVU9
+  50 0002 9C08     		lsrs	r4, r3, #2
+  51              	.LVL1:
+  79:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+  80:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****   /* Getting the sign of shiftBits */
+  81:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****   sign = (shiftBits & 0x80);
+  52              		.loc 1 81 3 is_stmt 1 view .LVU10
+  82:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+  83:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****   /* If the shift value is positive then do right shift else left shift */
+  84:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****   if (sign == 0U)
+  53              		.loc 1 84 3 view .LVU11
+  54              		.loc 1 84 6 is_stmt 0 view .LVU12
+  55 0004 B1F1000E 		subs	lr, r1, #0
+  56 0008 2CDA     		bge	.L2
+  85:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****   {
+  86:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     /* First part of the processing with loop unrolling.  Compute 4 outputs at a time.
+  87:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****      ** a second loop below computes the remaining 1 to 3 samples. */
+  88:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     while (blkCnt > 0U)
+  89:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     {
+  90:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       /* C = A << shiftBits */
+  91:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       /* Read 4 inputs */
+  92:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       in1 = *pSrc;
+  93:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       in2 = *(pSrc + 1);
+  94:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       in3 = *(pSrc + 2);
+  95:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       in4 = *(pSrc + 3);
+  96:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+  97:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       /* Store the Shifted result in the destination buffer in single cycle by packing the outputs 
+  98:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       *__SIMD32(pDst)++ = __PACKq7(__SSAT((in1 << shiftBits), 8),
+  99:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****                                    __SSAT((in2 << shiftBits), 8),
+ 100:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****                                    __SSAT((in3 << shiftBits), 8),
+ 101:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****                                    __SSAT((in4 << shiftBits), 8));
+ 102:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       /* Update source pointer to process next sampels */
+ 103:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       pSrc += 4U;
+ 104:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 105:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       /* Decrement the loop counter */
+ 106:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       blkCnt--;
+ 107:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     }
+ 108:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 109:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     /* If the blockSize is not a multiple of 4, compute any remaining output samples here.
+ 110:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****      ** No loop unrolling is used. */
+ 111:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     blkCnt = blockSize % 0x4U;
+ 112:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 113:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     while (blkCnt > 0U)
+ 114:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     {
+ 115:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       /* C = A << shiftBits */
+ 116:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       /* Shift the input and then store the result in the destination buffer. */
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQDrhE0.s 			page 4
+
+
+ 117:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       *pDst++ = (q7_t) __SSAT((*pSrc++ << shiftBits), 8);
+ 118:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 119:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       /* Decrement the loop counter */
+ 120:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       blkCnt--;
+ 121:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     }
+ 122:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****   }
+ 123:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****   else
+ 124:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****   {
+ 125:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     shiftBits = -shiftBits;
+  57              		.loc 1 125 5 is_stmt 1 view .LVU13
+  58              		.loc 1 125 15 is_stmt 0 view .LVU14
+  59 000a CEF1000E 		rsb	lr, lr, #0
+  60 000e 4FFA8EFE 		sxtb	lr, lr
+  61              	.LVL2:
+ 126:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     /* First part of the processing with loop unrolling.  Compute 4 outputs at a time.
+ 127:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****      ** a second loop below computes the remaining 1 to 3 samples. */
+ 128:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     while (blkCnt > 0U)
+  62              		.loc 1 128 5 is_stmt 1 view .LVU15
+  63              		.loc 1 128 11 is_stmt 0 view .LVU16
+  64 0012 59E0     		b	.L8
+  65              	.LVL3:
+  66              	.L4:
+  92:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       in2 = *(pSrc + 1);
+  67              		.loc 1 92 7 is_stmt 1 view .LVU17
+  92:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       in2 = *(pSrc + 1);
+  68              		.loc 1 92 11 is_stmt 0 view .LVU18
+  69 0014 90F90010 		ldrsb	r1, [r0]
+  70              	.LVL4:
+  93:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       in3 = *(pSrc + 2);
+  71              		.loc 1 93 7 is_stmt 1 view .LVU19
+  93:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       in3 = *(pSrc + 2);
+  72              		.loc 1 93 11 is_stmt 0 view .LVU20
+  73 0018 90F90160 		ldrsb	r6, [r0, #1]
+  74              	.LVL5:
+  94:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       in4 = *(pSrc + 3);
+  75              		.loc 1 94 7 is_stmt 1 view .LVU21
+  94:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       in4 = *(pSrc + 3);
+  76              		.loc 1 94 11 is_stmt 0 view .LVU22
+  77 001c 90F902C0 		ldrsb	ip, [r0, #2]
+  78              	.LVL6:
+  95:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+  79              		.loc 1 95 7 is_stmt 1 view .LVU23
+  95:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+  80              		.loc 1 95 11 is_stmt 0 view .LVU24
+  81 0020 90F90350 		ldrsb	r5, [r0, #3]
+  82              	.LVL7:
+  98:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****                                    __SSAT((in2 << shiftBits), 8),
+  83              		.loc 1 98 7 is_stmt 1 view .LVU25
+  84              	.LBB2:
+  98:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****                                    __SSAT((in2 << shiftBits), 8),
+  85              		.loc 1 98 27 view .LVU26
+  86 0024 01FA0EF1 		lsl	r1, r1, lr
+  87              	.LVL8:
+  98:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****                                    __SSAT((in2 << shiftBits), 8),
+  88              		.loc 1 98 27 view .LVU27
+  89              		.syntax unified
+  90              	@ 98 "Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c" 1
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQDrhE0.s 			page 5
+
+
+  91 0028 01F30701 		ssat r1, #8, r1
+  92              	@ 0 "" 2
+  93              	.LVL9:
+  98:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****                                    __SSAT((in2 << shiftBits), 8),
+  94              		.loc 1 98 27 view .LVU28
+  95              		.thumb
+  96              		.syntax unified
+  97              	.LBE2:
+  98 002c C9B2     		uxtb	r1, r1
+  99              	.LVL10:
+ 100              	.LBB3:
+  98:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****                                    __SSAT((in2 << shiftBits), 8),
+ 101              		.loc 1 98 27 view .LVU29
+ 102 002e 06FA0EF6 		lsl	r6, r6, lr
+ 103              	.LVL11:
+  98:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****                                    __SSAT((in2 << shiftBits), 8),
+ 104              		.loc 1 98 27 view .LVU30
+ 105              		.syntax unified
+ 106              	@ 98 "Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c" 1
+ 107 0032 06F30706 		ssat r6, #8, r6
+ 108              	@ 0 "" 2
+ 109              	.LVL12:
+  98:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****                                    __SSAT((in2 << shiftBits), 8),
+ 110              		.loc 1 98 27 view .LVU31
+ 111              		.thumb
+ 112              		.syntax unified
+ 113              	.LBE3:
+ 114 0036 3602     		lsls	r6, r6, #8
+ 115              	.LVL13:
+  98:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****                                    __SSAT((in2 << shiftBits), 8),
+ 116              		.loc 1 98 27 is_stmt 0 view .LVU32
+ 117 0038 B6B2     		uxth	r6, r6
+ 118 003a 3143     		orrs	r1, r1, r6
+ 119              	.LBB4:
+  98:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****                                    __SSAT((in2 << shiftBits), 8),
+ 120              		.loc 1 98 27 is_stmt 1 view .LVU33
+ 121 003c 0CFA0EFC 		lsl	ip, ip, lr
+ 122              	.LVL14:
+  98:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****                                    __SSAT((in2 << shiftBits), 8),
+ 123              		.loc 1 98 27 view .LVU34
+ 124              		.syntax unified
+ 125              	@ 98 "Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c" 1
+ 126 0040 0CF3070C 		ssat ip, #8, ip
+ 127              	@ 0 "" 2
+ 128              	.LVL15:
+  98:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****                                    __SSAT((in2 << shiftBits), 8),
+ 129              		.loc 1 98 27 view .LVU35
+ 130              		.thumb
+ 131              		.syntax unified
+ 132              	.LBE4:
+ 133 0044 4FEA0C4C 		lsl	ip, ip, #16
+ 134              	.LVL16:
+  98:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****                                    __SSAT((in2 << shiftBits), 8),
+ 135              		.loc 1 98 27 is_stmt 0 view .LVU36
+ 136 0048 0CF47F0C 		and	ip, ip, #16711680
+ 137 004c 41EA0C01 		orr	r1, r1, ip
+ 138              	.LBB5:
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQDrhE0.s 			page 6
+
+
+  98:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****                                    __SSAT((in2 << shiftBits), 8),
+ 139              		.loc 1 98 27 is_stmt 1 view .LVU37
+ 140 0050 05FA0EF5 		lsl	r5, r5, lr
+ 141              	.LVL17:
+  98:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****                                    __SSAT((in2 << shiftBits), 8),
+ 142              		.loc 1 98 27 view .LVU38
+ 143              		.syntax unified
+ 144              	@ 98 "Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c" 1
+ 145 0054 05F30705 		ssat r5, #8, r5
+ 146              	@ 0 "" 2
+ 147              	.LVL18:
+  98:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****                                    __SSAT((in2 << shiftBits), 8),
+ 148              		.loc 1 98 27 view .LVU39
+  98:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****                                    __SSAT((in2 << shiftBits), 8),
+ 149              		.loc 1 98 27 is_stmt 0 view .LVU40
+ 150              		.thumb
+ 151              		.syntax unified
+ 152              	.LBE5:
+ 153 0058 41EA0561 		orr	r1, r1, r5, lsl #24
+  98:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****                                    __SSAT((in2 << shiftBits), 8),
+ 154              		.loc 1 98 25 view .LVU41
+ 155 005c 42F8041B 		str	r1, [r2], #4
+ 156              	.LVL19:
+ 103:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 157              		.loc 1 103 7 is_stmt 1 view .LVU42
+ 103:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 158              		.loc 1 103 12 is_stmt 0 view .LVU43
+ 159 0060 0430     		adds	r0, r0, #4
+ 160              	.LVL20:
+ 106:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     }
+ 161              		.loc 1 106 7 is_stmt 1 view .LVU44
+ 106:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     }
+ 162              		.loc 1 106 13 is_stmt 0 view .LVU45
+ 163 0062 013C     		subs	r4, r4, #1
+ 164              	.LVL21:
+ 165              	.L2:
+  88:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     {
+ 166              		.loc 1 88 19 is_stmt 1 view .LVU46
+ 167 0064 002C     		cmp	r4, #0
+ 168 0066 D5D1     		bne	.L4
+ 111:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 169              		.loc 1 111 5 view .LVU47
+ 111:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 170              		.loc 1 111 12 is_stmt 0 view .LVU48
+ 171 0068 03F00303 		and	r3, r3, #3
+ 172              	.LVL22:
+ 113:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     {
+ 173              		.loc 1 113 5 is_stmt 1 view .LVU49
+ 113:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     {
+ 174              		.loc 1 113 11 is_stmt 0 view .LVU50
+ 175 006c 08E0     		b	.L5
+ 176              	.L6:
+ 117:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 177              		.loc 1 117 7 is_stmt 1 view .LVU51
+ 178              	.LBB6:
+ 117:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 179              		.loc 1 117 24 view .LVU52
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQDrhE0.s 			page 7
+
+
+ 180              	.LVL23:
+ 117:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 181              		.loc 1 117 24 is_stmt 0 view .LVU53
+ 182 006e 10F9011B 		ldrsb	r1, [r0], #1
+ 183              	.LVL24:
+ 117:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 184              		.loc 1 117 24 view .LVU54
+ 185 0072 01FA0EF1 		lsl	r1, r1, lr
+ 186              	.LVL25:
+ 117:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 187              		.loc 1 117 24 is_stmt 1 view .LVU55
+ 188              		.syntax unified
+ 189              	@ 117 "Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c" 1
+ 190 0076 01F30701 		ssat r1, #8, r1
+ 191              	@ 0 "" 2
+ 192              	.LVL26:
+ 117:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 193              		.loc 1 117 24 view .LVU56
+ 117:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 194              		.loc 1 117 24 is_stmt 0 view .LVU57
+ 195              		.thumb
+ 196              		.syntax unified
+ 197              	.LBE6:
+ 117:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 198              		.loc 1 117 15 view .LVU58
+ 199 007a 02F8011B 		strb	r1, [r2], #1
+ 200              	.LVL27:
+ 120:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     }
+ 201              		.loc 1 120 7 is_stmt 1 view .LVU59
+ 120:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     }
+ 202              		.loc 1 120 13 is_stmt 0 view .LVU60
+ 203 007e 013B     		subs	r3, r3, #1
+ 204              	.LVL28:
+ 205              	.L5:
+ 113:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     {
+ 206              		.loc 1 113 19 is_stmt 1 view .LVU61
+ 207 0080 002B     		cmp	r3, #0
+ 208 0082 F4D1     		bne	.L6
+ 209              	.LVL29:
+ 210              	.L1:
+ 129:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     {
+ 130:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       /* C = A >> shiftBits */
+ 131:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       /* Read 4 inputs */
+ 132:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       in1 = *pSrc;
+ 133:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       in2 = *(pSrc + 1);
+ 134:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       in3 = *(pSrc + 2);
+ 135:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       in4 = *(pSrc + 3);
+ 136:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 137:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       /* Store the Shifted result in the destination buffer in single cycle by packing the outputs 
+ 138:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       *__SIMD32(pDst)++ = __PACKq7((in1 >> shiftBits), (in2 >> shiftBits),
+ 139:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****                                    (in3 >> shiftBits), (in4 >> shiftBits));
+ 140:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 141:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 142:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       pSrc += 4U;
+ 143:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 144:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       /* Decrement the loop counter */
+ 145:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       blkCnt--;
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQDrhE0.s 			page 8
+
+
+ 146:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     }
+ 147:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 148:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     /* If the blockSize is not a multiple of 4, compute any remaining output samples here.
+ 149:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****      ** No loop unrolling is used. */
+ 150:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     blkCnt = blockSize % 0x4U;
+ 151:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 152:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     while (blkCnt > 0U)
+ 153:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     {
+ 154:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       /* C = A >> shiftBits */
+ 155:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       /* Shift the input and then store the result in the destination buffer. */
+ 156:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       in1 = *pSrc++;
+ 157:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       *pDst++ = (in1 >> shiftBits);
+ 158:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 159:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       /* Decrement the loop counter */
+ 160:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       blkCnt--;
+ 161:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     }
+ 162:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****   }
+ 163:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 164:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** #else
+ 165:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 166:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****   /* Run the below code for Cortex-M0 */
+ 167:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 168:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****   /* Getting the sign of shiftBits */
+ 169:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****   sign = (shiftBits & 0x80);
+ 170:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 171:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****   /* If the shift value is positive then do right shift else left shift */
+ 172:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****   if (sign == 0U)
+ 173:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****   {
+ 174:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     /* Initialize blkCnt with number of samples */
+ 175:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     blkCnt = blockSize;
+ 176:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 177:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     while (blkCnt > 0U)
+ 178:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     {
+ 179:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       /* C = A << shiftBits */
+ 180:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       /* Shift the input and then store the result in the destination buffer. */
+ 181:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       *pDst++ = (q7_t) __SSAT(((q15_t) * pSrc++ << shiftBits), 8);
+ 182:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 183:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       /* Decrement the loop counter */
+ 184:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       blkCnt--;
+ 185:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     }
+ 186:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****   }
+ 187:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****   else
+ 188:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****   {
+ 189:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     /* Initialize blkCnt with number of samples */
+ 190:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     blkCnt = blockSize;
+ 191:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 192:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     while (blkCnt > 0U)
+ 193:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     {
+ 194:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       /* C = A >> shiftBits */
+ 195:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       /* Shift the input and then store the result in the destination buffer. */
+ 196:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       *pDst++ = (*pSrc++ >> -shiftBits);
+ 197:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 198:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       /* Decrement the loop counter */
+ 199:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       blkCnt--;
+ 200:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     }
+ 201:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****   }
+ 202:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQDrhE0.s 			page 9
+
+
+ 203:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** #endif /* #if defined (ARM_MATH_DSP) */
+ 204:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** }
+ 211              		.loc 1 204 1 is_stmt 0 view .LVU62
+ 212 0084 70BD     		pop	{r4, r5, r6, pc}
+ 213              	.LVL30:
+ 214              	.L9:
+ 132:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       in2 = *(pSrc + 1);
+ 215              		.loc 1 132 7 is_stmt 1 view .LVU63
+ 132:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       in2 = *(pSrc + 1);
+ 216              		.loc 1 132 11 is_stmt 0 view .LVU64
+ 217 0086 90F90010 		ldrsb	r1, [r0]
+ 218              	.LVL31:
+ 133:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       in3 = *(pSrc + 2);
+ 219              		.loc 1 133 7 is_stmt 1 view .LVU65
+ 133:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       in3 = *(pSrc + 2);
+ 220              		.loc 1 133 11 is_stmt 0 view .LVU66
+ 221 008a 90F901C0 		ldrsb	ip, [r0, #1]
+ 222              	.LVL32:
+ 134:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       in4 = *(pSrc + 3);
+ 223              		.loc 1 134 7 is_stmt 1 view .LVU67
+ 134:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       in4 = *(pSrc + 3);
+ 224              		.loc 1 134 11 is_stmt 0 view .LVU68
+ 225 008e 90F90250 		ldrsb	r5, [r0, #2]
+ 226              	.LVL33:
+ 135:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 227              		.loc 1 135 7 is_stmt 1 view .LVU69
+ 135:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 228              		.loc 1 135 11 is_stmt 0 view .LVU70
+ 229 0092 90F90360 		ldrsb	r6, [r0, #3]
+ 230              	.LVL34:
+ 138:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****                                    (in3 >> shiftBits), (in4 >> shiftBits));
+ 231              		.loc 1 138 7 is_stmt 1 view .LVU71
+ 138:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****                                    (in3 >> shiftBits), (in4 >> shiftBits));
+ 232              		.loc 1 138 27 is_stmt 0 view .LVU72
+ 233 0096 41FA0EF1 		asr	r1, r1, lr
+ 234              	.LVL35:
+ 138:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****                                    (in3 >> shiftBits), (in4 >> shiftBits));
+ 235              		.loc 1 138 27 view .LVU73
+ 236 009a C9B2     		uxtb	r1, r1
+ 237 009c 4CFA0EFC 		asr	ip, ip, lr
+ 238              	.LVL36:
+ 138:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****                                    (in3 >> shiftBits), (in4 >> shiftBits));
+ 239              		.loc 1 138 27 view .LVU74
+ 240 00a0 4FEA0C2C 		lsl	ip, ip, #8
+ 241 00a4 1FFA8CFC 		uxth	ip, ip
+ 242 00a8 41EA0C01 		orr	r1, r1, ip
+ 243 00ac 45FA0EF5 		asr	r5, r5, lr
+ 244              	.LVL37:
+ 138:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****                                    (in3 >> shiftBits), (in4 >> shiftBits));
+ 245              		.loc 1 138 27 view .LVU75
+ 246 00b0 2D04     		lsls	r5, r5, #16
+ 247 00b2 05F47F05 		and	r5, r5, #16711680
+ 248 00b6 2943     		orrs	r1, r1, r5
+ 249 00b8 46FA0EF6 		asr	r6, r6, lr
+ 250              	.LVL38:
+ 138:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****                                    (in3 >> shiftBits), (in4 >> shiftBits));
+ 251              		.loc 1 138 27 view .LVU76
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQDrhE0.s 			page 10
+
+
+ 252 00bc 41EA0661 		orr	r1, r1, r6, lsl #24
+ 138:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****                                    (in3 >> shiftBits), (in4 >> shiftBits));
+ 253              		.loc 1 138 25 view .LVU77
+ 254 00c0 42F8041B 		str	r1, [r2], #4
+ 255              	.LVL39:
+ 142:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 256              		.loc 1 142 7 is_stmt 1 view .LVU78
+ 142:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 257              		.loc 1 142 12 is_stmt 0 view .LVU79
+ 258 00c4 0430     		adds	r0, r0, #4
+ 259              	.LVL40:
+ 145:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     }
+ 260              		.loc 1 145 7 is_stmt 1 view .LVU80
+ 145:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     }
+ 261              		.loc 1 145 13 is_stmt 0 view .LVU81
+ 262 00c6 013C     		subs	r4, r4, #1
+ 263              	.LVL41:
+ 264              	.L8:
+ 128:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     {
+ 265              		.loc 1 128 19 is_stmt 1 view .LVU82
+ 266 00c8 002C     		cmp	r4, #0
+ 267 00ca DCD1     		bne	.L9
+ 150:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 268              		.loc 1 150 5 view .LVU83
+ 150:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 269              		.loc 1 150 12 is_stmt 0 view .LVU84
+ 270 00cc 03F00303 		and	r3, r3, #3
+ 271              	.LVL42:
+ 152:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     {
+ 272              		.loc 1 152 5 is_stmt 1 view .LVU85
+ 152:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     {
+ 273              		.loc 1 152 11 is_stmt 0 view .LVU86
+ 274 00d0 06E0     		b	.L10
+ 275              	.L11:
+ 156:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       *pDst++ = (in1 >> shiftBits);
+ 276              		.loc 1 156 7 is_stmt 1 view .LVU87
+ 277              	.LVL43:
+ 156:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****       *pDst++ = (in1 >> shiftBits);
+ 278              		.loc 1 156 11 is_stmt 0 view .LVU88
+ 279 00d2 10F9011B 		ldrsb	r1, [r0], #1
+ 280              	.LVL44:
+ 157:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 281              		.loc 1 157 7 is_stmt 1 view .LVU89
+ 157:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 282              		.loc 1 157 22 is_stmt 0 view .LVU90
+ 283 00d6 41FA0EF1 		asr	r1, r1, lr
+ 284              	.LVL45:
+ 157:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c **** 
+ 285              		.loc 1 157 15 view .LVU91
+ 286 00da 02F8011B 		strb	r1, [r2], #1
+ 287              	.LVL46:
+ 160:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     }
+ 288              		.loc 1 160 7 is_stmt 1 view .LVU92
+ 160:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     }
+ 289              		.loc 1 160 13 is_stmt 0 view .LVU93
+ 290 00de 013B     		subs	r3, r3, #1
+ 291              	.LVL47:
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQDrhE0.s 			page 11
+
+
+ 292              	.L10:
+ 152:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     {
+ 293              		.loc 1 152 19 is_stmt 1 view .LVU94
+ 294 00e0 002B     		cmp	r3, #0
+ 295 00e2 F6D1     		bne	.L11
+ 152:Drivers/CMSIS/DSP/Source/BasicMathFunctions/arm_shift_q7.c ****     {
+ 296              		.loc 1 152 19 is_stmt 0 view .LVU95
+ 297 00e4 CEE7     		b	.L1
+ 298              		.cfi_endproc
+ 299              	.LFE135:
+ 301              		.text
+ 302              	.Letext0:
+ 303              		.file 2 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
+ 304              		.file 3 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
+ 305              		.file 4 "Drivers/CMSIS/DSP/Include/arm_math.h"
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQDrhE0.s 			page 12
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 arm_shift_q7.c
+C:\Users\ACER\AppData\Local\Temp\ccQDrhE0.s:21     .text.arm_shift_q7:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccQDrhE0.s:27     .text.arm_shift_q7:00000000 arm_shift_q7
+
+NO UNDEFINED SYMBOLS

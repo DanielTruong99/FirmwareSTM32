@@ -1,0 +1,1603 @@
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccWoR7RG.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"arm_mat_inverse_f64.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c"
+  20              		.global	__aeabi_dcmpgt
+  21              		.global	__aeabi_dcmpeq
+  22              		.global	__aeabi_ddiv
+  23              		.global	__aeabi_dmul
+  24              		.global	__aeabi_dsub
+  25              		.section	.text.arm_mat_inverse_f64,"ax",%progbits
+  26              		.align	1
+  27              		.global	arm_mat_inverse_f64
+  28              		.syntax unified
+  29              		.thumb
+  30              		.thumb_func
+  32              	arm_mat_inverse_f64:
+  33              	.LVL0:
+  34              	.LFB135:
+   1:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** /* ----------------------------------------------------------------------
+   2:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * Project:      CMSIS DSP Library
+   3:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * Title:        arm_mat_inverse_f64.c
+   4:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * Description:  Floating-point matrix inverse
+   5:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  *
+   6:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * $Date:        27. January 2017
+   7:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * $Revision:    V.1.5.1
+   8:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  *
+   9:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * Target Processor: Cortex-M cores
+  10:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * -------------------------------------------------------------------- */
+  11:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** /*
+  12:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * Copyright (C) 2010-2017 ARM Limited or its affiliates. All rights reserved.
+  13:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  *
+  14:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * SPDX-License-Identifier: Apache-2.0
+  15:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  *
+  16:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * Licensed under the Apache License, Version 2.0 (the License); you may
+  17:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * not use this file except in compliance with the License.
+  18:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * You may obtain a copy of the License at
+  19:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  *
+  20:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * www.apache.org/licenses/LICENSE-2.0
+  21:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  *
+  22:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * Unless required by applicable law or agreed to in writing, software
+  23:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * distributed under the License is distributed on an AS IS BASIS, WITHOUT
+  24:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccWoR7RG.s 			page 2
+
+
+  25:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * See the License for the specific language governing permissions and
+  26:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * limitations under the License.
+  27:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  */
+  28:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+  29:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** #include "arm_math.h"
+  30:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+  31:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** /**
+  32:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * @ingroup groupMatrix
+  33:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  */
+  34:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+  35:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** /**
+  36:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * @defgroup MatrixInv Matrix Inverse
+  37:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  *
+  38:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * Computes the inverse of a matrix.
+  39:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  *
+  40:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * The inverse is defined only if the input matrix is square and non-singular (the determinant
+  41:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * is non-zero). The function checks that the input and output matrices are square and of the
+  42:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * same size.
+  43:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  *
+  44:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * Matrix inversion is numerically sensitive and the CMSIS DSP library only supports matrix
+  45:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * inversion of floating-point matrices.
+  46:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  *
+  47:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * \par Algorithm
+  48:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * The Gauss-Jordan method is used to find the inverse.
+  49:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * The algorithm performs a sequence of elementary row-operations until it
+  50:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * reduces the input matrix to an identity matrix. Applying the same sequence
+  51:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * of elementary row-operations to an identity matrix yields the inverse matrix.
+  52:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * If the input matrix is singular, then the algorithm terminates and returns error status
+  53:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * <code>ARM_MATH_SINGULAR</code>.
+  54:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * \image html MatrixInverse.gif "Matrix Inverse of a 3 x 3 matrix using Gauss-Jordan Method"
+  55:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  */
+  56:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+  57:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** /**
+  58:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * @addtogroup MatrixInv
+  59:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * @{
+  60:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  */
+  61:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+  62:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** /**
+  63:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * @brief Floating-point matrix inverse.
+  64:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * @param[in]       *pSrc points to input matrix structure
+  65:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * @param[out]      *pDst points to output matrix structure
+  66:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * @return     		The function returns
+  67:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * <code>ARM_MATH_SIZE_MISMATCH</code> if the input matrix is not square or if the size
+  68:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * of the output matrix does not match the size of the input matrix.
+  69:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * If the input matrix is found to be singular (non-invertible), then the function returns
+  70:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  * <code>ARM_MATH_SINGULAR</code>.  Otherwise, the function returns <code>ARM_MATH_SUCCESS</code>.
+  71:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****  */
+  72:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+  73:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** arm_status arm_mat_inverse_f64(
+  74:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   const arm_matrix_instance_f64 * pSrc,
+  75:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   arm_matrix_instance_f64 * pDst)
+  76:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** {
+  35              		.loc 1 76 1 view -0
+  36              		.cfi_startproc
+  37              		@ args = 0, pretend = 0, frame = 72
+  38              		@ frame_needed = 0, uses_anonymous_args = 0
+  39              		.loc 1 76 1 is_stmt 0 view .LVU1
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccWoR7RG.s 			page 3
+
+
+  40 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+  41              	.LCFI0:
+  42              		.cfi_def_cfa_offset 36
+  43              		.cfi_offset 4, -36
+  44              		.cfi_offset 5, -32
+  45              		.cfi_offset 6, -28
+  46              		.cfi_offset 7, -24
+  47              		.cfi_offset 8, -20
+  48              		.cfi_offset 9, -16
+  49              		.cfi_offset 10, -12
+  50              		.cfi_offset 11, -8
+  51              		.cfi_offset 14, -4
+  52 0004 93B0     		sub	sp, sp, #76
+  53              	.LCFI1:
+  54              		.cfi_def_cfa_offset 112
+  55 0006 0546     		mov	r5, r0
+  77:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   float64_t *pIn = pSrc->pData;                  /* input data matrix pointer */
+  56              		.loc 1 77 3 is_stmt 1 view .LVU2
+  57              		.loc 1 77 14 is_stmt 0 view .LVU3
+  58 0008 4368     		ldr	r3, [r0, #4]
+  59 000a 0A93     		str	r3, [sp, #40]
+  60              	.LVL1:
+  78:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   float64_t *pOut = pDst->pData;                 /* output data matrix pointer */
+  61              		.loc 1 78 3 is_stmt 1 view .LVU4
+  62              		.loc 1 78 14 is_stmt 0 view .LVU5
+  63 000c D1F80480 		ldr	r8, [r1, #4]
+  64              	.LVL2:
+  79:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   float64_t *pInT1, *pInT2;                      /* Temporary input data matrix pointer */
+  65              		.loc 1 79 3 is_stmt 1 view .LVU6
+  80:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   float64_t *pOutT1, *pOutT2;                    /* Temporary output data matrix pointer */
+  66              		.loc 1 80 3 view .LVU7
+  81:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   float64_t *pPivotRowIn, *pPRT_in, *pPivotRowDst, *pPRT_pDst;  /* Temporary input and output data 
+  67              		.loc 1 81 3 view .LVU8
+  82:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   uint32_t numRows = pSrc->numRows;              /* Number of rows in the matrix  */
+  68              		.loc 1 82 3 view .LVU9
+  69              		.loc 1 82 26 is_stmt 0 view .LVU10
+  70 0010 0088     		ldrh	r0, [r0]
+  71              	.LVL3:
+  72              		.loc 1 82 26 view .LVU11
+  73 0012 1090     		str	r0, [sp, #64]
+  74              	.LVL4:
+  83:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   uint32_t numCols = pSrc->numCols;              /* Number of Cols in the matrix  */
+  75              		.loc 1 83 3 is_stmt 1 view .LVU12
+  76              		.loc 1 83 26 is_stmt 0 view .LVU13
+  77 0014 6B88     		ldrh	r3, [r5, #2]
+  78              	.LVL5:
+  79              		.loc 1 83 26 view .LVU14
+  80 0016 0493     		str	r3, [sp, #16]
+  81              	.LVL6:
+  84:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+  85:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** #if defined (ARM_MATH_DSP)
+  86:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   float64_t maxC;                                /* maximum value in the column */
+  82              		.loc 1 86 3 is_stmt 1 view .LVU15
+  87:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+  88:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   /* Run the below code for Cortex-M4 and Cortex-M3 */
+  89:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+  90:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   float64_t Xchg, in = 0.0f, in1;                /* Temporary input values  */
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccWoR7RG.s 			page 4
+
+
+  83              		.loc 1 90 3 view .LVU16
+  91:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   uint32_t i, rowCnt, flag = 0U, j, loopCnt, k, l;      /* loop counters */
+  84              		.loc 1 91 3 view .LVU17
+  92:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   arm_status status;                             /* status of matrix inverse */
+  85              		.loc 1 92 3 view .LVU18
+  93:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+  94:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** #ifdef ARM_MATH_MATRIX_CHECK
+  95:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+  96:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+  97:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   /* Check for matrix mismatch condition */
+  98:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   if ((pSrc->numRows != pSrc->numCols) || (pDst->numRows != pDst->numCols)
+  86              		.loc 1 98 3 view .LVU19
+  87              		.loc 1 98 6 is_stmt 0 view .LVU20
+  88 0018 9842     		cmp	r0, r3
+  89 001a 40F05081 		bne	.L37
+  90 001e 0646     		mov	r6, r0
+  91              		.loc 1 98 48 discriminator 1 view .LVU21
+  92 0020 0B88     		ldrh	r3, [r1]
+  93              	.LVL7:
+  94              		.loc 1 98 65 discriminator 1 view .LVU22
+  95 0022 4A88     		ldrh	r2, [r1, #2]
+  96              		.loc 1 98 40 discriminator 1 view .LVU23
+  97 0024 9342     		cmp	r3, r2
+  98 0026 40F04D81 		bne	.L38
+  99:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****      || (pSrc->numRows != pDst->numRows))
+  99              		.loc 1 99 6 view .LVU24
+ 100 002a 9842     		cmp	r0, r3
+ 101 002c 40F04D81 		bne	.L39
+ 100:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   {
+ 101:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     /* Set status as ARM_MATH_SIZE_MISMATCH */
+ 102:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     status = ARM_MATH_SIZE_MISMATCH;
+ 103:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   }
+ 104:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   else
+ 105:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** #endif /*    #ifdef ARM_MATH_MATRIX_CHECK    */
+ 106:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 107:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   {
+ 108:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 109:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     /*---------------------------------------------------------------------------------------------
+ 110:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 * Matrix Inverse can be solved using elementary row operations.
+ 111:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *
+ 112:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *	Gauss-Jordan Method:
+ 113:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *
+ 114:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *	   1. First combine the identity matrix and the input matrix separated by a bar to form an
+ 115:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *        augmented matrix as follows:
+ 116:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *				        _ 	      	       _         _	       _
+ 117:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *					   |  a11  a12 | 1   0  |       |  X11 X12  |
+ 118:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *					   |           |        |   =   |           |
+ 119:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *					   |_ a21  a22 | 0   1 _|       |_ X21 X21 _|
+ 120:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *
+ 121:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *		2. In our implementation, pDst Matrix is used as identity matrix.
+ 122:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *
+ 123:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *		3. Begin with the first row. Let i = 1.
+ 124:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *
+ 125:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *	    4. Check to see if the pivot for column i is the greatest of the column.
+ 126:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *		   The pivot is the element of the main diagonal that is on the current row.
+ 127:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *		   For instance, if working with row i, then the pivot element is aii.
+ 128:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *		   If the pivot is not the most significant of the columns, exchange that row with a row
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccWoR7RG.s 			page 5
+
+
+ 129:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *		   below it that does contain the most significant value in column i. If the most
+ 130:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *         significant value of the column is zero, then an inverse to that matrix does not exist.
+ 131:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *		   The most significant value of the column is the absolute maximum.
+ 132:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *
+ 133:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *	    5. Divide every element of row i by the pivot.
+ 134:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *
+ 135:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *	    6. For every row below and  row i, replace that row with the sum of that row and
+ 136:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *		   a multiple of row i so that each new element in column i below row i is zero.
+ 137:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *
+ 138:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *	    7. Move to the next row and column and repeat steps 2 through 5 until you have zeros
+ 139:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *		   for every element below and above the main diagonal.
+ 140:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *
+ 141:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *		8. Now an identical matrix is formed to the left of the bar(input matrix, pSrc).
+ 142:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *		   Therefore, the matrix to the right of the bar is our solution(pDst matrix, pDst).
+ 143:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *------------------------------------------------------------------------------------------------
+ 144:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 145:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     /* Working pointer for destination matrix */
+ 146:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     pOutT1 = pOut;
+ 147:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 148:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     /* Loop over the number of rows */
+ 149:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     rowCnt = numRows;
+ 102              		.loc 1 149 12 view .LVU25
+ 103 0030 0446     		mov	r4, r0
+ 146:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 104              		.loc 1 146 12 view .LVU26
+ 105 0032 4346     		mov	r3, r8
+ 106 0034 14E0     		b	.L3
+ 107              	.LVL8:
+ 108              	.L5:
+ 150:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 151:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     /* Making the destination matrix as identity matrix */
+ 152:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     while (rowCnt > 0U)
+ 153:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     {
+ 154:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Writing all zeroes in lower triangle of the destination matrix */
+ 155:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       j = numRows - rowCnt;
+ 156:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       while (j > 0U)
+ 157:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       {
+ 158:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         *pOutT1++ = 0.0f;
+ 109              		.loc 1 158 9 is_stmt 1 view .LVU27
+ 110              		.loc 1 158 19 is_stmt 0 view .LVU28
+ 111 0036 0020     		movs	r0, #0
+ 112 0038 0021     		movs	r1, #0
+ 113 003a E3E80201 		strd	r0, [r3], #8
+ 114              	.LVL9:
+ 159:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         j--;
+ 115              		.loc 1 159 9 is_stmt 1 view .LVU29
+ 116              		.loc 1 159 10 is_stmt 0 view .LVU30
+ 117 003e 013A     		subs	r2, r2, #1
+ 118              	.LVL10:
+ 119              	.L4:
+ 156:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       {
+ 120              		.loc 1 156 16 is_stmt 1 view .LVU31
+ 121 0040 002A     		cmp	r2, #0
+ 122 0042 F8D1     		bne	.L5
+ 160:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       }
+ 161:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 162:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Writing all ones in the diagonal of the destination matrix */
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccWoR7RG.s 			page 6
+
+
+ 163:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       *pOutT1++ = 1.0f;
+ 123              		.loc 1 163 7 view .LVU32
+ 124              	.LVL11:
+ 125              		.loc 1 163 17 is_stmt 0 view .LVU33
+ 126 0044 0020     		movs	r0, #0
+ 127 0046 A949     		ldr	r1, .L61
+ 128 0048 E3E80201 		strd	r0, [r3], #8
+ 129              	.LVL12:
+ 164:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 165:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Writing all zeroes in upper triangle of the destination matrix */
+ 166:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       j = rowCnt - 1U;
+ 130              		.loc 1 166 7 is_stmt 1 view .LVU34
+ 131              		.loc 1 166 9 is_stmt 0 view .LVU35
+ 132 004c 013C     		subs	r4, r4, #1
+ 133              	.LVL13:
+ 167:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       while (j > 0U)
+ 134              		.loc 1 167 7 is_stmt 1 view .LVU36
+ 166:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       while (j > 0U)
+ 135              		.loc 1 166 9 is_stmt 0 view .LVU37
+ 136 004e 2246     		mov	r2, r4
+ 137              		.loc 1 167 13 view .LVU38
+ 138 0050 04E0     		b	.L6
+ 139              	.LVL14:
+ 140              	.L7:
+ 168:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       {
+ 169:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         *pOutT1++ = 0.0f;
+ 141              		.loc 1 169 9 is_stmt 1 view .LVU39
+ 142              		.loc 1 169 19 is_stmt 0 view .LVU40
+ 143 0052 0020     		movs	r0, #0
+ 144 0054 0021     		movs	r1, #0
+ 145 0056 E3E80201 		strd	r0, [r3], #8
+ 146              	.LVL15:
+ 170:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         j--;
+ 147              		.loc 1 170 9 is_stmt 1 view .LVU41
+ 148              		.loc 1 170 10 is_stmt 0 view .LVU42
+ 149 005a 013A     		subs	r2, r2, #1
+ 150              	.LVL16:
+ 151              	.L6:
+ 167:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       {
+ 152              		.loc 1 167 16 is_stmt 1 view .LVU43
+ 153 005c 002A     		cmp	r2, #0
+ 154 005e F8D1     		bne	.L7
+ 155              	.LVL17:
+ 156              	.L3:
+ 152:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     {
+ 157              		.loc 1 152 19 view .LVU44
+ 158 0060 0CB1     		cbz	r4, .L53
+ 155:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       while (j > 0U)
+ 159              		.loc 1 155 7 view .LVU45
+ 155:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       while (j > 0U)
+ 160              		.loc 1 155 9 is_stmt 0 view .LVU46
+ 161 0062 321B     		subs	r2, r6, r4
+ 162              	.LVL18:
+ 156:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       {
+ 163              		.loc 1 156 7 is_stmt 1 view .LVU47
+ 156:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       {
+ 164              		.loc 1 156 13 is_stmt 0 view .LVU48
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccWoR7RG.s 			page 7
+
+
+ 165 0064 ECE7     		b	.L4
+ 166              	.LVL19:
+ 167              	.L53:
+ 171:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       }
+ 172:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 173:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Decrement the loop counter */
+ 174:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       rowCnt--;
+ 175:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     }
+ 176:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 177:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     /* Loop over the number of columns of the input matrix.
+ 178:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****        All the elements in each column are processed by the row operations */
+ 179:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     loopCnt = numCols;
+ 168              		.loc 1 179 13 view .LVU49
+ 169 0066 DDF81090 		ldr	r9, [sp, #16]
+  90:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   uint32_t i, rowCnt, flag = 0U, j, loopCnt, k, l;      /* loop counters */
+ 170              		.loc 1 90 19 view .LVU50
+ 171 006a 4FF0000A 		mov	r10, #0
+ 172 006e 4FF0000B 		mov	fp, #0
+ 173 0072 109F     		ldr	r7, [sp, #64]
+ 174 0074 CDF82C90 		str	r9, [sp, #44]
+ 175 0078 A146     		mov	r9, r4
+ 176 007a CDF83880 		str	r8, [sp, #56]
+ 177 007e 1195     		str	r5, [sp, #68]
+ 178 0080 E1E0     		b	.L9
+ 179              	.LVL20:
+ 180              	.L50:
+ 180:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 181:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     /* Index modifier to navigate through the columns */
+ 182:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     l = 0U;
+ 183:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 184:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     while (loopCnt > 0U)
+ 185:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     {
+ 186:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Check if the pivot element is zero..
+ 187:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****        * If it is zero then interchange the row with non zero row below.
+ 188:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****        * If there is no non zero element to replace in the rows below,
+ 189:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****        * then the matrix is Singular. */
+ 190:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 191:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Working pointer for the input matrix that points
+ 192:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****        * to the pivot element of the particular row  */
+ 193:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       pInT1 = pIn + (l * numCols);
+ 194:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 195:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Working pointer for the destination matrix that points
+ 196:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****        * to the pivot element of the particular row  */
+ 197:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       pOutT1 = pOut + (l * numCols);
+ 198:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 199:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Temporary variable to hold the pivot value */
+ 200:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       in = *pInT1;
+ 201:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 202:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Grab the most significant value from column l */
+ 203:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       maxC = 0;
+ 204:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       for (i = l; i < numRows; i++)
+ 205:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       {
+ 206:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         maxC = *pInT1 > 0 ? (*pInT1 > maxC ? *pInT1 : maxC) : (-*pInT1 > maxC ? -*pInT1 : maxC);
+ 181              		.loc 1 206 64 discriminator 2 view .LVU51
+ 182 0082 0294     		str	r4, [sp, #8]
+ 183 0084 05F10043 		add	r3, r5, #-2147483648
+ 184 0088 0393     		str	r3, [sp, #12]
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccWoR7RG.s 			page 8
+
+
+ 185              		.loc 1 206 89 discriminator 2 view .LVU52
+ 186 008a 5246     		mov	r2, r10
+ 187 008c 5B46     		mov	r3, fp
+ 188 008e DDE90201 		ldrd	r0, [sp, #8]
+ 189 0092 FFF7FEFF 		bl	__aeabi_dcmpgt
+ 190              	.LVL21:
+ 191 0096 C8B9     		cbnz	r0, .L41
+ 192              	.LVL22:
+ 193              	.L13:
+ 207:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         pInT1 += numCols;
+ 194              		.loc 1 207 9 is_stmt 1 view .LVU53
+ 195              		.loc 1 207 15 is_stmt 0 view .LVU54
+ 196 0098 08EBC908 		add	r8, r8, r9, lsl #3
+ 197              	.LVL23:
+ 204:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       {
+ 198              		.loc 1 204 33 is_stmt 1 discriminator 2 view .LVU55
+ 199 009c 0136     		adds	r6, r6, #1
+ 200              	.LVL24:
+ 201              	.L10:
+ 204:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       {
+ 202              		.loc 1 204 21 discriminator 1 view .LVU56
+ 203 009e BE42     		cmp	r6, r7
+ 204 00a0 17D2     		bcs	.L54
+ 206:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         pInT1 += numCols;
+ 205              		.loc 1 206 9 view .LVU57
+ 206:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         pInT1 += numCols;
+ 206              		.loc 1 206 16 is_stmt 0 view .LVU58
+ 207 00a2 D8E90045 		ldrd	r4, [r8]
+ 206:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         pInT1 += numCols;
+ 208              		.loc 1 206 61 view .LVU59
+ 209 00a6 0022     		movs	r2, #0
+ 210 00a8 0023     		movs	r3, #0
+ 211 00aa 2046     		mov	r0, r4
+ 212 00ac 2946     		mov	r1, r5
+ 213 00ae FFF7FEFF 		bl	__aeabi_dcmpgt
+ 214              	.LVL25:
+ 215 00b2 0028     		cmp	r0, #0
+ 216 00b4 E5D0     		beq	.L50
+ 206:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         pInT1 += numCols;
+ 217              		.loc 1 206 53 discriminator 1 view .LVU60
+ 218 00b6 5246     		mov	r2, r10
+ 219 00b8 5B46     		mov	r3, fp
+ 220 00ba 2046     		mov	r0, r4
+ 221 00bc 2946     		mov	r1, r5
+ 222 00be FFF7FEFF 		bl	__aeabi_dcmpgt
+ 223              	.LVL26:
+ 224 00c2 0028     		cmp	r0, #0
+ 225 00c4 E8D0     		beq	.L13
+ 206:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         pInT1 += numCols;
+ 226              		.loc 1 206 53 discriminator 3 view .LVU61
+ 227 00c6 A246     		mov	r10, r4
+ 228              	.LVL27:
+ 206:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         pInT1 += numCols;
+ 229              		.loc 1 206 53 discriminator 3 view .LVU62
+ 230 00c8 AB46     		mov	fp, r5
+ 231 00ca E5E7     		b	.L13
+ 232              	.LVL28:
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccWoR7RG.s 			page 9
+
+
+ 233              	.L41:
+ 206:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         pInT1 += numCols;
+ 234              		.loc 1 206 89 discriminator 8 view .LVU63
+ 235 00cc DDE902AB 		ldrd	r10, [sp, #8]
+ 236              	.LVL29:
+ 206:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         pInT1 += numCols;
+ 237              		.loc 1 206 89 discriminator 8 view .LVU64
+ 238 00d0 E2E7     		b	.L13
+ 239              	.LVL30:
+ 240              	.L54:
+ 208:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       }
+ 209:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 210:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Update the status if the matrix is singular */
+ 211:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       if (maxC == 0.0f)
+ 241              		.loc 1 211 10 view .LVU65
+ 242 00d2 DDF81490 		ldr	r9, [sp, #20]
+ 243              		.loc 1 211 7 is_stmt 1 view .LVU66
+ 244              		.loc 1 211 10 is_stmt 0 view .LVU67
+ 245 00d6 0022     		movs	r2, #0
+ 246 00d8 0023     		movs	r3, #0
+ 247 00da 5046     		mov	r0, r10
+ 248 00dc 5946     		mov	r1, fp
+ 249 00de FFF7FEFF 		bl	__aeabi_dcmpeq
+ 250              	.LVL31:
+ 251 00e2 0028     		cmp	r0, #0
+ 252 00e4 40F0F480 		bne	.L42
+ 212:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       {
+ 213:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         return ARM_MATH_SINGULAR;
+ 214:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       }
+ 215:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 216:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Restore pInT1  */
+ 217:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       pInT1 = pIn;
+ 253              		.loc 1 217 7 is_stmt 1 view .LVU68
+ 254              	.LVL32:
+ 218:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 219:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Destination pointer modifier */
+ 220:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       k = 1U;
+ 255              		.loc 1 220 7 view .LVU69
+ 221:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 222:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Check if the pivot element is the most significant of the column */
+ 223:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       if ( (in > 0.0f ? in : -in) != maxC)
+ 256              		.loc 1 223 7 view .LVU70
+ 257              		.loc 1 223 28 is_stmt 0 view .LVU71
+ 258 00e8 0022     		movs	r2, #0
+ 259 00ea 0023     		movs	r3, #0
+ 260 00ec DDE90045 		ldrd	r4, [sp]
+ 261 00f0 2046     		mov	r0, r4
+ 262 00f2 2946     		mov	r1, r5
+ 263 00f4 FFF7FEFF 		bl	__aeabi_dcmpgt
+ 264              	.LVL33:
+ 265 00f8 E0B1     		cbz	r0, .L55
+ 266              		.loc 1 223 28 discriminator 1 view .LVU72
+ 267 00fa 9DED007B 		vldr.64	d7, [sp]
+ 268 00fe 8DED0C7B 		vstr.64	d7, [sp, #48]
+ 269              	.L15:
+ 270              		.loc 1 223 10 discriminator 4 view .LVU73
+ 271 0102 DDE90C23 		ldrd	r2, [sp, #48]
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccWoR7RG.s 			page 10
+
+
+ 272 0106 5046     		mov	r0, r10
+ 273 0108 5946     		mov	r1, fp
+ 274 010a FFF7FEFF 		bl	__aeabi_dcmpeq
+ 275              	.LVL34:
+ 276 010e B0B1     		cbz	r0, .L56
+ 277              	.LVL35:
+ 278              	.L16:
+ 224:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       {
+ 225:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         /* Loop over the number rows present below */
+ 226:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         i = numRows - (l + 1U);
+ 227:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 228:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         while (i > 0U)
+ 229:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         {
+ 230:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           /* Update the input and destination pointers */
+ 231:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           pInT2 = pInT1 + (numCols * l);
+ 232:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           pOutT2 = pOutT1 + (numCols * k);
+ 233:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 234:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           /* Look for the most significant element to
+ 235:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****            * replace in the rows below */
+ 236:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           if ((*pInT2 > 0.0f ? *pInT2: -*pInT2) == maxC)
+ 237:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           {
+ 238:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             /* Loop over number of columns
+ 239:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****              * to the right of the pilot element */
+ 240:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             j = numCols - l;
+ 241:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 242:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             while (j > 0U)
+ 243:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             {
+ 244:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****               /* Exchange the row elements of the input matrix */
+ 245:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****               Xchg = *pInT2;
+ 246:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****               *pInT2++ = *pInT1;
+ 247:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****               *pInT1++ = Xchg;
+ 248:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 249:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****               /* Decrement the loop counter */
+ 250:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****               j--;
+ 251:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             }
+ 252:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 253:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             /* Loop over number of columns of the destination matrix */
+ 254:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             j = numCols;
+ 255:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 256:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             while (j > 0U)
+ 257:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             {
+ 258:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****               /* Exchange the row elements of the destination matrix */
+ 259:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****               Xchg = *pOutT2;
+ 260:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****               *pOutT2++ = *pOutT1;
+ 261:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****               *pOutT1++ = Xchg;
+ 262:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 263:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****               /* Decrement the loop counter */
+ 264:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****               j--;
+ 265:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             }
+ 266:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 267:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             /* Flag to indicate whether exchange is done or not */
+ 268:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             flag = 1U;
+ 269:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 270:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             /* Break after exchange is done */
+ 271:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             break;
+ 272:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           }
+ 273:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccWoR7RG.s 			page 11
+
+
+ 274:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           /* Update the destination pointer modifier */
+ 275:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           k++;
+ 276:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 277:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           /* Decrement the loop counter */
+ 278:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           i--;
+ 279:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         }
+ 280:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       }
+ 281:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 282:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Update the status if the matrix is singular */
+ 283:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       if ((flag != 1U) && (in == 0.0f))
+ 279              		.loc 1 283 7 is_stmt 1 view .LVU74
+ 280              		.loc 1 283 24 is_stmt 0 discriminator 1 view .LVU75
+ 281 0110 0022     		movs	r2, #0
+ 282 0112 0023     		movs	r3, #0
+ 283 0114 DDE90001 		ldrd	r0, [sp]
+ 284 0118 FFF7FEFF 		bl	__aeabi_dcmpeq
+ 285              	.LVL36:
+ 286 011c 0028     		cmp	r0, #0
+ 287 011e 40F0DC80 		bne	.L44
+ 284:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       {
+ 285:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         return ARM_MATH_SINGULAR;
+ 286:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       }
+ 287:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 288:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Points to the pivot row of input and destination matrices */
+ 289:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       pPivotRowIn = pIn + (l * numCols);
+ 288              		.loc 1 289 7 is_stmt 1 view .LVU76
+ 289              	.LVL37:
+ 290:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       pPivotRowDst = pOut + (l * numCols);
+ 290              		.loc 1 290 7 view .LVU77
+ 291:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 292:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Temporary pointers to the pivot row pointers */
+ 293:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       pInT1 = pPivotRowIn;
+ 291              		.loc 1 293 7 view .LVU78
+ 294:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       pInT2 = pPivotRowDst;
+ 292              		.loc 1 294 7 view .LVU79
+ 295:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 296:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Pivot element of the row */
+ 297:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       in = *pPivotRowIn;
+ 293              		.loc 1 297 7 view .LVU80
+ 294              		.loc 1 297 10 is_stmt 0 view .LVU81
+ 295 0122 0899     		ldr	r1, [sp, #32]
+ 296 0124 D1E900AB 		ldrd	r10, [r1]
+ 297              	.LVL38:
+ 298:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 299:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Loop over number of columns
+ 300:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****        * to the right of the pilot element */
+ 301:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       j = (numCols - l);
+ 298              		.loc 1 301 7 is_stmt 1 view .LVU82
+ 299              		.loc 1 301 9 is_stmt 0 view .LVU83
+ 300 0128 049B     		ldr	r3, [sp, #16]
+ 301 012a A3EB0903 		sub	r3, r3, r9
+ 302 012e 0593     		str	r3, [sp, #20]
+ 303              	.LVL39:
+ 302:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 303:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       while (j > 0U)
+ 304              		.loc 1 303 7 is_stmt 1 view .LVU84
+ 301:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccWoR7RG.s 			page 12
+
+
+ 305              		.loc 1 301 9 is_stmt 0 view .LVU85
+ 306 0130 1D46     		mov	r5, r3
+ 307              		.loc 1 303 13 view .LVU86
+ 308 0132 17E0     		b	.L20
+ 309              	.LVL40:
+ 310              	.L55:
+ 223:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       {
+ 311              		.loc 1 223 28 discriminator 2 view .LVU87
+ 312 0134 0C94     		str	r4, [sp, #48]
+ 313 0136 05F10043 		add	r3, r5, #-2147483648
+ 314 013a 0D93     		str	r3, [sp, #52]
+ 315 013c E1E7     		b	.L15
+ 316              	.L56:
+ 226:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 317              		.loc 1 226 9 is_stmt 1 view .LVU88
+ 226:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 318              		.loc 1 226 21 is_stmt 0 view .LVU89
+ 319 013e A7EB0903 		sub	r3, r7, r9
+ 226:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 320              		.loc 1 226 11 view .LVU90
+ 321 0142 013B     		subs	r3, r3, #1
+ 322              	.LVL41:
+ 228:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         {
+ 323              		.loc 1 228 9 is_stmt 1 view .LVU91
+ 228:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         {
+ 324              		.loc 1 228 15 is_stmt 0 view .LVU92
+ 325 0144 00E0     		b	.L18
+ 326              	.LVL42:
+ 327              	.L19:
+ 231:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           pOutT2 = pOutT1 + (numCols * k);
+ 328              		.loc 1 231 11 is_stmt 1 view .LVU93
+ 232:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 329              		.loc 1 232 11 view .LVU94
+ 236:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           {
+ 330              		.loc 1 236 11 view .LVU95
+ 275:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 331              		.loc 1 275 11 view .LVU96
+ 278:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         }
+ 332              		.loc 1 278 11 view .LVU97
+ 278:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         }
+ 333              		.loc 1 278 12 is_stmt 0 view .LVU98
+ 334 0146 013B     		subs	r3, r3, #1
+ 335              	.LVL43:
+ 336              	.L18:
+ 228:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         {
+ 337              		.loc 1 228 18 is_stmt 1 view .LVU99
+ 338 0148 002B     		cmp	r3, #0
+ 339 014a FCD1     		bne	.L19
+ 228:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         {
+ 340              		.loc 1 228 18 is_stmt 0 view .LVU100
+ 341 014c E0E7     		b	.L16
+ 342              	.LVL44:
+ 343              	.L21:
+ 304:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       {
+ 305:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         /* Divide each element of the row of the input matrix
+ 306:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****          * by the pivot element */
+ 307:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         in1 = *pInT1;
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccWoR7RG.s 			page 13
+
+
+ 344              		.loc 1 307 9 is_stmt 1 view .LVU101
+ 308:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         *pInT1++ = in1 / in;
+ 345              		.loc 1 308 9 view .LVU102
+ 346              		.loc 1 308 15 is_stmt 0 view .LVU103
+ 347 014e 0C46     		mov	r4, r1
+ 348              	.LVL45:
+ 349              		.loc 1 308 24 view .LVU104
+ 350 0150 5246     		mov	r2, r10
+ 351 0152 5B46     		mov	r3, fp
+ 352 0154 D1E90001 		ldrd	r0, [r1]
+ 353 0158 FFF7FEFF 		bl	__aeabi_ddiv
+ 354              	.LVL46:
+ 355              		.loc 1 308 18 view .LVU105
+ 356 015c E4E80201 		strd	r0, [r4], #8
+ 357              	.LVL47:
+ 309:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 310:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         /* Decrement the loop counter */
+ 311:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         j--;
+ 358              		.loc 1 311 9 is_stmt 1 view .LVU106
+ 359              		.loc 1 311 10 is_stmt 0 view .LVU107
+ 360 0160 013D     		subs	r5, r5, #1
+ 361              	.LVL48:
+ 308:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         *pInT1++ = in1 / in;
+ 362              		.loc 1 308 15 view .LVU108
+ 363 0162 2146     		mov	r1, r4
+ 364              	.LVL49:
+ 365              	.L20:
+ 303:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       {
+ 366              		.loc 1 303 16 is_stmt 1 view .LVU109
+ 367 0164 002D     		cmp	r5, #0
+ 368 0166 F2D1     		bne	.L21
+ 312:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       }
+ 313:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 314:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Loop over number of columns of the destination matrix */
+ 315:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       j = numCols;
+ 369              		.loc 1 315 9 is_stmt 0 view .LVU110
+ 370 0168 DDF81080 		ldr	r8, [sp, #16]
+ 294:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 371              		.loc 1 294 13 view .LVU111
+ 372 016c 0999     		ldr	r1, [sp, #36]
+ 373              	.LVL50:
+ 294:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 374              		.loc 1 294 13 view .LVU112
+ 375 016e 4546     		mov	r5, r8
+ 376              	.LVL51:
+ 294:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 377              		.loc 1 294 13 view .LVU113
+ 378 0170 0AE0     		b	.L22
+ 379              	.LVL52:
+ 380              	.L23:
+ 316:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 317:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       while (j > 0U)
+ 318:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       {
+ 319:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         /* Divide each element of the row of the destination matrix
+ 320:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****          * by the pivot element */
+ 321:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         in1 = *pInT2;
+ 381              		.loc 1 321 9 is_stmt 1 view .LVU114
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccWoR7RG.s 			page 14
+
+
+ 322:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         *pInT2++ = in1 / in;
+ 382              		.loc 1 322 9 view .LVU115
+ 383              		.loc 1 322 15 is_stmt 0 view .LVU116
+ 384 0172 0C46     		mov	r4, r1
+ 385              	.LVL53:
+ 386              		.loc 1 322 24 view .LVU117
+ 387 0174 5246     		mov	r2, r10
+ 388 0176 5B46     		mov	r3, fp
+ 389 0178 D1E90001 		ldrd	r0, [r1]
+ 390 017c FFF7FEFF 		bl	__aeabi_ddiv
+ 391              	.LVL54:
+ 392              		.loc 1 322 18 view .LVU118
+ 393 0180 E4E80201 		strd	r0, [r4], #8
+ 394              	.LVL55:
+ 323:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 324:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         /* Decrement the loop counter */
+ 325:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         j--;
+ 395              		.loc 1 325 9 is_stmt 1 view .LVU119
+ 396              		.loc 1 325 10 is_stmt 0 view .LVU120
+ 397 0184 013D     		subs	r5, r5, #1
+ 398              	.LVL56:
+ 322:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         *pInT2++ = in1 / in;
+ 399              		.loc 1 322 15 view .LVU121
+ 400 0186 2146     		mov	r1, r4
+ 401              	.LVL57:
+ 402              	.L22:
+ 317:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       {
+ 403              		.loc 1 317 16 is_stmt 1 view .LVU122
+ 404 0188 002D     		cmp	r5, #0
+ 405 018a F2D1     		bne	.L23
+ 326:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       }
+ 327:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 328:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Replace the rows with the sum of that row and a multiple of row i
+ 329:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****        * so that each new element in column i above row i is zero.*/
+ 330:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 331:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Temporary pointers for input and destination matrices */
+ 332:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       pInT1 = pIn;
+ 333:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       pInT2 = pOut;
+ 334:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 335:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* index used to check for pivot element */
+ 336:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       i = 0U;
+ 337:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 338:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Loop over number of rows */
+ 339:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /*  to be replaced by the sum of that row and a multiple of row i */
+ 340:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       k = numRows;
+ 406              		.loc 1 340 9 is_stmt 0 view .LVU123
+ 407 018c A846     		mov	r8, r5
+ 333:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 408              		.loc 1 333 13 view .LVU124
+ 409 018e 0E9D     		ldr	r5, [sp, #56]
+ 410              	.LVL58:
+ 332:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       pInT2 = pOut;
+ 411              		.loc 1 332 13 view .LVU125
+ 412 0190 0A9C     		ldr	r4, [sp, #40]
+ 413 0192 0F97     		str	r7, [sp, #60]
+ 414 0194 CDF80090 		str	r9, [sp]
+ 415 0198 B946     		mov	r9, r7
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccWoR7RG.s 			page 15
+
+
+ 416 019a 3AE0     		b	.L24
+ 417              	.LVL59:
+ 418              	.L58:
+ 341:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 342:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       while (k > 0U)
+ 343:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       {
+ 344:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         /* Check for the pivot element */
+ 345:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         if (i == l)
+ 346:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         {
+ 347:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           /* If the processing element is the pivot element,
+ 348:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****              only the columns to the right are to be processed */
+ 349:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           pInT1 += numCols - l;
+ 419              		.loc 1 349 11 is_stmt 1 view .LVU126
+ 420              		.loc 1 349 17 is_stmt 0 view .LVU127
+ 421 019c 059B     		ldr	r3, [sp, #20]
+ 422 019e 04EBC304 		add	r4, r4, r3, lsl #3
+ 423              	.LVL60:
+ 350:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 351:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           pInT2 += numCols;
+ 424              		.loc 1 351 11 is_stmt 1 view .LVU128
+ 425              		.loc 1 351 17 is_stmt 0 view .LVU129
+ 426 01a2 049B     		ldr	r3, [sp, #16]
+ 427 01a4 05EBC305 		add	r5, r5, r3, lsl #3
+ 428              	.LVL61:
+ 429              		.loc 1 351 17 view .LVU130
+ 430 01a8 2CE0     		b	.L26
+ 431              	.LVL62:
+ 432              	.L28:
+ 352:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         }
+ 353:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         else
+ 354:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         {
+ 355:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           /* Element of the reference row */
+ 356:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           in = *pInT1;
+ 357:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 358:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           /* Working pointers for input and destination pivot rows */
+ 359:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           pPRT_in = pPivotRowIn;
+ 360:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           pPRT_pDst = pPivotRowDst;
+ 361:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 362:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           /* Loop over the number of columns to the right of the pivot element,
+ 363:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****              to replace the elements in the input matrix */
+ 364:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           j = (numCols - l);
+ 365:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 366:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           while (j > 0U)
+ 367:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           {
+ 368:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             /* Replace the element by the sum of that row
+ 369:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****                and a multiple of the reference row  */
+ 370:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             in1 = *pInT1;
+ 433              		.loc 1 370 13 is_stmt 1 view .LVU131
+ 434              		.loc 1 370 17 is_stmt 0 view .LVU132
+ 435 01aa D4E90089 		ldrd	r8, [r4]
+ 436              	.LVL63:
+ 371:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             *pInT1++ = in1 - (in * *pPRT_in++);
+ 437              		.loc 1 371 13 is_stmt 1 view .LVU133
+ 438              		.loc 1 371 34 is_stmt 0 view .LVU134
+ 439 01ae 5246     		mov	r2, r10
+ 440 01b0 5B46     		mov	r3, fp
+ 441 01b2 F6E80201 		ldrd	r0, [r6], #8
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccWoR7RG.s 			page 16
+
+
+ 442              	.LVL64:
+ 443              		.loc 1 371 34 view .LVU135
+ 444 01b6 FFF7FEFF 		bl	__aeabi_dmul
+ 445              	.LVL65:
+ 446 01ba 0246     		mov	r2, r0
+ 447 01bc 0B46     		mov	r3, r1
+ 448              	.LVL66:
+ 449              		.loc 1 371 28 view .LVU136
+ 450 01be 4046     		mov	r0, r8
+ 451 01c0 4946     		mov	r1, r9
+ 452 01c2 FFF7FEFF 		bl	__aeabi_dsub
+ 453              	.LVL67:
+ 454              		.loc 1 371 22 view .LVU137
+ 455 01c6 E4E80201 		strd	r0, [r4], #8
+ 456              	.LVL68:
+ 372:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 373:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             /* Decrement the loop counter */
+ 374:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             j--;
+ 457              		.loc 1 374 13 is_stmt 1 view .LVU138
+ 458              		.loc 1 374 14 is_stmt 0 view .LVU139
+ 459 01ca 013F     		subs	r7, r7, #1
+ 460              	.LVL69:
+ 461              	.L27:
+ 366:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           {
+ 462              		.loc 1 366 20 is_stmt 1 view .LVU140
+ 463 01cc 002F     		cmp	r7, #0
+ 464 01ce ECD1     		bne	.L28
+ 375:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           }
+ 376:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 377:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           /* Loop over the number of columns to
+ 378:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****              replace the elements in the destination matrix */
+ 379:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           j = numCols;
+ 465              		.loc 1 379 13 is_stmt 0 view .LVU141
+ 466 01d0 049F     		ldr	r7, [sp, #16]
+ 467              	.LVL70:
+ 360:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 468              		.loc 1 360 21 view .LVU142
+ 469 01d2 099E     		ldr	r6, [sp, #36]
+ 470              	.LVL71:
+ 360:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 471              		.loc 1 360 21 view .LVU143
+ 472 01d4 10E0     		b	.L29
+ 473              	.LVL72:
+ 474              	.L30:
+ 380:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 381:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           while (j > 0U)
+ 382:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           {
+ 383:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             /* Replace the element by the sum of that row
+ 384:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****                and a multiple of the reference row  */
+ 385:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             in1 = *pInT2;
+ 475              		.loc 1 385 13 is_stmt 1 view .LVU144
+ 476              		.loc 1 385 17 is_stmt 0 view .LVU145
+ 477 01d6 D5E90089 		ldrd	r8, [r5]
+ 478              	.LVL73:
+ 386:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             *pInT2++ = in1 - (in * *pPRT_pDst++);
+ 479              		.loc 1 386 13 is_stmt 1 view .LVU146
+ 480              		.loc 1 386 34 is_stmt 0 view .LVU147
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccWoR7RG.s 			page 17
+
+
+ 481 01da 5246     		mov	r2, r10
+ 482 01dc 5B46     		mov	r3, fp
+ 483 01de F6E80201 		ldrd	r0, [r6], #8
+ 484              	.LVL74:
+ 485              		.loc 1 386 34 view .LVU148
+ 486 01e2 FFF7FEFF 		bl	__aeabi_dmul
+ 487              	.LVL75:
+ 488 01e6 0246     		mov	r2, r0
+ 489 01e8 0B46     		mov	r3, r1
+ 490              	.LVL76:
+ 491              		.loc 1 386 28 view .LVU149
+ 492 01ea 4046     		mov	r0, r8
+ 493 01ec 4946     		mov	r1, r9
+ 494 01ee FFF7FEFF 		bl	__aeabi_dsub
+ 495              	.LVL77:
+ 496              		.loc 1 386 22 view .LVU150
+ 497 01f2 E5E80201 		strd	r0, [r5], #8
+ 498              	.LVL78:
+ 387:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 388:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             /* Decrement the loop counter */
+ 389:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             j--;
+ 499              		.loc 1 389 13 is_stmt 1 view .LVU151
+ 500              		.loc 1 389 14 is_stmt 0 view .LVU152
+ 501 01f6 013F     		subs	r7, r7, #1
+ 502              	.LVL79:
+ 503              	.L29:
+ 381:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           {
+ 504              		.loc 1 381 20 is_stmt 1 view .LVU153
+ 505 01f8 002F     		cmp	r7, #0
+ 506 01fa ECD1     		bne	.L30
+ 381:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           {
+ 507              		.loc 1 381 20 is_stmt 0 view .LVU154
+ 508 01fc DDF81880 		ldr	r8, [sp, #24]
+ 509 0200 DDF81C90 		ldr	r9, [sp, #28]
+ 510              	.LVL80:
+ 511              	.L26:
+ 390:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           }
+ 391:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 392:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         }
+ 393:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 394:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         /* Increment the temporary input pointer */
+ 395:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         pInT1 = pInT1 + l;
+ 512              		.loc 1 395 9 is_stmt 1 view .LVU155
+ 513              		.loc 1 395 15 is_stmt 0 view .LVU156
+ 514 0204 009B     		ldr	r3, [sp]
+ 515 0206 04EBC304 		add	r4, r4, r3, lsl #3
+ 516              	.LVL81:
+ 396:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 397:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         /* Decrement the loop counter */
+ 398:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         k--;
+ 517              		.loc 1 398 9 is_stmt 1 view .LVU157
+ 518              		.loc 1 398 10 is_stmt 0 view .LVU158
+ 519 020a 09F1FF39 		add	r9, r9, #-1
+ 520              	.LVL82:
+ 399:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 400:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         /* Increment the pivot index */
+ 401:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         i++;
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccWoR7RG.s 			page 18
+
+
+ 521              		.loc 1 401 9 is_stmt 1 view .LVU159
+ 522              		.loc 1 401 10 is_stmt 0 view .LVU160
+ 523 020e 08F10108 		add	r8, r8, #1
+ 524              	.LVL83:
+ 525              	.L24:
+ 342:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       {
+ 526              		.loc 1 342 16 is_stmt 1 view .LVU161
+ 527 0212 B9F1000F 		cmp	r9, #0
+ 528 0216 0BD0     		beq	.L57
+ 345:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         {
+ 529              		.loc 1 345 9 view .LVU162
+ 345:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         {
+ 530              		.loc 1 345 12 is_stmt 0 view .LVU163
+ 531 0218 009B     		ldr	r3, [sp]
+ 532 021a 9845     		cmp	r8, r3
+ 533 021c BED0     		beq	.L58
+ 356:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 534              		.loc 1 356 11 is_stmt 1 view .LVU164
+ 356:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 535              		.loc 1 356 14 is_stmt 0 view .LVU165
+ 536 021e D4E900AB 		ldrd	r10, [r4]
+ 537              	.LVL84:
+ 359:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           pPRT_pDst = pPivotRowDst;
+ 538              		.loc 1 359 11 is_stmt 1 view .LVU166
+ 360:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 539              		.loc 1 360 11 view .LVU167
+ 364:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 540              		.loc 1 364 11 view .LVU168
+ 366:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           {
+ 541              		.loc 1 366 11 view .LVU169
+ 364:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 542              		.loc 1 364 13 is_stmt 0 view .LVU170
+ 543 0222 059F     		ldr	r7, [sp, #20]
+ 359:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           pPRT_pDst = pPivotRowDst;
+ 544              		.loc 1 359 19 view .LVU171
+ 545 0224 089E     		ldr	r6, [sp, #32]
+ 546 0226 CDF81880 		str	r8, [sp, #24]
+ 547 022a CDF81C90 		str	r9, [sp, #28]
+ 366:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           {
+ 548              		.loc 1 366 17 view .LVU172
+ 549 022e CDE7     		b	.L27
+ 550              	.LVL85:
+ 551              	.L57:
+ 402:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       }
+ 403:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 404:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Increment the input pointer */
+ 405:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       pIn++;
+ 552              		.loc 1 405 10 view .LVU173
+ 553 0230 0F9F     		ldr	r7, [sp, #60]
+ 554 0232 DDF80090 		ldr	r9, [sp]
+ 555              	.LVL86:
+ 556              		.loc 1 405 7 is_stmt 1 view .LVU174
+ 557              		.loc 1 405 10 is_stmt 0 view .LVU175
+ 558 0236 0A9B     		ldr	r3, [sp, #40]
+ 559 0238 0833     		adds	r3, r3, #8
+ 560 023a 0A93     		str	r3, [sp, #40]
+ 561              	.LVL87:
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccWoR7RG.s 			page 19
+
+
+ 406:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 407:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Decrement the loop counter */
+ 408:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       loopCnt--;
+ 562              		.loc 1 408 7 is_stmt 1 view .LVU176
+ 563              		.loc 1 408 14 is_stmt 0 view .LVU177
+ 564 023c 0B9B     		ldr	r3, [sp, #44]
+ 565              	.LVL88:
+ 566              		.loc 1 408 14 view .LVU178
+ 567 023e 013B     		subs	r3, r3, #1
+ 568 0240 0B93     		str	r3, [sp, #44]
+ 569              	.LVL89:
+ 409:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 410:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Increment the index modifier */
+ 411:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       l++;
+ 570              		.loc 1 411 7 is_stmt 1 view .LVU179
+ 571              		.loc 1 411 8 is_stmt 0 view .LVU180
+ 572 0242 09F10109 		add	r9, r9, #1
+ 573              	.LVL90:
+ 574              	.L9:
+ 184:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     {
+ 575              		.loc 1 184 20 is_stmt 1 view .LVU181
+ 576 0246 0B9B     		ldr	r3, [sp, #44]
+ 577 0248 C3B1     		cbz	r3, .L59
+ 193:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 578              		.loc 1 193 7 view .LVU182
+ 193:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 579              		.loc 1 193 24 is_stmt 0 view .LVU183
+ 580 024a 0499     		ldr	r1, [sp, #16]
+ 581 024c 01FB09F3 		mul	r3, r1, r9
+ 193:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 582              		.loc 1 193 13 view .LVU184
+ 583 0250 0A9A     		ldr	r2, [sp, #40]
+ 584 0252 02EBC302 		add	r2, r2, r3, lsl #3
+ 585 0256 0892     		str	r2, [sp, #32]
+ 586              	.LVL91:
+ 197:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 587              		.loc 1 197 7 is_stmt 1 view .LVU185
+ 197:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 588              		.loc 1 197 14 is_stmt 0 view .LVU186
+ 589 0258 0E98     		ldr	r0, [sp, #56]
+ 590 025a 00EBC303 		add	r3, r0, r3, lsl #3
+ 591 025e 0993     		str	r3, [sp, #36]
+ 592              	.LVL92:
+ 200:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 593              		.loc 1 200 7 is_stmt 1 view .LVU187
+ 200:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 594              		.loc 1 200 10 is_stmt 0 view .LVU188
+ 595 0260 92ED007B 		vldr.64	d7, [r2]
+ 596 0264 8DED007B 		vstr.64	d7, [sp]
+ 597              	.LVL93:
+ 203:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       for (i = l; i < numRows; i++)
+ 598              		.loc 1 203 7 is_stmt 1 view .LVU189
+ 204:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       {
+ 599              		.loc 1 204 7 view .LVU190
+ 204:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       {
+ 600              		.loc 1 204 14 is_stmt 0 view .LVU191
+ 601 0268 4E46     		mov	r6, r9
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccWoR7RG.s 			page 20
+
+
+ 193:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 602              		.loc 1 193 13 view .LVU192
+ 603 026a 9046     		mov	r8, r2
+ 203:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       for (i = l; i < numRows; i++)
+ 604              		.loc 1 203 12 view .LVU193
+ 605 026c 4FF0000A 		mov	r10, #0
+ 606 0270 4FF0000B 		mov	fp, #0
+ 607 0274 CDF81490 		str	r9, [sp, #20]
+ 608 0278 8946     		mov	r9, r1
+ 609              	.LVL94:
+ 204:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       {
+ 610              		.loc 1 204 7 view .LVU194
+ 611 027a 10E7     		b	.L10
+ 612              	.LVL95:
+ 613              	.L59:
+ 412:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     }
+ 413:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 414:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 415:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** #else
+ 416:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 417:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   /* Run the below code for Cortex-M0 */
+ 418:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 419:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   float64_t Xchg, in = 0.0f;                     /* Temporary input values  */
+ 420:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   uint32_t i, rowCnt, flag = 0U, j, loopCnt, k, l;      /* loop counters */
+ 421:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   arm_status status;                             /* status of matrix inverse */
+ 422:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 423:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** #ifdef ARM_MATH_MATRIX_CHECK
+ 424:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 425:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   /* Check for matrix mismatch condition */
+ 426:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   if ((pSrc->numRows != pSrc->numCols) || (pDst->numRows != pDst->numCols)
+ 427:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****      || (pSrc->numRows != pDst->numRows))
+ 428:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   {
+ 429:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     /* Set status as ARM_MATH_SIZE_MISMATCH */
+ 430:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     status = ARM_MATH_SIZE_MISMATCH;
+ 431:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   }
+ 432:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   else
+ 433:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** #endif /*      #ifdef ARM_MATH_MATRIX_CHECK    */
+ 434:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   {
+ 435:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 436:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     /*---------------------------------------------------------------------------------------------
+ 437:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 * Matrix Inverse can be solved using elementary row operations.
+ 438:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *
+ 439:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *	Gauss-Jordan Method:
+ 440:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *
+ 441:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *	   1. First combine the identity matrix and the input matrix separated by a bar to form an
+ 442:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *        augmented matrix as follows:
+ 443:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *				        _  _	      _	    _	   _   _         _	       _
+ 444:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *					   |  |  a11  a12  | | | 1   0  |   |       |  X11 X12  |
+ 445:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *					   |  |            | | |        |   |   =   |           |
+ 446:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *					   |_ |_ a21  a22 _| | |_0   1 _|  _|       |_ X21 X21 _|
+ 447:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *
+ 448:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *		2. In our implementation, pDst Matrix is used as identity matrix.
+ 449:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *
+ 450:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *		3. Begin with the first row. Let i = 1.
+ 451:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *
+ 452:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *	    4. Check to see if the pivot for row i is zero.
+ 453:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *		   The pivot is the element of the main diagonal that is on the current row.
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccWoR7RG.s 			page 21
+
+
+ 454:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *		   For instance, if working with row i, then the pivot element is aii.
+ 455:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *		   If the pivot is zero, exchange that row with a row below it that does not
+ 456:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *		   contain a zero in column i. If this is not possible, then an inverse
+ 457:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *		   to that matrix does not exist.
+ 458:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *
+ 459:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *	    5. Divide every element of row i by the pivot.
+ 460:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *
+ 461:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *	    6. For every row below and  row i, replace that row with the sum of that row and
+ 462:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *		   a multiple of row i so that each new element in column i below row i is zero.
+ 463:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *
+ 464:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *	    7. Move to the next row and column and repeat steps 2 through 5 until you have zeros
+ 465:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *		   for every element below and above the main diagonal.
+ 466:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *
+ 467:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *		8. Now an identical matrix is formed to the left of the bar(input matrix, src).
+ 468:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *		   Therefore, the matrix to the right of the bar is our solution(dst matrix, dst).
+ 469:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 	 *------------------------------------------------------------------------------------------------
+ 470:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 471:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     /* Working pointer for destination matrix */
+ 472:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     pOutT1 = pOut;
+ 473:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 474:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     /* Loop over the number of rows */
+ 475:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     rowCnt = numRows;
+ 476:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 477:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     /* Making the destination matrix as identity matrix */
+ 478:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     while (rowCnt > 0U)
+ 479:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     {
+ 480:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Writing all zeroes in lower triangle of the destination matrix */
+ 481:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       j = numRows - rowCnt;
+ 482:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       while (j > 0U)
+ 483:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       {
+ 484:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         *pOutT1++ = 0.0f;
+ 485:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         j--;
+ 486:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       }
+ 487:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 488:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Writing all ones in the diagonal of the destination matrix */
+ 489:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       *pOutT1++ = 1.0f;
+ 490:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 491:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Writing all zeroes in upper triangle of the destination matrix */
+ 492:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       j = rowCnt - 1U;
+ 493:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       while (j > 0U)
+ 494:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       {
+ 495:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         *pOutT1++ = 0.0f;
+ 496:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         j--;
+ 497:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       }
+ 498:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 499:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Decrement the loop counter */
+ 500:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       rowCnt--;
+ 501:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     }
+ 502:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 503:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     /* Loop over the number of columns of the input matrix.
+ 504:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****        All the elements in each column are processed by the row operations */
+ 505:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     loopCnt = numCols;
+ 506:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 507:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     /* Index modifier to navigate through the columns */
+ 508:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     l = 0U;
+ 509:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     //for(loopCnt = 0U; loopCnt < numCols; loopCnt++)
+ 510:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     while (loopCnt > 0U)
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccWoR7RG.s 			page 22
+
+
+ 511:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     {
+ 512:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Check if the pivot element is zero..
+ 513:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****        * If it is zero then interchange the row with non zero row below.
+ 514:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****        * If there is no non zero element to replace in the rows below,
+ 515:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****        * then the matrix is Singular. */
+ 516:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 517:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Working pointer for the input matrix that points
+ 518:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****        * to the pivot element of the particular row  */
+ 519:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       pInT1 = pIn + (l * numCols);
+ 520:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 521:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Working pointer for the destination matrix that points
+ 522:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****        * to the pivot element of the particular row  */
+ 523:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       pOutT1 = pOut + (l * numCols);
+ 524:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 525:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Temporary variable to hold the pivot value */
+ 526:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       in = *pInT1;
+ 527:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 528:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Destination pointer modifier */
+ 529:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       k = 1U;
+ 530:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 531:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Check if the pivot element is zero */
+ 532:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       if (*pInT1 == 0.0f)
+ 533:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       {
+ 534:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         /* Loop over the number rows present below */
+ 535:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         for (i = (l + 1U); i < numRows; i++)
+ 536:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         {
+ 537:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           /* Update the input and destination pointers */
+ 538:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           pInT2 = pInT1 + (numCols * l);
+ 539:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           pOutT2 = pOutT1 + (numCols * k);
+ 540:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 541:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           /* Check if there is a non zero pivot element to
+ 542:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****            * replace in the rows below */
+ 543:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           if (*pInT2 != 0.0f)
+ 544:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           {
+ 545:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             /* Loop over number of columns
+ 546:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****              * to the right of the pilot element */
+ 547:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             for (j = 0U; j < (numCols - l); j++)
+ 548:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             {
+ 549:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****               /* Exchange the row elements of the input matrix */
+ 550:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****               Xchg = *pInT2;
+ 551:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****               *pInT2++ = *pInT1;
+ 552:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****               *pInT1++ = Xchg;
+ 553:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             }
+ 554:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 555:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             for (j = 0U; j < numCols; j++)
+ 556:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             {
+ 557:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****               Xchg = *pOutT2;
+ 558:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****               *pOutT2++ = *pOutT1;
+ 559:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****               *pOutT1++ = Xchg;
+ 560:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             }
+ 561:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 562:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             /* Flag to indicate whether exchange is done or not */
+ 563:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             flag = 1U;
+ 564:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 565:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             /* Break after exchange is done */
+ 566:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             break;
+ 567:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           }
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccWoR7RG.s 			page 23
+
+
+ 568:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 569:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           /* Update the destination pointer modifier */
+ 570:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           k++;
+ 571:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         }
+ 572:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       }
+ 573:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 574:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Update the status if the matrix is singular */
+ 575:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       if ((flag != 1U) && (in == 0.0f))
+ 576:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       {
+ 577:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         return ARM_MATH_SINGULAR;
+ 578:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       }
+ 579:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 580:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Points to the pivot row of input and destination matrices */
+ 581:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       pPivotRowIn = pIn + (l * numCols);
+ 582:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       pPivotRowDst = pOut + (l * numCols);
+ 583:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 584:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Temporary pointers to the pivot row pointers */
+ 585:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       pInT1 = pPivotRowIn;
+ 586:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       pOutT1 = pPivotRowDst;
+ 587:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 588:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Pivot element of the row */
+ 589:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       in = *(pIn + (l * numCols));
+ 590:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 591:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Loop over number of columns
+ 592:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****        * to the right of the pilot element */
+ 593:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       for (j = 0U; j < (numCols - l); j++)
+ 594:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       {
+ 595:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         /* Divide each element of the row of the input matrix
+ 596:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****          * by the pivot element */
+ 597:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         *pInT1 = *pInT1 / in;
+ 598:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         pInT1++;
+ 599:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       }
+ 600:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       for (j = 0U; j < numCols; j++)
+ 601:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       {
+ 602:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         /* Divide each element of the row of the destination matrix
+ 603:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****          * by the pivot element */
+ 604:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         *pOutT1 = *pOutT1 / in;
+ 605:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         pOutT1++;
+ 606:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       }
+ 607:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 608:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Replace the rows with the sum of that row and a multiple of row i
+ 609:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****        * so that each new element in column i above row i is zero.*/
+ 610:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 611:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Temporary pointers for input and destination matrices */
+ 612:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       pInT1 = pIn;
+ 613:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       pOutT1 = pOut;
+ 614:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 615:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       for (i = 0U; i < numRows; i++)
+ 616:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       {
+ 617:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         /* Check for the pivot element */
+ 618:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         if (i == l)
+ 619:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         {
+ 620:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           /* If the processing element is the pivot element,
+ 621:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****              only the columns to the right are to be processed */
+ 622:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           pInT1 += numCols - l;
+ 623:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           pOutT1 += numCols;
+ 624:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         }
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccWoR7RG.s 			page 24
+
+
+ 625:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         else
+ 626:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         {
+ 627:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           /* Element of the reference row */
+ 628:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           in = *pInT1;
+ 629:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 630:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           /* Working pointers for input and destination pivot rows */
+ 631:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           pPRT_in = pPivotRowIn;
+ 632:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           pPRT_pDst = pPivotRowDst;
+ 633:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 634:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           /* Loop over the number of columns to the right of the pivot element,
+ 635:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****              to replace the elements in the input matrix */
+ 636:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           for (j = 0U; j < (numCols - l); j++)
+ 637:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           {
+ 638:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             /* Replace the element by the sum of that row
+ 639:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****                and a multiple of the reference row  */
+ 640:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             *pInT1 = *pInT1 - (in * *pPRT_in++);
+ 641:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             pInT1++;
+ 642:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           }
+ 643:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           /* Loop over the number of columns to
+ 644:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****              replace the elements in the destination matrix */
+ 645:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           for (j = 0U; j < numCols; j++)
+ 646:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           {
+ 647:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             /* Replace the element by the sum of that row
+ 648:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****                and a multiple of the reference row  */
+ 649:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             *pOutT1 = *pOutT1 - (in * *pPRT_pDst++);
+ 650:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             pOutT1++;
+ 651:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****           }
+ 652:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 653:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         }
+ 654:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         /* Increment the temporary input pointer */
+ 655:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         pInT1 = pInT1 + l;
+ 656:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       }
+ 657:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Increment the input pointer */
+ 658:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       pIn++;
+ 659:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 660:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Decrement the loop counter */
+ 661:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       loopCnt--;
+ 662:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       /* Increment the index modifier */
+ 663:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       l++;
+ 664:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     }
+ 665:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 666:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 667:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** #endif /* #if defined (ARM_MATH_DSP) */
+ 668:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 669:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     /* Set status as ARM_MATH_SUCCESS */
+ 670:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     status = ARM_MATH_SUCCESS;
+ 671:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 672:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     if ((flag != 1U) && (in == 0.0f))
+ 614              		.loc 1 672 22 discriminator 1 view .LVU195
+ 615 027c 9946     		mov	r9, r3
+ 616              	.LVL96:
+ 617              		.loc 1 672 22 discriminator 1 view .LVU196
+ 618 027e 119D     		ldr	r5, [sp, #68]
+ 670:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 619              		.loc 1 670 5 is_stmt 1 view .LVU197
+ 620              	.LVL97:
+ 621              		.loc 1 672 5 view .LVU198
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccWoR7RG.s 			page 25
+
+
+ 622              		.loc 1 672 22 is_stmt 0 discriminator 1 view .LVU199
+ 623 0280 0022     		movs	r2, #0
+ 624 0282 0023     		movs	r3, #0
+ 625              	.LVL98:
+ 626              		.loc 1 672 22 discriminator 1 view .LVU200
+ 627 0284 5046     		mov	r0, r10
+ 628 0286 5946     		mov	r1, fp
+ 629 0288 FFF7FEFF 		bl	__aeabi_dcmpeq
+ 630              	.LVL99:
+ 631 028c 40B3     		cbz	r0, .L51
+ 632              	.LVL100:
+ 673:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     {
+ 674:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       pIn = pSrc->pData;
+ 633              		.loc 1 674 7 is_stmt 1 view .LVU201
+ 634              		.loc 1 674 11 is_stmt 0 view .LVU202
+ 635 028e 6D68     		ldr	r5, [r5, #4]
+ 636              	.LVL101:
+ 675:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       for (i = 0; i < numRows * numCols; i++)
+ 637              		.loc 1 675 7 is_stmt 1 view .LVU203
+ 638              		.loc 1 675 7 is_stmt 0 view .LVU204
+ 639 0290 109E     		ldr	r6, [sp, #64]
+ 640 0292 049F     		ldr	r7, [sp, #16]
+ 641 0294 01E0     		b	.L34
+ 642              	.LVL102:
+ 643              	.L60:
+ 644              		.loc 1 675 43 is_stmt 1 discriminator 2 view .LVU205
+ 645 0296 09F10109 		add	r9, r9, #1
+ 646              	.LVL103:
+ 647              	.L34:
+ 648              		.loc 1 675 21 discriminator 1 view .LVU206
+ 649              		.loc 1 675 31 is_stmt 0 discriminator 1 view .LVU207
+ 650 029a 07FB06F4 		mul	r4, r7, r6
+ 651              		.loc 1 675 21 discriminator 1 view .LVU208
+ 652 029e 4C45     		cmp	r4, r9
+ 653 02a0 09D9     		bls	.L35
+ 676:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       {
+ 677:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         if (pIn[i] != 0.0f)
+ 654              		.loc 1 677 9 is_stmt 1 view .LVU209
+ 655              		.loc 1 677 16 is_stmt 0 view .LVU210
+ 656 02a2 05EBC901 		add	r1, r5, r9, lsl #3
+ 657              		.loc 1 677 12 view .LVU211
+ 658 02a6 0022     		movs	r2, #0
+ 659 02a8 0023     		movs	r3, #0
+ 660 02aa D1E90001 		ldrd	r0, [r1]
+ 661 02ae FFF7FEFF 		bl	__aeabi_dcmpeq
+ 662              	.LVL104:
+ 663 02b2 0028     		cmp	r0, #0
+ 664 02b4 EFD1     		bne	.L60
+ 665              	.L35:
+ 678:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****             break;
+ 679:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       }
+ 680:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 681:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       if (i == numRows * numCols)
+ 666              		.loc 1 681 7 is_stmt 1 view .LVU212
+ 667              		.loc 1 681 10 is_stmt 0 view .LVU213
+ 668 02b6 4C45     		cmp	r4, r9
+ 669 02b8 14D0     		beq	.L46
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccWoR7RG.s 			page 26
+
+
+ 670:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 670              		.loc 1 670 12 view .LVU214
+ 671 02ba 0020     		movs	r0, #0
+ 672 02bc 0AE0     		b	.L2
+ 673              	.LVL105:
+ 674              	.L37:
+ 102:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   }
+ 675              		.loc 1 102 12 view .LVU215
+ 676 02be 6FF00200 		mvn	r0, #2
+ 677              	.LVL106:
+ 102:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   }
+ 678              		.loc 1 102 12 view .LVU216
+ 679 02c2 07E0     		b	.L2
+ 680              	.LVL107:
+ 681              	.L38:
+ 102:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   }
+ 682              		.loc 1 102 12 view .LVU217
+ 683 02c4 6FF00200 		mvn	r0, #2
+ 684              	.LVL108:
+ 102:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   }
+ 685              		.loc 1 102 12 view .LVU218
+ 686 02c8 04E0     		b	.L2
+ 687              	.LVL109:
+ 688              	.L39:
+ 102:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   }
+ 689              		.loc 1 102 12 view .LVU219
+ 690 02ca 6FF00200 		mvn	r0, #2
+ 691              	.LVL110:
+ 102:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   }
+ 692              		.loc 1 102 12 view .LVU220
+ 693 02ce 01E0     		b	.L2
+ 694              	.LVL111:
+ 695              	.L42:
+ 213:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       }
+ 696              		.loc 1 213 16 view .LVU221
+ 697 02d0 6FF00400 		mvn	r0, #4
+ 698              	.LVL112:
+ 699              	.L2:
+ 682:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         status = ARM_MATH_SINGULAR;
+ 683:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****     }
+ 684:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   }
+ 685:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   /* Return to application */
+ 686:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****   return (status);
+ 687:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** }
+ 700              		.loc 1 687 1 view .LVU222
+ 701 02d4 13B0     		add	sp, sp, #76
+ 702              	.LCFI2:
+ 703              		.cfi_remember_state
+ 704              		.cfi_def_cfa_offset 36
+ 705              		@ sp needed
+ 706 02d6 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 707              	.LVL113:
+ 708              	.L44:
+ 709              	.LCFI3:
+ 710              		.cfi_restore_state
+ 285:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****       }
+ 711              		.loc 1 285 16 view .LVU223
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccWoR7RG.s 			page 27
+
+
+ 712 02da 6FF00400 		mvn	r0, #4
+ 713 02de F9E7     		b	.L2
+ 714              	.LVL114:
+ 715              	.L51:
+ 670:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c **** 
+ 716              		.loc 1 670 12 view .LVU224
+ 717 02e0 0020     		movs	r0, #0
+ 718 02e2 F7E7     		b	.L2
+ 719              	.LVL115:
+ 720              	.L46:
+ 682:Drivers/CMSIS/DSP/Source/MatrixFunctions/arm_mat_inverse_f64.c ****         status = ARM_MATH_SINGULAR;
+ 721              		.loc 1 682 16 view .LVU225
+ 722 02e4 6FF00400 		mvn	r0, #4
+ 723 02e8 F4E7     		b	.L2
+ 724              	.L62:
+ 725 02ea 00BF     		.align	2
+ 726              	.L61:
+ 727 02ec 0000F03F 		.word	1072693248
+ 728              		.cfi_endproc
+ 729              	.LFE135:
+ 731              		.text
+ 732              	.Letext0:
+ 733              		.file 2 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
+ 734              		.file 3 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
+ 735              		.file 4 "Drivers/CMSIS/DSP/Include/arm_math.h"
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccWoR7RG.s 			page 28
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 arm_mat_inverse_f64.c
+C:\Users\ACER\AppData\Local\Temp\ccWoR7RG.s:26     .text.arm_mat_inverse_f64:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccWoR7RG.s:32     .text.arm_mat_inverse_f64:00000000 arm_mat_inverse_f64
+C:\Users\ACER\AppData\Local\Temp\ccWoR7RG.s:727    .text.arm_mat_inverse_f64:000002ec $d
+
+UNDEFINED SYMBOLS
+__aeabi_dcmpgt
+__aeabi_dcmpeq
+__aeabi_ddiv
+__aeabi_dmul
+__aeabi_dsub
