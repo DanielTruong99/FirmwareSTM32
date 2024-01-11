@@ -24,19 +24,17 @@ void TimeEvent_ctor(TimeEvent * const self, Event event);
 struct StateEstimator
 {
     // Members --------------------------------
-    Ao _super;
-    StateTopic _states_topic;
-    EncoderTopic _motor_topic;
-    EncoderTopic _pendlm_topic;
+    struct Ao super;
+
 
     // Methods --------------------------------------------------------
-    Status (*initial)(StateEstimator *const self, Event *const event);
-    Status (*wait)(StateEstimator *const self, Event *const event);
+    Status (*initial)(struct StateEstimator *const self, Event *const event);
+    Status (*wait)(struct StateEstimator *const self, Event *const event);
 };
-Status StateEstimator_initial(StateEstimator *const self, Event *const event);
-Status StateEstimator_wait(StateEstimator *const self, Event *const event);
-// State Estimator constructor
-void StateEstimator_ctor(StateEstimator *const self);
+extern const struct StateEstimatorClass 
+{
+    struct StateEstimator (*new)(StateHandler handler, TaskHandle_t thread, QueueHandle_t queue);
+} StateEstimator;
 
 
 /*Public Interfacce*/

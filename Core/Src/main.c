@@ -2,7 +2,6 @@
 #include "FreeRTOS.h"
 #include "task.h"
 
-static StateEstimator state_estimator; 
 
 int main(void)
 {
@@ -18,13 +17,7 @@ int main(void)
 
   // Task initialization----------------------------------------------------------------
   // State Estimator Task
-  StateEstimator_ctor(&state_estimator);
-  state_estimator._super.start(
-    &state_estimator._super,
-                          3,
-                        200,
-                         5
-  );
+
 
 
   vTaskStartScheduler();

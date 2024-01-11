@@ -12,6 +12,7 @@
         "active_object.h": "c",
         "math.h": "c",
         "arm_math.h": "c",
-        "core_cm4.h": "c"
+        "core_cm4.h": "c",
+        "*.tcc": "c"
     }
 }

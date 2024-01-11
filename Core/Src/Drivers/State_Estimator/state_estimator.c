@@ -6,7 +6,6 @@ TIM_HandleTypeDef htim4;
 TIM_HandleTypeDef htim7;
 static int16_t pendlm_counter = 0;
 static int16_t motor_counter = 0;
-static StateEstimator *state_estimator;
 static TimeEvent time_event;
 
 
@@ -14,91 +13,23 @@ static void MX_TIM3_Init(void);
 static void MX_TIM4_Init(void);
 static void MX_TIM7_Init(void);
 
-void TimeEvent_ctor(TimeEvent * const self, Event event)
+Status initial(struct StateEstimator *const self, Event *const event)
 {
-  self->_super = event;
-  self->_pendlm_counter = 0;
-  self->_motor_counter = 0;
+
 }
 
-void StateEstimator_ctor(StateEstimator *const self)
+Status wait(struct StateEstimator *const self, Event *const event)
 {
-  Event const timeout_evt = {._signal = TIMEOUT_2KHz_SIG};
-  self->initial = StateEstimator_initial;
-  self->wait = StateEstimator_wait;
-  Ao_ctor(&self->_super, (StateHandler)self->initial);\
-  TimeEvent_ctor(&time_event, timeout_evt);
-  state_estimator = self;
-  self->_motor_topic._resol = (float)(2.0F * PI) / (4.0F * 500.0F);
-  self->_pendlm_topic._resol = (float)(2.0F * PI) / (4.0F * 1000.0F);
+
 }
 
-/**
-  * @brief  Initial state of the State Estimator
-  * @param  self pointer to the StateEstimator
-  * @param  event event object cotaining type of event and data 
-  * @retval StateHandler status at the end of the initial state
-  */
-Status StateEstimator_wait(StateEstimator *const self, Event *const event)
+static struct StateEstimator new()
 {
-  Status status;
-  
-  switch (event->_signal)
-  {
-    case ENTRY_SIG:
-    {
-      status = HANDLED_STATUS;
-      break;
-    }
-    
-    case EXIT_SIG:
-    {
-      status = HANDLED_STATUS;
-      break;
-    }
-
-    case TIMEOUT_2KHz_SIG:
-    {
-      float raw_motor_angle;
-      float raw_pendlm_angle;
-      
-      self->_motor_topic._counter = ((TimeEvent *)event)->_motor_counter;
-      self->_pendlm_topic._counter = ((TimeEvent *)event)->_pendlm_counter;
-      
-      raw_motor_angle = self->_motor_topic._counter * self->_motor_topic._resol;
-      raw_pendlm_angle = self->_pendlm_topic._counter * self->_pendlm_topic._resol;
-
-      self->_states_topic._motor._angle = raw_motor_angle;
-      self->_states_topic._pendlm._angle = raw_pendlm_angle;
-
-
-      status = HANDLED_STATUS;
-      break;
-    } 
-
-    default:
-    {
-      status = IGNORED_STATUS;
-      break;
-    }   
-  }
-
-  return status;
+  struct StateEstimator instance = {.initial=&initial, .wait=&wait};
+  instance.super = Ao.new(&initial);
+  return instance;
 }
-
-/**
-  * @brief  Initial state of the State Estimator
-  * @param  self pointer to the StateEstimator
-  * @param  event event object cotaining type of event and data 
-  * @retval StateHandler status at the end of the initial state
-  */
-Status StateEstimator_initial(StateEstimator *const self, Event *const event)
-{
-  Status status;
-  self->_super._super->setHandler(self->_super._super, (StateHandler)self->wait);
-  status = TRAN_STATUS;
-  return status;
-}
+const struct StateEstimatorClass StateEstimator={.new=&new};
 
 /**
   * @brief  Period elapsed callback in non-blocking mode
