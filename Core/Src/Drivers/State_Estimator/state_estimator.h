@@ -6,19 +6,15 @@
 #include "arm_math.h"
 #include "topic.h"
 
-typedef struct StateEstimator StateEstimator;
 typedef struct TimeEvent TimeEvent;
 
 enum StateEstimatorEvent{TIMEOUT_2KHz_SIG = USER_SIG};
 
 struct TimeEvent
 {
-    Event _super;
-    int16_t _motor_counter;
-    int16_t _pendlm_counter;
+    Event super;
 };
-// TimeEvent constructor
-void TimeEvent_ctor(TimeEvent * const self, Event event);
+
 
 
 struct StateEstimator
@@ -28,12 +24,12 @@ struct StateEstimator
 
 
     // Methods --------------------------------------------------------
-    Status (*initial)(struct StateEstimator *const self, Event *const event);
-    Status (*wait)(struct StateEstimator *const self, Event *const event);
+    Status (*initial)(struct StateEstimator *const self, Event const * const event);
+    Status (*wait)(struct StateEstimator *const self, Event const * const event);
 };
 extern const struct StateEstimatorClass 
 {
-    struct StateEstimator (*new)(StateHandler handler, TaskHandle_t thread, QueueHandle_t queue);
+    void (*new)(struct StateEstimator * self);
 } StateEstimator;
 
 

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s 			page 1
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -20,15 +20,15 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s 			page 1
   17              	.Ltext0:
   18              		.cfi_sections	.debug_frame
   19              		.file 1 "Core/Src/Drivers/State_Estimator/state_estimator.c"
-  20              		.section	.text.StateEstimator_wait,"ax",%progbits
+  20              		.section	.text.initial,"ax",%progbits
   21              		.align	1
-  22              		.global	StateEstimator_wait
+  22              		.global	initial
   23              		.syntax unified
   24              		.thumb
   25              		.thumb_func
-  27              	StateEstimator_wait:
+  27              	initial:
   28              	.LVL0:
-  29              	.LFB170:
+  29              	.LFB168:
    1:Core/Src/Drivers/State_Estimator/state_estimator.c **** #include "state_estimator.h"
    2:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
    3:Core/Src/Drivers/State_Estimator/state_estimator.c **** /*Private Interfacce*/
@@ -37,1669 +37,1591 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s 			page 1
    6:Core/Src/Drivers/State_Estimator/state_estimator.c **** TIM_HandleTypeDef htim7;
    7:Core/Src/Drivers/State_Estimator/state_estimator.c **** static int16_t pendlm_counter = 0;
    8:Core/Src/Drivers/State_Estimator/state_estimator.c **** static int16_t motor_counter = 0;
-   9:Core/Src/Drivers/State_Estimator/state_estimator.c **** static StateEstimator *state_estimator;
-  10:Core/Src/Drivers/State_Estimator/state_estimator.c **** static TimeEvent time_event;
-  11:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
-  12:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
-  13:Core/Src/Drivers/State_Estimator/state_estimator.c **** static void MX_TIM3_Init(void);
-  14:Core/Src/Drivers/State_Estimator/state_estimator.c **** static void MX_TIM4_Init(void);
-  15:Core/Src/Drivers/State_Estimator/state_estimator.c **** static void MX_TIM7_Init(void);
-  16:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
-  17:Core/Src/Drivers/State_Estimator/state_estimator.c **** void TimeEvent_ctor(TimeEvent * const self, Event event)
-  18:Core/Src/Drivers/State_Estimator/state_estimator.c **** {
-  19:Core/Src/Drivers/State_Estimator/state_estimator.c ****   self->_super = event;
-  20:Core/Src/Drivers/State_Estimator/state_estimator.c ****   self->_pendlm_counter = 0;
-  21:Core/Src/Drivers/State_Estimator/state_estimator.c ****   self->_motor_counter = 0;
-  22:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
-  23:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
-  24:Core/Src/Drivers/State_Estimator/state_estimator.c **** void StateEstimator_ctor(StateEstimator *const self)
-  25:Core/Src/Drivers/State_Estimator/state_estimator.c **** {
-  26:Core/Src/Drivers/State_Estimator/state_estimator.c ****   Event const timeout_evt = {._signal = TIMEOUT_2KHz_SIG};
-  27:Core/Src/Drivers/State_Estimator/state_estimator.c ****   self->initial = StateEstimator_initial;
-  28:Core/Src/Drivers/State_Estimator/state_estimator.c ****   self->wait = StateEstimator_wait;
-  29:Core/Src/Drivers/State_Estimator/state_estimator.c ****   Ao_ctor(&self->_super, (StateHandler)self->initial);\
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s 			page 2
-
-
-  30:Core/Src/Drivers/State_Estimator/state_estimator.c ****   TimeEvent_ctor(&time_event, timeout_evt);
-  31:Core/Src/Drivers/State_Estimator/state_estimator.c ****   state_estimator = self;
-  32:Core/Src/Drivers/State_Estimator/state_estimator.c ****   self->_motor_topic._resol = (float)(2.0F * PI) / (4.0F * 500.0F);
-  33:Core/Src/Drivers/State_Estimator/state_estimator.c ****   self->_pendlm_topic._resol = (float)(2.0F * PI) / (4.0F * 1000.0F);
-  34:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
-  35:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
-  36:Core/Src/Drivers/State_Estimator/state_estimator.c **** /**
-  37:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @brief  Initial state of the State Estimator
-  38:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @param  self pointer to the StateEstimator
-  39:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @param  event event object cotaining type of event and data 
-  40:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @retval StateHandler status at the end of the initial state
-  41:Core/Src/Drivers/State_Estimator/state_estimator.c ****   */
-  42:Core/Src/Drivers/State_Estimator/state_estimator.c **** Status StateEstimator_wait(StateEstimator *const self, Event *const event)
-  43:Core/Src/Drivers/State_Estimator/state_estimator.c **** {
-  30              		.loc 1 43 1 view -0
+   9:Core/Src/Drivers/State_Estimator/state_estimator.c **** static struct Ao * ao_estimator;
+  10:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+  11:Core/Src/Drivers/State_Estimator/state_estimator.c **** static void MX_TIM3_Init(void);
+  12:Core/Src/Drivers/State_Estimator/state_estimator.c **** static void MX_TIM4_Init(void);
+  13:Core/Src/Drivers/State_Estimator/state_estimator.c **** static void MX_TIM7_Init(void);
+  14:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+  15:Core/Src/Drivers/State_Estimator/state_estimator.c **** Status initial(struct StateEstimator *const self, Event const * const event)
+  16:Core/Src/Drivers/State_Estimator/state_estimator.c **** {
+  30              		.loc 1 16 1 view -0
   31              		.cfi_startproc
   32              		@ args = 0, pretend = 0, frame = 0
   33              		@ frame_needed = 0, uses_anonymous_args = 0
   34              		@ link register save eliminated.
-  44:Core/Src/Drivers/State_Estimator/state_estimator.c ****   Status status;
-  35              		.loc 1 44 3 view .LVU1
-  45:Core/Src/Drivers/State_Estimator/state_estimator.c ****   
-  46:Core/Src/Drivers/State_Estimator/state_estimator.c ****   switch (event->_signal)
-  36              		.loc 1 46 3 view .LVU2
-  37              		.loc 1 46 16 is_stmt 0 view .LVU3
-  38 0000 0B88     		ldrh	r3, [r1]
-  39              		.loc 1 46 3 view .LVU4
-  40 0002 022B     		cmp	r3, #2
-  41 0004 1ED9     		bls	.L6
-  42 0006 032B     		cmp	r3, #3
-  43 0008 22D1     		bne	.L5
-  44              	.LBB2:
-  47:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
-  48:Core/Src/Drivers/State_Estimator/state_estimator.c ****     case ENTRY_SIG:
-  49:Core/Src/Drivers/State_Estimator/state_estimator.c ****     {
-  50:Core/Src/Drivers/State_Estimator/state_estimator.c ****       status = HANDLED_STATUS;
-  51:Core/Src/Drivers/State_Estimator/state_estimator.c ****       break;
-  52:Core/Src/Drivers/State_Estimator/state_estimator.c ****     }
-  53:Core/Src/Drivers/State_Estimator/state_estimator.c ****     
-  54:Core/Src/Drivers/State_Estimator/state_estimator.c ****     case EXIT_SIG:
-  55:Core/Src/Drivers/State_Estimator/state_estimator.c ****     {
-  56:Core/Src/Drivers/State_Estimator/state_estimator.c ****       status = HANDLED_STATUS;
-  57:Core/Src/Drivers/State_Estimator/state_estimator.c ****       break;
-  58:Core/Src/Drivers/State_Estimator/state_estimator.c ****     }
-  59:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
-  60:Core/Src/Drivers/State_Estimator/state_estimator.c ****     case TIMEOUT_2KHz_SIG:
-  61:Core/Src/Drivers/State_Estimator/state_estimator.c ****     {
-  62:Core/Src/Drivers/State_Estimator/state_estimator.c ****       float raw_motor_angle;
-  45              		.loc 1 62 7 is_stmt 1 view .LVU5
-  63:Core/Src/Drivers/State_Estimator/state_estimator.c ****       float raw_pendlm_angle;
-  46              		.loc 1 63 7 view .LVU6
-  64:Core/Src/Drivers/State_Estimator/state_estimator.c ****       
-  65:Core/Src/Drivers/State_Estimator/state_estimator.c ****       self->_motor_topic._counter = ((TimeEvent *)event)->_motor_counter;
-  47              		.loc 1 65 7 view .LVU7
-  48              		.loc 1 65 57 is_stmt 0 view .LVU8
-  49 000a B1F90220 		ldrsh	r2, [r1, #2]
-  50              		.loc 1 65 35 view .LVU9
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s 			page 3
+  17:Core/Src/Drivers/State_Estimator/state_estimator.c ****   Status status;
+  35              		.loc 1 17 3 view .LVU1
+  18:Core/Src/Drivers/State_Estimator/state_estimator.c ****   status = TRAN_STATUS;
+  36              		.loc 1 18 3 view .LVU2
+  19:Core/Src/Drivers/State_Estimator/state_estimator.c ****   self->super.handler = (StateHandler)self->wait;
+  37              		.loc 1 19 3 view .LVU3
+  38              		.loc 1 19 43 is_stmt 0 view .LVU4
+  39 0000 D0F8D030 		ldr	r3, [r0, #208]
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s 			page 2
 
 
-  51 000e 0287     		strh	r2, [r0, #56]	@ movhi
-  66:Core/Src/Drivers/State_Estimator/state_estimator.c ****       self->_pendlm_topic._counter = ((TimeEvent *)event)->_pendlm_counter;
-  52              		.loc 1 66 7 is_stmt 1 view .LVU10
-  53              		.loc 1 66 58 is_stmt 0 view .LVU11
-  54 0010 B1F90430 		ldrsh	r3, [r1, #4]
-  55              		.loc 1 66 36 view .LVU12
-  56 0014 A0F84030 		strh	r3, [r0, #64]	@ movhi
-  67:Core/Src/Drivers/State_Estimator/state_estimator.c ****       
-  68:Core/Src/Drivers/State_Estimator/state_estimator.c ****       raw_motor_angle = self->_motor_topic._counter * self->_motor_topic._resol;
-  57              		.loc 1 68 7 is_stmt 1 view .LVU13
-  58              		.loc 1 68 53 is_stmt 0 view .LVU14
-  59 0018 07EE902A 		vmov	s15, r2	@ int
-  60 001c B8EEE77A 		vcvt.f32.s32	s14, s15
-  61              		.loc 1 68 73 view .LVU15
-  62 0020 D0ED0D7A 		vldr.32	s15, [r0, #52]
-  63              		.loc 1 68 23 view .LVU16
-  64 0024 27EE277A 		vmul.f32	s14, s14, s15
-  65              	.LVL1:
-  69:Core/Src/Drivers/State_Estimator/state_estimator.c ****       raw_pendlm_angle = self->_pendlm_topic._counter * self->_pendlm_topic._resol;
-  66              		.loc 1 69 7 is_stmt 1 view .LVU17
-  67              		.loc 1 69 55 is_stmt 0 view .LVU18
-  68 0028 07EE903A 		vmov	s15, r3	@ int
-  69 002c F8EEE77A 		vcvt.f32.s32	s15, s15
-  70              		.loc 1 69 76 view .LVU19
-  71 0030 D0ED0F6A 		vldr.32	s13, [r0, #60]
-  72              		.loc 1 69 24 view .LVU20
-  73 0034 67EEA67A 		vmul.f32	s15, s15, s13
-  74              	.LVL2:
-  70:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
-  71:Core/Src/Drivers/State_Estimator/state_estimator.c ****       self->_states_topic._motor._angle = raw_motor_angle;
-  75              		.loc 1 71 7 is_stmt 1 view .LVU21
-  76              		.loc 1 71 41 is_stmt 0 view .LVU22
-  77 0038 80ED077A 		vstr.32	s14, [r0, #28]
-  72:Core/Src/Drivers/State_Estimator/state_estimator.c ****       self->_states_topic._pendlm._angle = raw_pendlm_angle;
-  78              		.loc 1 72 7 is_stmt 1 view .LVU23
-  79              		.loc 1 72 42 is_stmt 0 view .LVU24
-  80 003c C0ED0A7A 		vstr.32	s15, [r0, #40]
-  73:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
-  74:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
-  75:Core/Src/Drivers/State_Estimator/state_estimator.c ****       status = HANDLED_STATUS;
-  81              		.loc 1 75 7 is_stmt 1 view .LVU25
-  82              	.LVL3:
-  76:Core/Src/Drivers/State_Estimator/state_estimator.c ****       break;
-  83              		.loc 1 76 7 view .LVU26
-  75:Core/Src/Drivers/State_Estimator/state_estimator.c ****       break;
-  84              		.loc 1 75 14 is_stmt 0 view .LVU27
-  85 0040 0120     		movs	r0, #1
-  86              	.LVL4:
-  87              		.loc 1 76 7 view .LVU28
-  88 0042 7047     		bx	lr
-  89              	.LVL5:
-  90              	.L6:
-  91              		.loc 1 76 7 view .LVU29
-  92              	.LBE2:
-  46:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
-  93              		.loc 1 46 3 view .LVU30
-  94 0044 1BB2     		sxth	r3, r3
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s 			page 4
+  40              		.loc 1 19 23 view .LVU5
+  41 0004 0360     		str	r3, [r0]
+  20:Core/Src/Drivers/State_Estimator/state_estimator.c ****   return status;
+  42              		.loc 1 20 3 is_stmt 1 view .LVU6
+  21:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
+  43              		.loc 1 21 1 is_stmt 0 view .LVU7
+  44 0006 0020     		movs	r0, #0
+  45              	.LVL1:
+  46              		.loc 1 21 1 view .LVU8
+  47 0008 7047     		bx	lr
+  48              		.cfi_endproc
+  49              	.LFE168:
+  51              		.section	.text.wait,"ax",%progbits
+  52              		.align	1
+  53              		.global	wait
+  54              		.syntax unified
+  55              		.thumb
+  56              		.thumb_func
+  58              	wait:
+  59              	.LVL2:
+  60              	.LFB169:
+  22:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+  23:Core/Src/Drivers/State_Estimator/state_estimator.c **** Status wait(struct StateEstimator *const self, Event const * const event)
+  24:Core/Src/Drivers/State_Estimator/state_estimator.c **** {
+  61              		.loc 1 24 1 is_stmt 1 view -0
+  62              		.cfi_startproc
+  63              		@ args = 0, pretend = 0, frame = 0
+  64              		@ frame_needed = 0, uses_anonymous_args = 0
+  65              		.loc 1 24 1 is_stmt 0 view .LVU10
+  66 0000 08B5     		push	{r3, lr}
+  67              	.LCFI0:
+  68              		.cfi_def_cfa_offset 8
+  69              		.cfi_offset 3, -8
+  70              		.cfi_offset 14, -4
+  25:Core/Src/Drivers/State_Estimator/state_estimator.c ****   Status status;
+  71              		.loc 1 25 3 is_stmt 1 view .LVU11
+  26:Core/Src/Drivers/State_Estimator/state_estimator.c ****   
+  27:Core/Src/Drivers/State_Estimator/state_estimator.c ****   switch (event->signal)
+  72              		.loc 1 27 3 view .LVU12
+  73              		.loc 1 27 16 is_stmt 0 view .LVU13
+  74 0002 0B88     		ldrh	r3, [r1]
+  75              		.loc 1 27 3 view .LVU14
+  76 0004 012B     		cmp	r3, #1
+  77 0006 03D0     		beq	.L3
+  78 0008 032B     		cmp	r3, #3
+  79 000a 0ED1     		bne	.L5
+  80 000c 0120     		movs	r0, #1
+  81              	.LVL3:
+  82              		.loc 1 27 3 view .LVU15
+  83 000e 0BE0     		b	.L4
+  84              	.LVL4:
+  85              	.L3:
+  28:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
+  29:Core/Src/Drivers/State_Estimator/state_estimator.c ****     case ENTRY_SIG:
+  30:Core/Src/Drivers/State_Estimator/state_estimator.c ****     {
+  31:Core/Src/Drivers/State_Estimator/state_estimator.c ****       HAL_TIM_Base_Start_IT(&htim7);
+  86              		.loc 1 31 7 is_stmt 1 view .LVU16
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s 			page 3
 
 
-  95 0046 0BB1     		cbz	r3, .L4
-  96 0048 0120     		movs	r0, #1
-  97              	.LVL6:
-  46:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
-  98              		.loc 1 46 3 view .LVU31
-  99 004a 7047     		bx	lr
- 100              	.LVL7:
- 101              	.L4:
-  77:Core/Src/Drivers/State_Estimator/state_estimator.c ****     } 
-  78:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
-  79:Core/Src/Drivers/State_Estimator/state_estimator.c ****     default:
-  80:Core/Src/Drivers/State_Estimator/state_estimator.c ****     {
-  81:Core/Src/Drivers/State_Estimator/state_estimator.c ****       status = IGNORED_STATUS;
- 102              		.loc 1 81 14 view .LVU32
- 103 004c 0220     		movs	r0, #2
- 104              	.LVL8:
- 105              		.loc 1 81 14 view .LVU33
- 106 004e 7047     		bx	lr
- 107              	.LVL9:
- 108              	.L5:
- 109              		.loc 1 81 14 view .LVU34
- 110 0050 0220     		movs	r0, #2
+  87 0010 0748     		ldr	r0, .L7
+  88              	.LVL5:
+  89              		.loc 1 31 7 is_stmt 0 view .LVU17
+  90 0012 FFF7FEFF 		bl	HAL_TIM_Base_Start_IT
+  91              	.LVL6:
+  32:Core/Src/Drivers/State_Estimator/state_estimator.c ****       HAL_TIM_Encoder_Start_IT(&htim3, TIM_CHANNEL_ALL);
+  92              		.loc 1 32 7 is_stmt 1 view .LVU18
+  93 0016 3C21     		movs	r1, #60
+  94 0018 0648     		ldr	r0, .L7+4
+  95 001a FFF7FEFF 		bl	HAL_TIM_Encoder_Start_IT
+  96              	.LVL7:
+  33:Core/Src/Drivers/State_Estimator/state_estimator.c ****       HAL_TIM_Encoder_Start_IT(&htim4, TIM_CHANNEL_ALL);
+  97              		.loc 1 33 7 view .LVU19
+  98 001e 3C21     		movs	r1, #60
+  99 0020 0548     		ldr	r0, .L7+8
+ 100 0022 FFF7FEFF 		bl	HAL_TIM_Encoder_Start_IT
+ 101              	.LVL8:
+  34:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+  35:Core/Src/Drivers/State_Estimator/state_estimator.c ****       status = HANDLED_STATUS;
+ 102              		.loc 1 35 7 view .LVU20
+  36:Core/Src/Drivers/State_Estimator/state_estimator.c ****       break;
+ 103              		.loc 1 36 7 view .LVU21
+  35:Core/Src/Drivers/State_Estimator/state_estimator.c ****       break;
+ 104              		.loc 1 35 14 is_stmt 0 view .LVU22
+ 105 0026 0120     		movs	r0, #1
+ 106              	.LVL9:
+ 107              	.L4:
+  37:Core/Src/Drivers/State_Estimator/state_estimator.c ****     }
+  38:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+  39:Core/Src/Drivers/State_Estimator/state_estimator.c ****     case TIMEOUT_2KHz_SIG:
+  40:Core/Src/Drivers/State_Estimator/state_estimator.c ****     {
+  41:Core/Src/Drivers/State_Estimator/state_estimator.c ****       
+  42:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+  43:Core/Src/Drivers/State_Estimator/state_estimator.c ****       status = HANDLED_STATUS;
+  44:Core/Src/Drivers/State_Estimator/state_estimator.c ****       break;
+  45:Core/Src/Drivers/State_Estimator/state_estimator.c ****     }
+  46:Core/Src/Drivers/State_Estimator/state_estimator.c ****     
+  47:Core/Src/Drivers/State_Estimator/state_estimator.c ****     default:
+  48:Core/Src/Drivers/State_Estimator/state_estimator.c ****     {
+  49:Core/Src/Drivers/State_Estimator/state_estimator.c ****       status = IGNORED_STATUS;
+  50:Core/Src/Drivers/State_Estimator/state_estimator.c ****       break;
+  51:Core/Src/Drivers/State_Estimator/state_estimator.c ****     }
+  52:Core/Src/Drivers/State_Estimator/state_estimator.c ****       
+  53:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
+  54:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+  55:Core/Src/Drivers/State_Estimator/state_estimator.c ****   return status;
+ 108              		.loc 1 55 3 is_stmt 1 view .LVU23
+  56:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
+ 109              		.loc 1 56 1 is_stmt 0 view .LVU24
+ 110 0028 08BD     		pop	{r3, pc}
  111              	.LVL10:
-  82:Core/Src/Drivers/State_Estimator/state_estimator.c ****       break;
-  83:Core/Src/Drivers/State_Estimator/state_estimator.c ****     }   
-  84:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
-  85:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
-  86:Core/Src/Drivers/State_Estimator/state_estimator.c ****   return status;
- 112              		.loc 1 86 3 is_stmt 1 view .LVU35
-  87:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
- 113              		.loc 1 87 1 is_stmt 0 view .LVU36
- 114 0052 7047     		bx	lr
- 115              		.cfi_endproc
- 116              	.LFE170:
- 118              		.section	.text.StateEstimator_initial,"ax",%progbits
- 119              		.align	1
- 120              		.global	StateEstimator_initial
- 121              		.syntax unified
- 122              		.thumb
- 123              		.thumb_func
- 125              	StateEstimator_initial:
- 126              	.LVL11:
- 127              	.LFB171:
-  88:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
-  89:Core/Src/Drivers/State_Estimator/state_estimator.c **** /**
-  90:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @brief  Initial state of the State Estimator
-  91:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @param  self pointer to the StateEstimator
-  92:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @param  event event object cotaining type of event and data 
-  93:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @retval StateHandler status at the end of the initial state
-  94:Core/Src/Drivers/State_Estimator/state_estimator.c ****   */
-  95:Core/Src/Drivers/State_Estimator/state_estimator.c **** Status StateEstimator_initial(StateEstimator *const self, Event *const event)
-  96:Core/Src/Drivers/State_Estimator/state_estimator.c **** {
- 128              		.loc 1 96 1 is_stmt 1 view -0
- 129              		.cfi_startproc
- 130              		@ args = 0, pretend = 0, frame = 0
- 131              		@ frame_needed = 0, uses_anonymous_args = 0
- 132              		.loc 1 96 1 is_stmt 0 view .LVU38
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s 			page 5
+ 112              	.L5:
+  49:Core/Src/Drivers/State_Estimator/state_estimator.c ****       break;
+ 113              		.loc 1 49 14 view .LVU25
+ 114 002a 0220     		movs	r0, #2
+ 115              	.LVL11:
+  49:Core/Src/Drivers/State_Estimator/state_estimator.c ****       break;
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s 			page 4
 
 
- 133 0000 08B5     		push	{r3, lr}
- 134              	.LCFI0:
- 135              		.cfi_def_cfa_offset 8
- 136              		.cfi_offset 3, -8
- 137              		.cfi_offset 14, -4
- 138 0002 0346     		mov	r3, r0
-  97:Core/Src/Drivers/State_Estimator/state_estimator.c ****   Status status;
- 139              		.loc 1 97 3 is_stmt 1 view .LVU39
-  98:Core/Src/Drivers/State_Estimator/state_estimator.c ****   self->_super._super->setHandler(self->_super._super, (StateHandler)self->wait);
- 140              		.loc 1 98 3 view .LVU40
- 141              		.loc 1 98 15 is_stmt 0 view .LVU41
- 142 0004 0068     		ldr	r0, [r0]
- 143              	.LVL12:
- 144              		.loc 1 98 22 view .LVU42
- 145 0006 C268     		ldr	r2, [r0, #12]
- 146              		.loc 1 98 3 view .LVU43
- 147 0008 996C     		ldr	r1, [r3, #72]
- 148              	.LVL13:
- 149              		.loc 1 98 3 view .LVU44
- 150 000a 9047     		blx	r2
- 151              	.LVL14:
-  99:Core/Src/Drivers/State_Estimator/state_estimator.c ****   status = TRAN_STATUS;
- 152              		.loc 1 99 3 is_stmt 1 view .LVU45
- 100:Core/Src/Drivers/State_Estimator/state_estimator.c ****   return status;
- 153              		.loc 1 100 3 view .LVU46
- 101:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
- 154              		.loc 1 101 1 is_stmt 0 view .LVU47
- 155 000c 0020     		movs	r0, #0
- 156 000e 08BD     		pop	{r3, pc}
- 157              		.cfi_endproc
- 158              	.LFE171:
- 160              		.section	.text.MX_TIM3_Init,"ax",%progbits
- 161              		.align	1
- 162              		.syntax unified
- 163              		.thumb
- 164              		.thumb_func
- 166              	MX_TIM3_Init:
- 167              	.LFB178:
- 102:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 103:Core/Src/Drivers/State_Estimator/state_estimator.c **** /**
- 104:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @brief  Period elapsed callback in non-blocking mode
- 105:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @param  htim TIM handle
- 106:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @retval None
- 107:Core/Src/Drivers/State_Estimator/state_estimator.c ****   */
- 108:Core/Src/Drivers/State_Estimator/state_estimator.c **** void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
- 109:Core/Src/Drivers/State_Estimator/state_estimator.c **** {
- 110:Core/Src/Drivers/State_Estimator/state_estimator.c ****   if(htim->Instance == TIM7)
- 111:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
- 112:Core/Src/Drivers/State_Estimator/state_estimator.c ****     // BaseType_t xHigherPriorityTaskWoken = pdFALSE;
- 113:Core/Src/Drivers/State_Estimator/state_estimator.c ****   
- 114:Core/Src/Drivers/State_Estimator/state_estimator.c ****     // time_event._motor_counter = motor_counter;
- 115:Core/Src/Drivers/State_Estimator/state_estimator.c ****     // time_event._pendlm_counter = pendlm_counter;
- 116:Core/Src/Drivers/State_Estimator/state_estimator.c ****     // state_estimator->_super.postFromISR(&state_estimator->_super, &time_event, &xHigherPriorityT
- 117:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
- 118:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
- 119:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 120:Core/Src/Drivers/State_Estimator/state_estimator.c **** /**
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s 			page 6
+ 116              		.loc 1 49 14 view .LVU26
+ 117 002c FCE7     		b	.L4
+ 118              	.L8:
+ 119 002e 00BF     		.align	2
+ 120              	.L7:
+ 121 0030 00000000 		.word	htim7
+ 122 0034 00000000 		.word	htim3
+ 123 0038 00000000 		.word	htim4
+ 124              		.cfi_endproc
+ 125              	.LFE169:
+ 127              		.section	.text.new,"ax",%progbits
+ 128              		.align	1
+ 129              		.syntax unified
+ 130              		.thumb
+ 131              		.thumb_func
+ 133              	new:
+ 134              	.LVL12:
+ 135              	.LFB170:
+  57:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+  58:Core/Src/Drivers/State_Estimator/state_estimator.c **** static void new(struct StateEstimator * const self)
+  59:Core/Src/Drivers/State_Estimator/state_estimator.c **** {
+ 136              		.loc 1 59 1 is_stmt 1 view -0
+ 137              		.cfi_startproc
+ 138              		@ args = 0, pretend = 0, frame = 0
+ 139              		@ frame_needed = 0, uses_anonymous_args = 0
+ 140              		.loc 1 59 1 is_stmt 0 view .LVU28
+ 141 0000 10B5     		push	{r4, lr}
+ 142              	.LCFI1:
+ 143              		.cfi_def_cfa_offset 8
+ 144              		.cfi_offset 4, -8
+ 145              		.cfi_offset 14, -4
+ 146 0002 0446     		mov	r4, r0
+  60:Core/Src/Drivers/State_Estimator/state_estimator.c ****   self->initial=&initial; self->wait=&wait;
+ 147              		.loc 1 60 3 is_stmt 1 view .LVU29
+ 148              		.loc 1 60 16 is_stmt 0 view .LVU30
+ 149 0004 0549     		ldr	r1, .L11
+ 150 0006 C0F8CC10 		str	r1, [r0, #204]
+ 151              		.loc 1 60 27 is_stmt 1 view .LVU31
+ 152              		.loc 1 60 37 is_stmt 0 view .LVU32
+ 153 000a 054B     		ldr	r3, .L11+4
+ 154 000c C0F8D030 		str	r3, [r0, #208]
+  61:Core/Src/Drivers/State_Estimator/state_estimator.c ****   Ao_new(&self->super, (StateHandler)&initial);
+ 155              		.loc 1 61 3 is_stmt 1 view .LVU33
+ 156 0010 FFF7FEFF 		bl	Ao_new
+ 157              	.LVL13:
+  62:Core/Src/Drivers/State_Estimator/state_estimator.c ****   ao_estimator = &self->super;
+ 158              		.loc 1 62 3 view .LVU34
+ 159              		.loc 1 62 16 is_stmt 0 view .LVU35
+ 160 0014 034B     		ldr	r3, .L11+8
+ 161 0016 1C60     		str	r4, [r3]
+  63:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
+ 162              		.loc 1 63 1 view .LVU36
+ 163 0018 10BD     		pop	{r4, pc}
+ 164              	.LVL14:
+ 165              	.L12:
+ 166              		.loc 1 63 1 view .LVU37
+ 167 001a 00BF     		.align	2
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s 			page 5
 
 
- 121:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @brief  Input Capture callback in non-blocking mode
- 122:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @param  htim TIM IC handle
- 123:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @retval None
- 124:Core/Src/Drivers/State_Estimator/state_estimator.c ****   */
- 125:Core/Src/Drivers/State_Estimator/state_estimator.c **** void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
- 126:Core/Src/Drivers/State_Estimator/state_estimator.c **** {
- 127:Core/Src/Drivers/State_Estimator/state_estimator.c ****   if(htim->Instance == TIM4)
- 128:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
- 129:Core/Src/Drivers/State_Estimator/state_estimator.c ****     // Read motor encoder counter value 
- 130:Core/Src/Drivers/State_Estimator/state_estimator.c ****     motor_counter = (int16_t)((uint32_t)__HAL_TIM_GET_COUNTER(htim));
- 131:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
- 132:Core/Src/Drivers/State_Estimator/state_estimator.c ****   else if(htim->Instance == TIM3)
- 133:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
- 134:Core/Src/Drivers/State_Estimator/state_estimator.c ****     // Read pendullum encoder counter value 
- 135:Core/Src/Drivers/State_Estimator/state_estimator.c ****     pendlm_counter = (int16_t)((uint32_t)__HAL_TIM_GET_COUNTER(htim));
- 136:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
- 137:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
- 138:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 139:Core/Src/Drivers/State_Estimator/state_estimator.c **** /**
- 140:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @brief This function handles TIM3 global interrupt.
- 141:Core/Src/Drivers/State_Estimator/state_estimator.c ****   */
- 142:Core/Src/Drivers/State_Estimator/state_estimator.c **** void TIM3_IRQHandler(void)
- 143:Core/Src/Drivers/State_Estimator/state_estimator.c **** {
- 144:Core/Src/Drivers/State_Estimator/state_estimator.c ****   HAL_TIM_IRQHandler(&htim3);
- 145:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
- 146:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 147:Core/Src/Drivers/State_Estimator/state_estimator.c **** /**
- 148:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @brief This function handles TIM4 global interrupt.
- 149:Core/Src/Drivers/State_Estimator/state_estimator.c ****   */
- 150:Core/Src/Drivers/State_Estimator/state_estimator.c **** void TIM4_IRQHandler(void)
- 151:Core/Src/Drivers/State_Estimator/state_estimator.c **** {
- 152:Core/Src/Drivers/State_Estimator/state_estimator.c ****   HAL_TIM_IRQHandler(&htim4);
- 153:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
- 154:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 155:Core/Src/Drivers/State_Estimator/state_estimator.c **** /**
- 156:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @brief This function handles TIM7 global interrupt.
- 157:Core/Src/Drivers/State_Estimator/state_estimator.c ****   */
- 158:Core/Src/Drivers/State_Estimator/state_estimator.c **** void TIM7_IRQHandler(void)
- 159:Core/Src/Drivers/State_Estimator/state_estimator.c **** {
- 160:Core/Src/Drivers/State_Estimator/state_estimator.c ****   HAL_TIM_IRQHandler(&htim7);
- 161:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
- 162:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 163:Core/Src/Drivers/State_Estimator/state_estimator.c **** /**
- 164:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @brief This function initialize USART1.
- 165:Core/Src/Drivers/State_Estimator/state_estimator.c ****   */
- 166:Core/Src/Drivers/State_Estimator/state_estimator.c **** void Driver_StateEstimator_Init()
- 167:Core/Src/Drivers/State_Estimator/state_estimator.c **** {
- 168:Core/Src/Drivers/State_Estimator/state_estimator.c ****   MX_TIM3_Init(); // Motor encoder
- 169:Core/Src/Drivers/State_Estimator/state_estimator.c ****   MX_TIM4_Init(); // Pendullum encoder
- 170:Core/Src/Drivers/State_Estimator/state_estimator.c ****   MX_TIM7_Init(); // Basic timer for generating periodic task running at 2kHz
- 171:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 172:Core/Src/Drivers/State_Estimator/state_estimator.c ****   HAL_TIM_Base_Start_IT(&htim7);
- 173:Core/Src/Drivers/State_Estimator/state_estimator.c ****   HAL_TIM_Encoder_Start_IT(&htim3, TIM_CHANNEL_ALL);
- 174:Core/Src/Drivers/State_Estimator/state_estimator.c ****   HAL_TIM_Encoder_Start_IT(&htim4, TIM_CHANNEL_ALL);
- 175:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
- 176:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 177:Core/Src/Drivers/State_Estimator/state_estimator.c **** /**
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s 			page 7
+ 168              	.L11:
+ 169 001c 00000000 		.word	initial
+ 170 0020 00000000 		.word	wait
+ 171 0024 00000000 		.word	ao_estimator
+ 172              		.cfi_endproc
+ 173              	.LFE170:
+ 175              		.section	.text.MX_TIM3_Init,"ax",%progbits
+ 176              		.align	1
+ 177              		.syntax unified
+ 178              		.thumb
+ 179              		.thumb_func
+ 181              	MX_TIM3_Init:
+ 182              	.LFB177:
+  64:Core/Src/Drivers/State_Estimator/state_estimator.c **** const struct StateEstimatorClass StateEstimator={.new=&new};
+  65:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+  66:Core/Src/Drivers/State_Estimator/state_estimator.c **** /**
+  67:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @brief  Period elapsed callback in non-blocking mode
+  68:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @param  htim TIM handle
+  69:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @retval None
+  70:Core/Src/Drivers/State_Estimator/state_estimator.c ****   */
+  71:Core/Src/Drivers/State_Estimator/state_estimator.c **** void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+  72:Core/Src/Drivers/State_Estimator/state_estimator.c **** {
+  73:Core/Src/Drivers/State_Estimator/state_estimator.c ****   BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+  74:Core/Src/Drivers/State_Estimator/state_estimator.c ****   if(htim->Instance == TIM7)
+  75:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
+  76:Core/Src/Drivers/State_Estimator/state_estimator.c ****     static const Event time_evt = {TIMEOUT_2KHz_SIG};
+  77:Core/Src/Drivers/State_Estimator/state_estimator.c ****     ao_estimator->postFromISR(ao_estimator, &time_evt, &xHigherPriorityTaskWoken);
+  78:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
+  79:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+  80:Core/Src/Drivers/State_Estimator/state_estimator.c ****   portEND_SWITCHING_ISR(xHigherPriorityTaskWoken);
+  81:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
+  82:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+  83:Core/Src/Drivers/State_Estimator/state_estimator.c **** /**
+  84:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @brief  Input Capture callback in non-blocking mode
+  85:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @param  htim TIM IC handle
+  86:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @retval None
+  87:Core/Src/Drivers/State_Estimator/state_estimator.c ****   */
+  88:Core/Src/Drivers/State_Estimator/state_estimator.c **** void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
+  89:Core/Src/Drivers/State_Estimator/state_estimator.c **** {
+  90:Core/Src/Drivers/State_Estimator/state_estimator.c ****   if(htim->Instance == TIM4)
+  91:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
+  92:Core/Src/Drivers/State_Estimator/state_estimator.c ****     // Read motor encoder counter value 
+  93:Core/Src/Drivers/State_Estimator/state_estimator.c ****     motor_counter = (int16_t)((uint32_t)__HAL_TIM_GET_COUNTER(htim));
+  94:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
+  95:Core/Src/Drivers/State_Estimator/state_estimator.c ****   else if(htim->Instance == TIM3)
+  96:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
+  97:Core/Src/Drivers/State_Estimator/state_estimator.c ****     // Read pendullum encoder counter value 
+  98:Core/Src/Drivers/State_Estimator/state_estimator.c ****     pendlm_counter = (int16_t)((uint32_t)__HAL_TIM_GET_COUNTER(htim));
+  99:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
+ 100:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
+ 101:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 102:Core/Src/Drivers/State_Estimator/state_estimator.c **** /**
+ 103:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @brief This function handles TIM3 global interrupt.
+ 104:Core/Src/Drivers/State_Estimator/state_estimator.c ****   */
+ 105:Core/Src/Drivers/State_Estimator/state_estimator.c **** void TIM3_IRQHandler(void)
+ 106:Core/Src/Drivers/State_Estimator/state_estimator.c **** {
+ 107:Core/Src/Drivers/State_Estimator/state_estimator.c ****   HAL_TIM_IRQHandler(&htim3);
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s 			page 6
 
 
- 178:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @brief TIM3 Initialization Function
- 179:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @param None
- 180:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @retval None
- 181:Core/Src/Drivers/State_Estimator/state_estimator.c ****   */
- 182:Core/Src/Drivers/State_Estimator/state_estimator.c **** static void MX_TIM3_Init(void)
- 183:Core/Src/Drivers/State_Estimator/state_estimator.c **** {
- 168              		.loc 1 183 1 is_stmt 1 view -0
- 169              		.cfi_startproc
- 170              		@ args = 0, pretend = 0, frame = 48
- 171              		@ frame_needed = 0, uses_anonymous_args = 0
- 172 0000 30B5     		push	{r4, r5, lr}
- 173              	.LCFI1:
- 174              		.cfi_def_cfa_offset 12
- 175              		.cfi_offset 4, -12
- 176              		.cfi_offset 5, -8
- 177              		.cfi_offset 14, -4
- 178 0002 8DB0     		sub	sp, sp, #52
- 179              	.LCFI2:
- 180              		.cfi_def_cfa_offset 64
- 184:Core/Src/Drivers/State_Estimator/state_estimator.c ****   TIM_Encoder_InitTypeDef sConfig = {0};
- 181              		.loc 1 184 3 view .LVU49
- 182              		.loc 1 184 27 is_stmt 0 view .LVU50
- 183 0004 2422     		movs	r2, #36
- 184 0006 0021     		movs	r1, #0
- 185 0008 03A8     		add	r0, sp, #12
- 186 000a FFF7FEFF 		bl	memset
- 187              	.LVL15:
- 185:Core/Src/Drivers/State_Estimator/state_estimator.c ****   TIM_MasterConfigTypeDef sMasterConfig = {0};
- 188              		.loc 1 185 3 is_stmt 1 view .LVU51
- 189              		.loc 1 185 27 is_stmt 0 view .LVU52
- 190 000e 0025     		movs	r5, #0
- 191 0010 0195     		str	r5, [sp, #4]
- 192 0012 0295     		str	r5, [sp, #8]
- 186:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 187:Core/Src/Drivers/State_Estimator/state_estimator.c ****   /* USER CODE BEGIN TIM3_Init 1 */
- 188:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 189:Core/Src/Drivers/State_Estimator/state_estimator.c ****   /* USER CODE END TIM3_Init 1 */
- 190:Core/Src/Drivers/State_Estimator/state_estimator.c ****   htim3.Instance = TIM3;
- 193              		.loc 1 190 3 is_stmt 1 view .LVU53
- 194              		.loc 1 190 18 is_stmt 0 view .LVU54
- 195 0014 0D4C     		ldr	r4, .L11
- 196 0016 0E4B     		ldr	r3, .L11+4
- 197 0018 2360     		str	r3, [r4]
- 191:Core/Src/Drivers/State_Estimator/state_estimator.c ****   htim3.Init.Prescaler = 0;
- 198              		.loc 1 191 3 is_stmt 1 view .LVU55
- 199              		.loc 1 191 24 is_stmt 0 view .LVU56
- 200 001a 6560     		str	r5, [r4, #4]
- 192:Core/Src/Drivers/State_Estimator/state_estimator.c ****   htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
- 201              		.loc 1 192 3 is_stmt 1 view .LVU57
- 202              		.loc 1 192 26 is_stmt 0 view .LVU58
- 203 001c A560     		str	r5, [r4, #8]
- 193:Core/Src/Drivers/State_Estimator/state_estimator.c ****   htim3.Init.Period = 65535;
- 204              		.loc 1 193 3 is_stmt 1 view .LVU59
- 205              		.loc 1 193 21 is_stmt 0 view .LVU60
- 206 001e 4FF6FF73 		movw	r3, #65535
- 207 0022 E360     		str	r3, [r4, #12]
- 194:Core/Src/Drivers/State_Estimator/state_estimator.c ****   htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s 			page 8
+ 108:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
+ 109:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 110:Core/Src/Drivers/State_Estimator/state_estimator.c **** /**
+ 111:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @brief This function handles TIM4 global interrupt.
+ 112:Core/Src/Drivers/State_Estimator/state_estimator.c ****   */
+ 113:Core/Src/Drivers/State_Estimator/state_estimator.c **** void TIM4_IRQHandler(void)
+ 114:Core/Src/Drivers/State_Estimator/state_estimator.c **** {
+ 115:Core/Src/Drivers/State_Estimator/state_estimator.c ****   HAL_TIM_IRQHandler(&htim4);
+ 116:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
+ 117:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 118:Core/Src/Drivers/State_Estimator/state_estimator.c **** /**
+ 119:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @brief This function handles TIM7 global interrupt.
+ 120:Core/Src/Drivers/State_Estimator/state_estimator.c ****   */
+ 121:Core/Src/Drivers/State_Estimator/state_estimator.c **** void TIM7_IRQHandler(void)
+ 122:Core/Src/Drivers/State_Estimator/state_estimator.c **** {
+ 123:Core/Src/Drivers/State_Estimator/state_estimator.c ****   HAL_TIM_IRQHandler(&htim7);
+ 124:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
+ 125:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 126:Core/Src/Drivers/State_Estimator/state_estimator.c **** /**
+ 127:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @brief This function initialize USART1.
+ 128:Core/Src/Drivers/State_Estimator/state_estimator.c ****   */
+ 129:Core/Src/Drivers/State_Estimator/state_estimator.c **** void Driver_StateEstimator_Init()
+ 130:Core/Src/Drivers/State_Estimator/state_estimator.c **** {
+ 131:Core/Src/Drivers/State_Estimator/state_estimator.c ****   MX_TIM3_Init(); // Motor encoder
+ 132:Core/Src/Drivers/State_Estimator/state_estimator.c ****   MX_TIM4_Init(); // Pendullum encoder
+ 133:Core/Src/Drivers/State_Estimator/state_estimator.c ****   MX_TIM7_Init(); // Basic timer for generating periodic task running at 2kHz
+ 134:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 135:Core/Src/Drivers/State_Estimator/state_estimator.c ****   // HAL_TIM_Base_Start_IT(&htim7);
+ 136:Core/Src/Drivers/State_Estimator/state_estimator.c ****   // HAL_TIM_Encoder_Start_IT(&htim3, TIM_CHANNEL_ALL);
+ 137:Core/Src/Drivers/State_Estimator/state_estimator.c ****   // HAL_TIM_Encoder_Start_IT(&htim4, TIM_CHANNEL_ALL);
+ 138:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
+ 139:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 140:Core/Src/Drivers/State_Estimator/state_estimator.c **** /**
+ 141:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @brief TIM3 Initialization Function
+ 142:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @param None
+ 143:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @retval None
+ 144:Core/Src/Drivers/State_Estimator/state_estimator.c ****   */
+ 145:Core/Src/Drivers/State_Estimator/state_estimator.c **** static void MX_TIM3_Init(void)
+ 146:Core/Src/Drivers/State_Estimator/state_estimator.c **** {
+ 183              		.loc 1 146 1 is_stmt 1 view -0
+ 184              		.cfi_startproc
+ 185              		@ args = 0, pretend = 0, frame = 48
+ 186              		@ frame_needed = 0, uses_anonymous_args = 0
+ 187 0000 30B5     		push	{r4, r5, lr}
+ 188              	.LCFI2:
+ 189              		.cfi_def_cfa_offset 12
+ 190              		.cfi_offset 4, -12
+ 191              		.cfi_offset 5, -8
+ 192              		.cfi_offset 14, -4
+ 193 0002 8DB0     		sub	sp, sp, #52
+ 194              	.LCFI3:
+ 195              		.cfi_def_cfa_offset 64
+ 147:Core/Src/Drivers/State_Estimator/state_estimator.c ****   TIM_Encoder_InitTypeDef sConfig = {0};
+ 196              		.loc 1 147 3 view .LVU39
+ 197              		.loc 1 147 27 is_stmt 0 view .LVU40
+ 198 0004 2422     		movs	r2, #36
+ 199 0006 0021     		movs	r1, #0
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s 			page 7
 
 
- 208              		.loc 1 194 3 is_stmt 1 view .LVU61
- 209              		.loc 1 194 28 is_stmt 0 view .LVU62
- 210 0024 2561     		str	r5, [r4, #16]
- 195:Core/Src/Drivers/State_Estimator/state_estimator.c ****   htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
- 211              		.loc 1 195 3 is_stmt 1 view .LVU63
- 212              		.loc 1 195 32 is_stmt 0 view .LVU64
- 213 0026 A561     		str	r5, [r4, #24]
+ 200 0008 03A8     		add	r0, sp, #12
+ 201 000a FFF7FEFF 		bl	memset
+ 202              	.LVL15:
+ 148:Core/Src/Drivers/State_Estimator/state_estimator.c ****   TIM_MasterConfigTypeDef sMasterConfig = {0};
+ 203              		.loc 1 148 3 is_stmt 1 view .LVU41
+ 204              		.loc 1 148 27 is_stmt 0 view .LVU42
+ 205 000e 0025     		movs	r5, #0
+ 206 0010 0195     		str	r5, [sp, #4]
+ 207 0012 0295     		str	r5, [sp, #8]
+ 149:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 150:Core/Src/Drivers/State_Estimator/state_estimator.c ****   /* USER CODE BEGIN TIM3_Init 1 */
+ 151:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 152:Core/Src/Drivers/State_Estimator/state_estimator.c ****   /* USER CODE END TIM3_Init 1 */
+ 153:Core/Src/Drivers/State_Estimator/state_estimator.c ****   htim3.Instance = TIM3;
+ 208              		.loc 1 153 3 is_stmt 1 view .LVU43
+ 209              		.loc 1 153 18 is_stmt 0 view .LVU44
+ 210 0014 0D4C     		ldr	r4, .L15
+ 211 0016 0E4B     		ldr	r3, .L15+4
+ 212 0018 2360     		str	r3, [r4]
+ 154:Core/Src/Drivers/State_Estimator/state_estimator.c ****   htim3.Init.Prescaler = 0;
+ 213              		.loc 1 154 3 is_stmt 1 view .LVU45
+ 214              		.loc 1 154 24 is_stmt 0 view .LVU46
+ 215 001a 6560     		str	r5, [r4, #4]
+ 155:Core/Src/Drivers/State_Estimator/state_estimator.c ****   htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
+ 216              		.loc 1 155 3 is_stmt 1 view .LVU47
+ 217              		.loc 1 155 26 is_stmt 0 view .LVU48
+ 218 001c A560     		str	r5, [r4, #8]
+ 156:Core/Src/Drivers/State_Estimator/state_estimator.c ****   htim3.Init.Period = 65535;
+ 219              		.loc 1 156 3 is_stmt 1 view .LVU49
+ 220              		.loc 1 156 21 is_stmt 0 view .LVU50
+ 221 001e 4FF6FF73 		movw	r3, #65535
+ 222 0022 E360     		str	r3, [r4, #12]
+ 157:Core/Src/Drivers/State_Estimator/state_estimator.c ****   htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+ 223              		.loc 1 157 3 is_stmt 1 view .LVU51
+ 224              		.loc 1 157 28 is_stmt 0 view .LVU52
+ 225 0024 2561     		str	r5, [r4, #16]
+ 158:Core/Src/Drivers/State_Estimator/state_estimator.c ****   htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+ 226              		.loc 1 158 3 is_stmt 1 view .LVU53
+ 227              		.loc 1 158 32 is_stmt 0 view .LVU54
+ 228 0026 A561     		str	r5, [r4, #24]
+ 159:Core/Src/Drivers/State_Estimator/state_estimator.c ****   sConfig.EncoderMode = TIM_ENCODERMODE_TI12;
+ 229              		.loc 1 159 3 is_stmt 1 view .LVU55
+ 230              		.loc 1 159 23 is_stmt 0 view .LVU56
+ 231 0028 0323     		movs	r3, #3
+ 232 002a 0393     		str	r3, [sp, #12]
+ 160:Core/Src/Drivers/State_Estimator/state_estimator.c ****   sConfig.IC1Polarity = TIM_ICPOLARITY_RISING;
+ 233              		.loc 1 160 3 is_stmt 1 view .LVU57
+ 161:Core/Src/Drivers/State_Estimator/state_estimator.c ****   sConfig.IC1Selection = TIM_ICSELECTION_DIRECTTI;
+ 234              		.loc 1 161 3 view .LVU58
+ 235              		.loc 1 161 24 is_stmt 0 view .LVU59
+ 236 002c 0123     		movs	r3, #1
+ 237 002e 0593     		str	r3, [sp, #20]
+ 162:Core/Src/Drivers/State_Estimator/state_estimator.c ****   sConfig.IC1Prescaler = TIM_ICPSC_DIV1;
+ 238              		.loc 1 162 3 is_stmt 1 view .LVU60
+ 163:Core/Src/Drivers/State_Estimator/state_estimator.c ****   sConfig.IC1Filter = 0;
+ 239              		.loc 1 163 3 view .LVU61
+ 164:Core/Src/Drivers/State_Estimator/state_estimator.c ****   sConfig.IC2Polarity = TIM_ICPOLARITY_RISING;
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s 			page 8
+
+
+ 240              		.loc 1 164 3 view .LVU62
+ 165:Core/Src/Drivers/State_Estimator/state_estimator.c ****   sConfig.IC2Selection = TIM_ICSELECTION_DIRECTTI;
+ 241              		.loc 1 165 3 view .LVU63
+ 242              		.loc 1 165 24 is_stmt 0 view .LVU64
+ 243 0030 0993     		str	r3, [sp, #36]
+ 166:Core/Src/Drivers/State_Estimator/state_estimator.c ****   sConfig.IC2Prescaler = TIM_ICPSC_DIV1;
+ 244              		.loc 1 166 3 is_stmt 1 view .LVU65
+ 167:Core/Src/Drivers/State_Estimator/state_estimator.c ****   sConfig.IC2Filter = 0;
+ 245              		.loc 1 167 3 view .LVU66
+ 168:Core/Src/Drivers/State_Estimator/state_estimator.c ****   if (HAL_TIM_Encoder_Init(&htim3, &sConfig) != HAL_OK)
+ 246              		.loc 1 168 3 view .LVU67
+ 247              		.loc 1 168 7 is_stmt 0 view .LVU68
+ 248 0032 03A9     		add	r1, sp, #12
+ 249 0034 2046     		mov	r0, r4
+ 250 0036 FFF7FEFF 		bl	HAL_TIM_Encoder_Init
+ 251              	.LVL16:
+ 169:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
+ 170:Core/Src/Drivers/State_Estimator/state_estimator.c ****     // Error_Handler();
+ 171:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
+ 252              		.loc 1 171 3 is_stmt 1 view .LVU69
+ 172:Core/Src/Drivers/State_Estimator/state_estimator.c ****   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+ 253              		.loc 1 172 3 view .LVU70
+ 254              		.loc 1 172 37 is_stmt 0 view .LVU71
+ 255 003a 0195     		str	r5, [sp, #4]
+ 173:Core/Src/Drivers/State_Estimator/state_estimator.c ****   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+ 256              		.loc 1 173 3 is_stmt 1 view .LVU72
+ 257              		.loc 1 173 33 is_stmt 0 view .LVU73
+ 258 003c 0295     		str	r5, [sp, #8]
+ 174:Core/Src/Drivers/State_Estimator/state_estimator.c ****   if (HAL_TIMEx_MasterConfigSynchronization(&htim3, &sMasterConfig) != HAL_OK)
+ 259              		.loc 1 174 3 is_stmt 1 view .LVU74
+ 260              		.loc 1 174 7 is_stmt 0 view .LVU75
+ 261 003e 01A9     		add	r1, sp, #4
+ 262 0040 2046     		mov	r0, r4
+ 263 0042 FFF7FEFF 		bl	HAL_TIMEx_MasterConfigSynchronization
+ 264              	.LVL17:
+ 175:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
+ 176:Core/Src/Drivers/State_Estimator/state_estimator.c ****     // Error_Handler();
+ 177:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
+ 265              		.loc 1 177 3 is_stmt 1 view .LVU76
+ 178:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
+ 266              		.loc 1 178 1 is_stmt 0 view .LVU77
+ 267 0046 0DB0     		add	sp, sp, #52
+ 268              	.LCFI4:
+ 269              		.cfi_def_cfa_offset 12
+ 270              		@ sp needed
+ 271 0048 30BD     		pop	{r4, r5, pc}
+ 272              	.L16:
+ 273 004a 00BF     		.align	2
+ 274              	.L15:
+ 275 004c 00000000 		.word	htim3
+ 276 0050 00040040 		.word	1073742848
+ 277              		.cfi_endproc
+ 278              	.LFE177:
+ 280              		.section	.text.MX_TIM4_Init,"ax",%progbits
+ 281              		.align	1
+ 282              		.syntax unified
+ 283              		.thumb
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s 			page 9
+
+
+ 284              		.thumb_func
+ 286              	MX_TIM4_Init:
+ 287              	.LFB178:
+ 179:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 180:Core/Src/Drivers/State_Estimator/state_estimator.c **** /**
+ 181:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @brief TIM4 Initialization Function
+ 182:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @param None
+ 183:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @retval None
+ 184:Core/Src/Drivers/State_Estimator/state_estimator.c ****   */
+ 185:Core/Src/Drivers/State_Estimator/state_estimator.c **** static void MX_TIM4_Init(void)
+ 186:Core/Src/Drivers/State_Estimator/state_estimator.c **** {
+ 288              		.loc 1 186 1 is_stmt 1 view -0
+ 289              		.cfi_startproc
+ 290              		@ args = 0, pretend = 0, frame = 48
+ 291              		@ frame_needed = 0, uses_anonymous_args = 0
+ 292 0000 30B5     		push	{r4, r5, lr}
+ 293              	.LCFI5:
+ 294              		.cfi_def_cfa_offset 12
+ 295              		.cfi_offset 4, -12
+ 296              		.cfi_offset 5, -8
+ 297              		.cfi_offset 14, -4
+ 298 0002 8DB0     		sub	sp, sp, #52
+ 299              	.LCFI6:
+ 300              		.cfi_def_cfa_offset 64
+ 187:Core/Src/Drivers/State_Estimator/state_estimator.c ****   TIM_Encoder_InitTypeDef sConfig = {0};
+ 301              		.loc 1 187 3 view .LVU79
+ 302              		.loc 1 187 27 is_stmt 0 view .LVU80
+ 303 0004 2422     		movs	r2, #36
+ 304 0006 0021     		movs	r1, #0
+ 305 0008 03A8     		add	r0, sp, #12
+ 306 000a FFF7FEFF 		bl	memset
+ 307              	.LVL18:
+ 188:Core/Src/Drivers/State_Estimator/state_estimator.c ****   TIM_MasterConfigTypeDef sMasterConfig = {0};
+ 308              		.loc 1 188 3 is_stmt 1 view .LVU81
+ 309              		.loc 1 188 27 is_stmt 0 view .LVU82
+ 310 000e 0025     		movs	r5, #0
+ 311 0010 0195     		str	r5, [sp, #4]
+ 312 0012 0295     		str	r5, [sp, #8]
+ 189:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 190:Core/Src/Drivers/State_Estimator/state_estimator.c ****   htim4.Instance = TIM4;
+ 313              		.loc 1 190 3 is_stmt 1 view .LVU83
+ 314              		.loc 1 190 18 is_stmt 0 view .LVU84
+ 315 0014 0D4C     		ldr	r4, .L19
+ 316 0016 0E4B     		ldr	r3, .L19+4
+ 317 0018 2360     		str	r3, [r4]
+ 191:Core/Src/Drivers/State_Estimator/state_estimator.c ****   htim4.Init.Prescaler = 0;
+ 318              		.loc 1 191 3 is_stmt 1 view .LVU85
+ 319              		.loc 1 191 24 is_stmt 0 view .LVU86
+ 320 001a 6560     		str	r5, [r4, #4]
+ 192:Core/Src/Drivers/State_Estimator/state_estimator.c ****   htim4.Init.CounterMode = TIM_COUNTERMODE_UP;
+ 321              		.loc 1 192 3 is_stmt 1 view .LVU87
+ 322              		.loc 1 192 26 is_stmt 0 view .LVU88
+ 323 001c A560     		str	r5, [r4, #8]
+ 193:Core/Src/Drivers/State_Estimator/state_estimator.c ****   htim4.Init.Period = 65535;
+ 324              		.loc 1 193 3 is_stmt 1 view .LVU89
+ 325              		.loc 1 193 21 is_stmt 0 view .LVU90
+ 326 001e 4FF6FF73 		movw	r3, #65535
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s 			page 10
+
+
+ 327 0022 E360     		str	r3, [r4, #12]
+ 194:Core/Src/Drivers/State_Estimator/state_estimator.c ****   htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+ 328              		.loc 1 194 3 is_stmt 1 view .LVU91
+ 329              		.loc 1 194 28 is_stmt 0 view .LVU92
+ 330 0024 2561     		str	r5, [r4, #16]
+ 195:Core/Src/Drivers/State_Estimator/state_estimator.c ****   htim4.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+ 331              		.loc 1 195 3 is_stmt 1 view .LVU93
+ 332              		.loc 1 195 32 is_stmt 0 view .LVU94
+ 333 0026 A561     		str	r5, [r4, #24]
  196:Core/Src/Drivers/State_Estimator/state_estimator.c ****   sConfig.EncoderMode = TIM_ENCODERMODE_TI12;
- 214              		.loc 1 196 3 is_stmt 1 view .LVU65
- 215              		.loc 1 196 23 is_stmt 0 view .LVU66
- 216 0028 0323     		movs	r3, #3
- 217 002a 0393     		str	r3, [sp, #12]
+ 334              		.loc 1 196 3 is_stmt 1 view .LVU95
+ 335              		.loc 1 196 23 is_stmt 0 view .LVU96
+ 336 0028 0323     		movs	r3, #3
+ 337 002a 0393     		str	r3, [sp, #12]
  197:Core/Src/Drivers/State_Estimator/state_estimator.c ****   sConfig.IC1Polarity = TIM_ICPOLARITY_RISING;
- 218              		.loc 1 197 3 is_stmt 1 view .LVU67
+ 338              		.loc 1 197 3 is_stmt 1 view .LVU97
  198:Core/Src/Drivers/State_Estimator/state_estimator.c ****   sConfig.IC1Selection = TIM_ICSELECTION_DIRECTTI;
- 219              		.loc 1 198 3 view .LVU68
- 220              		.loc 1 198 24 is_stmt 0 view .LVU69
- 221 002c 0123     		movs	r3, #1
- 222 002e 0593     		str	r3, [sp, #20]
+ 339              		.loc 1 198 3 view .LVU98
+ 340              		.loc 1 198 24 is_stmt 0 view .LVU99
+ 341 002c 0123     		movs	r3, #1
+ 342 002e 0593     		str	r3, [sp, #20]
  199:Core/Src/Drivers/State_Estimator/state_estimator.c ****   sConfig.IC1Prescaler = TIM_ICPSC_DIV1;
- 223              		.loc 1 199 3 is_stmt 1 view .LVU70
+ 343              		.loc 1 199 3 is_stmt 1 view .LVU100
  200:Core/Src/Drivers/State_Estimator/state_estimator.c ****   sConfig.IC1Filter = 0;
- 224              		.loc 1 200 3 view .LVU71
+ 344              		.loc 1 200 3 view .LVU101
  201:Core/Src/Drivers/State_Estimator/state_estimator.c ****   sConfig.IC2Polarity = TIM_ICPOLARITY_RISING;
- 225              		.loc 1 201 3 view .LVU72
+ 345              		.loc 1 201 3 view .LVU102
  202:Core/Src/Drivers/State_Estimator/state_estimator.c ****   sConfig.IC2Selection = TIM_ICSELECTION_DIRECTTI;
- 226              		.loc 1 202 3 view .LVU73
- 227              		.loc 1 202 24 is_stmt 0 view .LVU74
- 228 0030 0993     		str	r3, [sp, #36]
+ 346              		.loc 1 202 3 view .LVU103
+ 347              		.loc 1 202 24 is_stmt 0 view .LVU104
+ 348 0030 0993     		str	r3, [sp, #36]
  203:Core/Src/Drivers/State_Estimator/state_estimator.c ****   sConfig.IC2Prescaler = TIM_ICPSC_DIV1;
- 229              		.loc 1 203 3 is_stmt 1 view .LVU75
+ 349              		.loc 1 203 3 is_stmt 1 view .LVU105
  204:Core/Src/Drivers/State_Estimator/state_estimator.c ****   sConfig.IC2Filter = 0;
- 230              		.loc 1 204 3 view .LVU76
- 205:Core/Src/Drivers/State_Estimator/state_estimator.c ****   if (HAL_TIM_Encoder_Init(&htim3, &sConfig) != HAL_OK)
- 231              		.loc 1 205 3 view .LVU77
- 232              		.loc 1 205 7 is_stmt 0 view .LVU78
- 233 0032 03A9     		add	r1, sp, #12
- 234 0034 2046     		mov	r0, r4
- 235 0036 FFF7FEFF 		bl	HAL_TIM_Encoder_Init
- 236              	.LVL16:
+ 350              		.loc 1 204 3 view .LVU106
+ 205:Core/Src/Drivers/State_Estimator/state_estimator.c ****   if (HAL_TIM_Encoder_Init(&htim4, &sConfig) != HAL_OK)
+ 351              		.loc 1 205 3 view .LVU107
+ 352              		.loc 1 205 7 is_stmt 0 view .LVU108
+ 353 0032 03A9     		add	r1, sp, #12
+ 354 0034 2046     		mov	r0, r4
+ 355 0036 FFF7FEFF 		bl	HAL_TIM_Encoder_Init
+ 356              	.LVL19:
  206:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
  207:Core/Src/Drivers/State_Estimator/state_estimator.c ****     // Error_Handler();
  208:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
- 237              		.loc 1 208 3 is_stmt 1 view .LVU79
+ 357              		.loc 1 208 3 is_stmt 1 view .LVU109
  209:Core/Src/Drivers/State_Estimator/state_estimator.c ****   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
- 238              		.loc 1 209 3 view .LVU80
- 239              		.loc 1 209 37 is_stmt 0 view .LVU81
- 240 003a 0195     		str	r5, [sp, #4]
+ 358              		.loc 1 209 3 view .LVU110
+ 359              		.loc 1 209 37 is_stmt 0 view .LVU111
+ 360 003a 0195     		str	r5, [sp, #4]
  210:Core/Src/Drivers/State_Estimator/state_estimator.c ****   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
- 241              		.loc 1 210 3 is_stmt 1 view .LVU82
- 242              		.loc 1 210 33 is_stmt 0 view .LVU83
- 243 003c 0295     		str	r5, [sp, #8]
- 211:Core/Src/Drivers/State_Estimator/state_estimator.c ****   if (HAL_TIMEx_MasterConfigSynchronization(&htim3, &sMasterConfig) != HAL_OK)
- 244              		.loc 1 211 3 is_stmt 1 view .LVU84
- 245              		.loc 1 211 7 is_stmt 0 view .LVU85
- 246 003e 01A9     		add	r1, sp, #4
- 247 0040 2046     		mov	r0, r4
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s 			page 9
+ 361              		.loc 1 210 3 is_stmt 1 view .LVU112
+ 362              		.loc 1 210 33 is_stmt 0 view .LVU113
+ 363 003c 0295     		str	r5, [sp, #8]
+ 211:Core/Src/Drivers/State_Estimator/state_estimator.c ****   if (HAL_TIMEx_MasterConfigSynchronization(&htim4, &sMasterConfig) != HAL_OK)
+ 364              		.loc 1 211 3 is_stmt 1 view .LVU114
+ 365              		.loc 1 211 7 is_stmt 0 view .LVU115
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s 			page 11
 
 
- 248 0042 FFF7FEFF 		bl	HAL_TIMEx_MasterConfigSynchronization
- 249              	.LVL17:
+ 366 003e 01A9     		add	r1, sp, #4
+ 367 0040 2046     		mov	r0, r4
+ 368 0042 FFF7FEFF 		bl	HAL_TIMEx_MasterConfigSynchronization
+ 369              	.LVL20:
  212:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
  213:Core/Src/Drivers/State_Estimator/state_estimator.c ****     // Error_Handler();
  214:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
- 250              		.loc 1 214 3 is_stmt 1 view .LVU86
+ 370              		.loc 1 214 3 is_stmt 1 view .LVU116
  215:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
- 251              		.loc 1 215 1 is_stmt 0 view .LVU87
- 252 0046 0DB0     		add	sp, sp, #52
- 253              	.LCFI3:
- 254              		.cfi_def_cfa_offset 12
- 255              		@ sp needed
- 256 0048 30BD     		pop	{r4, r5, pc}
- 257              	.L12:
- 258 004a 00BF     		.align	2
- 259              	.L11:
- 260 004c 00000000 		.word	htim3
- 261 0050 00040040 		.word	1073742848
- 262              		.cfi_endproc
- 263              	.LFE178:
- 265              		.section	.text.MX_TIM4_Init,"ax",%progbits
- 266              		.align	1
- 267              		.syntax unified
- 268              		.thumb
- 269              		.thumb_func
- 271              	MX_TIM4_Init:
- 272              	.LFB179:
+ 371              		.loc 1 215 1 is_stmt 0 view .LVU117
+ 372 0046 0DB0     		add	sp, sp, #52
+ 373              	.LCFI7:
+ 374              		.cfi_def_cfa_offset 12
+ 375              		@ sp needed
+ 376 0048 30BD     		pop	{r4, r5, pc}
+ 377              	.L20:
+ 378 004a 00BF     		.align	2
+ 379              	.L19:
+ 380 004c 00000000 		.word	htim4
+ 381 0050 00080040 		.word	1073743872
+ 382              		.cfi_endproc
+ 383              	.LFE178:
+ 385              		.section	.text.MX_TIM7_Init,"ax",%progbits
+ 386              		.align	1
+ 387              		.syntax unified
+ 388              		.thumb
+ 389              		.thumb_func
+ 391              	MX_TIM7_Init:
+ 392              	.LFB179:
  216:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
  217:Core/Src/Drivers/State_Estimator/state_estimator.c **** /**
- 218:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @brief TIM4 Initialization Function
+ 218:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @brief TIM7 Initialization Function
  219:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @param None
  220:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @retval None
  221:Core/Src/Drivers/State_Estimator/state_estimator.c ****   */
- 222:Core/Src/Drivers/State_Estimator/state_estimator.c **** static void MX_TIM4_Init(void)
+ 222:Core/Src/Drivers/State_Estimator/state_estimator.c **** static void MX_TIM7_Init(void)
  223:Core/Src/Drivers/State_Estimator/state_estimator.c **** {
- 273              		.loc 1 223 1 is_stmt 1 view -0
- 274              		.cfi_startproc
- 275              		@ args = 0, pretend = 0, frame = 48
- 276              		@ frame_needed = 0, uses_anonymous_args = 0
- 277 0000 30B5     		push	{r4, r5, lr}
- 278              	.LCFI4:
- 279              		.cfi_def_cfa_offset 12
- 280              		.cfi_offset 4, -12
- 281              		.cfi_offset 5, -8
- 282              		.cfi_offset 14, -4
- 283 0002 8DB0     		sub	sp, sp, #52
- 284              	.LCFI5:
- 285              		.cfi_def_cfa_offset 64
- 224:Core/Src/Drivers/State_Estimator/state_estimator.c ****   TIM_Encoder_InitTypeDef sConfig = {0};
- 286              		.loc 1 224 3 view .LVU89
- 287              		.loc 1 224 27 is_stmt 0 view .LVU90
- 288 0004 2422     		movs	r2, #36
- 289 0006 0021     		movs	r1, #0
- 290 0008 03A8     		add	r0, sp, #12
- 291 000a FFF7FEFF 		bl	memset
- 292              	.LVL18:
- 225:Core/Src/Drivers/State_Estimator/state_estimator.c ****   TIM_MasterConfigTypeDef sMasterConfig = {0};
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s 			page 10
+ 393              		.loc 1 223 1 is_stmt 1 view -0
+ 394              		.cfi_startproc
+ 395              		@ args = 0, pretend = 0, frame = 8
+ 396              		@ frame_needed = 0, uses_anonymous_args = 0
+ 397 0000 30B5     		push	{r4, r5, lr}
+ 398              	.LCFI8:
+ 399              		.cfi_def_cfa_offset 12
+ 400              		.cfi_offset 4, -12
+ 401              		.cfi_offset 5, -8
+ 402              		.cfi_offset 14, -4
+ 403 0002 83B0     		sub	sp, sp, #12
+ 404              	.LCFI9:
+ 405              		.cfi_def_cfa_offset 24
+ 224:Core/Src/Drivers/State_Estimator/state_estimator.c ****   TIM_MasterConfigTypeDef sMasterConfig = {0};
+ 406              		.loc 1 224 3 view .LVU119
+ 407              		.loc 1 224 27 is_stmt 0 view .LVU120
+ 408 0004 0025     		movs	r5, #0
+ 409 0006 0095     		str	r5, [sp]
+ 410 0008 0195     		str	r5, [sp, #4]
+ 225:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s 			page 12
 
 
- 293              		.loc 1 225 3 is_stmt 1 view .LVU91
- 294              		.loc 1 225 27 is_stmt 0 view .LVU92
- 295 000e 0025     		movs	r5, #0
- 296 0010 0195     		str	r5, [sp, #4]
- 297 0012 0295     		str	r5, [sp, #8]
- 226:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 227:Core/Src/Drivers/State_Estimator/state_estimator.c ****   htim4.Instance = TIM4;
- 298              		.loc 1 227 3 is_stmt 1 view .LVU93
- 299              		.loc 1 227 18 is_stmt 0 view .LVU94
- 300 0014 0D4C     		ldr	r4, .L15
- 301 0016 0E4B     		ldr	r3, .L15+4
- 302 0018 2360     		str	r3, [r4]
- 228:Core/Src/Drivers/State_Estimator/state_estimator.c ****   htim4.Init.Prescaler = 0;
- 303              		.loc 1 228 3 is_stmt 1 view .LVU95
- 304              		.loc 1 228 24 is_stmt 0 view .LVU96
- 305 001a 6560     		str	r5, [r4, #4]
- 229:Core/Src/Drivers/State_Estimator/state_estimator.c ****   htim4.Init.CounterMode = TIM_COUNTERMODE_UP;
- 306              		.loc 1 229 3 is_stmt 1 view .LVU97
- 307              		.loc 1 229 26 is_stmt 0 view .LVU98
- 308 001c A560     		str	r5, [r4, #8]
- 230:Core/Src/Drivers/State_Estimator/state_estimator.c ****   htim4.Init.Period = 65535;
- 309              		.loc 1 230 3 is_stmt 1 view .LVU99
- 310              		.loc 1 230 21 is_stmt 0 view .LVU100
- 311 001e 4FF6FF73 		movw	r3, #65535
- 312 0022 E360     		str	r3, [r4, #12]
- 231:Core/Src/Drivers/State_Estimator/state_estimator.c ****   htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
- 313              		.loc 1 231 3 is_stmt 1 view .LVU101
- 314              		.loc 1 231 28 is_stmt 0 view .LVU102
- 315 0024 2561     		str	r5, [r4, #16]
- 232:Core/Src/Drivers/State_Estimator/state_estimator.c ****   htim4.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
- 316              		.loc 1 232 3 is_stmt 1 view .LVU103
- 317              		.loc 1 232 32 is_stmt 0 view .LVU104
- 318 0026 A561     		str	r5, [r4, #24]
- 233:Core/Src/Drivers/State_Estimator/state_estimator.c ****   sConfig.EncoderMode = TIM_ENCODERMODE_TI12;
- 319              		.loc 1 233 3 is_stmt 1 view .LVU105
- 320              		.loc 1 233 23 is_stmt 0 view .LVU106
- 321 0028 0323     		movs	r3, #3
- 322 002a 0393     		str	r3, [sp, #12]
- 234:Core/Src/Drivers/State_Estimator/state_estimator.c ****   sConfig.IC1Polarity = TIM_ICPOLARITY_RISING;
- 323              		.loc 1 234 3 is_stmt 1 view .LVU107
- 235:Core/Src/Drivers/State_Estimator/state_estimator.c ****   sConfig.IC1Selection = TIM_ICSELECTION_DIRECTTI;
- 324              		.loc 1 235 3 view .LVU108
- 325              		.loc 1 235 24 is_stmt 0 view .LVU109
- 326 002c 0123     		movs	r3, #1
- 327 002e 0593     		str	r3, [sp, #20]
- 236:Core/Src/Drivers/State_Estimator/state_estimator.c ****   sConfig.IC1Prescaler = TIM_ICPSC_DIV1;
- 328              		.loc 1 236 3 is_stmt 1 view .LVU110
- 237:Core/Src/Drivers/State_Estimator/state_estimator.c ****   sConfig.IC1Filter = 0;
- 329              		.loc 1 237 3 view .LVU111
- 238:Core/Src/Drivers/State_Estimator/state_estimator.c ****   sConfig.IC2Polarity = TIM_ICPOLARITY_RISING;
- 330              		.loc 1 238 3 view .LVU112
- 239:Core/Src/Drivers/State_Estimator/state_estimator.c ****   sConfig.IC2Selection = TIM_ICSELECTION_DIRECTTI;
- 331              		.loc 1 239 3 view .LVU113
- 332              		.loc 1 239 24 is_stmt 0 view .LVU114
- 333 0030 0993     		str	r3, [sp, #36]
- 240:Core/Src/Drivers/State_Estimator/state_estimator.c ****   sConfig.IC2Prescaler = TIM_ICPSC_DIV1;
- 334              		.loc 1 240 3 is_stmt 1 view .LVU115
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s 			page 11
+ 226:Core/Src/Drivers/State_Estimator/state_estimator.c ****   htim7.Instance = TIM7;
+ 411              		.loc 1 226 3 is_stmt 1 view .LVU121
+ 412              		.loc 1 226 18 is_stmt 0 view .LVU122
+ 413 000a 0B4C     		ldr	r4, .L23
+ 414 000c 0B4B     		ldr	r3, .L23+4
+ 415 000e 2360     		str	r3, [r4]
+ 227:Core/Src/Drivers/State_Estimator/state_estimator.c ****   htim7.Init.Prescaler = 84;
+ 416              		.loc 1 227 3 is_stmt 1 view .LVU123
+ 417              		.loc 1 227 24 is_stmt 0 view .LVU124
+ 418 0010 5423     		movs	r3, #84
+ 419 0012 6360     		str	r3, [r4, #4]
+ 228:Core/Src/Drivers/State_Estimator/state_estimator.c ****   htim7.Init.CounterMode = TIM_COUNTERMODE_UP;
+ 420              		.loc 1 228 3 is_stmt 1 view .LVU125
+ 421              		.loc 1 228 26 is_stmt 0 view .LVU126
+ 422 0014 A560     		str	r5, [r4, #8]
+ 229:Core/Src/Drivers/State_Estimator/state_estimator.c ****   htim7.Init.Period = 500;
+ 423              		.loc 1 229 3 is_stmt 1 view .LVU127
+ 424              		.loc 1 229 21 is_stmt 0 view .LVU128
+ 425 0016 4FF4FA73 		mov	r3, #500
+ 426 001a E360     		str	r3, [r4, #12]
+ 230:Core/Src/Drivers/State_Estimator/state_estimator.c ****   htim7.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
+ 427              		.loc 1 230 3 is_stmt 1 view .LVU129
+ 428              		.loc 1 230 32 is_stmt 0 view .LVU130
+ 429 001c 8023     		movs	r3, #128
+ 430 001e A361     		str	r3, [r4, #24]
+ 231:Core/Src/Drivers/State_Estimator/state_estimator.c ****   if (HAL_TIM_Base_Init(&htim7) != HAL_OK)
+ 431              		.loc 1 231 3 is_stmt 1 view .LVU131
+ 432              		.loc 1 231 7 is_stmt 0 view .LVU132
+ 433 0020 2046     		mov	r0, r4
+ 434 0022 FFF7FEFF 		bl	HAL_TIM_Base_Init
+ 435              	.LVL21:
+ 232:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
+ 233:Core/Src/Drivers/State_Estimator/state_estimator.c ****     // Error_Handler();
+ 234:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
+ 436              		.loc 1 234 3 is_stmt 1 view .LVU133
+ 235:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 236:Core/Src/Drivers/State_Estimator/state_estimator.c ****   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+ 437              		.loc 1 236 3 view .LVU134
+ 438              		.loc 1 236 37 is_stmt 0 view .LVU135
+ 439 0026 0095     		str	r5, [sp]
+ 237:Core/Src/Drivers/State_Estimator/state_estimator.c ****   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+ 440              		.loc 1 237 3 is_stmt 1 view .LVU136
+ 441              		.loc 1 237 33 is_stmt 0 view .LVU137
+ 442 0028 0195     		str	r5, [sp, #4]
+ 238:Core/Src/Drivers/State_Estimator/state_estimator.c ****   if (HAL_TIMEx_MasterConfigSynchronization(&htim7, &sMasterConfig) != HAL_OK)
+ 443              		.loc 1 238 3 is_stmt 1 view .LVU138
+ 444              		.loc 1 238 7 is_stmt 0 view .LVU139
+ 445 002a 6946     		mov	r1, sp
+ 446 002c 2046     		mov	r0, r4
+ 447 002e FFF7FEFF 		bl	HAL_TIMEx_MasterConfigSynchronization
+ 448              	.LVL22:
+ 239:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
+ 240:Core/Src/Drivers/State_Estimator/state_estimator.c ****     // Error_Handler();
+ 241:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
+ 449              		.loc 1 241 3 is_stmt 1 view .LVU140
+ 242:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
+ 450              		.loc 1 242 1 is_stmt 0 view .LVU141
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s 			page 13
 
 
- 241:Core/Src/Drivers/State_Estimator/state_estimator.c ****   sConfig.IC2Filter = 0;
- 335              		.loc 1 241 3 view .LVU116
- 242:Core/Src/Drivers/State_Estimator/state_estimator.c ****   if (HAL_TIM_Encoder_Init(&htim4, &sConfig) != HAL_OK)
- 336              		.loc 1 242 3 view .LVU117
- 337              		.loc 1 242 7 is_stmt 0 view .LVU118
- 338 0032 03A9     		add	r1, sp, #12
- 339 0034 2046     		mov	r0, r4
- 340 0036 FFF7FEFF 		bl	HAL_TIM_Encoder_Init
- 341              	.LVL19:
- 243:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
- 244:Core/Src/Drivers/State_Estimator/state_estimator.c ****     // Error_Handler();
- 245:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
- 342              		.loc 1 245 3 is_stmt 1 view .LVU119
- 246:Core/Src/Drivers/State_Estimator/state_estimator.c ****   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
- 343              		.loc 1 246 3 view .LVU120
- 344              		.loc 1 246 37 is_stmt 0 view .LVU121
- 345 003a 0195     		str	r5, [sp, #4]
- 247:Core/Src/Drivers/State_Estimator/state_estimator.c ****   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
- 346              		.loc 1 247 3 is_stmt 1 view .LVU122
- 347              		.loc 1 247 33 is_stmt 0 view .LVU123
- 348 003c 0295     		str	r5, [sp, #8]
- 248:Core/Src/Drivers/State_Estimator/state_estimator.c ****   if (HAL_TIMEx_MasterConfigSynchronization(&htim4, &sMasterConfig) != HAL_OK)
- 349              		.loc 1 248 3 is_stmt 1 view .LVU124
- 350              		.loc 1 248 7 is_stmt 0 view .LVU125
- 351 003e 01A9     		add	r1, sp, #4
- 352 0040 2046     		mov	r0, r4
- 353 0042 FFF7FEFF 		bl	HAL_TIMEx_MasterConfigSynchronization
- 354              	.LVL20:
- 249:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
- 250:Core/Src/Drivers/State_Estimator/state_estimator.c ****     // Error_Handler();
- 251:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
- 355              		.loc 1 251 3 is_stmt 1 view .LVU126
- 252:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
- 356              		.loc 1 252 1 is_stmt 0 view .LVU127
- 357 0046 0DB0     		add	sp, sp, #52
- 358              	.LCFI6:
- 359              		.cfi_def_cfa_offset 12
- 360              		@ sp needed
- 361 0048 30BD     		pop	{r4, r5, pc}
- 362              	.L16:
- 363 004a 00BF     		.align	2
- 364              	.L15:
- 365 004c 00000000 		.word	htim4
- 366 0050 00080040 		.word	1073743872
- 367              		.cfi_endproc
- 368              	.LFE179:
- 370              		.section	.text.MX_TIM7_Init,"ax",%progbits
- 371              		.align	1
- 372              		.syntax unified
- 373              		.thumb
- 374              		.thumb_func
- 376              	MX_TIM7_Init:
- 377              	.LFB180:
- 253:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 254:Core/Src/Drivers/State_Estimator/state_estimator.c **** /**
- 255:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @brief TIM7 Initialization Function
- 256:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @param None
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s 			page 12
+ 451 0032 03B0     		add	sp, sp, #12
+ 452              	.LCFI10:
+ 453              		.cfi_def_cfa_offset 12
+ 454              		@ sp needed
+ 455 0034 30BD     		pop	{r4, r5, pc}
+ 456              	.L24:
+ 457 0036 00BF     		.align	2
+ 458              	.L23:
+ 459 0038 00000000 		.word	htim7
+ 460 003c 00140040 		.word	1073746944
+ 461              		.cfi_endproc
+ 462              	.LFE179:
+ 464              		.section	.text.HAL_TIM_PeriodElapsedCallback,"ax",%progbits
+ 465              		.align	1
+ 466              		.global	HAL_TIM_PeriodElapsedCallback
+ 467              		.syntax unified
+ 468              		.thumb
+ 469              		.thumb_func
+ 471              	HAL_TIM_PeriodElapsedCallback:
+ 472              	.LVL23:
+ 473              	.LFB171:
+  72:Core/Src/Drivers/State_Estimator/state_estimator.c ****   BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+ 474              		.loc 1 72 1 is_stmt 1 view -0
+ 475              		.cfi_startproc
+ 476              		@ args = 0, pretend = 0, frame = 8
+ 477              		@ frame_needed = 0, uses_anonymous_args = 0
+  72:Core/Src/Drivers/State_Estimator/state_estimator.c ****   BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+ 478              		.loc 1 72 1 is_stmt 0 view .LVU143
+ 479 0000 00B5     		push	{lr}
+ 480              	.LCFI11:
+ 481              		.cfi_def_cfa_offset 4
+ 482              		.cfi_offset 14, -4
+ 483 0002 83B0     		sub	sp, sp, #12
+ 484              	.LCFI12:
+ 485              		.cfi_def_cfa_offset 16
+  73:Core/Src/Drivers/State_Estimator/state_estimator.c ****   if(htim->Instance == TIM7)
+ 486              		.loc 1 73 3 is_stmt 1 view .LVU144
+  73:Core/Src/Drivers/State_Estimator/state_estimator.c ****   if(htim->Instance == TIM7)
+ 487              		.loc 1 73 14 is_stmt 0 view .LVU145
+ 488 0004 0023     		movs	r3, #0
+ 489 0006 0193     		str	r3, [sp, #4]
+  74:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
+ 490              		.loc 1 74 3 is_stmt 1 view .LVU146
+  74:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
+ 491              		.loc 1 74 10 is_stmt 0 view .LVU147
+ 492 0008 0268     		ldr	r2, [r0]
+  74:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
+ 493              		.loc 1 74 5 view .LVU148
+ 494 000a 0D4B     		ldr	r3, .L30
+ 495 000c 9A42     		cmp	r2, r3
+ 496 000e 0ED0     		beq	.L29
+ 497              	.LVL24:
+ 498              	.L26:
+  80:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
+ 499              		.loc 1 80 3 is_stmt 1 view .LVU149
+  80:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
+ 500              		.loc 1 80 3 view .LVU150
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s 			page 14
 
 
- 257:Core/Src/Drivers/State_Estimator/state_estimator.c ****   * @retval None
- 258:Core/Src/Drivers/State_Estimator/state_estimator.c ****   */
- 259:Core/Src/Drivers/State_Estimator/state_estimator.c **** static void MX_TIM7_Init(void)
- 260:Core/Src/Drivers/State_Estimator/state_estimator.c **** {
- 378              		.loc 1 260 1 is_stmt 1 view -0
- 379              		.cfi_startproc
- 380              		@ args = 0, pretend = 0, frame = 8
- 381              		@ frame_needed = 0, uses_anonymous_args = 0
- 382 0000 30B5     		push	{r4, r5, lr}
- 383              	.LCFI7:
- 384              		.cfi_def_cfa_offset 12
- 385              		.cfi_offset 4, -12
- 386              		.cfi_offset 5, -8
- 387              		.cfi_offset 14, -4
- 388 0002 83B0     		sub	sp, sp, #12
- 389              	.LCFI8:
- 390              		.cfi_def_cfa_offset 24
- 261:Core/Src/Drivers/State_Estimator/state_estimator.c ****   TIM_MasterConfigTypeDef sMasterConfig = {0};
- 391              		.loc 1 261 3 view .LVU129
- 392              		.loc 1 261 27 is_stmt 0 view .LVU130
- 393 0004 0025     		movs	r5, #0
- 394 0006 0095     		str	r5, [sp]
- 395 0008 0195     		str	r5, [sp, #4]
- 262:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 263:Core/Src/Drivers/State_Estimator/state_estimator.c ****   htim7.Instance = TIM7;
- 396              		.loc 1 263 3 is_stmt 1 view .LVU131
- 397              		.loc 1 263 18 is_stmt 0 view .LVU132
- 398 000a 0B4C     		ldr	r4, .L19
- 399 000c 0B4B     		ldr	r3, .L19+4
- 400 000e 2360     		str	r3, [r4]
- 264:Core/Src/Drivers/State_Estimator/state_estimator.c ****   htim7.Init.Prescaler = 84;
- 401              		.loc 1 264 3 is_stmt 1 view .LVU133
- 402              		.loc 1 264 24 is_stmt 0 view .LVU134
- 403 0010 5423     		movs	r3, #84
- 404 0012 6360     		str	r3, [r4, #4]
- 265:Core/Src/Drivers/State_Estimator/state_estimator.c ****   htim7.Init.CounterMode = TIM_COUNTERMODE_UP;
- 405              		.loc 1 265 3 is_stmt 1 view .LVU135
- 406              		.loc 1 265 26 is_stmt 0 view .LVU136
- 407 0014 A560     		str	r5, [r4, #8]
- 266:Core/Src/Drivers/State_Estimator/state_estimator.c ****   htim7.Init.Period = 500;
- 408              		.loc 1 266 3 is_stmt 1 view .LVU137
- 409              		.loc 1 266 21 is_stmt 0 view .LVU138
- 410 0016 4FF4FA73 		mov	r3, #500
- 411 001a E360     		str	r3, [r4, #12]
- 267:Core/Src/Drivers/State_Estimator/state_estimator.c ****   htim7.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
- 412              		.loc 1 267 3 is_stmt 1 view .LVU139
- 413              		.loc 1 267 32 is_stmt 0 view .LVU140
- 414 001c 8023     		movs	r3, #128
- 415 001e A361     		str	r3, [r4, #24]
- 268:Core/Src/Drivers/State_Estimator/state_estimator.c ****   if (HAL_TIM_Base_Init(&htim7) != HAL_OK)
- 416              		.loc 1 268 3 is_stmt 1 view .LVU141
- 417              		.loc 1 268 7 is_stmt 0 view .LVU142
- 418 0020 2046     		mov	r0, r4
- 419 0022 FFF7FEFF 		bl	HAL_TIM_Base_Init
- 420              	.LVL21:
- 269:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
- 270:Core/Src/Drivers/State_Estimator/state_estimator.c ****     // Error_Handler();
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s 			page 13
+ 501 0010 019B     		ldr	r3, [sp, #4]
+ 502 0012 4BB1     		cbz	r3, .L25
+  80:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
+ 503              		.loc 1 80 3 discriminator 1 view .LVU151
+ 504 0014 4FF0E023 		mov	r3, #-536813568
+ 505 0018 4FF08052 		mov	r2, #268435456
+ 506 001c C3F8042D 		str	r2, [r3, #3332]
+  80:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
+ 507              		.loc 1 80 3 discriminator 1 view .LVU152
+ 508              		.syntax unified
+ 509              	@ 80 "Core/Src/Drivers/State_Estimator/state_estimator.c" 1
+ 510 0020 BFF34F8F 		dsb
+ 511              	@ 0 "" 2
+  80:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
+ 512              		.loc 1 80 3 discriminator 1 view .LVU153
+ 513              	@ 80 "Core/Src/Drivers/State_Estimator/state_estimator.c" 1
+ 514 0024 BFF36F8F 		isb
+ 515              	@ 0 "" 2
+  80:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
+ 516              		.loc 1 80 3 discriminator 3 view .LVU154
+  80:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
+ 517              		.loc 1 80 3 discriminator 3 view .LVU155
+ 518              		.thumb
+ 519              		.syntax unified
+ 520              	.L25:
+  81:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 521              		.loc 1 81 1 is_stmt 0 view .LVU156
+ 522 0028 03B0     		add	sp, sp, #12
+ 523              	.LCFI13:
+ 524              		.cfi_remember_state
+ 525              		.cfi_def_cfa_offset 4
+ 526              		@ sp needed
+ 527 002a 5DF804FB 		ldr	pc, [sp], #4
+ 528              	.LVL25:
+ 529              	.L29:
+ 530              	.LCFI14:
+ 531              		.cfi_restore_state
+ 532              	.LBB2:
+  76:Core/Src/Drivers/State_Estimator/state_estimator.c ****     ao_estimator->postFromISR(ao_estimator, &time_evt, &xHigherPriorityTaskWoken);
+ 533              		.loc 1 76 5 is_stmt 1 view .LVU157
+  77:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
+ 534              		.loc 1 77 5 view .LVU158
+  77:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
+ 535              		.loc 1 77 17 is_stmt 0 view .LVU159
+ 536 002e 054B     		ldr	r3, .L30+4
+ 537 0030 1868     		ldr	r0, [r3]
+ 538              	.LVL26:
+  77:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
+ 539              		.loc 1 77 17 view .LVU160
+ 540 0032 D0F8C430 		ldr	r3, [r0, #196]
+  77:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
+ 541              		.loc 1 77 5 view .LVU161
+ 542 0036 01AA     		add	r2, sp, #4
+ 543 0038 0349     		ldr	r1, .L30+8
+ 544 003a 9847     		blx	r3
+ 545              	.LVL27:
+ 546 003c E8E7     		b	.L26
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s 			page 15
 
 
- 271:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
- 421              		.loc 1 271 3 is_stmt 1 view .LVU143
- 272:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 273:Core/Src/Drivers/State_Estimator/state_estimator.c ****   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
- 422              		.loc 1 273 3 view .LVU144
- 423              		.loc 1 273 37 is_stmt 0 view .LVU145
- 424 0026 0095     		str	r5, [sp]
- 274:Core/Src/Drivers/State_Estimator/state_estimator.c ****   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
- 425              		.loc 1 274 3 is_stmt 1 view .LVU146
- 426              		.loc 1 274 33 is_stmt 0 view .LVU147
- 427 0028 0195     		str	r5, [sp, #4]
- 275:Core/Src/Drivers/State_Estimator/state_estimator.c ****   if (HAL_TIMEx_MasterConfigSynchronization(&htim7, &sMasterConfig) != HAL_OK)
- 428              		.loc 1 275 3 is_stmt 1 view .LVU148
- 429              		.loc 1 275 7 is_stmt 0 view .LVU149
- 430 002a 6946     		mov	r1, sp
- 431 002c 2046     		mov	r0, r4
- 432 002e FFF7FEFF 		bl	HAL_TIMEx_MasterConfigSynchronization
- 433              	.LVL22:
- 276:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
- 277:Core/Src/Drivers/State_Estimator/state_estimator.c ****     // Error_Handler();
- 278:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
- 434              		.loc 1 278 3 is_stmt 1 view .LVU150
- 279:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
- 435              		.loc 1 279 1 is_stmt 0 view .LVU151
- 436 0032 03B0     		add	sp, sp, #12
- 437              	.LCFI9:
- 438              		.cfi_def_cfa_offset 12
- 439              		@ sp needed
- 440 0034 30BD     		pop	{r4, r5, pc}
- 441              	.L20:
- 442 0036 00BF     		.align	2
- 443              	.L19:
- 444 0038 00000000 		.word	htim7
- 445 003c 00140040 		.word	1073746944
- 446              		.cfi_endproc
- 447              	.LFE180:
- 449              		.section	.text.TimeEvent_ctor,"ax",%progbits
- 450              		.align	1
- 451              		.global	TimeEvent_ctor
- 452              		.syntax unified
- 453              		.thumb
- 454              		.thumb_func
- 456              	TimeEvent_ctor:
- 457              	.LVL23:
- 458              	.LFB168:
-  18:Core/Src/Drivers/State_Estimator/state_estimator.c ****   self->_super = event;
- 459              		.loc 1 18 1 is_stmt 1 view -0
- 460              		.cfi_startproc
- 461              		@ args = 0, pretend = 0, frame = 0
- 462              		@ frame_needed = 0, uses_anonymous_args = 0
- 463              		@ link register save eliminated.
-  19:Core/Src/Drivers/State_Estimator/state_estimator.c ****   self->_pendlm_counter = 0;
- 464              		.loc 1 19 3 view .LVU153
-  19:Core/Src/Drivers/State_Estimator/state_estimator.c ****   self->_pendlm_counter = 0;
- 465              		.loc 1 19 16 is_stmt 0 view .LVU154
- 466 0000 0180     		strh	r1, [r0]	@ movhi
-  20:Core/Src/Drivers/State_Estimator/state_estimator.c ****   self->_motor_counter = 0;
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s 			page 14
+ 547              	.L31:
+ 548 003e 00BF     		.align	2
+ 549              	.L30:
+ 550 0040 00140040 		.word	1073746944
+ 551 0044 00000000 		.word	ao_estimator
+ 552 0048 00000000 		.word	time_evt.0
+ 553              	.LBE2:
+ 554              		.cfi_endproc
+ 555              	.LFE171:
+ 557              		.section	.text.HAL_TIM_IC_CaptureCallback,"ax",%progbits
+ 558              		.align	1
+ 559              		.global	HAL_TIM_IC_CaptureCallback
+ 560              		.syntax unified
+ 561              		.thumb
+ 562              		.thumb_func
+ 564              	HAL_TIM_IC_CaptureCallback:
+ 565              	.LVL28:
+ 566              	.LFB172:
+  89:Core/Src/Drivers/State_Estimator/state_estimator.c ****   if(htim->Instance == TIM4)
+ 567              		.loc 1 89 1 is_stmt 1 view -0
+ 568              		.cfi_startproc
+ 569              		@ args = 0, pretend = 0, frame = 0
+ 570              		@ frame_needed = 0, uses_anonymous_args = 0
+ 571              		@ link register save eliminated.
+  90:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
+ 572              		.loc 1 90 3 view .LVU163
+  90:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
+ 573              		.loc 1 90 10 is_stmt 0 view .LVU164
+ 574 0000 0368     		ldr	r3, [r0]
+  90:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
+ 575              		.loc 1 90 5 view .LVU165
+ 576 0002 074A     		ldr	r2, .L37
+ 577 0004 9342     		cmp	r3, r2
+ 578 0006 03D0     		beq	.L35
+  95:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
+ 579              		.loc 1 95 8 is_stmt 1 view .LVU166
+  95:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
+ 580              		.loc 1 95 10 is_stmt 0 view .LVU167
+ 581 0008 064A     		ldr	r2, .L37+4
+ 582 000a 9342     		cmp	r3, r2
+ 583 000c 04D0     		beq	.L36
+ 584              	.L32:
+ 100:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 585              		.loc 1 100 1 view .LVU168
+ 586 000e 7047     		bx	lr
+ 587              	.L35:
+  93:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
+ 588              		.loc 1 93 5 is_stmt 1 view .LVU169
+  93:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
+ 589              		.loc 1 93 41 is_stmt 0 view .LVU170
+ 590 0010 5A6A     		ldr	r2, [r3, #36]
+  93:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
+ 591              		.loc 1 93 19 view .LVU171
+ 592 0012 054B     		ldr	r3, .L37+8
+ 593 0014 1A80     		strh	r2, [r3]	@ movhi
+ 594 0016 7047     		bx	lr
+ 595              	.L36:
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s 			page 16
 
 
- 467              		.loc 1 20 3 is_stmt 1 view .LVU155
-  20:Core/Src/Drivers/State_Estimator/state_estimator.c ****   self->_motor_counter = 0;
- 468              		.loc 1 20 25 is_stmt 0 view .LVU156
- 469 0002 0023     		movs	r3, #0
- 470 0004 8380     		strh	r3, [r0, #4]	@ movhi
-  21:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
- 471              		.loc 1 21 3 is_stmt 1 view .LVU157
-  21:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
- 472              		.loc 1 21 24 is_stmt 0 view .LVU158
- 473 0006 4380     		strh	r3, [r0, #2]	@ movhi
-  22:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 474              		.loc 1 22 1 view .LVU159
- 475 0008 7047     		bx	lr
- 476              		.cfi_endproc
- 477              	.LFE168:
- 479              		.section	.text.StateEstimator_ctor,"ax",%progbits
- 480              		.align	1
- 481              		.global	StateEstimator_ctor
- 482              		.syntax unified
- 483              		.thumb
- 484              		.thumb_func
- 486              	StateEstimator_ctor:
- 487              	.LVL24:
- 488              	.LFB169:
-  25:Core/Src/Drivers/State_Estimator/state_estimator.c ****   Event const timeout_evt = {._signal = TIMEOUT_2KHz_SIG};
- 489              		.loc 1 25 1 is_stmt 1 view -0
- 490              		.cfi_startproc
- 491              		@ args = 0, pretend = 0, frame = 0
- 492              		@ frame_needed = 0, uses_anonymous_args = 0
-  25:Core/Src/Drivers/State_Estimator/state_estimator.c ****   Event const timeout_evt = {._signal = TIMEOUT_2KHz_SIG};
- 493              		.loc 1 25 1 is_stmt 0 view .LVU161
- 494 0000 10B5     		push	{r4, lr}
- 495              	.LCFI10:
- 496              		.cfi_def_cfa_offset 8
- 497              		.cfi_offset 4, -8
- 498              		.cfi_offset 14, -4
- 499 0002 0446     		mov	r4, r0
-  26:Core/Src/Drivers/State_Estimator/state_estimator.c ****   self->initial = StateEstimator_initial;
- 500              		.loc 1 26 3 is_stmt 1 view .LVU162
-  27:Core/Src/Drivers/State_Estimator/state_estimator.c ****   self->wait = StateEstimator_wait;
- 501              		.loc 1 27 3 view .LVU163
-  27:Core/Src/Drivers/State_Estimator/state_estimator.c ****   self->wait = StateEstimator_wait;
- 502              		.loc 1 27 17 is_stmt 0 view .LVU164
- 503 0004 0849     		ldr	r1, .L24
- 504 0006 4164     		str	r1, [r0, #68]
-  28:Core/Src/Drivers/State_Estimator/state_estimator.c ****   Ao_ctor(&self->_super, (StateHandler)self->initial);\
- 505              		.loc 1 28 3 is_stmt 1 view .LVU165
-  28:Core/Src/Drivers/State_Estimator/state_estimator.c ****   Ao_ctor(&self->_super, (StateHandler)self->initial);\
- 506              		.loc 1 28 14 is_stmt 0 view .LVU166
- 507 0008 084B     		ldr	r3, .L24+4
- 508 000a 8364     		str	r3, [r0, #72]
-  29:Core/Src/Drivers/State_Estimator/state_estimator.c ****   TimeEvent_ctor(&time_event, timeout_evt);
- 509              		.loc 1 29 3 is_stmt 1 view .LVU167
- 510 000c FFF7FEFF 		bl	Ao_ctor
- 511              	.LVL25:
-  30:Core/Src/Drivers/State_Estimator/state_estimator.c ****   state_estimator = self;
- 512              		.loc 1 30 3 view .LVU168
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s 			page 15
+  98:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
+ 596              		.loc 1 98 5 is_stmt 1 view .LVU172
+  98:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
+ 597              		.loc 1 98 42 is_stmt 0 view .LVU173
+ 598 0018 5A6A     		ldr	r2, [r3, #36]
+  98:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
+ 599              		.loc 1 98 20 view .LVU174
+ 600 001a 044B     		ldr	r3, .L37+12
+ 601 001c 1A80     		strh	r2, [r3]	@ movhi
+ 100:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 602              		.loc 1 100 1 view .LVU175
+ 603 001e F6E7     		b	.L32
+ 604              	.L38:
+ 605              		.align	2
+ 606              	.L37:
+ 607 0020 00080040 		.word	1073743872
+ 608 0024 00040040 		.word	1073742848
+ 609 0028 00000000 		.word	motor_counter
+ 610 002c 00000000 		.word	pendlm_counter
+ 611              		.cfi_endproc
+ 612              	.LFE172:
+ 614              		.section	.text.TIM3_IRQHandler,"ax",%progbits
+ 615              		.align	1
+ 616              		.global	TIM3_IRQHandler
+ 617              		.syntax unified
+ 618              		.thumb
+ 619              		.thumb_func
+ 621              	TIM3_IRQHandler:
+ 622              	.LFB173:
+ 106:Core/Src/Drivers/State_Estimator/state_estimator.c ****   HAL_TIM_IRQHandler(&htim3);
+ 623              		.loc 1 106 1 is_stmt 1 view -0
+ 624              		.cfi_startproc
+ 625              		@ args = 0, pretend = 0, frame = 0
+ 626              		@ frame_needed = 0, uses_anonymous_args = 0
+ 627 0000 08B5     		push	{r3, lr}
+ 628              	.LCFI15:
+ 629              		.cfi_def_cfa_offset 8
+ 630              		.cfi_offset 3, -8
+ 631              		.cfi_offset 14, -4
+ 107:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
+ 632              		.loc 1 107 3 view .LVU177
+ 633 0002 0248     		ldr	r0, .L41
+ 634 0004 FFF7FEFF 		bl	HAL_TIM_IRQHandler
+ 635              	.LVL29:
+ 108:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 636              		.loc 1 108 1 is_stmt 0 view .LVU178
+ 637 0008 08BD     		pop	{r3, pc}
+ 638              	.L42:
+ 639 000a 00BF     		.align	2
+ 640              	.L41:
+ 641 000c 00000000 		.word	htim3
+ 642              		.cfi_endproc
+ 643              	.LFE173:
+ 645              		.section	.text.TIM4_IRQHandler,"ax",%progbits
+ 646              		.align	1
+ 647              		.global	TIM4_IRQHandler
+ 648              		.syntax unified
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s 			page 17
 
 
- 513 0010 4FF00301 		mov	r1, #3	@ movhi
- 514 0014 0648     		ldr	r0, .L24+8
- 515 0016 FFF7FEFF 		bl	TimeEvent_ctor
- 516              	.LVL26:
-  31:Core/Src/Drivers/State_Estimator/state_estimator.c ****   self->_motor_topic._resol = (float)(2.0F * PI) / (4.0F * 500.0F);
- 517              		.loc 1 31 3 view .LVU169
-  31:Core/Src/Drivers/State_Estimator/state_estimator.c ****   self->_motor_topic._resol = (float)(2.0F * PI) / (4.0F * 500.0F);
- 518              		.loc 1 31 19 is_stmt 0 view .LVU170
- 519 001a 064B     		ldr	r3, .L24+12
- 520 001c 1C60     		str	r4, [r3]
-  32:Core/Src/Drivers/State_Estimator/state_estimator.c ****   self->_pendlm_topic._resol = (float)(2.0F * PI) / (4.0F * 1000.0F);
- 521              		.loc 1 32 3 is_stmt 1 view .LVU171
-  32:Core/Src/Drivers/State_Estimator/state_estimator.c ****   self->_pendlm_topic._resol = (float)(2.0F * PI) / (4.0F * 1000.0F);
- 522              		.loc 1 32 29 is_stmt 0 view .LVU172
- 523 001e 064B     		ldr	r3, .L24+16
- 524 0020 6363     		str	r3, [r4, #52]	@ float
-  33:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
- 525              		.loc 1 33 3 is_stmt 1 view .LVU173
-  33:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
- 526              		.loc 1 33 30 is_stmt 0 view .LVU174
- 527 0022 064B     		ldr	r3, .L24+20
- 528 0024 E363     		str	r3, [r4, #60]	@ float
-  34:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 529              		.loc 1 34 1 view .LVU175
- 530 0026 10BD     		pop	{r4, pc}
- 531              	.LVL27:
- 532              	.L25:
-  34:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 533              		.loc 1 34 1 view .LVU176
- 534              		.align	2
- 535              	.L24:
- 536 0028 00000000 		.word	StateEstimator_initial
- 537 002c 00000000 		.word	StateEstimator_wait
- 538 0030 00000000 		.word	time_event
- 539 0034 00000000 		.word	state_estimator
- 540 0038 2EE34D3B 		.word	994960174
- 541 003c 2EE3CD3A 		.word	986571566
- 542              		.cfi_endproc
- 543              	.LFE169:
- 545              		.section	.text.HAL_TIM_PeriodElapsedCallback,"ax",%progbits
- 546              		.align	1
- 547              		.global	HAL_TIM_PeriodElapsedCallback
- 548              		.syntax unified
- 549              		.thumb
- 550              		.thumb_func
- 552              	HAL_TIM_PeriodElapsedCallback:
- 553              	.LVL28:
- 554              	.LFB172:
- 109:Core/Src/Drivers/State_Estimator/state_estimator.c ****   if(htim->Instance == TIM7)
- 555              		.loc 1 109 1 is_stmt 1 view -0
- 556              		.cfi_startproc
- 557              		@ args = 0, pretend = 0, frame = 0
- 558              		@ frame_needed = 0, uses_anonymous_args = 0
- 559              		@ link register save eliminated.
- 110:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
- 560              		.loc 1 110 3 view .LVU178
- 117:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s 			page 16
+ 649              		.thumb
+ 650              		.thumb_func
+ 652              	TIM4_IRQHandler:
+ 653              	.LFB174:
+ 114:Core/Src/Drivers/State_Estimator/state_estimator.c ****   HAL_TIM_IRQHandler(&htim4);
+ 654              		.loc 1 114 1 is_stmt 1 view -0
+ 655              		.cfi_startproc
+ 656              		@ args = 0, pretend = 0, frame = 0
+ 657              		@ frame_needed = 0, uses_anonymous_args = 0
+ 658 0000 08B5     		push	{r3, lr}
+ 659              	.LCFI16:
+ 660              		.cfi_def_cfa_offset 8
+ 661              		.cfi_offset 3, -8
+ 662              		.cfi_offset 14, -4
+ 115:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
+ 663              		.loc 1 115 3 view .LVU180
+ 664 0002 0248     		ldr	r0, .L45
+ 665 0004 FFF7FEFF 		bl	HAL_TIM_IRQHandler
+ 666              	.LVL30:
+ 116:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 667              		.loc 1 116 1 is_stmt 0 view .LVU181
+ 668 0008 08BD     		pop	{r3, pc}
+ 669              	.L46:
+ 670 000a 00BF     		.align	2
+ 671              	.L45:
+ 672 000c 00000000 		.word	htim4
+ 673              		.cfi_endproc
+ 674              	.LFE174:
+ 676              		.section	.text.TIM7_IRQHandler,"ax",%progbits
+ 677              		.align	1
+ 678              		.global	TIM7_IRQHandler
+ 679              		.syntax unified
+ 680              		.thumb
+ 681              		.thumb_func
+ 683              	TIM7_IRQHandler:
+ 684              	.LFB175:
+ 122:Core/Src/Drivers/State_Estimator/state_estimator.c ****   HAL_TIM_IRQHandler(&htim7);
+ 685              		.loc 1 122 1 is_stmt 1 view -0
+ 686              		.cfi_startproc
+ 687              		@ args = 0, pretend = 0, frame = 0
+ 688              		@ frame_needed = 0, uses_anonymous_args = 0
+ 689 0000 08B5     		push	{r3, lr}
+ 690              	.LCFI17:
+ 691              		.cfi_def_cfa_offset 8
+ 692              		.cfi_offset 3, -8
+ 693              		.cfi_offset 14, -4
+ 123:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
+ 694              		.loc 1 123 3 view .LVU183
+ 695 0002 0248     		ldr	r0, .L49
+ 696 0004 FFF7FEFF 		bl	HAL_TIM_IRQHandler
+ 697              	.LVL31:
+ 124:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 698              		.loc 1 124 1 is_stmt 0 view .LVU184
+ 699 0008 08BD     		pop	{r3, pc}
+ 700              	.L50:
+ 701 000a 00BF     		.align	2
+ 702              	.L49:
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s 			page 18
 
 
- 561              		.loc 1 117 3 view .LVU179
- 118:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 562              		.loc 1 118 1 is_stmt 0 view .LVU180
- 563 0000 7047     		bx	lr
- 564              		.cfi_endproc
- 565              	.LFE172:
- 567              		.section	.text.HAL_TIM_IC_CaptureCallback,"ax",%progbits
- 568              		.align	1
- 569              		.global	HAL_TIM_IC_CaptureCallback
- 570              		.syntax unified
- 571              		.thumb
- 572              		.thumb_func
- 574              	HAL_TIM_IC_CaptureCallback:
- 575              	.LVL29:
- 576              	.LFB173:
- 126:Core/Src/Drivers/State_Estimator/state_estimator.c ****   if(htim->Instance == TIM4)
- 577              		.loc 1 126 1 is_stmt 1 view -0
- 578              		.cfi_startproc
- 579              		@ args = 0, pretend = 0, frame = 0
- 580              		@ frame_needed = 0, uses_anonymous_args = 0
- 581              		@ link register save eliminated.
- 127:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
- 582              		.loc 1 127 3 view .LVU182
- 127:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
- 583              		.loc 1 127 10 is_stmt 0 view .LVU183
- 584 0000 0368     		ldr	r3, [r0]
- 127:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
- 585              		.loc 1 127 5 view .LVU184
- 586 0002 074A     		ldr	r2, .L32
- 587 0004 9342     		cmp	r3, r2
- 588 0006 03D0     		beq	.L30
- 132:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
- 589              		.loc 1 132 8 is_stmt 1 view .LVU185
- 132:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
- 590              		.loc 1 132 10 is_stmt 0 view .LVU186
- 591 0008 064A     		ldr	r2, .L32+4
- 592 000a 9342     		cmp	r3, r2
- 593 000c 04D0     		beq	.L31
- 594              	.L27:
- 137:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 595              		.loc 1 137 1 view .LVU187
- 596 000e 7047     		bx	lr
- 597              	.L30:
- 130:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
- 598              		.loc 1 130 5 is_stmt 1 view .LVU188
- 130:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
- 599              		.loc 1 130 41 is_stmt 0 view .LVU189
- 600 0010 5A6A     		ldr	r2, [r3, #36]
- 130:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
- 601              		.loc 1 130 19 view .LVU190
- 602 0012 054B     		ldr	r3, .L32+8
- 603 0014 1A80     		strh	r2, [r3]	@ movhi
- 604 0016 7047     		bx	lr
- 605              	.L31:
- 135:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
- 606              		.loc 1 135 5 is_stmt 1 view .LVU191
- 135:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s 			page 17
+ 703 000c 00000000 		.word	htim7
+ 704              		.cfi_endproc
+ 705              	.LFE175:
+ 707              		.section	.text.Driver_StateEstimator_Init,"ax",%progbits
+ 708              		.align	1
+ 709              		.global	Driver_StateEstimator_Init
+ 710              		.syntax unified
+ 711              		.thumb
+ 712              		.thumb_func
+ 714              	Driver_StateEstimator_Init:
+ 715              	.LFB176:
+ 130:Core/Src/Drivers/State_Estimator/state_estimator.c ****   MX_TIM3_Init(); // Motor encoder
+ 716              		.loc 1 130 1 is_stmt 1 view -0
+ 717              		.cfi_startproc
+ 718              		@ args = 0, pretend = 0, frame = 0
+ 719              		@ frame_needed = 0, uses_anonymous_args = 0
+ 720 0000 08B5     		push	{r3, lr}
+ 721              	.LCFI18:
+ 722              		.cfi_def_cfa_offset 8
+ 723              		.cfi_offset 3, -8
+ 724              		.cfi_offset 14, -4
+ 131:Core/Src/Drivers/State_Estimator/state_estimator.c ****   MX_TIM4_Init(); // Pendullum encoder
+ 725              		.loc 1 131 3 view .LVU186
+ 726 0002 FFF7FEFF 		bl	MX_TIM3_Init
+ 727              	.LVL32:
+ 132:Core/Src/Drivers/State_Estimator/state_estimator.c ****   MX_TIM7_Init(); // Basic timer for generating periodic task running at 2kHz
+ 728              		.loc 1 132 3 view .LVU187
+ 729 0006 FFF7FEFF 		bl	MX_TIM4_Init
+ 730              	.LVL33:
+ 133:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 731              		.loc 1 133 3 view .LVU188
+ 732 000a FFF7FEFF 		bl	MX_TIM7_Init
+ 733              	.LVL34:
+ 138:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 734              		.loc 1 138 1 is_stmt 0 view .LVU189
+ 735 000e 08BD     		pop	{r3, pc}
+ 736              		.cfi_endproc
+ 737              	.LFE176:
+ 739              		.section	.text.HAL_TIM_Encoder_MspInit,"ax",%progbits
+ 740              		.align	1
+ 741              		.global	HAL_TIM_Encoder_MspInit
+ 742              		.syntax unified
+ 743              		.thumb
+ 744              		.thumb_func
+ 746              	HAL_TIM_Encoder_MspInit:
+ 747              	.LVL35:
+ 748              	.LFB180:
+ 243:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 244:Core/Src/Drivers/State_Estimator/state_estimator.c **** /**
+ 245:Core/Src/Drivers/State_Estimator/state_estimator.c **** * @brief TIM_Encoder MSP Initialization
+ 246:Core/Src/Drivers/State_Estimator/state_estimator.c **** * This function configures the hardware resources used in this example
+ 247:Core/Src/Drivers/State_Estimator/state_estimator.c **** * @param htim_encoder: TIM_Encoder handle pointer
+ 248:Core/Src/Drivers/State_Estimator/state_estimator.c **** * @retval None
+ 249:Core/Src/Drivers/State_Estimator/state_estimator.c **** */
+ 250:Core/Src/Drivers/State_Estimator/state_estimator.c **** void HAL_TIM_Encoder_MspInit(TIM_HandleTypeDef* htim_encoder)
+ 251:Core/Src/Drivers/State_Estimator/state_estimator.c **** {
+ 749              		.loc 1 251 1 is_stmt 1 view -0
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s 			page 19
 
 
- 607              		.loc 1 135 42 is_stmt 0 view .LVU192
- 608 0018 5A6A     		ldr	r2, [r3, #36]
- 135:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
- 609              		.loc 1 135 20 view .LVU193
- 610 001a 044B     		ldr	r3, .L32+12
- 611 001c 1A80     		strh	r2, [r3]	@ movhi
- 137:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 612              		.loc 1 137 1 view .LVU194
- 613 001e F6E7     		b	.L27
- 614              	.L33:
- 615              		.align	2
- 616              	.L32:
- 617 0020 00080040 		.word	1073743872
- 618 0024 00040040 		.word	1073742848
- 619 0028 00000000 		.word	motor_counter
- 620 002c 00000000 		.word	pendlm_counter
- 621              		.cfi_endproc
- 622              	.LFE173:
- 624              		.section	.text.TIM3_IRQHandler,"ax",%progbits
- 625              		.align	1
- 626              		.global	TIM3_IRQHandler
- 627              		.syntax unified
- 628              		.thumb
- 629              		.thumb_func
- 631              	TIM3_IRQHandler:
- 632              	.LFB174:
- 143:Core/Src/Drivers/State_Estimator/state_estimator.c ****   HAL_TIM_IRQHandler(&htim3);
- 633              		.loc 1 143 1 is_stmt 1 view -0
- 634              		.cfi_startproc
- 635              		@ args = 0, pretend = 0, frame = 0
- 636              		@ frame_needed = 0, uses_anonymous_args = 0
- 637 0000 08B5     		push	{r3, lr}
- 638              	.LCFI11:
- 639              		.cfi_def_cfa_offset 8
- 640              		.cfi_offset 3, -8
- 641              		.cfi_offset 14, -4
- 144:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
- 642              		.loc 1 144 3 view .LVU196
- 643 0002 0248     		ldr	r0, .L36
- 644 0004 FFF7FEFF 		bl	HAL_TIM_IRQHandler
- 645              	.LVL30:
- 145:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 646              		.loc 1 145 1 is_stmt 0 view .LVU197
- 647 0008 08BD     		pop	{r3, pc}
- 648              	.L37:
- 649 000a 00BF     		.align	2
- 650              	.L36:
- 651 000c 00000000 		.word	htim3
- 652              		.cfi_endproc
- 653              	.LFE174:
- 655              		.section	.text.TIM4_IRQHandler,"ax",%progbits
- 656              		.align	1
- 657              		.global	TIM4_IRQHandler
- 658              		.syntax unified
- 659              		.thumb
- 660              		.thumb_func
- 662              	TIM4_IRQHandler:
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s 			page 18
+ 750              		.cfi_startproc
+ 751              		@ args = 0, pretend = 0, frame = 40
+ 752              		@ frame_needed = 0, uses_anonymous_args = 0
+ 753              		.loc 1 251 1 is_stmt 0 view .LVU191
+ 754 0000 10B5     		push	{r4, lr}
+ 755              	.LCFI19:
+ 756              		.cfi_def_cfa_offset 8
+ 757              		.cfi_offset 4, -8
+ 758              		.cfi_offset 14, -4
+ 759 0002 8AB0     		sub	sp, sp, #40
+ 760              	.LCFI20:
+ 761              		.cfi_def_cfa_offset 48
+ 252:Core/Src/Drivers/State_Estimator/state_estimator.c ****   GPIO_InitTypeDef GPIO_InitStruct = {0};
+ 762              		.loc 1 252 3 is_stmt 1 view .LVU192
+ 763              		.loc 1 252 20 is_stmt 0 view .LVU193
+ 764 0004 0023     		movs	r3, #0
+ 765 0006 0593     		str	r3, [sp, #20]
+ 766 0008 0693     		str	r3, [sp, #24]
+ 767 000a 0793     		str	r3, [sp, #28]
+ 768 000c 0893     		str	r3, [sp, #32]
+ 769 000e 0993     		str	r3, [sp, #36]
+ 253:Core/Src/Drivers/State_Estimator/state_estimator.c ****   if(htim_encoder->Instance==TIM3)
+ 770              		.loc 1 253 3 is_stmt 1 view .LVU194
+ 771              		.loc 1 253 18 is_stmt 0 view .LVU195
+ 772 0010 0368     		ldr	r3, [r0]
+ 773              		.loc 1 253 5 view .LVU196
+ 774 0012 2E4A     		ldr	r2, .L59
+ 775 0014 9342     		cmp	r3, r2
+ 776 0016 04D0     		beq	.L57
+ 254:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
+ 255:Core/Src/Drivers/State_Estimator/state_estimator.c ****     /* Peripheral clock enable */
+ 256:Core/Src/Drivers/State_Estimator/state_estimator.c ****     __HAL_RCC_TIM3_CLK_ENABLE();
+ 257:Core/Src/Drivers/State_Estimator/state_estimator.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
+ 258:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 259:Core/Src/Drivers/State_Estimator/state_estimator.c ****     /**TIM3 GPIO Configuration
+ 260:Core/Src/Drivers/State_Estimator/state_estimator.c ****     PA6     ------> TIM3_CH1
+ 261:Core/Src/Drivers/State_Estimator/state_estimator.c ****     PA7     ------> TIM3_CH2
+ 262:Core/Src/Drivers/State_Estimator/state_estimator.c ****     */
+ 263:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Pin = GPIO_PIN_6|GPIO_PIN_7;
+ 264:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 265:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Pull = GPIO_PULLUP;
+ 266:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 267:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Alternate = GPIO_AF2_TIM3;
+ 268:Core/Src/Drivers/State_Estimator/state_estimator.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+ 269:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 270:Core/Src/Drivers/State_Estimator/state_estimator.c ****     /* TIM3 interrupt Init */
+ 271:Core/Src/Drivers/State_Estimator/state_estimator.c ****     HAL_NVIC_SetPriority(TIM3_IRQn, 7, 0);
+ 272:Core/Src/Drivers/State_Estimator/state_estimator.c ****     HAL_NVIC_EnableIRQ(TIM3_IRQn);
+ 273:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
+ 274:Core/Src/Drivers/State_Estimator/state_estimator.c ****   else if(htim_encoder->Instance==TIM4)
+ 777              		.loc 1 274 8 is_stmt 1 view .LVU197
+ 778              		.loc 1 274 10 is_stmt 0 view .LVU198
+ 779 0018 2D4A     		ldr	r2, .L59+4
+ 780 001a 9342     		cmp	r3, r2
+ 781 001c 2BD0     		beq	.L58
+ 782              	.LVL36:
+ 783              	.L53:
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s 			page 20
 
 
- 663              	.LFB175:
- 151:Core/Src/Drivers/State_Estimator/state_estimator.c ****   HAL_TIM_IRQHandler(&htim4);
- 664              		.loc 1 151 1 is_stmt 1 view -0
- 665              		.cfi_startproc
- 666              		@ args = 0, pretend = 0, frame = 0
- 667              		@ frame_needed = 0, uses_anonymous_args = 0
- 668 0000 08B5     		push	{r3, lr}
- 669              	.LCFI12:
- 670              		.cfi_def_cfa_offset 8
- 671              		.cfi_offset 3, -8
- 672              		.cfi_offset 14, -4
- 152:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
- 673              		.loc 1 152 3 view .LVU199
- 674 0002 0248     		ldr	r0, .L40
- 675 0004 FFF7FEFF 		bl	HAL_TIM_IRQHandler
- 676              	.LVL31:
- 153:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 677              		.loc 1 153 1 is_stmt 0 view .LVU200
- 678 0008 08BD     		pop	{r3, pc}
- 679              	.L41:
- 680 000a 00BF     		.align	2
- 681              	.L40:
- 682 000c 00000000 		.word	htim4
- 683              		.cfi_endproc
- 684              	.LFE175:
- 686              		.section	.text.TIM7_IRQHandler,"ax",%progbits
- 687              		.align	1
- 688              		.global	TIM7_IRQHandler
- 689              		.syntax unified
- 690              		.thumb
- 691              		.thumb_func
- 693              	TIM7_IRQHandler:
- 694              	.LFB176:
- 159:Core/Src/Drivers/State_Estimator/state_estimator.c ****   HAL_TIM_IRQHandler(&htim7);
- 695              		.loc 1 159 1 is_stmt 1 view -0
- 696              		.cfi_startproc
- 697              		@ args = 0, pretend = 0, frame = 0
- 698              		@ frame_needed = 0, uses_anonymous_args = 0
- 699 0000 08B5     		push	{r3, lr}
- 700              	.LCFI13:
- 701              		.cfi_def_cfa_offset 8
- 702              		.cfi_offset 3, -8
- 703              		.cfi_offset 14, -4
- 160:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
- 704              		.loc 1 160 3 view .LVU202
- 705 0002 0248     		ldr	r0, .L44
- 706 0004 FFF7FEFF 		bl	HAL_TIM_IRQHandler
- 707              	.LVL32:
- 161:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 708              		.loc 1 161 1 is_stmt 0 view .LVU203
- 709 0008 08BD     		pop	{r3, pc}
- 710              	.L45:
- 711 000a 00BF     		.align	2
- 712              	.L44:
- 713 000c 00000000 		.word	htim7
- 714              		.cfi_endproc
- 715              	.LFE176:
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s 			page 19
-
-
- 717              		.section	.text.Driver_StateEstimator_Init,"ax",%progbits
- 718              		.align	1
- 719              		.global	Driver_StateEstimator_Init
- 720              		.syntax unified
- 721              		.thumb
- 722              		.thumb_func
- 724              	Driver_StateEstimator_Init:
- 725              	.LFB177:
- 167:Core/Src/Drivers/State_Estimator/state_estimator.c ****   MX_TIM3_Init(); // Motor encoder
- 726              		.loc 1 167 1 is_stmt 1 view -0
- 727              		.cfi_startproc
- 728              		@ args = 0, pretend = 0, frame = 0
- 729              		@ frame_needed = 0, uses_anonymous_args = 0
- 730 0000 08B5     		push	{r3, lr}
- 731              	.LCFI14:
- 732              		.cfi_def_cfa_offset 8
- 733              		.cfi_offset 3, -8
- 734              		.cfi_offset 14, -4
- 168:Core/Src/Drivers/State_Estimator/state_estimator.c ****   MX_TIM4_Init(); // Pendullum encoder
- 735              		.loc 1 168 3 view .LVU205
- 736 0002 FFF7FEFF 		bl	MX_TIM3_Init
- 737              	.LVL33:
- 169:Core/Src/Drivers/State_Estimator/state_estimator.c ****   MX_TIM7_Init(); // Basic timer for generating periodic task running at 2kHz
- 738              		.loc 1 169 3 view .LVU206
- 739 0006 FFF7FEFF 		bl	MX_TIM4_Init
- 740              	.LVL34:
- 170:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 741              		.loc 1 170 3 view .LVU207
- 742 000a FFF7FEFF 		bl	MX_TIM7_Init
- 743              	.LVL35:
- 172:Core/Src/Drivers/State_Estimator/state_estimator.c ****   HAL_TIM_Encoder_Start_IT(&htim3, TIM_CHANNEL_ALL);
- 744              		.loc 1 172 3 view .LVU208
- 745 000e 0648     		ldr	r0, .L48
- 746 0010 FFF7FEFF 		bl	HAL_TIM_Base_Start_IT
- 747              	.LVL36:
- 173:Core/Src/Drivers/State_Estimator/state_estimator.c ****   HAL_TIM_Encoder_Start_IT(&htim4, TIM_CHANNEL_ALL);
- 748              		.loc 1 173 3 view .LVU209
- 749 0014 3C21     		movs	r1, #60
- 750 0016 0548     		ldr	r0, .L48+4
- 751 0018 FFF7FEFF 		bl	HAL_TIM_Encoder_Start_IT
- 752              	.LVL37:
- 174:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
- 753              		.loc 1 174 3 view .LVU210
- 754 001c 3C21     		movs	r1, #60
- 755 001e 0448     		ldr	r0, .L48+8
- 756 0020 FFF7FEFF 		bl	HAL_TIM_Encoder_Start_IT
- 757              	.LVL38:
- 175:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 758              		.loc 1 175 1 is_stmt 0 view .LVU211
- 759 0024 08BD     		pop	{r3, pc}
- 760              	.L49:
- 761 0026 00BF     		.align	2
- 762              	.L48:
- 763 0028 00000000 		.word	htim7
- 764 002c 00000000 		.word	htim3
- 765 0030 00000000 		.word	htim4
- 766              		.cfi_endproc
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s 			page 20
-
-
- 767              	.LFE177:
- 769              		.section	.text.HAL_TIM_Encoder_MspInit,"ax",%progbits
- 770              		.align	1
- 771              		.global	HAL_TIM_Encoder_MspInit
- 772              		.syntax unified
- 773              		.thumb
- 774              		.thumb_func
- 776              	HAL_TIM_Encoder_MspInit:
- 777              	.LVL39:
- 778              	.LFB181:
- 280:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 281:Core/Src/Drivers/State_Estimator/state_estimator.c **** /**
- 282:Core/Src/Drivers/State_Estimator/state_estimator.c **** * @brief TIM_Encoder MSP Initialization
- 283:Core/Src/Drivers/State_Estimator/state_estimator.c **** * This function configures the hardware resources used in this example
- 284:Core/Src/Drivers/State_Estimator/state_estimator.c **** * @param htim_encoder: TIM_Encoder handle pointer
- 285:Core/Src/Drivers/State_Estimator/state_estimator.c **** * @retval None
- 286:Core/Src/Drivers/State_Estimator/state_estimator.c **** */
- 287:Core/Src/Drivers/State_Estimator/state_estimator.c **** void HAL_TIM_Encoder_MspInit(TIM_HandleTypeDef* htim_encoder)
- 288:Core/Src/Drivers/State_Estimator/state_estimator.c **** {
- 779              		.loc 1 288 1 is_stmt 1 view -0
- 780              		.cfi_startproc
- 781              		@ args = 0, pretend = 0, frame = 40
- 782              		@ frame_needed = 0, uses_anonymous_args = 0
- 783              		.loc 1 288 1 is_stmt 0 view .LVU213
- 784 0000 10B5     		push	{r4, lr}
- 785              	.LCFI15:
- 786              		.cfi_def_cfa_offset 8
- 787              		.cfi_offset 4, -8
- 788              		.cfi_offset 14, -4
- 789 0002 8AB0     		sub	sp, sp, #40
- 790              	.LCFI16:
- 791              		.cfi_def_cfa_offset 48
- 289:Core/Src/Drivers/State_Estimator/state_estimator.c ****   GPIO_InitTypeDef GPIO_InitStruct = {0};
- 792              		.loc 1 289 3 is_stmt 1 view .LVU214
- 793              		.loc 1 289 20 is_stmt 0 view .LVU215
- 794 0004 0023     		movs	r3, #0
- 795 0006 0593     		str	r3, [sp, #20]
- 796 0008 0693     		str	r3, [sp, #24]
- 797 000a 0793     		str	r3, [sp, #28]
- 798 000c 0893     		str	r3, [sp, #32]
- 799 000e 0993     		str	r3, [sp, #36]
- 290:Core/Src/Drivers/State_Estimator/state_estimator.c ****   if(htim_encoder->Instance==TIM3)
- 800              		.loc 1 290 3 is_stmt 1 view .LVU216
- 801              		.loc 1 290 18 is_stmt 0 view .LVU217
- 802 0010 0368     		ldr	r3, [r0]
- 803              		.loc 1 290 5 view .LVU218
- 804 0012 2E4A     		ldr	r2, .L56
- 805 0014 9342     		cmp	r3, r2
- 806 0016 04D0     		beq	.L54
- 291:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
- 292:Core/Src/Drivers/State_Estimator/state_estimator.c ****     /* Peripheral clock enable */
- 293:Core/Src/Drivers/State_Estimator/state_estimator.c ****     __HAL_RCC_TIM3_CLK_ENABLE();
- 294:Core/Src/Drivers/State_Estimator/state_estimator.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
+ 275:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
+ 276:Core/Src/Drivers/State_Estimator/state_estimator.c ****     /* Peripheral clock enable */
+ 277:Core/Src/Drivers/State_Estimator/state_estimator.c ****     __HAL_RCC_TIM4_CLK_ENABLE();
+ 278:Core/Src/Drivers/State_Estimator/state_estimator.c ****     __HAL_RCC_GPIOD_CLK_ENABLE();
+ 279:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 280:Core/Src/Drivers/State_Estimator/state_estimator.c ****     /**TIM4 GPIO Configuration
+ 281:Core/Src/Drivers/State_Estimator/state_estimator.c ****     PD12     ------> TIM4_CH1
+ 282:Core/Src/Drivers/State_Estimator/state_estimator.c ****     PD13     ------> TIM4_CH2
+ 283:Core/Src/Drivers/State_Estimator/state_estimator.c ****     */
+ 284:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Pin = GPIO_PIN_12|GPIO_PIN_13;
+ 285:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 286:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Pull = GPIO_PULLUP;
+ 287:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 288:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Alternate = GPIO_AF2_TIM4;
+ 289:Core/Src/Drivers/State_Estimator/state_estimator.c ****     HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+ 290:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 291:Core/Src/Drivers/State_Estimator/state_estimator.c ****     /* TIM4 interrupt Init */
+ 292:Core/Src/Drivers/State_Estimator/state_estimator.c ****     HAL_NVIC_SetPriority(TIM4_IRQn, 7, 0);
+ 293:Core/Src/Drivers/State_Estimator/state_estimator.c ****     HAL_NVIC_EnableIRQ(TIM4_IRQn);
+ 294:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
  295:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 296:Core/Src/Drivers/State_Estimator/state_estimator.c ****     /**TIM3 GPIO Configuration
- 297:Core/Src/Drivers/State_Estimator/state_estimator.c ****     PA6     ------> TIM3_CH1
- 298:Core/Src/Drivers/State_Estimator/state_estimator.c ****     PA7     ------> TIM3_CH2
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s 			page 21
+ 296:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
+ 784              		.loc 1 296 1 view .LVU199
+ 785 001e 0AB0     		add	sp, sp, #40
+ 786              	.LCFI21:
+ 787              		.cfi_remember_state
+ 788              		.cfi_def_cfa_offset 8
+ 789              		@ sp needed
+ 790 0020 10BD     		pop	{r4, pc}
+ 791              	.LVL37:
+ 792              	.L57:
+ 793              	.LCFI22:
+ 794              		.cfi_restore_state
+ 256:Core/Src/Drivers/State_Estimator/state_estimator.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
+ 795              		.loc 1 256 5 is_stmt 1 view .LVU200
+ 796              	.LBB3:
+ 256:Core/Src/Drivers/State_Estimator/state_estimator.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
+ 797              		.loc 1 256 5 view .LVU201
+ 798 0022 0024     		movs	r4, #0
+ 799 0024 0194     		str	r4, [sp, #4]
+ 256:Core/Src/Drivers/State_Estimator/state_estimator.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
+ 800              		.loc 1 256 5 view .LVU202
+ 801 0026 2B4B     		ldr	r3, .L59+8
+ 802 0028 1A6C     		ldr	r2, [r3, #64]
+ 803 002a 42F00202 		orr	r2, r2, #2
+ 804 002e 1A64     		str	r2, [r3, #64]
+ 256:Core/Src/Drivers/State_Estimator/state_estimator.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
+ 805              		.loc 1 256 5 view .LVU203
+ 806 0030 1A6C     		ldr	r2, [r3, #64]
+ 807 0032 02F00202 		and	r2, r2, #2
+ 808 0036 0192     		str	r2, [sp, #4]
+ 256:Core/Src/Drivers/State_Estimator/state_estimator.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
+ 809              		.loc 1 256 5 view .LVU204
+ 810 0038 019A     		ldr	r2, [sp, #4]
+ 811              	.LBE3:
+ 256:Core/Src/Drivers/State_Estimator/state_estimator.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
+ 812              		.loc 1 256 5 view .LVU205
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s 			page 21
 
 
- 299:Core/Src/Drivers/State_Estimator/state_estimator.c ****     */
- 300:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Pin = GPIO_PIN_6|GPIO_PIN_7;
- 301:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
- 302:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Pull = GPIO_PULLUP;
- 303:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
- 304:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Alternate = GPIO_AF2_TIM3;
- 305:Core/Src/Drivers/State_Estimator/state_estimator.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
- 306:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 307:Core/Src/Drivers/State_Estimator/state_estimator.c ****     /* TIM3 interrupt Init */
- 308:Core/Src/Drivers/State_Estimator/state_estimator.c ****     HAL_NVIC_SetPriority(TIM3_IRQn, 7, 0);
- 309:Core/Src/Drivers/State_Estimator/state_estimator.c ****     HAL_NVIC_EnableIRQ(TIM3_IRQn);
- 310:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
- 311:Core/Src/Drivers/State_Estimator/state_estimator.c ****   else if(htim_encoder->Instance==TIM4)
- 807              		.loc 1 311 8 is_stmt 1 view .LVU219
- 808              		.loc 1 311 10 is_stmt 0 view .LVU220
- 809 0018 2D4A     		ldr	r2, .L56+4
- 810 001a 9342     		cmp	r3, r2
- 811 001c 2BD0     		beq	.L55
- 812              	.LVL40:
- 813              	.L50:
- 312:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
- 313:Core/Src/Drivers/State_Estimator/state_estimator.c ****     /* Peripheral clock enable */
- 314:Core/Src/Drivers/State_Estimator/state_estimator.c ****     __HAL_RCC_TIM4_CLK_ENABLE();
- 315:Core/Src/Drivers/State_Estimator/state_estimator.c ****     __HAL_RCC_GPIOD_CLK_ENABLE();
- 316:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 317:Core/Src/Drivers/State_Estimator/state_estimator.c ****     /**TIM4 GPIO Configuration
- 318:Core/Src/Drivers/State_Estimator/state_estimator.c ****     PD12     ------> TIM4_CH1
- 319:Core/Src/Drivers/State_Estimator/state_estimator.c ****     PD13     ------> TIM4_CH2
- 320:Core/Src/Drivers/State_Estimator/state_estimator.c ****     */
- 321:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Pin = GPIO_PIN_12|GPIO_PIN_13;
- 322:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
- 323:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Pull = GPIO_PULLUP;
- 324:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
- 325:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Alternate = GPIO_AF2_TIM4;
- 326:Core/Src/Drivers/State_Estimator/state_estimator.c ****     HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
- 327:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 328:Core/Src/Drivers/State_Estimator/state_estimator.c ****     /* TIM4 interrupt Init */
- 329:Core/Src/Drivers/State_Estimator/state_estimator.c ****     HAL_NVIC_SetPriority(TIM4_IRQn, 7, 0);
- 330:Core/Src/Drivers/State_Estimator/state_estimator.c ****     HAL_NVIC_EnableIRQ(TIM4_IRQn);
- 331:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
- 332:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 333:Core/Src/Drivers/State_Estimator/state_estimator.c **** }
- 814              		.loc 1 333 1 view .LVU221
- 815 001e 0AB0     		add	sp, sp, #40
- 816              	.LCFI17:
- 817              		.cfi_remember_state
- 818              		.cfi_def_cfa_offset 8
- 819              		@ sp needed
- 820 0020 10BD     		pop	{r4, pc}
- 821              	.LVL41:
- 822              	.L54:
- 823              	.LCFI18:
- 824              		.cfi_restore_state
- 293:Core/Src/Drivers/State_Estimator/state_estimator.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
- 825              		.loc 1 293 5 is_stmt 1 view .LVU222
- 826              	.LBB3:
- 293:Core/Src/Drivers/State_Estimator/state_estimator.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s 			page 22
+ 257:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 813              		.loc 1 257 5 view .LVU206
+ 814              	.LBB4:
+ 257:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 815              		.loc 1 257 5 view .LVU207
+ 816 003a 0294     		str	r4, [sp, #8]
+ 257:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 817              		.loc 1 257 5 view .LVU208
+ 818 003c 1A6B     		ldr	r2, [r3, #48]
+ 819 003e 42F00102 		orr	r2, r2, #1
+ 820 0042 1A63     		str	r2, [r3, #48]
+ 257:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 821              		.loc 1 257 5 view .LVU209
+ 822 0044 1B6B     		ldr	r3, [r3, #48]
+ 823 0046 03F00103 		and	r3, r3, #1
+ 824 004a 0293     		str	r3, [sp, #8]
+ 257:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 825              		.loc 1 257 5 view .LVU210
+ 826 004c 029B     		ldr	r3, [sp, #8]
+ 827              	.LBE4:
+ 257:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 828              		.loc 1 257 5 view .LVU211
+ 263:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 829              		.loc 1 263 5 view .LVU212
+ 263:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 830              		.loc 1 263 25 is_stmt 0 view .LVU213
+ 831 004e C023     		movs	r3, #192
+ 832 0050 0593     		str	r3, [sp, #20]
+ 264:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Pull = GPIO_PULLUP;
+ 833              		.loc 1 264 5 is_stmt 1 view .LVU214
+ 264:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Pull = GPIO_PULLUP;
+ 834              		.loc 1 264 26 is_stmt 0 view .LVU215
+ 835 0052 0223     		movs	r3, #2
+ 836 0054 0693     		str	r3, [sp, #24]
+ 265:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 837              		.loc 1 265 5 is_stmt 1 view .LVU216
+ 265:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 838              		.loc 1 265 26 is_stmt 0 view .LVU217
+ 839 0056 0122     		movs	r2, #1
+ 840 0058 0792     		str	r2, [sp, #28]
+ 266:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Alternate = GPIO_AF2_TIM3;
+ 841              		.loc 1 266 5 is_stmt 1 view .LVU218
+ 267:Core/Src/Drivers/State_Estimator/state_estimator.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+ 842              		.loc 1 267 5 view .LVU219
+ 267:Core/Src/Drivers/State_Estimator/state_estimator.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+ 843              		.loc 1 267 31 is_stmt 0 view .LVU220
+ 844 005a 0993     		str	r3, [sp, #36]
+ 268:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 845              		.loc 1 268 5 is_stmt 1 view .LVU221
+ 846 005c 05A9     		add	r1, sp, #20
+ 847 005e 1E48     		ldr	r0, .L59+12
+ 848              	.LVL38:
+ 268:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 849              		.loc 1 268 5 is_stmt 0 view .LVU222
+ 850 0060 FFF7FEFF 		bl	HAL_GPIO_Init
+ 851              	.LVL39:
+ 271:Core/Src/Drivers/State_Estimator/state_estimator.c ****     HAL_NVIC_EnableIRQ(TIM3_IRQn);
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s 			page 22
 
 
- 827              		.loc 1 293 5 view .LVU223
- 828 0022 0024     		movs	r4, #0
- 829 0024 0194     		str	r4, [sp, #4]
- 293:Core/Src/Drivers/State_Estimator/state_estimator.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
- 830              		.loc 1 293 5 view .LVU224
- 831 0026 2B4B     		ldr	r3, .L56+8
- 832 0028 1A6C     		ldr	r2, [r3, #64]
- 833 002a 42F00202 		orr	r2, r2, #2
- 834 002e 1A64     		str	r2, [r3, #64]
- 293:Core/Src/Drivers/State_Estimator/state_estimator.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
- 835              		.loc 1 293 5 view .LVU225
- 836 0030 1A6C     		ldr	r2, [r3, #64]
- 837 0032 02F00202 		and	r2, r2, #2
- 838 0036 0192     		str	r2, [sp, #4]
- 293:Core/Src/Drivers/State_Estimator/state_estimator.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
- 839              		.loc 1 293 5 view .LVU226
- 840 0038 019A     		ldr	r2, [sp, #4]
- 841              	.LBE3:
- 293:Core/Src/Drivers/State_Estimator/state_estimator.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
- 842              		.loc 1 293 5 view .LVU227
- 294:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 843              		.loc 1 294 5 view .LVU228
- 844              	.LBB4:
- 294:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 845              		.loc 1 294 5 view .LVU229
- 846 003a 0294     		str	r4, [sp, #8]
- 294:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 847              		.loc 1 294 5 view .LVU230
- 848 003c 1A6B     		ldr	r2, [r3, #48]
- 849 003e 42F00102 		orr	r2, r2, #1
- 850 0042 1A63     		str	r2, [r3, #48]
- 294:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 851              		.loc 1 294 5 view .LVU231
- 852 0044 1B6B     		ldr	r3, [r3, #48]
- 853 0046 03F00103 		and	r3, r3, #1
- 854 004a 0293     		str	r3, [sp, #8]
- 294:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 855              		.loc 1 294 5 view .LVU232
- 856 004c 029B     		ldr	r3, [sp, #8]
- 857              	.LBE4:
- 294:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 858              		.loc 1 294 5 view .LVU233
- 300:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
- 859              		.loc 1 300 5 view .LVU234
- 300:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
- 860              		.loc 1 300 25 is_stmt 0 view .LVU235
- 861 004e C023     		movs	r3, #192
- 862 0050 0593     		str	r3, [sp, #20]
- 301:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Pull = GPIO_PULLUP;
- 863              		.loc 1 301 5 is_stmt 1 view .LVU236
- 301:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Pull = GPIO_PULLUP;
- 864              		.loc 1 301 26 is_stmt 0 view .LVU237
- 865 0052 0223     		movs	r3, #2
- 866 0054 0693     		str	r3, [sp, #24]
- 302:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
- 867              		.loc 1 302 5 is_stmt 1 view .LVU238
- 302:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s 			page 23
+ 852              		.loc 1 271 5 is_stmt 1 view .LVU223
+ 853 0064 2246     		mov	r2, r4
+ 854 0066 0721     		movs	r1, #7
+ 855 0068 1D20     		movs	r0, #29
+ 856 006a FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 857              	.LVL40:
+ 272:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
+ 858              		.loc 1 272 5 view .LVU224
+ 859 006e 1D20     		movs	r0, #29
+ 860 0070 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 861              	.LVL41:
+ 862 0074 D3E7     		b	.L53
+ 863              	.LVL42:
+ 864              	.L58:
+ 277:Core/Src/Drivers/State_Estimator/state_estimator.c ****     __HAL_RCC_GPIOD_CLK_ENABLE();
+ 865              		.loc 1 277 5 view .LVU225
+ 866              	.LBB5:
+ 277:Core/Src/Drivers/State_Estimator/state_estimator.c ****     __HAL_RCC_GPIOD_CLK_ENABLE();
+ 867              		.loc 1 277 5 view .LVU226
+ 868 0076 0024     		movs	r4, #0
+ 869 0078 0394     		str	r4, [sp, #12]
+ 277:Core/Src/Drivers/State_Estimator/state_estimator.c ****     __HAL_RCC_GPIOD_CLK_ENABLE();
+ 870              		.loc 1 277 5 view .LVU227
+ 871 007a 164B     		ldr	r3, .L59+8
+ 872 007c 1A6C     		ldr	r2, [r3, #64]
+ 873 007e 42F00402 		orr	r2, r2, #4
+ 874 0082 1A64     		str	r2, [r3, #64]
+ 277:Core/Src/Drivers/State_Estimator/state_estimator.c ****     __HAL_RCC_GPIOD_CLK_ENABLE();
+ 875              		.loc 1 277 5 view .LVU228
+ 876 0084 1A6C     		ldr	r2, [r3, #64]
+ 877 0086 02F00402 		and	r2, r2, #4
+ 878 008a 0392     		str	r2, [sp, #12]
+ 277:Core/Src/Drivers/State_Estimator/state_estimator.c ****     __HAL_RCC_GPIOD_CLK_ENABLE();
+ 879              		.loc 1 277 5 view .LVU229
+ 880 008c 039A     		ldr	r2, [sp, #12]
+ 881              	.LBE5:
+ 277:Core/Src/Drivers/State_Estimator/state_estimator.c ****     __HAL_RCC_GPIOD_CLK_ENABLE();
+ 882              		.loc 1 277 5 view .LVU230
+ 278:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 883              		.loc 1 278 5 view .LVU231
+ 884              	.LBB6:
+ 278:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 885              		.loc 1 278 5 view .LVU232
+ 886 008e 0494     		str	r4, [sp, #16]
+ 278:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 887              		.loc 1 278 5 view .LVU233
+ 888 0090 1A6B     		ldr	r2, [r3, #48]
+ 889 0092 42F00802 		orr	r2, r2, #8
+ 890 0096 1A63     		str	r2, [r3, #48]
+ 278:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 891              		.loc 1 278 5 view .LVU234
+ 892 0098 1B6B     		ldr	r3, [r3, #48]
+ 893 009a 03F00803 		and	r3, r3, #8
+ 894 009e 0493     		str	r3, [sp, #16]
+ 278:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 895              		.loc 1 278 5 view .LVU235
+ 896 00a0 049B     		ldr	r3, [sp, #16]
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s 			page 23
 
 
- 868              		.loc 1 302 26 is_stmt 0 view .LVU239
- 869 0056 0122     		movs	r2, #1
- 870 0058 0792     		str	r2, [sp, #28]
- 303:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Alternate = GPIO_AF2_TIM3;
- 871              		.loc 1 303 5 is_stmt 1 view .LVU240
- 304:Core/Src/Drivers/State_Estimator/state_estimator.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
- 872              		.loc 1 304 5 view .LVU241
- 304:Core/Src/Drivers/State_Estimator/state_estimator.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
- 873              		.loc 1 304 31 is_stmt 0 view .LVU242
- 874 005a 0993     		str	r3, [sp, #36]
- 305:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 875              		.loc 1 305 5 is_stmt 1 view .LVU243
- 876 005c 05A9     		add	r1, sp, #20
- 877 005e 1E48     		ldr	r0, .L56+12
- 878              	.LVL42:
- 305:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 879              		.loc 1 305 5 is_stmt 0 view .LVU244
- 880 0060 FFF7FEFF 		bl	HAL_GPIO_Init
- 881              	.LVL43:
- 308:Core/Src/Drivers/State_Estimator/state_estimator.c ****     HAL_NVIC_EnableIRQ(TIM3_IRQn);
- 882              		.loc 1 308 5 is_stmt 1 view .LVU245
- 883 0064 2246     		mov	r2, r4
- 884 0066 0721     		movs	r1, #7
- 885 0068 1D20     		movs	r0, #29
- 886 006a FFF7FEFF 		bl	HAL_NVIC_SetPriority
- 887              	.LVL44:
- 309:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
- 888              		.loc 1 309 5 view .LVU246
- 889 006e 1D20     		movs	r0, #29
- 890 0070 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
- 891              	.LVL45:
- 892 0074 D3E7     		b	.L50
- 893              	.LVL46:
- 894              	.L55:
- 314:Core/Src/Drivers/State_Estimator/state_estimator.c ****     __HAL_RCC_GPIOD_CLK_ENABLE();
- 895              		.loc 1 314 5 view .LVU247
- 896              	.LBB5:
- 314:Core/Src/Drivers/State_Estimator/state_estimator.c ****     __HAL_RCC_GPIOD_CLK_ENABLE();
- 897              		.loc 1 314 5 view .LVU248
- 898 0076 0024     		movs	r4, #0
- 899 0078 0394     		str	r4, [sp, #12]
- 314:Core/Src/Drivers/State_Estimator/state_estimator.c ****     __HAL_RCC_GPIOD_CLK_ENABLE();
- 900              		.loc 1 314 5 view .LVU249
- 901 007a 164B     		ldr	r3, .L56+8
- 902 007c 1A6C     		ldr	r2, [r3, #64]
- 903 007e 42F00402 		orr	r2, r2, #4
- 904 0082 1A64     		str	r2, [r3, #64]
- 314:Core/Src/Drivers/State_Estimator/state_estimator.c ****     __HAL_RCC_GPIOD_CLK_ENABLE();
- 905              		.loc 1 314 5 view .LVU250
- 906 0084 1A6C     		ldr	r2, [r3, #64]
- 907 0086 02F00402 		and	r2, r2, #4
- 908 008a 0392     		str	r2, [sp, #12]
- 314:Core/Src/Drivers/State_Estimator/state_estimator.c ****     __HAL_RCC_GPIOD_CLK_ENABLE();
- 909              		.loc 1 314 5 view .LVU251
- 910 008c 039A     		ldr	r2, [sp, #12]
- 911              	.LBE5:
- 314:Core/Src/Drivers/State_Estimator/state_estimator.c ****     __HAL_RCC_GPIOD_CLK_ENABLE();
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s 			page 24
+ 897              	.LBE6:
+ 278:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 898              		.loc 1 278 5 view .LVU236
+ 284:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 899              		.loc 1 284 5 view .LVU237
+ 284:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 900              		.loc 1 284 25 is_stmt 0 view .LVU238
+ 901 00a2 4FF44053 		mov	r3, #12288
+ 902 00a6 0593     		str	r3, [sp, #20]
+ 285:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Pull = GPIO_PULLUP;
+ 903              		.loc 1 285 5 is_stmt 1 view .LVU239
+ 285:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Pull = GPIO_PULLUP;
+ 904              		.loc 1 285 26 is_stmt 0 view .LVU240
+ 905 00a8 0223     		movs	r3, #2
+ 906 00aa 0693     		str	r3, [sp, #24]
+ 286:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 907              		.loc 1 286 5 is_stmt 1 view .LVU241
+ 286:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 908              		.loc 1 286 26 is_stmt 0 view .LVU242
+ 909 00ac 0122     		movs	r2, #1
+ 910 00ae 0792     		str	r2, [sp, #28]
+ 287:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Alternate = GPIO_AF2_TIM4;
+ 911              		.loc 1 287 5 is_stmt 1 view .LVU243
+ 288:Core/Src/Drivers/State_Estimator/state_estimator.c ****     HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+ 912              		.loc 1 288 5 view .LVU244
+ 288:Core/Src/Drivers/State_Estimator/state_estimator.c ****     HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+ 913              		.loc 1 288 31 is_stmt 0 view .LVU245
+ 914 00b0 0993     		str	r3, [sp, #36]
+ 289:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 915              		.loc 1 289 5 is_stmt 1 view .LVU246
+ 916 00b2 05A9     		add	r1, sp, #20
+ 917 00b4 0948     		ldr	r0, .L59+16
+ 918              	.LVL43:
+ 289:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 919              		.loc 1 289 5 is_stmt 0 view .LVU247
+ 920 00b6 FFF7FEFF 		bl	HAL_GPIO_Init
+ 921              	.LVL44:
+ 292:Core/Src/Drivers/State_Estimator/state_estimator.c ****     HAL_NVIC_EnableIRQ(TIM4_IRQn);
+ 922              		.loc 1 292 5 is_stmt 1 view .LVU248
+ 923 00ba 2246     		mov	r2, r4
+ 924 00bc 0721     		movs	r1, #7
+ 925 00be 1E20     		movs	r0, #30
+ 926 00c0 FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 927              	.LVL45:
+ 293:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
+ 928              		.loc 1 293 5 view .LVU249
+ 929 00c4 1E20     		movs	r0, #30
+ 930 00c6 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 931              	.LVL46:
+ 932              		.loc 1 296 1 is_stmt 0 view .LVU250
+ 933 00ca A8E7     		b	.L53
+ 934              	.L60:
+ 935              		.align	2
+ 936              	.L59:
+ 937 00cc 00040040 		.word	1073742848
+ 938 00d0 00080040 		.word	1073743872
+ 939 00d4 00380240 		.word	1073887232
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s 			page 24
 
 
- 912              		.loc 1 314 5 view .LVU252
- 315:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 913              		.loc 1 315 5 view .LVU253
- 914              	.LBB6:
- 315:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 915              		.loc 1 315 5 view .LVU254
- 916 008e 0494     		str	r4, [sp, #16]
- 315:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 917              		.loc 1 315 5 view .LVU255
- 918 0090 1A6B     		ldr	r2, [r3, #48]
- 919 0092 42F00802 		orr	r2, r2, #8
- 920 0096 1A63     		str	r2, [r3, #48]
- 315:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 921              		.loc 1 315 5 view .LVU256
- 922 0098 1B6B     		ldr	r3, [r3, #48]
- 923 009a 03F00803 		and	r3, r3, #8
- 924 009e 0493     		str	r3, [sp, #16]
- 315:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 925              		.loc 1 315 5 view .LVU257
- 926 00a0 049B     		ldr	r3, [sp, #16]
- 927              	.LBE6:
- 315:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 928              		.loc 1 315 5 view .LVU258
- 321:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
- 929              		.loc 1 321 5 view .LVU259
- 321:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
- 930              		.loc 1 321 25 is_stmt 0 view .LVU260
- 931 00a2 4FF44053 		mov	r3, #12288
- 932 00a6 0593     		str	r3, [sp, #20]
- 322:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Pull = GPIO_PULLUP;
- 933              		.loc 1 322 5 is_stmt 1 view .LVU261
- 322:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Pull = GPIO_PULLUP;
- 934              		.loc 1 322 26 is_stmt 0 view .LVU262
- 935 00a8 0223     		movs	r3, #2
- 936 00aa 0693     		str	r3, [sp, #24]
- 323:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
- 937              		.loc 1 323 5 is_stmt 1 view .LVU263
- 323:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
- 938              		.loc 1 323 26 is_stmt 0 view .LVU264
- 939 00ac 0122     		movs	r2, #1
- 940 00ae 0792     		str	r2, [sp, #28]
- 324:Core/Src/Drivers/State_Estimator/state_estimator.c ****     GPIO_InitStruct.Alternate = GPIO_AF2_TIM4;
- 941              		.loc 1 324 5 is_stmt 1 view .LVU265
- 325:Core/Src/Drivers/State_Estimator/state_estimator.c ****     HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
- 942              		.loc 1 325 5 view .LVU266
- 325:Core/Src/Drivers/State_Estimator/state_estimator.c ****     HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
- 943              		.loc 1 325 31 is_stmt 0 view .LVU267
- 944 00b0 0993     		str	r3, [sp, #36]
- 326:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 945              		.loc 1 326 5 is_stmt 1 view .LVU268
- 946 00b2 05A9     		add	r1, sp, #20
- 947 00b4 0948     		ldr	r0, .L56+16
- 948              	.LVL47:
- 326:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 949              		.loc 1 326 5 is_stmt 0 view .LVU269
- 950 00b6 FFF7FEFF 		bl	HAL_GPIO_Init
- 951              	.LVL48:
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s 			page 25
+ 940 00d8 00000240 		.word	1073872896
+ 941 00dc 000C0240 		.word	1073875968
+ 942              		.cfi_endproc
+ 943              	.LFE180:
+ 945              		.section	.text.HAL_TIM_Base_MspInit,"ax",%progbits
+ 946              		.align	1
+ 947              		.global	HAL_TIM_Base_MspInit
+ 948              		.syntax unified
+ 949              		.thumb
+ 950              		.thumb_func
+ 952              	HAL_TIM_Base_MspInit:
+ 953              	.LVL47:
+ 954              	.LFB181:
+ 297:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 298:Core/Src/Drivers/State_Estimator/state_estimator.c **** /**
+ 299:Core/Src/Drivers/State_Estimator/state_estimator.c **** * @brief TIM_Base MSP Initialization
+ 300:Core/Src/Drivers/State_Estimator/state_estimator.c **** * This function configures the hardware resources used in this example
+ 301:Core/Src/Drivers/State_Estimator/state_estimator.c **** * @param htim_base: TIM_Base handle pointer
+ 302:Core/Src/Drivers/State_Estimator/state_estimator.c **** * @retval None
+ 303:Core/Src/Drivers/State_Estimator/state_estimator.c **** */
+ 304:Core/Src/Drivers/State_Estimator/state_estimator.c **** void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htim_base)
+ 305:Core/Src/Drivers/State_Estimator/state_estimator.c **** {
+ 955              		.loc 1 305 1 is_stmt 1 view -0
+ 956              		.cfi_startproc
+ 957              		@ args = 0, pretend = 0, frame = 8
+ 958              		@ frame_needed = 0, uses_anonymous_args = 0
+ 306:Core/Src/Drivers/State_Estimator/state_estimator.c ****   if(htim_base->Instance==TIM7)
+ 959              		.loc 1 306 3 view .LVU252
+ 960              		.loc 1 306 15 is_stmt 0 view .LVU253
+ 961 0000 0268     		ldr	r2, [r0]
+ 962              		.loc 1 306 5 view .LVU254
+ 963 0002 0E4B     		ldr	r3, .L68
+ 964 0004 9A42     		cmp	r2, r3
+ 965 0006 00D0     		beq	.L67
+ 966 0008 7047     		bx	lr
+ 967              	.L67:
+ 305:Core/Src/Drivers/State_Estimator/state_estimator.c ****   if(htim_base->Instance==TIM7)
+ 968              		.loc 1 305 1 view .LVU255
+ 969 000a 00B5     		push	{lr}
+ 970              	.LCFI23:
+ 971              		.cfi_def_cfa_offset 4
+ 972              		.cfi_offset 14, -4
+ 973 000c 83B0     		sub	sp, sp, #12
+ 974              	.LCFI24:
+ 975              		.cfi_def_cfa_offset 16
+ 307:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
+ 308:Core/Src/Drivers/State_Estimator/state_estimator.c ****     /* Peripheral clock enable */
+ 309:Core/Src/Drivers/State_Estimator/state_estimator.c ****     __HAL_RCC_TIM7_CLK_ENABLE();
+ 976              		.loc 1 309 5 is_stmt 1 view .LVU256
+ 977              	.LBB7:
+ 978              		.loc 1 309 5 view .LVU257
+ 979 000e 0022     		movs	r2, #0
+ 980 0010 0192     		str	r2, [sp, #4]
+ 981              		.loc 1 309 5 view .LVU258
+ 982 0012 03F50933 		add	r3, r3, #140288
+ 983 0016 196C     		ldr	r1, [r3, #64]
+ 984 0018 41F02001 		orr	r1, r1, #32
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s 			page 25
 
 
- 329:Core/Src/Drivers/State_Estimator/state_estimator.c ****     HAL_NVIC_EnableIRQ(TIM4_IRQn);
- 952              		.loc 1 329 5 is_stmt 1 view .LVU270
- 953 00ba 2246     		mov	r2, r4
- 954 00bc 0721     		movs	r1, #7
- 955 00be 1E20     		movs	r0, #30
- 956 00c0 FFF7FEFF 		bl	HAL_NVIC_SetPriority
- 957              	.LVL49:
- 330:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
- 958              		.loc 1 330 5 view .LVU271
- 959 00c4 1E20     		movs	r0, #30
- 960 00c6 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
- 961              	.LVL50:
- 962              		.loc 1 333 1 is_stmt 0 view .LVU272
- 963 00ca A8E7     		b	.L50
- 964              	.L57:
- 965              		.align	2
- 966              	.L56:
- 967 00cc 00040040 		.word	1073742848
- 968 00d0 00080040 		.word	1073743872
- 969 00d4 00380240 		.word	1073887232
- 970 00d8 00000240 		.word	1073872896
- 971 00dc 000C0240 		.word	1073875968
- 972              		.cfi_endproc
- 973              	.LFE181:
- 975              		.section	.text.HAL_TIM_Base_MspInit,"ax",%progbits
- 976              		.align	1
- 977              		.global	HAL_TIM_Base_MspInit
- 978              		.syntax unified
- 979              		.thumb
- 980              		.thumb_func
- 982              	HAL_TIM_Base_MspInit:
- 983              	.LVL51:
- 984              	.LFB182:
- 334:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 335:Core/Src/Drivers/State_Estimator/state_estimator.c **** /**
- 336:Core/Src/Drivers/State_Estimator/state_estimator.c **** * @brief TIM_Base MSP Initialization
- 337:Core/Src/Drivers/State_Estimator/state_estimator.c **** * This function configures the hardware resources used in this example
- 338:Core/Src/Drivers/State_Estimator/state_estimator.c **** * @param htim_base: TIM_Base handle pointer
- 339:Core/Src/Drivers/State_Estimator/state_estimator.c **** * @retval None
- 340:Core/Src/Drivers/State_Estimator/state_estimator.c **** */
- 341:Core/Src/Drivers/State_Estimator/state_estimator.c **** void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htim_base)
- 342:Core/Src/Drivers/State_Estimator/state_estimator.c **** {
- 985              		.loc 1 342 1 is_stmt 1 view -0
- 986              		.cfi_startproc
- 987              		@ args = 0, pretend = 0, frame = 8
- 988              		@ frame_needed = 0, uses_anonymous_args = 0
- 343:Core/Src/Drivers/State_Estimator/state_estimator.c ****   if(htim_base->Instance==TIM7)
- 989              		.loc 1 343 3 view .LVU274
- 990              		.loc 1 343 15 is_stmt 0 view .LVU275
- 991 0000 0268     		ldr	r2, [r0]
- 992              		.loc 1 343 5 view .LVU276
- 993 0002 0E4B     		ldr	r3, .L65
- 994 0004 9A42     		cmp	r2, r3
- 995 0006 00D0     		beq	.L64
- 996 0008 7047     		bx	lr
- 997              	.L64:
- 342:Core/Src/Drivers/State_Estimator/state_estimator.c ****   if(htim_base->Instance==TIM7)
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s 			page 26
+ 985 001c 1964     		str	r1, [r3, #64]
+ 986              		.loc 1 309 5 view .LVU259
+ 987 001e 1B6C     		ldr	r3, [r3, #64]
+ 988 0020 03F02003 		and	r3, r3, #32
+ 989 0024 0193     		str	r3, [sp, #4]
+ 990              		.loc 1 309 5 view .LVU260
+ 991 0026 019B     		ldr	r3, [sp, #4]
+ 992              	.LBE7:
+ 993              		.loc 1 309 5 view .LVU261
+ 310:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
+ 311:Core/Src/Drivers/State_Estimator/state_estimator.c ****     /* TIM7 interrupt Init */
+ 312:Core/Src/Drivers/State_Estimator/state_estimator.c ****     HAL_NVIC_SetPriority(TIM7_IRQn, 8, 0);
+ 994              		.loc 1 312 5 view .LVU262
+ 995 0028 0821     		movs	r1, #8
+ 996 002a 3720     		movs	r0, #55
+ 997              	.LVL48:
+ 998              		.loc 1 312 5 is_stmt 0 view .LVU263
+ 999 002c FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 1000              	.LVL49:
+ 313:Core/Src/Drivers/State_Estimator/state_estimator.c ****     HAL_NVIC_EnableIRQ(TIM7_IRQn);
+ 1001              		.loc 1 313 5 is_stmt 1 view .LVU264
+ 1002 0030 3720     		movs	r0, #55
+ 1003 0032 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 1004              	.LVL50:
+ 314:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
+ 315:Core/Src/Drivers/State_Estimator/state_estimator.c **** }...
+ 1005              		.loc 1 315 1 is_stmt 0 view .LVU265
+ 1006 0036 03B0     		add	sp, sp, #12
+ 1007              	.LCFI25:
+ 1008              		.cfi_def_cfa_offset 4
+ 1009              		@ sp needed
+ 1010 0038 5DF804FB 		ldr	pc, [sp], #4
+ 1011              	.L69:
+ 1012              		.align	2
+ 1013              	.L68:
+ 1014 003c 00140040 		.word	1073746944
+ 1015              		.cfi_endproc
+ 1016              	.LFE181:
+ 1018              		.section	.rodata.time_evt.0,"a"
+ 1019              		.align	2
+ 1022              	time_evt.0:
+ 1023 0000 0300     		.short	3
+ 1024              		.global	StateEstimator
+ 1025              		.section	.rodata.StateEstimator,"a"
+ 1026              		.align	2
+ 1029              	StateEstimator:
+ 1030 0000 00000000 		.word	new
+ 1031              		.section	.bss.ao_estimator,"aw",%nobits
+ 1032              		.align	2
+ 1035              	ao_estimator:
+ 1036 0000 00000000 		.space	4
+ 1037              		.section	.bss.motor_counter,"aw",%nobits
+ 1038              		.align	1
+ 1041              	motor_counter:
+ 1042 0000 0000     		.space	2
+ 1043              		.section	.bss.pendlm_counter,"aw",%nobits
+ 1044              		.align	1
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s 			page 26
 
 
- 998              		.loc 1 342 1 view .LVU277
- 999 000a 00B5     		push	{lr}
- 1000              	.LCFI19:
- 1001              		.cfi_def_cfa_offset 4
- 1002              		.cfi_offset 14, -4
- 1003 000c 83B0     		sub	sp, sp, #12
- 1004              	.LCFI20:
- 1005              		.cfi_def_cfa_offset 16
- 344:Core/Src/Drivers/State_Estimator/state_estimator.c ****   {
- 345:Core/Src/Drivers/State_Estimator/state_estimator.c ****     /* Peripheral clock enable */
- 346:Core/Src/Drivers/State_Estimator/state_estimator.c ****     __HAL_RCC_TIM7_CLK_ENABLE();
- 1006              		.loc 1 346 5 is_stmt 1 view .LVU278
- 1007              	.LBB7:
- 1008              		.loc 1 346 5 view .LVU279
- 1009 000e 0022     		movs	r2, #0
- 1010 0010 0192     		str	r2, [sp, #4]
- 1011              		.loc 1 346 5 view .LVU280
- 1012 0012 03F50933 		add	r3, r3, #140288
- 1013 0016 196C     		ldr	r1, [r3, #64]
- 1014 0018 41F02001 		orr	r1, r1, #32
- 1015 001c 1964     		str	r1, [r3, #64]
- 1016              		.loc 1 346 5 view .LVU281
- 1017 001e 1B6C     		ldr	r3, [r3, #64]
- 1018 0020 03F02003 		and	r3, r3, #32
- 1019 0024 0193     		str	r3, [sp, #4]
- 1020              		.loc 1 346 5 view .LVU282
- 1021 0026 019B     		ldr	r3, [sp, #4]
- 1022              	.LBE7:
- 1023              		.loc 1 346 5 view .LVU283
- 347:Core/Src/Drivers/State_Estimator/state_estimator.c **** 
- 348:Core/Src/Drivers/State_Estimator/state_estimator.c ****     /* TIM7 interrupt Init */
- 349:Core/Src/Drivers/State_Estimator/state_estimator.c ****     HAL_NVIC_SetPriority(TIM7_IRQn, 8, 0);
- 1024              		.loc 1 349 5 view .LVU284
- 1025 0028 0821     		movs	r1, #8
- 1026 002a 3720     		movs	r0, #55
- 1027              	.LVL52:
- 1028              		.loc 1 349 5 is_stmt 0 view .LVU285
- 1029 002c FFF7FEFF 		bl	HAL_NVIC_SetPriority
- 1030              	.LVL53:
- 350:Core/Src/Drivers/State_Estimator/state_estimator.c ****     HAL_NVIC_EnableIRQ(TIM7_IRQn);
- 1031              		.loc 1 350 5 is_stmt 1 view .LVU286
- 1032 0030 3720     		movs	r0, #55
- 1033 0032 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
- 1034              	.LVL54:
- 351:Core/Src/Drivers/State_Estimator/state_estimator.c ****   }
- 352:Core/Src/Drivers/State_Estimator/state_estimator.c **** }...
- 1035              		.loc 1 352 1 is_stmt 0 view .LVU287
- 1036 0036 03B0     		add	sp, sp, #12
- 1037              	.LCFI21:
- 1038              		.cfi_def_cfa_offset 4
- 1039              		@ sp needed
- 1040 0038 5DF804FB 		ldr	pc, [sp], #4
- 1041              	.L66:
- 1042              		.align	2
- 1043              	.L65:
- 1044 003c 00140040 		.word	1073746944
- 1045              		.cfi_endproc
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s 			page 27
-
-
- 1046              	.LFE182:
- 1048              		.section	.bss.time_event,"aw",%nobits
- 1049              		.align	2
- 1052              	time_event:
- 1053 0000 00000000 		.space	6
- 1053      0000
- 1054              		.section	.bss.state_estimator,"aw",%nobits
- 1055              		.align	2
- 1058              	state_estimator:
- 1059 0000 00000000 		.space	4
- 1060              		.section	.bss.motor_counter,"aw",%nobits
- 1061              		.align	1
- 1064              	motor_counter:
- 1065 0000 0000     		.space	2
- 1066              		.section	.bss.pendlm_counter,"aw",%nobits
- 1067              		.align	1
- 1070              	pendlm_counter:
- 1071 0000 0000     		.space	2
- 1072              		.global	htim7
- 1073              		.section	.bss.htim7,"aw",%nobits
- 1074              		.align	2
- 1077              	htim7:
- 1078 0000 00000000 		.space	72
- 1078      00000000 
- 1078      00000000 
- 1078      00000000 
- 1078      00000000 
- 1079              		.global	htim4
- 1080              		.section	.bss.htim4,"aw",%nobits
- 1081              		.align	2
- 1084              	htim4:
- 1085 0000 00000000 		.space	72
- 1085      00000000 
- 1085      00000000 
- 1085      00000000 
- 1085      00000000 
- 1086              		.global	htim3
- 1087              		.section	.bss.htim3,"aw",%nobits
- 1088              		.align	2
- 1091              	htim3:
- 1092 0000 00000000 		.space	72
- 1092      00000000 
- 1092      00000000 
- 1092      00000000 
- 1092      00000000 
- 1093              		.text
- 1094              	.Letext0:
- 1095              		.file 2 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h"
- 1096              		.file 3 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
- 1097              		.file 4 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
- 1098              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
- 1099              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
- 1100              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
- 1101              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
- 1102              		.file 9 "ThirdParty/FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h"
- 1103              		.file 10 "ThirdParty/FreeRTOS/include/task.h"
- 1104              		.file 11 "ThirdParty/FreeRTOS/include/queue.h"
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s 			page 28
-
-
- 1105              		.file 12 "Core/Src/Middleware/Active_Object/active_object.h"
- 1106              		.file 13 "Core/Src/Middleware/Topic/topic.h"
- 1107              		.file 14 "Core/Src/Drivers/State_Estimator/state_estimator.h"
- 1108              		.file 15 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h"
- 1109              		.file 16 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h"
- 1110              		.file 17 "<built-in>"
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s 			page 29
+ 1047              	pendlm_counter:
+ 1048 0000 0000     		.space	2
+ 1049              		.global	htim7
+ 1050              		.section	.bss.htim7,"aw",%nobits
+ 1051              		.align	2
+ 1054              	htim7:
+ 1055 0000 00000000 		.space	72
+ 1055      00000000 
+ 1055      00000000 
+ 1055      00000000 
+ 1055      00000000 
+ 1056              		.global	htim4
+ 1057              		.section	.bss.htim4,"aw",%nobits
+ 1058              		.align	2
+ 1061              	htim4:
+ 1062 0000 00000000 		.space	72
+ 1062      00000000 
+ 1062      00000000 
+ 1062      00000000 
+ 1062      00000000 
+ 1063              		.global	htim3
+ 1064              		.section	.bss.htim3,"aw",%nobits
+ 1065              		.align	2
+ 1068              	htim3:
+ 1069 0000 00000000 		.space	72
+ 1069      00000000 
+ 1069      00000000 
+ 1069      00000000 
+ 1069      00000000 
+ 1070              		.text
+ 1071              	.Letext0:
+ 1072              		.file 2 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h"
+ 1073              		.file 3 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
+ 1074              		.file 4 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
+ 1075              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 1076              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
+ 1077              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 1078              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
+ 1079              		.file 9 "ThirdParty/FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h"
+ 1080              		.file 10 "ThirdParty/FreeRTOS/include/FreeRTOS.h"
+ 1081              		.file 11 "ThirdParty/FreeRTOS/include/task.h"
+ 1082              		.file 12 "ThirdParty/FreeRTOS/include/queue.h"
+ 1083              		.file 13 "Core/Src/Middleware/Active_Object/active_object.h"
+ 1084              		.file 14 "Core/Src/Drivers/State_Estimator/state_estimator.h"
+ 1085              		.file 15 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h"
+ 1086              		.file 16 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h"
+ 1087              		.file 17 "<built-in>"
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s 			page 27
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 state_estimator.c
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:21     .text.StateEstimator_wait:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:27     .text.StateEstimator_wait:00000000 StateEstimator_wait
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:119    .text.StateEstimator_initial:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:125    .text.StateEstimator_initial:00000000 StateEstimator_initial
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:161    .text.MX_TIM3_Init:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:166    .text.MX_TIM3_Init:00000000 MX_TIM3_Init
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:260    .text.MX_TIM3_Init:0000004c $d
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:1091   .bss.htim3:00000000 htim3
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:266    .text.MX_TIM4_Init:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:271    .text.MX_TIM4_Init:00000000 MX_TIM4_Init
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:365    .text.MX_TIM4_Init:0000004c $d
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:1084   .bss.htim4:00000000 htim4
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:371    .text.MX_TIM7_Init:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:376    .text.MX_TIM7_Init:00000000 MX_TIM7_Init
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:444    .text.MX_TIM7_Init:00000038 $d
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:1077   .bss.htim7:00000000 htim7
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:450    .text.TimeEvent_ctor:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:456    .text.TimeEvent_ctor:00000000 TimeEvent_ctor
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:480    .text.StateEstimator_ctor:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:486    .text.StateEstimator_ctor:00000000 StateEstimator_ctor
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:536    .text.StateEstimator_ctor:00000028 $d
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:1052   .bss.time_event:00000000 time_event
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:1058   .bss.state_estimator:00000000 state_estimator
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:546    .text.HAL_TIM_PeriodElapsedCallback:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:552    .text.HAL_TIM_PeriodElapsedCallback:00000000 HAL_TIM_PeriodElapsedCallback
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:568    .text.HAL_TIM_IC_CaptureCallback:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:574    .text.HAL_TIM_IC_CaptureCallback:00000000 HAL_TIM_IC_CaptureCallback
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:617    .text.HAL_TIM_IC_CaptureCallback:00000020 $d
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:1064   .bss.motor_counter:00000000 motor_counter
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:1070   .bss.pendlm_counter:00000000 pendlm_counter
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:625    .text.TIM3_IRQHandler:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:631    .text.TIM3_IRQHandler:00000000 TIM3_IRQHandler
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:651    .text.TIM3_IRQHandler:0000000c $d
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:656    .text.TIM4_IRQHandler:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:662    .text.TIM4_IRQHandler:00000000 TIM4_IRQHandler
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:682    .text.TIM4_IRQHandler:0000000c $d
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:687    .text.TIM7_IRQHandler:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:693    .text.TIM7_IRQHandler:00000000 TIM7_IRQHandler
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:713    .text.TIM7_IRQHandler:0000000c $d
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:718    .text.Driver_StateEstimator_Init:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:724    .text.Driver_StateEstimator_Init:00000000 Driver_StateEstimator_Init
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:763    .text.Driver_StateEstimator_Init:00000028 $d
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:770    .text.HAL_TIM_Encoder_MspInit:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:776    .text.HAL_TIM_Encoder_MspInit:00000000 HAL_TIM_Encoder_MspInit
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:967    .text.HAL_TIM_Encoder_MspInit:000000cc $d
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:976    .text.HAL_TIM_Base_MspInit:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:982    .text.HAL_TIM_Base_MspInit:00000000 HAL_TIM_Base_MspInit
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:1044   .text.HAL_TIM_Base_MspInit:0000003c $d
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:1049   .bss.time_event:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:1055   .bss.state_estimator:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:1061   .bss.motor_counter:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:1067   .bss.pendlm_counter:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:1074   .bss.htim7:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:1081   .bss.htim4:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s:1088   .bss.htim3:00000000 $d
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSsxB4X.s 			page 30
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:21     .text.initial:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:27     .text.initial:00000000 initial
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:52     .text.wait:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:58     .text.wait:00000000 wait
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:121    .text.wait:00000030 $d
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:1054   .bss.htim7:00000000 htim7
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:1068   .bss.htim3:00000000 htim3
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:1061   .bss.htim4:00000000 htim4
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:128    .text.new:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:133    .text.new:00000000 new
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:169    .text.new:0000001c $d
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:1035   .bss.ao_estimator:00000000 ao_estimator
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:176    .text.MX_TIM3_Init:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:181    .text.MX_TIM3_Init:00000000 MX_TIM3_Init
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:275    .text.MX_TIM3_Init:0000004c $d
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:281    .text.MX_TIM4_Init:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:286    .text.MX_TIM4_Init:00000000 MX_TIM4_Init
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:380    .text.MX_TIM4_Init:0000004c $d
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:386    .text.MX_TIM7_Init:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:391    .text.MX_TIM7_Init:00000000 MX_TIM7_Init
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:459    .text.MX_TIM7_Init:00000038 $d
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:465    .text.HAL_TIM_PeriodElapsedCallback:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:471    .text.HAL_TIM_PeriodElapsedCallback:00000000 HAL_TIM_PeriodElapsedCallback
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:550    .text.HAL_TIM_PeriodElapsedCallback:00000040 $d
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:1022   .rodata.time_evt.0:00000000 time_evt.0
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:558    .text.HAL_TIM_IC_CaptureCallback:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:564    .text.HAL_TIM_IC_CaptureCallback:00000000 HAL_TIM_IC_CaptureCallback
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:607    .text.HAL_TIM_IC_CaptureCallback:00000020 $d
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:1041   .bss.motor_counter:00000000 motor_counter
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:1047   .bss.pendlm_counter:00000000 pendlm_counter
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:615    .text.TIM3_IRQHandler:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:621    .text.TIM3_IRQHandler:00000000 TIM3_IRQHandler
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:641    .text.TIM3_IRQHandler:0000000c $d
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:646    .text.TIM4_IRQHandler:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:652    .text.TIM4_IRQHandler:00000000 TIM4_IRQHandler
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:672    .text.TIM4_IRQHandler:0000000c $d
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:677    .text.TIM7_IRQHandler:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:683    .text.TIM7_IRQHandler:00000000 TIM7_IRQHandler
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:703    .text.TIM7_IRQHandler:0000000c $d
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:708    .text.Driver_StateEstimator_Init:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:714    .text.Driver_StateEstimator_Init:00000000 Driver_StateEstimator_Init
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:740    .text.HAL_TIM_Encoder_MspInit:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:746    .text.HAL_TIM_Encoder_MspInit:00000000 HAL_TIM_Encoder_MspInit
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:937    .text.HAL_TIM_Encoder_MspInit:000000cc $d
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:946    .text.HAL_TIM_Base_MspInit:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:952    .text.HAL_TIM_Base_MspInit:00000000 HAL_TIM_Base_MspInit
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:1014   .text.HAL_TIM_Base_MspInit:0000003c $d
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:1019   .rodata.time_evt.0:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:1029   .rodata.StateEstimator:00000000 StateEstimator
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:1026   .rodata.StateEstimator:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:1032   .bss.ao_estimator:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:1038   .bss.motor_counter:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:1044   .bss.pendlm_counter:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:1051   .bss.htim7:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:1058   .bss.htim4:00000000 $d
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s 			page 28
 
 
+C:\Users\ACER\AppData\Local\Temp\ccBXTuQe.s:1065   .bss.htim3:00000000 $d
 
 UNDEFINED SYMBOLS
+HAL_TIM_Base_Start_IT
+HAL_TIM_Encoder_Start_IT
+Ao_new
 memset
 HAL_TIM_Encoder_Init
 HAL_TIMEx_MasterConfigSynchronization
 HAL_TIM_Base_Init
-Ao_ctor
 HAL_TIM_IRQHandler
-HAL_TIM_Base_Start_IT
-HAL_TIM_Encoder_Start_IT
 HAL_GPIO_Init
 HAL_NVIC_SetPriority
 HAL_NVIC_EnableIRQ

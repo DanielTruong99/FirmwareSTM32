@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
   27:Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_power_q15.c ****  */
   28:Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_power_q15.c **** 
   29:Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_power_q15.c **** #include "arm_math.h"
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 2
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 2
 
 
   30:Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_power_q15.c **** 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
   71:Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_power_q15.c ****   q31_t in32;                                    /* Temporary variable to store input value */
   43              		.loc 1 71 3 view .LVU3
   72:Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_power_q15.c ****   q15_t in16;                                    /* Temporary variable to store input value */
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 3
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 3
 
 
   44              		.loc 1 72 3 view .LVU4
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
   17:Drivers/CMSIS/Include/cmsis_gcc.h ****  *
   18:Drivers/CMSIS/Include/cmsis_gcc.h ****  * Unless required by applicable law or agreed to in writing, software
   19:Drivers/CMSIS/Include/cmsis_gcc.h ****  * distributed under the License is distributed on an AS IS BASIS, WITHOUT
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 4
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 4
 
 
   20:Drivers/CMSIS/Include/cmsis_gcc.h ****  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
   74:Drivers/CMSIS/Include/cmsis_gcc.h ****   struct __attribute__((packed)) T_UINT32 { uint32_t v; };
   75:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
   76:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT32(x)                  (((struct T_UINT32 *)(x))->v)
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 5
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 5
 
 
   77:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
  131:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("cpsie i" : : : "memory");
  132:Drivers/CMSIS/Include/cmsis_gcc.h **** }
  133:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 6
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 6
 
 
  134:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
  188:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  189:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Set Control Register (non-secure)
  190:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Writes the given value to the non-secure Control Register when in secure state.
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 7
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 7
 
 
  191:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    control  Control Register value to set
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
  245:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               PSP Register value
  246:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  247:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __get_PSP(void)
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 8
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 8
 
 
  248:Drivers/CMSIS/Include/cmsis_gcc.h **** {
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
  302:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  303:Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t result;
  304:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 9
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 9
 
 
  305:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, msp" : "=r" (result) );
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
  359:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  360:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, sp_ns" : "=r" (result) );
  361:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 10
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 10
 
 
  362:Drivers/CMSIS/Include/cmsis_gcc.h **** }
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
  416:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  417:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  418:Drivers/CMSIS/Include/cmsis_gcc.h **** #if (defined (__ARM_FEATURE_CMSE ) && (__ARM_FEATURE_CMSE == 3))
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 11
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 11
 
 
  419:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
  473:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Returns the current value of the non-secure Base Priority register when in secure state.
  474:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               Base Priority register value
  475:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 12
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 12
 
 
  476:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __TZ_get_BASEPRI_NS(void)
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
  530:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  531:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, faultmask" : "=r" (result) );
  532:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 13
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 13
 
 
  533:Drivers/CMSIS/Include/cmsis_gcc.h **** }
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
  587:Drivers/CMSIS/Include/cmsis_gcc.h ****   mode.
  588:Drivers/CMSIS/Include/cmsis_gcc.h ****   
  589:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Returns the current value of the Process Stack Pointer Limit (PSPLIM).
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 14
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 14
 
 
  590:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               PSPLIM Register value
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
  644:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MSR psplim, %0" : : "r" (ProcStackPtrLimit));
  645:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  646:Drivers/CMSIS/Include/cmsis_gcc.h **** }
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 15
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 15
 
 
  647:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
  701:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  702:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __TZ_get_MSPLIM_NS(void)
  703:Drivers/CMSIS/Include/cmsis_gcc.h **** {
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 16
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 16
 
 
  704:Drivers/CMSIS/Include/cmsis_gcc.h **** #if (!(defined (__ARM_ARCH_8M_MAIN__ ) && (__ARM_ARCH_8M_MAIN__ == 1)))
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
  758:Drivers/CMSIS/Include/cmsis_gcc.h ****            (defined (__ARM_ARCH_8M_BASE__ ) && (__ARM_ARCH_8M_BASE__ == 1))    ) */
  759:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  760:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 17
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 17
 
 
  761:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
  815:Drivers/CMSIS/Include/cmsis_gcc.h ****   Access to dedicated instructions
  816:Drivers/CMSIS/Include/cmsis_gcc.h ****   @{
  817:Drivers/CMSIS/Include/cmsis_gcc.h **** */
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 18
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 18
 
 
  818:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
  872:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
  873:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Data Synchronization Barrier
  874:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Acts as a special kind of Data Memory Barrier.
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 19
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 19
 
 
  875:Drivers/CMSIS/Include/cmsis_gcc.h ****            It completes when all explicit memory accesses before this instruction complete.
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
  929:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Reverse byte order (16 bit)
  930:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Reverses the byte order in a 16-bit value and returns the signed 16-bit result. For exam
  931:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    value  Value to reverse
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 20
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 20
 
 
  932:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               Reversed value
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
  986:Drivers/CMSIS/Include/cmsis_gcc.h ****      (defined (__ARM_ARCH_7EM__     ) && (__ARM_ARCH_7EM__     == 1)) || \
  987:Drivers/CMSIS/Include/cmsis_gcc.h ****      (defined (__ARM_ARCH_8M_MAIN__ ) && (__ARM_ARCH_8M_MAIN__ == 1))    )
  988:Drivers/CMSIS/Include/cmsis_gcc.h ****    __ASM volatile ("rbit %0, %1" : "=r" (result) : "r" (value) );
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 21
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 21
 
 
  989:Drivers/CMSIS/Include/cmsis_gcc.h **** #else
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
 1043:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    ptr  Pointer to data
 1044:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return        value of type uint16_t at (*ptr)
 1045:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 22
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 22
 
 
 1046:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint16_t __LDREXH(volatile uint16_t *addr)
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
 1100:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return          1  Function failed
 1101:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
 1102:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __STREXH(uint16_t value, volatile uint16_t *addr)
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 23
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 23
 
 
 1103:Drivers/CMSIS/Include/cmsis_gcc.h **** {
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
 1157:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM ("ssat %0, %1, %2" : "=r" (__RES) :  "I" (ARG2), "r" (__ARG1) ); \
 1158:Drivers/CMSIS/Include/cmsis_gcc.h ****   __RES; \
 1159:Drivers/CMSIS/Include/cmsis_gcc.h ****  })
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 24
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 24
 
 
 1160:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
 1214:Drivers/CMSIS/Include/cmsis_gcc.h **** 
 1215:Drivers/CMSIS/Include/cmsis_gcc.h **** 
 1216:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 25
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 25
 
 
 1217:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   LDRT Unprivileged (16 bit)
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
 1271:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __STRHT(uint16_t value, volatile uint16_t *ptr)
 1272:Drivers/CMSIS/Include/cmsis_gcc.h **** {
 1273:Drivers/CMSIS/Include/cmsis_gcc.h ****    __ASM volatile ("strht %1, %0" : "=Q" (*ptr) : "r" ((uint32_t)value) );
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 26
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 26
 
 
 1274:Drivers/CMSIS/Include/cmsis_gcc.h **** }
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
 1328:Drivers/CMSIS/Include/cmsis_gcc.h ****     const uint32_t max = ((1U << sat) - 1U);
 1329:Drivers/CMSIS/Include/cmsis_gcc.h ****     if (val > (int32_t)max)
 1330:Drivers/CMSIS/Include/cmsis_gcc.h ****     {
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 27
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 27
 
 
 1331:Drivers/CMSIS/Include/cmsis_gcc.h ****       return max;
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
 1385:Drivers/CMSIS/Include/cmsis_gcc.h **** {
 1386:Drivers/CMSIS/Include/cmsis_gcc.h ****     uint32_t result;
 1387:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 28
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 28
 
 
 1388:Drivers/CMSIS/Include/cmsis_gcc.h ****    __ASM volatile ("lda %0, %1" : "=r" (result) : "Q" (*ptr) );
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
 1442:Drivers/CMSIS/Include/cmsis_gcc.h **** 
 1443:Drivers/CMSIS/Include/cmsis_gcc.h **** 
 1444:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 29
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 29
 
 
 1445:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Load-Acquire Exclusive (16 bit)
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
 1499:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __STLEXH(uint16_t value, volatile uint16_t *ptr)
 1500:Drivers/CMSIS/Include/cmsis_gcc.h **** {
 1501:Drivers/CMSIS/Include/cmsis_gcc.h ****    uint32_t result;
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 30
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 30
 
 
 1502:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
 1556:Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t result;
 1557:Drivers/CMSIS/Include/cmsis_gcc.h **** 
 1558:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("shadd8 %0, %1, %2" : "=r" (result) : "r" (op1), "r" (op2) );
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 31
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 31
 
 
 1559:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
 1613:Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t result;
 1614:Drivers/CMSIS/Include/cmsis_gcc.h **** 
 1615:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("usub8 %0, %1, %2" : "=r" (result) : "r" (op1), "r" (op2) );
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 32
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 32
 
 
 1616:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
 1670:Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t result;
 1671:Drivers/CMSIS/Include/cmsis_gcc.h **** 
 1672:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("uqadd16 %0, %1, %2" : "=r" (result) : "r" (op1), "r" (op2) );
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 33
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 33
 
 
 1673:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
 1727:Drivers/CMSIS/Include/cmsis_gcc.h **** 
 1728:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("uhsub16 %0, %1, %2" : "=r" (result) : "r" (op1), "r" (op2) );
 1729:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 34
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 34
 
 
 1730:Drivers/CMSIS/Include/cmsis_gcc.h **** }
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
 1784:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("ssax %0, %1, %2" : "=r" (result) : "r" (op1), "r" (op2) );
 1785:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
 1786:Drivers/CMSIS/Include/cmsis_gcc.h **** }
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 35
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 35
 
 
 1787:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
 1841:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
 1842:Drivers/CMSIS/Include/cmsis_gcc.h **** }
 1843:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 36
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 36
 
 
 1844:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __SSAT16(ARG1,ARG2) \
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
 1898:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE uint32_t __SMUADX (uint32_t op1, uint32_t op2)
 1899:Drivers/CMSIS/Include/cmsis_gcc.h **** {
 1900:Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t result;
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 37
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 37
 
 
 1901:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
   84              		.loc 1 87 10 is_stmt 0 view .LVU21
   85 0014 4068     		ldr	r0, [r0, #4]
   86              	.LVL6:
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 38
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 38
 
 
   88:Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_power_q15.c ****     sum = __SMLALD(in32, in32, sum);
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
  124              	.L5:
   99:Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_power_q15.c ****   {
  100:Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_power_q15.c ****     /* C = A[0] * A[0] + A[1] * A[1] + A[2] * A[2] + ... + A[blockSize-1] * A[blockSize-1] */
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 39
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 39
 
 
  101:Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_power_q15.c ****     /* Compute Power and then store the result in a temporary variable, sum. */
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
  118:Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_power_q15.c **** 
  119:Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_power_q15.c ****   while (blkCnt > 0U)
  120:Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_power_q15.c ****   {
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 40
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 40
 
 
  121:Drivers/CMSIS/DSP/Source/StatisticsFunctions/arm_power_q15.c ****     /* C = A[0] * A[0] + A[1] * A[1] + A[2] * A[2] + ... + A[blockSize-1] * A[blockSize-1] */
@@ -2368,12 +2368,12 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 1
  168              		.file 3 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
  169              		.file 4 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
  170              		.file 5 "Drivers/CMSIS/DSP/Include/arm_math.h"
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s 			page 41
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s 			page 41
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 arm_power_q15.c
-C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s:21     .text.arm_power_q15:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccdDLFra.s:27     .text.arm_power_q15:00000000 arm_power_q15
+C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s:21     .text.arm_power_q15:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccSpO8Ud.s:27     .text.arm_power_q15:00000000 arm_power_q15
 
 NO UNDEFINED SYMBOLS

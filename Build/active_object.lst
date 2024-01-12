@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s 			page 1
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQMRiNp.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -20,613 +20,548 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s 			page 1
   17              	.Ltext0:
   18              		.cfi_sections	.debug_frame
   19              		.file 1 "Core/Src/Middleware/Active_Object/active_object.c"
-  20              		.section	.text.Fsm_init,"ax",%progbits
+  20              		.section	.text.init,"ax",%progbits
   21              		.align	1
-  22              		.global	Fsm_init
-  23              		.syntax unified
-  24              		.thumb
-  25              		.thumb_func
-  27              	Fsm_init:
-  28              	.LVL0:
-  29              	.LFB135:
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	init:
+  27              	.LVL0:
+  28              	.LFB135:
    1:Core/Src/Middleware/Active_Object/active_object.c **** #include "active_object.h"
    2:Core/Src/Middleware/Active_Object/active_object.c **** 
-   3:Core/Src/Middleware/Active_Object/active_object.c **** void Fsm_init(Fsm * const self, Event * const event);
-   4:Core/Src/Middleware/Active_Object/active_object.c **** void Fsm_dispatch(Fsm * const self, Event * const event);
-   5:Core/Src/Middleware/Active_Object/active_object.c **** void Fsm_setHandler(Fsm * const self, StateHandler handler);
-   6:Core/Src/Middleware/Active_Object/active_object.c **** void Ao_start(
-   7:Core/Src/Middleware/Active_Object/active_object.c ****     Ao * const self, 
-   8:Core/Src/Middleware/Active_Object/active_object.c ****     uint8_t priority, 
-   9:Core/Src/Middleware/Active_Object/active_object.c ****     uint32_t stack_size,
-  10:Core/Src/Middleware/Active_Object/active_object.c ****     uint32_t queue_len);
-  11:Core/Src/Middleware/Active_Object/active_object.c **** void Ao_post(Ao * const self, Event * const event);
-  12:Core/Src/Middleware/Active_Object/active_object.c **** void Ao_postFromISR(Ao * const self, Event * const event, BaseType_t *pxHigherPriorityTaskWoken);
-  13:Core/Src/Middleware/Active_Object/active_object.c **** void Ao_loopEvent(void * pData);
-  14:Core/Src/Middleware/Active_Object/active_object.c **** 
-  15:Core/Src/Middleware/Active_Object/active_object.c **** static Event const entry_evt = { ENTRY_SIG };
-  16:Core/Src/Middleware/Active_Object/active_object.c **** static Event const exit_evt  = { EXIT_SIG };
-  17:Core/Src/Middleware/Active_Object/active_object.c **** 
-  18:Core/Src/Middleware/Active_Object/active_object.c **** // Finite State Machine implementation --------------------------------
-  19:Core/Src/Middleware/Active_Object/active_object.c **** void Fsm_init(Fsm * const self, Event * const event)
-  20:Core/Src/Middleware/Active_Object/active_object.c **** {
-  30              		.loc 1 20 1 view -0
-  31              		.cfi_startproc
-  32              		@ args = 0, pretend = 0, frame = 0
-  33              		@ frame_needed = 0, uses_anonymous_args = 0
-  34              		.loc 1 20 1 is_stmt 0 view .LVU1
-  35 0000 10B5     		push	{r4, lr}
-  36              	.LCFI0:
-  37              		.cfi_def_cfa_offset 8
-  38              		.cfi_offset 4, -8
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s 			page 2
-
-
-  39              		.cfi_offset 14, -4
-  40 0002 0446     		mov	r4, r0
-  21:Core/Src/Middleware/Active_Object/active_object.c ****     self->_handler(self, event);
-  41              		.loc 1 21 5 is_stmt 1 view .LVU2
-  42              		.loc 1 21 9 is_stmt 0 view .LVU3
+   3:Core/Src/Middleware/Active_Object/active_object.c **** static void init(struct Ao * const self, Event const * const event)
+   4:Core/Src/Middleware/Active_Object/active_object.c **** {
+  29              		.loc 1 4 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		.loc 1 4 1 is_stmt 0 view .LVU1
+  34 0000 10B5     		push	{r4, lr}
+  35              	.LCFI0:
+  36              		.cfi_def_cfa_offset 8
+  37              		.cfi_offset 4, -8
+  38              		.cfi_offset 14, -4
+  39 0002 0446     		mov	r4, r0
+   5:Core/Src/Middleware/Active_Object/active_object.c ****     static Event const entry_evt = {.signal = ENTRY_SIG};
+  40              		.loc 1 5 5 is_stmt 1 view .LVU2
+   6:Core/Src/Middleware/Active_Object/active_object.c ****     (*self->handler)(self, event);
+  41              		.loc 1 6 5 view .LVU3
+  42              		.loc 1 6 6 is_stmt 0 view .LVU4
   43 0004 0368     		ldr	r3, [r0]
-  44              		.loc 1 21 5 view .LVU4
-  45 0006 9847     		blx	r3
-  46              	.LVL1:
-  22:Core/Src/Middleware/Active_Object/active_object.c ****     self->_handler(self, &entry_evt);
-  47              		.loc 1 22 5 is_stmt 1 view .LVU5
-  48              		.loc 1 22 9 is_stmt 0 view .LVU6
-  49 0008 2368     		ldr	r3, [r4]
-  50              		.loc 1 22 5 view .LVU7
-  51 000a 0249     		ldr	r1, .L3
-  52 000c 2046     		mov	r0, r4
-  53 000e 9847     		blx	r3
-  54              	.LVL2:
-  23:Core/Src/Middleware/Active_Object/active_object.c ****     
-  24:Core/Src/Middleware/Active_Object/active_object.c **** }
-  55              		.loc 1 24 1 view .LVU8
-  56 0010 10BD     		pop	{r4, pc}
-  57              	.LVL3:
-  58              	.L4:
-  59              		.loc 1 24 1 view .LVU9
-  60 0012 00BF     		.align	2
-  61              	.L3:
-  62 0014 00000000 		.word	entry_evt
-  63              		.cfi_endproc
-  64              	.LFE135:
-  66              		.section	.text.Fsm_dispatch,"ax",%progbits
-  67              		.align	1
-  68              		.global	Fsm_dispatch
-  69              		.syntax unified
-  70              		.thumb
-  71              		.thumb_func
-  73              	Fsm_dispatch:
-  74              	.LVL4:
-  75              	.LFB136:
-  25:Core/Src/Middleware/Active_Object/active_object.c **** 
-  26:Core/Src/Middleware/Active_Object/active_object.c **** void Fsm_dispatch(Fsm * const self, Event * const event)
-  27:Core/Src/Middleware/Active_Object/active_object.c **** {
-  76              		.loc 1 27 1 is_stmt 1 view -0
-  77              		.cfi_startproc
-  78              		@ args = 0, pretend = 0, frame = 0
-  79              		@ frame_needed = 0, uses_anonymous_args = 0
-  80              		.loc 1 27 1 is_stmt 0 view .LVU11
-  81 0000 38B5     		push	{r3, r4, r5, lr}
-  82              	.LCFI1:
-  83              		.cfi_def_cfa_offset 16
-  84              		.cfi_offset 3, -16
-  85              		.cfi_offset 4, -12
-  86              		.cfi_offset 5, -8
-  87              		.cfi_offset 14, -4
-  88 0002 0446     		mov	r4, r0
-  28:Core/Src/Middleware/Active_Object/active_object.c ****     Status status;
-  89              		.loc 1 28 5 is_stmt 1 view .LVU12
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s 			page 3
+  44 0006 9847     		blx	r3
+  45              	.LVL1:
+   7:Core/Src/Middleware/Active_Object/active_object.c ****     (*self->handler)(self, &entry_evt);
+  46              		.loc 1 7 5 is_stmt 1 view .LVU5
+  47              		.loc 1 7 6 is_stmt 0 view .LVU6
+  48 0008 2368     		ldr	r3, [r4]
+  49 000a 0249     		ldr	r1, .L3
+  50 000c 2046     		mov	r0, r4
+  51 000e 9847     		blx	r3
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQMRiNp.s 			page 2
 
 
-  29:Core/Src/Middleware/Active_Object/active_object.c ****     StateHandler prev_handler = self->_handler;
-  90              		.loc 1 29 5 view .LVU13
-  91              		.loc 1 29 18 is_stmt 0 view .LVU14
-  92 0004 0568     		ldr	r5, [r0]
-  93              	.LVL5:
-  30:Core/Src/Middleware/Active_Object/active_object.c **** 
-  31:Core/Src/Middleware/Active_Object/active_object.c ****     status = self->_handler(self, event);
-  94              		.loc 1 31 5 is_stmt 1 view .LVU15
-  95              		.loc 1 31 14 is_stmt 0 view .LVU16
-  96 0006 A847     		blx	r5
-  97              	.LVL6:
-  32:Core/Src/Middleware/Active_Object/active_object.c **** 
-  33:Core/Src/Middleware/Active_Object/active_object.c ****     if(status == TRAN_STATUS)
-  98              		.loc 1 33 5 is_stmt 1 view .LVU17
-  99              		.loc 1 33 7 is_stmt 0 view .LVU18
- 100 0008 30B9     		cbnz	r0, .L5
-  34:Core/Src/Middleware/Active_Object/active_object.c ****     {
-  35:Core/Src/Middleware/Active_Object/active_object.c ****         prev_handler(self, &exit_evt);
- 101              		.loc 1 35 9 is_stmt 1 view .LVU19
+  52              	.LVL2:
+   8:Core/Src/Middleware/Active_Object/active_object.c **** }
+  53              		.loc 1 8 1 view .LVU7
+  54 0010 10BD     		pop	{r4, pc}
+  55              	.LVL3:
+  56              	.L4:
+  57              		.loc 1 8 1 view .LVU8
+  58 0012 00BF     		.align	2
+  59              	.L3:
+  60 0014 00000000 		.word	entry_evt.0
+  61              		.cfi_endproc
+  62              	.LFE135:
+  64              		.section	.text.dispatch,"ax",%progbits
+  65              		.align	1
+  66              		.syntax unified
+  67              		.thumb
+  68              		.thumb_func
+  70              	dispatch:
+  71              	.LVL4:
+  72              	.LFB136:
+   9:Core/Src/Middleware/Active_Object/active_object.c **** 
+  10:Core/Src/Middleware/Active_Object/active_object.c **** static void dispatch(struct Ao * const self, Event const * const event)
+  11:Core/Src/Middleware/Active_Object/active_object.c **** {
+  73              		.loc 1 11 1 is_stmt 1 view -0
+  74              		.cfi_startproc
+  75              		@ args = 0, pretend = 0, frame = 0
+  76              		@ frame_needed = 0, uses_anonymous_args = 0
+  77              		.loc 1 11 1 is_stmt 0 view .LVU10
+  78 0000 38B5     		push	{r3, r4, r5, lr}
+  79              	.LCFI1:
+  80              		.cfi_def_cfa_offset 16
+  81              		.cfi_offset 3, -16
+  82              		.cfi_offset 4, -12
+  83              		.cfi_offset 5, -8
+  84              		.cfi_offset 14, -4
+  85 0002 0446     		mov	r4, r0
+  12:Core/Src/Middleware/Active_Object/active_object.c ****     Status status;
+  86              		.loc 1 12 5 is_stmt 1 view .LVU11
+  13:Core/Src/Middleware/Active_Object/active_object.c ****     StateHandler prev_handler = self->handler;
+  87              		.loc 1 13 5 view .LVU12
+  88              		.loc 1 13 18 is_stmt 0 view .LVU13
+  89 0004 0568     		ldr	r5, [r0]
+  90              	.LVL5:
+  14:Core/Src/Middleware/Active_Object/active_object.c ****     static Event const entry_evt = {.signal = ENTRY_SIG};
+  91              		.loc 1 14 5 is_stmt 1 view .LVU14
+  15:Core/Src/Middleware/Active_Object/active_object.c ****     static Event const exit_evt = {.signal = EXIT_SIG};
+  92              		.loc 1 15 5 view .LVU15
+  16:Core/Src/Middleware/Active_Object/active_object.c **** 
+  17:Core/Src/Middleware/Active_Object/active_object.c ****     status = (*self->handler)(self, event);
+  93              		.loc 1 17 5 view .LVU16
+  94              		.loc 1 17 15 is_stmt 0 view .LVU17
+  95 0006 A847     		blx	r5
+  96              	.LVL6:
+  18:Core/Src/Middleware/Active_Object/active_object.c ****     if(status == TRAN_STATUS)
+  97              		.loc 1 18 5 is_stmt 1 view .LVU18
+  98              		.loc 1 18 7 is_stmt 0 view .LVU19
+  99 0008 30B9     		cbnz	r0, .L5
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQMRiNp.s 			page 3
+
+
+  19:Core/Src/Middleware/Active_Object/active_object.c ****     {
+  20:Core/Src/Middleware/Active_Object/active_object.c ****         (*prev_handler)(self, &exit_evt);
+ 100              		.loc 1 20 9 is_stmt 1 view .LVU20
+ 101              		.loc 1 20 10 is_stmt 0 view .LVU21
  102 000a 0449     		ldr	r1, .L8
  103 000c 2046     		mov	r0, r4
  104              	.LVL7:
- 105              		.loc 1 35 9 is_stmt 0 view .LVU20
+ 105              		.loc 1 20 10 view .LVU22
  106 000e A847     		blx	r5
  107              	.LVL8:
-  36:Core/Src/Middleware/Active_Object/active_object.c ****         self->_handler(self, &entry_evt);
- 108              		.loc 1 36 9 is_stmt 1 view .LVU21
- 109              		.loc 1 36 13 is_stmt 0 view .LVU22
+  21:Core/Src/Middleware/Active_Object/active_object.c ****         (*self->handler)(self, &entry_evt);
+ 108              		.loc 1 21 9 is_stmt 1 view .LVU23
+ 109              		.loc 1 21 10 is_stmt 0 view .LVU24
  110 0010 2368     		ldr	r3, [r4]
- 111              		.loc 1 36 9 view .LVU23
- 112 0012 0349     		ldr	r1, .L8+4
- 113 0014 2046     		mov	r0, r4
- 114 0016 9847     		blx	r3
- 115              	.LVL9:
- 116              	.L5:
-  37:Core/Src/Middleware/Active_Object/active_object.c ****     }
+ 111 0012 0349     		ldr	r1, .L8+4
+ 112 0014 2046     		mov	r0, r4
+ 113 0016 9847     		blx	r3
+ 114              	.LVL9:
+ 115              	.L5:
+  22:Core/Src/Middleware/Active_Object/active_object.c ****     }
+  23:Core/Src/Middleware/Active_Object/active_object.c **** }
+ 116              		.loc 1 23 1 view .LVU25
+ 117 0018 38BD     		pop	{r3, r4, r5, pc}
+ 118              	.LVL10:
+ 119              	.L9:
+ 120              		.loc 1 23 1 view .LVU26
+ 121 001a 00BF     		.align	2
+ 122              	.L8:
+ 123 001c 00000000 		.word	exit_evt.2
+ 124 0020 00000000 		.word	entry_evt.1
+ 125              		.cfi_endproc
+ 126              	.LFE136:
+ 128              		.section	.rodata.start.str1.4,"aMS",%progbits,1
+ 129              		.align	2
+ 130              	.LC0:
+ 131 0000 414F00   		.ascii	"AO\000"
+ 132              		.section	.text.start,"ax",%progbits
+ 133              		.align	1
+ 134              		.syntax unified
+ 135              		.thumb
+ 136              		.thumb_func
+ 138              	start:
+ 139              	.LVL11:
+ 140              	.LFB137:
+  24:Core/Src/Middleware/Active_Object/active_object.c **** 
+  25:Core/Src/Middleware/Active_Object/active_object.c **** static void start(struct Ao * const self,
+  26:Core/Src/Middleware/Active_Object/active_object.c ****                   uint8_t prio,       /* priority (1-based) */
+  27:Core/Src/Middleware/Active_Object/active_object.c ****                   uint32_t queueLen,
+  28:Core/Src/Middleware/Active_Object/active_object.c ****                   uint32_t stackSize,
+  29:Core/Src/Middleware/Active_Object/active_object.c ****                   uint16_t opt)
+  30:Core/Src/Middleware/Active_Object/active_object.c **** {
+ 141              		.loc 1 30 1 is_stmt 1 view -0
+ 142              		.cfi_startproc
+ 143              		@ args = 4, pretend = 0, frame = 0
+ 144              		@ frame_needed = 0, uses_anonymous_args = 0
+ 145              		.loc 1 30 1 is_stmt 0 view .LVU28
+ 146 0000 70B5     		push	{r4, r5, r6, lr}
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQMRiNp.s 			page 4
+
+
+ 147              	.LCFI2:
+ 148              		.cfi_def_cfa_offset 16
+ 149              		.cfi_offset 4, -16
+ 150              		.cfi_offset 5, -12
+ 151              		.cfi_offset 6, -8
+ 152              		.cfi_offset 14, -4
+ 153 0002 82B0     		sub	sp, sp, #8
+ 154              	.LCFI3:
+ 155              		.cfi_def_cfa_offset 24
+ 156 0004 0446     		mov	r4, r0
+ 157 0006 0E46     		mov	r6, r1
+ 158 0008 1046     		mov	r0, r2
+ 159              	.LVL12:
+  31:Core/Src/Middleware/Active_Object/active_object.c ****     uint32_t stk_depth = (stackSize / sizeof(StackType_t));
+ 160              		.loc 1 31 5 is_stmt 1 view .LVU29
+ 161              		.loc 1 31 14 is_stmt 0 view .LVU30
+ 162 000a 9D08     		lsrs	r5, r3, #2
+ 163              	.LVL13:
+  32:Core/Src/Middleware/Active_Object/active_object.c ****     uint32_t a[queueLen];
+ 164              		.loc 1 32 5 is_stmt 1 view .LVU31
+  33:Core/Src/Middleware/Active_Object/active_object.c ****     (void)opt; /* unused parameter */
+ 165              		.loc 1 33 5 view .LVU32
+  34:Core/Src/Middleware/Active_Object/active_object.c ****     
+  35:Core/Src/Middleware/Active_Object/active_object.c ****     self->queue = xQueueCreate(queueLen, sizeof(Event *));
+ 166              		.loc 1 35 5 view .LVU33
+ 167              		.loc 1 35 19 is_stmt 0 view .LVU34
+ 168 000c 0022     		movs	r2, #0
+ 169              	.LVL14:
+ 170              		.loc 1 35 19 view .LVU35
+ 171 000e 0421     		movs	r1, #4
+ 172              	.LVL15:
+ 173              		.loc 1 35 19 view .LVU36
+ 174 0010 FFF7FEFF 		bl	xQueueGenericCreate
+ 175              	.LVL16:
+ 176              		.loc 1 35 17 discriminator 1 view .LVU37
+ 177 0014 2066     		str	r0, [r4, #96]
+  36:Core/Src/Middleware/Active_Object/active_object.c **** 
+  37:Core/Src/Middleware/Active_Object/active_object.c ****     xTaskCreate(self->loopEvent, "AO", stk_depth, self, prio + tskIDLE_PRIORITY, &self->thread);
+ 178              		.loc 1 37 5 is_stmt 1 view .LVU38
+ 179 0016 231D     		adds	r3, r4, #4
+ 180 0018 0193     		str	r3, [sp, #4]
+ 181 001a 0096     		str	r6, [sp]
+ 182 001c 2346     		mov	r3, r4
+ 183 001e AAB2     		uxth	r2, r5
+ 184 0020 0349     		ldr	r1, .L12
+ 185 0022 D4F8C800 		ldr	r0, [r4, #200]
+ 186 0026 FFF7FEFF 		bl	xTaskCreate
+ 187              	.LVL17:
   38:Core/Src/Middleware/Active_Object/active_object.c **** }
- 117              		.loc 1 38 1 view .LVU24
- 118 0018 38BD     		pop	{r3, r4, r5, pc}
- 119              	.LVL10:
- 120              	.L9:
- 121              		.loc 1 38 1 view .LVU25
- 122 001a 00BF     		.align	2
- 123              	.L8:
- 124 001c 00000000 		.word	exit_evt
- 125 0020 00000000 		.word	entry_evt
- 126              		.cfi_endproc
- 127              	.LFE136:
- 129              		.section	.text.Fsm_setHandler,"ax",%progbits
- 130              		.align	1
- 131              		.global	Fsm_setHandler
- 132              		.syntax unified
- 133              		.thumb
- 134              		.thumb_func
- 136              	Fsm_setHandler:
- 137              	.LVL11:
- 138              	.LFB137:
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s 			page 4
+ 188              		.loc 1 38 1 is_stmt 0 view .LVU39
+ 189 002a 02B0     		add	sp, sp, #8
+ 190              	.LCFI4:
+ 191              		.cfi_def_cfa_offset 16
+ 192              		@ sp needed
+ 193 002c 70BD     		pop	{r4, r5, r6, pc}
+ 194              	.LVL18:
+ 195              	.L13:
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQMRiNp.s 			page 5
 
 
+ 196              		.loc 1 38 1 view .LVU40
+ 197 002e 00BF     		.align	2
+ 198              	.L12:
+ 199 0030 00000000 		.word	.LC0
+ 200              		.cfi_endproc
+ 201              	.LFE137:
+ 203              		.section	.text.loopEvent,"ax",%progbits
+ 204              		.align	1
+ 205              		.syntax unified
+ 206              		.thumb
+ 207              		.thumb_func
+ 209              	loopEvent:
+ 210              	.LVL19:
+ 211              	.LFB140:
   39:Core/Src/Middleware/Active_Object/active_object.c **** 
-  40:Core/Src/Middleware/Active_Object/active_object.c **** void Fsm_setHandler(Fsm * const self, StateHandler handler)
+  40:Core/Src/Middleware/Active_Object/active_object.c **** static void post(struct Ao * const self, Event const * const event)
   41:Core/Src/Middleware/Active_Object/active_object.c **** {
- 139              		.loc 1 41 1 is_stmt 1 view -0
- 140              		.cfi_startproc
- 141              		@ args = 0, pretend = 0, frame = 0
- 142              		@ frame_needed = 0, uses_anonymous_args = 0
- 143              		@ link register save eliminated.
-  42:Core/Src/Middleware/Active_Object/active_object.c ****     self->_handler = handler;
- 144              		.loc 1 42 5 view .LVU27
- 145              		.loc 1 42 20 is_stmt 0 view .LVU28
- 146 0000 0160     		str	r1, [r0]
+  42:Core/Src/Middleware/Active_Object/active_object.c ****     xQueueSendToBack(self->queue, (void *)&event, (TickType_t)0);
   43:Core/Src/Middleware/Active_Object/active_object.c **** }
- 147              		.loc 1 43 1 view .LVU29
- 148 0002 7047     		bx	lr
- 149              		.cfi_endproc
- 150              	.LFE137:
- 152              		.section	.rodata.Ao_start.str1.4,"aMS",%progbits,1
- 153              		.align	2
- 154              	.LC0:
- 155 0000 4576656E 		.ascii	"Event Loop\000"
- 155      74204C6F 
- 155      6F7000
- 156              		.section	.text.Ao_start,"ax",%progbits
- 157              		.align	1
- 158              		.global	Ao_start
- 159              		.syntax unified
- 160              		.thumb
- 161              		.thumb_func
- 163              	Ao_start:
- 164              	.LVL12:
- 165              	.LFB139:
   44:Core/Src/Middleware/Active_Object/active_object.c **** 
-  45:Core/Src/Middleware/Active_Object/active_object.c **** void Fsm_ctor(Fsm * const self, StateHandler handler)
+  45:Core/Src/Middleware/Active_Object/active_object.c **** static void postFromISR(struct Ao * const self, Event const * const event, BaseType_t *pxHigherPrio
   46:Core/Src/Middleware/Active_Object/active_object.c **** {
-  47:Core/Src/Middleware/Active_Object/active_object.c ****     self->_handler = handler;
-  48:Core/Src/Middleware/Active_Object/active_object.c ****     self->init = Fsm_init;
-  49:Core/Src/Middleware/Active_Object/active_object.c ****     self->dispatch = Fsm_dispatch;
-  50:Core/Src/Middleware/Active_Object/active_object.c ****     self->setHandler = Fsm_setHandler;
-  51:Core/Src/Middleware/Active_Object/active_object.c **** }
-  52:Core/Src/Middleware/Active_Object/active_object.c **** 
-  53:Core/Src/Middleware/Active_Object/active_object.c **** // Active Object implementation --------------------------------
-  54:Core/Src/Middleware/Active_Object/active_object.c **** void Ao_start(
-  55:Core/Src/Middleware/Active_Object/active_object.c ****     Ao * const self, 
-  56:Core/Src/Middleware/Active_Object/active_object.c ****     uint8_t priority, 
-  57:Core/Src/Middleware/Active_Object/active_object.c ****     uint32_t stack_size,
-  58:Core/Src/Middleware/Active_Object/active_object.c ****     uint32_t queue_len)
-  59:Core/Src/Middleware/Active_Object/active_object.c **** {
- 166              		.loc 1 59 1 is_stmt 1 view -0
- 167              		.cfi_startproc
- 168              		@ args = 0, pretend = 0, frame = 0
- 169              		@ frame_needed = 0, uses_anonymous_args = 0
- 170              		.loc 1 59 1 is_stmt 0 view .LVU31
- 171 0000 70B5     		push	{r4, r5, r6, lr}
- 172              	.LCFI2:
- 173              		.cfi_def_cfa_offset 16
- 174              		.cfi_offset 4, -16
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s 			page 5
+  47:Core/Src/Middleware/Active_Object/active_object.c ****     xQueueSendToBackFromISR(self->queue, (void *)&event, pxHigherPriorityTaskWoken); 
+  48:Core/Src/Middleware/Active_Object/active_object.c **** }
+  49:Core/Src/Middleware/Active_Object/active_object.c **** 
+  50:Core/Src/Middleware/Active_Object/active_object.c **** static void loopEvent(void * pData)
+  51:Core/Src/Middleware/Active_Object/active_object.c **** {
+ 212              		.loc 1 51 1 is_stmt 1 view -0
+ 213              		.cfi_startproc
+ 214              		@ args = 0, pretend = 0, frame = 8
+ 215              		@ frame_needed = 0, uses_anonymous_args = 0
+ 216              		.loc 1 51 1 is_stmt 0 view .LVU42
+ 217 0000 10B5     		push	{r4, lr}
+ 218              	.LCFI5:
+ 219              		.cfi_def_cfa_offset 8
+ 220              		.cfi_offset 4, -8
+ 221              		.cfi_offset 14, -4
+ 222 0002 82B0     		sub	sp, sp, #8
+ 223              	.LCFI6:
+ 224              		.cfi_def_cfa_offset 16
+ 225 0004 0446     		mov	r4, r0
+  52:Core/Src/Middleware/Active_Object/active_object.c ****     struct Ao * ao_instance = (struct Ao *)pData;
+ 226              		.loc 1 52 5 is_stmt 1 view .LVU43
+ 227              	.LVL20:
+  53:Core/Src/Middleware/Active_Object/active_object.c ****     static Event const entry_evt = {.signal = ENTRY_SIG};
+ 228              		.loc 1 53 5 view .LVU44
+  54:Core/Src/Middleware/Active_Object/active_object.c ****     ao_instance->init(ao_instance, &entry_evt);
+ 229              		.loc 1 54 5 view .LVU45
+ 230              		.loc 1 54 16 is_stmt 0 view .LVU46
+ 231 0006 D0F8B430 		ldr	r3, [r0, #180]
+ 232              		.loc 1 54 5 view .LVU47
+ 233 000a 0749     		ldr	r1, .L17
+ 234 000c 9847     		blx	r3
+ 235              	.LVL21:
+ 236              	.L15:
+  55:Core/Src/Middleware/Active_Object/active_object.c **** 
+  56:Core/Src/Middleware/Active_Object/active_object.c ****     while(1)
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQMRiNp.s 			page 6
 
 
- 175              		.cfi_offset 5, -12
- 176              		.cfi_offset 6, -8
- 177              		.cfi_offset 14, -4
- 178 0002 82B0     		sub	sp, sp, #8
- 179              	.LCFI3:
- 180              		.cfi_def_cfa_offset 24
- 181 0004 0446     		mov	r4, r0
- 182 0006 0E46     		mov	r6, r1
- 183 0008 1546     		mov	r5, r2
-  60:Core/Src/Middleware/Active_Object/active_object.c ****     self->_queue = xQueueCreate(queue_len, sizeof(char *));
- 184              		.loc 1 60 5 is_stmt 1 view .LVU32
- 185              		.loc 1 60 20 is_stmt 0 view .LVU33
- 186 000a 0022     		movs	r2, #0
- 187              	.LVL13:
- 188              		.loc 1 60 20 view .LVU34
- 189 000c 0421     		movs	r1, #4
- 190              	.LVL14:
- 191              		.loc 1 60 20 view .LVU35
- 192 000e 1846     		mov	r0, r3
- 193              	.LVL15:
- 194              		.loc 1 60 20 view .LVU36
- 195 0010 FFF7FEFF 		bl	xQueueGenericCreate
- 196              	.LVL16:
- 197              		.loc 1 60 18 discriminator 1 view .LVU37
- 198 0014 A060     		str	r0, [r4, #8]
-  61:Core/Src/Middleware/Active_Object/active_object.c ****     xTaskCreate(
- 199              		.loc 1 61 5 is_stmt 1 view .LVU38
- 200 0016 6368     		ldr	r3, [r4, #4]
- 201 0018 0193     		str	r3, [sp, #4]
- 202 001a 0096     		str	r6, [sp]
- 203 001c 2346     		mov	r3, r4
- 204 001e AAB2     		uxth	r2, r5
- 205 0020 0249     		ldr	r1, .L13
- 206 0022 A069     		ldr	r0, [r4, #24]
- 207 0024 FFF7FEFF 		bl	xTaskCreate
- 208              	.LVL17:
-  62:Core/Src/Middleware/Active_Object/active_object.c ****         self->loopEvent, 
-  63:Core/Src/Middleware/Active_Object/active_object.c ****         "Event Loop", 
-  64:Core/Src/Middleware/Active_Object/active_object.c ****         stack_size, 
-  65:Core/Src/Middleware/Active_Object/active_object.c ****         (void *)self, 
-  66:Core/Src/Middleware/Active_Object/active_object.c ****         tskIDLE_PRIORITY + priority, 
-  67:Core/Src/Middleware/Active_Object/active_object.c ****         self->_thread);
-  68:Core/Src/Middleware/Active_Object/active_object.c **** }
- 209              		.loc 1 68 1 is_stmt 0 view .LVU39
- 210 0028 02B0     		add	sp, sp, #8
- 211              	.LCFI4:
- 212              		.cfi_def_cfa_offset 16
- 213              		@ sp needed
- 214 002a 70BD     		pop	{r4, r5, r6, pc}
- 215              	.LVL18:
- 216              	.L14:
- 217              		.loc 1 68 1 view .LVU40
- 218              		.align	2
- 219              	.L13:
- 220 002c 00000000 		.word	.LC0
- 221              		.cfi_endproc
- 222              	.LFE139:
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s 			page 6
+ 237              		.loc 1 56 5 is_stmt 1 view .LVU48
+ 238              	.LBB2:
+  57:Core/Src/Middleware/Active_Object/active_object.c ****     {
+  58:Core/Src/Middleware/Active_Object/active_object.c ****         Event * event;
+ 239              		.loc 1 58 9 view .LVU49
+  59:Core/Src/Middleware/Active_Object/active_object.c ****         xQueueReceive(ao_instance->queue, &event, portMAX_DELAY);
+ 240              		.loc 1 59 9 view .LVU50
+ 241 000e 4FF0FF32 		mov	r2, #-1
+ 242 0012 01A9     		add	r1, sp, #4
+ 243 0014 206E     		ldr	r0, [r4, #96]
+ 244 0016 FFF7FEFF 		bl	xQueueReceive
+ 245              	.LVL22:
+  60:Core/Src/Middleware/Active_Object/active_object.c ****         ao_instance->dispatch(ao_instance, (Event *)event);
+ 246              		.loc 1 60 9 view .LVU51
+ 247              		.loc 1 60 20 is_stmt 0 view .LVU52
+ 248 001a D4F8B830 		ldr	r3, [r4, #184]
+ 249              		.loc 1 60 9 view .LVU53
+ 250 001e 0199     		ldr	r1, [sp, #4]
+ 251 0020 2046     		mov	r0, r4
+ 252 0022 9847     		blx	r3
+ 253              	.LVL23:
+ 254              	.LBE2:
+  56:Core/Src/Middleware/Active_Object/active_object.c ****     {
+ 255              		.loc 1 56 10 is_stmt 1 view .LVU54
+ 256 0024 F3E7     		b	.L15
+ 257              	.L18:
+ 258 0026 00BF     		.align	2
+ 259              	.L17:
+ 260 0028 00000000 		.word	entry_evt.3
+ 261              		.cfi_endproc
+ 262              	.LFE140:
+ 264              		.section	.text.postFromISR,"ax",%progbits
+ 265              		.align	1
+ 266              		.syntax unified
+ 267              		.thumb
+ 268              		.thumb_func
+ 270              	postFromISR:
+ 271              	.LVL24:
+ 272              	.LFB139:
+  46:Core/Src/Middleware/Active_Object/active_object.c ****     xQueueSendToBackFromISR(self->queue, (void *)&event, pxHigherPriorityTaskWoken); 
+ 273              		.loc 1 46 1 view -0
+ 274              		.cfi_startproc
+ 275              		@ args = 0, pretend = 0, frame = 8
+ 276              		@ frame_needed = 0, uses_anonymous_args = 0
+  46:Core/Src/Middleware/Active_Object/active_object.c ****     xQueueSendToBackFromISR(self->queue, (void *)&event, pxHigherPriorityTaskWoken); 
+ 277              		.loc 1 46 1 is_stmt 0 view .LVU56
+ 278 0000 00B5     		push	{lr}
+ 279              	.LCFI7:
+ 280              		.cfi_def_cfa_offset 4
+ 281              		.cfi_offset 14, -4
+ 282 0002 83B0     		sub	sp, sp, #12
+ 283              	.LCFI8:
+ 284              		.cfi_def_cfa_offset 16
+ 285 0004 0191     		str	r1, [sp, #4]
+  47:Core/Src/Middleware/Active_Object/active_object.c **** }
+ 286              		.loc 1 47 5 is_stmt 1 view .LVU57
+ 287 0006 0023     		movs	r3, #0
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQMRiNp.s 			page 7
 
 
- 224              		.section	.text.Ao_post,"ax",%progbits
- 225              		.align	1
- 226              		.global	Ao_post
- 227              		.syntax unified
- 228              		.thumb
- 229              		.thumb_func
- 231              	Ao_post:
- 232              	.LVL19:
- 233              	.LFB140:
-  69:Core/Src/Middleware/Active_Object/active_object.c **** 
-  70:Core/Src/Middleware/Active_Object/active_object.c **** void Ao_post(Ao * const self, Event * const event)
-  71:Core/Src/Middleware/Active_Object/active_object.c **** {
- 234              		.loc 1 71 1 is_stmt 1 view -0
- 235              		.cfi_startproc
- 236              		@ args = 0, pretend = 0, frame = 0
- 237              		@ frame_needed = 0, uses_anonymous_args = 0
- 238              		.loc 1 71 1 is_stmt 0 view .LVU42
- 239 0000 08B5     		push	{r3, lr}
- 240              	.LCFI5:
- 241              		.cfi_def_cfa_offset 8
- 242              		.cfi_offset 3, -8
- 243              		.cfi_offset 14, -4
-  72:Core/Src/Middleware/Active_Object/active_object.c ****     xQueueOverwrite(self->_queue, (char *)event);
- 244              		.loc 1 72 5 is_stmt 1 view .LVU43
- 245 0002 0223     		movs	r3, #2
- 246 0004 0022     		movs	r2, #0
- 247 0006 8068     		ldr	r0, [r0, #8]
- 248              	.LVL20:
- 249              		.loc 1 72 5 is_stmt 0 view .LVU44
- 250 0008 FFF7FEFF 		bl	xQueueGenericSend
- 251              	.LVL21:
+ 288 0008 01A9     		add	r1, sp, #4
+ 289              	.LVL25:
+  47:Core/Src/Middleware/Active_Object/active_object.c **** }
+ 290              		.loc 1 47 5 is_stmt 0 view .LVU58
+ 291 000a 006E     		ldr	r0, [r0, #96]
+ 292              	.LVL26:
+  47:Core/Src/Middleware/Active_Object/active_object.c **** }
+ 293              		.loc 1 47 5 view .LVU59
+ 294 000c FFF7FEFF 		bl	xQueueGenericSendFromISR
+ 295              	.LVL27:
+  48:Core/Src/Middleware/Active_Object/active_object.c **** 
+ 296              		.loc 1 48 1 view .LVU60
+ 297 0010 03B0     		add	sp, sp, #12
+ 298              	.LCFI9:
+ 299              		.cfi_def_cfa_offset 4
+ 300              		@ sp needed
+ 301 0012 5DF804FB 		ldr	pc, [sp], #4
+ 302              		.cfi_endproc
+ 303              	.LFE139:
+ 305              		.section	.text.post,"ax",%progbits
+ 306              		.align	1
+ 307              		.syntax unified
+ 308              		.thumb
+ 309              		.thumb_func
+ 311              	post:
+ 312              	.LVL28:
+ 313              	.LFB138:
+  41:Core/Src/Middleware/Active_Object/active_object.c ****     xQueueSendToBack(self->queue, (void *)&event, (TickType_t)0);
+ 314              		.loc 1 41 1 is_stmt 1 view -0
+ 315              		.cfi_startproc
+ 316              		@ args = 0, pretend = 0, frame = 8
+ 317              		@ frame_needed = 0, uses_anonymous_args = 0
+  41:Core/Src/Middleware/Active_Object/active_object.c ****     xQueueSendToBack(self->queue, (void *)&event, (TickType_t)0);
+ 318              		.loc 1 41 1 is_stmt 0 view .LVU62
+ 319 0000 00B5     		push	{lr}
+ 320              	.LCFI10:
+ 321              		.cfi_def_cfa_offset 4
+ 322              		.cfi_offset 14, -4
+ 323 0002 83B0     		sub	sp, sp, #12
+ 324              	.LCFI11:
+ 325              		.cfi_def_cfa_offset 16
+ 326 0004 0191     		str	r1, [sp, #4]
+  42:Core/Src/Middleware/Active_Object/active_object.c **** }
+ 327              		.loc 1 42 5 is_stmt 1 view .LVU63
+ 328 0006 0023     		movs	r3, #0
+ 329 0008 1A46     		mov	r2, r3
+ 330 000a 01A9     		add	r1, sp, #4
+ 331              	.LVL29:
+  42:Core/Src/Middleware/Active_Object/active_object.c **** }
+ 332              		.loc 1 42 5 is_stmt 0 view .LVU64
+ 333 000c 006E     		ldr	r0, [r0, #96]
+ 334              	.LVL30:
+  42:Core/Src/Middleware/Active_Object/active_object.c **** }
+ 335              		.loc 1 42 5 view .LVU65
+ 336 000e FFF7FEFF 		bl	xQueueGenericSend
+ 337              	.LVL31:
+  43:Core/Src/Middleware/Active_Object/active_object.c **** 
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQMRiNp.s 			page 8
+
+
+ 338              		.loc 1 43 1 view .LVU66
+ 339 0012 03B0     		add	sp, sp, #12
+ 340              	.LCFI12:
+ 341              		.cfi_def_cfa_offset 4
+ 342              		@ sp needed
+ 343 0014 5DF804FB 		ldr	pc, [sp], #4
+ 344              		.cfi_endproc
+ 345              	.LFE138:
+ 347              		.section	.text.Ao_new,"ax",%progbits
+ 348              		.align	1
+ 349              		.global	Ao_new
+ 350              		.syntax unified
+ 351              		.thumb
+ 352              		.thumb_func
+ 354              	Ao_new:
+ 355              	.LVL32:
+ 356              	.LFB141:
+  61:Core/Src/Middleware/Active_Object/active_object.c ****     }
+  62:Core/Src/Middleware/Active_Object/active_object.c **** }
+  63:Core/Src/Middleware/Active_Object/active_object.c **** 
+  64:Core/Src/Middleware/Active_Object/active_object.c **** void Ao_new(struct Ao * const self, StateHandler handler)
+  65:Core/Src/Middleware/Active_Object/active_object.c **** {
+ 357              		.loc 1 65 1 is_stmt 1 view -0
+ 358              		.cfi_startproc
+ 359              		@ args = 0, pretend = 0, frame = 0
+ 360              		@ frame_needed = 0, uses_anonymous_args = 0
+ 361              		@ link register save eliminated.
+  66:Core/Src/Middleware/Active_Object/active_object.c ****     self->handler = handler;
+ 362              		.loc 1 66 5 view .LVU68
+ 363              		.loc 1 66 19 is_stmt 0 view .LVU69
+ 364 0000 0160     		str	r1, [r0]
+  67:Core/Src/Middleware/Active_Object/active_object.c ****     self->init = &init;
+ 365              		.loc 1 67 5 is_stmt 1 view .LVU70
+ 366              		.loc 1 67 16 is_stmt 0 view .LVU71
+ 367 0002 094B     		ldr	r3, .L24
+ 368 0004 C0F8B430 		str	r3, [r0, #180]
+  68:Core/Src/Middleware/Active_Object/active_object.c ****     self->dispatch = &dispatch;
+ 369              		.loc 1 68 5 is_stmt 1 view .LVU72
+ 370              		.loc 1 68 20 is_stmt 0 view .LVU73
+ 371 0008 084B     		ldr	r3, .L24+4
+ 372 000a C0F8B830 		str	r3, [r0, #184]
+  69:Core/Src/Middleware/Active_Object/active_object.c ****     self->post = &post;
+ 373              		.loc 1 69 5 is_stmt 1 view .LVU74
+ 374              		.loc 1 69 16 is_stmt 0 view .LVU75
+ 375 000e 084B     		ldr	r3, .L24+8
+ 376 0010 C0F8C030 		str	r3, [r0, #192]
+  70:Core/Src/Middleware/Active_Object/active_object.c ****     self->postFromISR = &postFromISR;
+ 377              		.loc 1 70 5 is_stmt 1 view .LVU76
+ 378              		.loc 1 70 23 is_stmt 0 view .LVU77
+ 379 0014 074B     		ldr	r3, .L24+12
+ 380 0016 C0F8C430 		str	r3, [r0, #196]
+  71:Core/Src/Middleware/Active_Object/active_object.c ****     self->loopEvent = &loopEvent;
+ 381              		.loc 1 71 5 is_stmt 1 view .LVU78
+ 382              		.loc 1 71 21 is_stmt 0 view .LVU79
+ 383 001a 074B     		ldr	r3, .L24+16
+ 384 001c C0F8C830 		str	r3, [r0, #200]
+  72:Core/Src/Middleware/Active_Object/active_object.c ****     self->start = &start;
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQMRiNp.s 			page 9
+
+
+ 385              		.loc 1 72 5 is_stmt 1 view .LVU80
+ 386              		.loc 1 72 17 is_stmt 0 view .LVU81
+ 387 0020 064B     		ldr	r3, .L24+20
+ 388 0022 C0F8BC30 		str	r3, [r0, #188]
   73:Core/Src/Middleware/Active_Object/active_object.c **** }
- 252              		.loc 1 73 1 view .LVU45
- 253 000c 08BD     		pop	{r3, pc}
- 254              		.cfi_endproc
- 255              	.LFE140:
- 257              		.section	.text.Ao_postFromISR,"ax",%progbits
- 258              		.align	1
- 259              		.global	Ao_postFromISR
- 260              		.syntax unified
- 261              		.thumb
- 262              		.thumb_func
- 264              	Ao_postFromISR:
- 265              	.LVL22:
- 266              	.LFB141:
-  74:Core/Src/Middleware/Active_Object/active_object.c **** 
-  75:Core/Src/Middleware/Active_Object/active_object.c **** void Ao_postFromISR(Ao * const self, Event * const event, BaseType_t *pxHigherPriorityTaskWoken)
-  76:Core/Src/Middleware/Active_Object/active_object.c **** {
- 267              		.loc 1 76 1 is_stmt 1 view -0
- 268              		.cfi_startproc
- 269              		@ args = 0, pretend = 0, frame = 0
- 270              		@ frame_needed = 0, uses_anonymous_args = 0
- 271              		.loc 1 76 1 is_stmt 0 view .LVU47
- 272 0000 08B5     		push	{r3, lr}
- 273              	.LCFI6:
- 274              		.cfi_def_cfa_offset 8
- 275              		.cfi_offset 3, -8
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s 			page 7
-
-
- 276              		.cfi_offset 14, -4
-  77:Core/Src/Middleware/Active_Object/active_object.c ****     xQueueOverwriteFromISR(self->_queue, (char *)event, pxHigherPriorityTaskWoken);
- 277              		.loc 1 77 5 is_stmt 1 view .LVU48
- 278 0002 0223     		movs	r3, #2
- 279 0004 8068     		ldr	r0, [r0, #8]
- 280              	.LVL23:
- 281              		.loc 1 77 5 is_stmt 0 view .LVU49
- 282 0006 FFF7FEFF 		bl	xQueueGenericSendFromISR
- 283              	.LVL24:
-  78:Core/Src/Middleware/Active_Object/active_object.c **** }
- 284              		.loc 1 78 1 view .LVU50
- 285 000a 08BD     		pop	{r3, pc}
- 286              		.cfi_endproc
- 287              	.LFE141:
- 289              		.section	.text.Ao_loopEvent,"ax",%progbits
- 290              		.align	1
- 291              		.global	Ao_loopEvent
- 292              		.syntax unified
- 293              		.thumb
- 294              		.thumb_func
- 296              	Ao_loopEvent:
- 297              	.LVL25:
- 298              	.LFB142:
-  79:Core/Src/Middleware/Active_Object/active_object.c **** 
-  80:Core/Src/Middleware/Active_Object/active_object.c **** void Ao_loopEvent(void * pData)
-  81:Core/Src/Middleware/Active_Object/active_object.c **** {
- 299              		.loc 1 81 1 is_stmt 1 view -0
- 300              		.cfi_startproc
- 301              		@ args = 0, pretend = 0, frame = 0
- 302              		@ frame_needed = 0, uses_anonymous_args = 0
- 303              		.loc 1 81 1 is_stmt 0 view .LVU52
- 304 0000 38B5     		push	{r3, r4, r5, lr}
- 305              	.LCFI7:
- 306              		.cfi_def_cfa_offset 16
- 307              		.cfi_offset 3, -16
- 308              		.cfi_offset 4, -12
- 309              		.cfi_offset 5, -8
- 310              		.cfi_offset 14, -4
- 311 0002 0546     		mov	r5, r0
-  82:Core/Src/Middleware/Active_Object/active_object.c ****     Ao * ao_instance = (Ao *)pData;
- 312              		.loc 1 82 5 is_stmt 1 view .LVU53
- 313              	.LVL26:
-  83:Core/Src/Middleware/Active_Object/active_object.c ****     Event * event;
- 314              		.loc 1 83 5 view .LVU54
-  84:Core/Src/Middleware/Active_Object/active_object.c ****     /* initialize the AO */
-  85:Core/Src/Middleware/Active_Object/active_object.c ****     ao_instance->_super->init(ao_instance->_super, (Event *)0);
- 315              		.loc 1 85 5 view .LVU55
- 316              		.loc 1 85 16 is_stmt 0 view .LVU56
- 317 0004 0068     		ldr	r0, [r0]
- 318              	.LVL27:
- 319              		.loc 1 85 24 view .LVU57
- 320 0006 4368     		ldr	r3, [r0, #4]
- 321              		.loc 1 85 5 view .LVU58
- 322 0008 0021     		movs	r1, #0
- 323 000a 9847     		blx	r3
- 324              	.LVL28:
- 325              	.L20:
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s 			page 8
-
-
-  86:Core/Src/Middleware/Active_Object/active_object.c **** 
-  87:Core/Src/Middleware/Active_Object/active_object.c ****     /* event loop ("message pump") */
-  88:Core/Src/Middleware/Active_Object/active_object.c ****     while (1) {
- 326              		.loc 1 88 5 is_stmt 1 view .LVU59
-  89:Core/Src/Middleware/Active_Object/active_object.c ****     
-  90:Core/Src/Middleware/Active_Object/active_object.c ****         /* wait for any event and receive it into object 'e' */
-  91:Core/Src/Middleware/Active_Object/active_object.c ****         xQueueReceive(ao_instance->_queue, event, portMAX_DELAY); /* BLOCKING! */
- 327              		.loc 1 91 9 view .LVU60
- 328 000c 4FF0FF32 		mov	r2, #-1
- 329 0010 0024     		movs	r4, #0
- 330 0012 2146     		mov	r1, r4
- 331 0014 A868     		ldr	r0, [r5, #8]
- 332 0016 FFF7FEFF 		bl	xQueueReceive
- 333              	.LVL29:
-  92:Core/Src/Middleware/Active_Object/active_object.c **** 
-  93:Core/Src/Middleware/Active_Object/active_object.c ****         /* dispatch event to the active object 'ao_instance' */
-  94:Core/Src/Middleware/Active_Object/active_object.c ****         ao_instance->_super->dispatch(ao_instance->_super, event);
- 334              		.loc 1 94 9 discriminator 1 view .LVU61
- 335              		.loc 1 94 20 is_stmt 0 discriminator 1 view .LVU62
- 336 001a 2868     		ldr	r0, [r5]
- 337              		.loc 1 94 28 discriminator 1 view .LVU63
- 338 001c 8368     		ldr	r3, [r0, #8]
- 339              		.loc 1 94 9 discriminator 1 view .LVU64
- 340 001e 2146     		mov	r1, r4
- 341 0020 9847     		blx	r3
- 342              	.LVL30:
-  88:Core/Src/Middleware/Active_Object/active_object.c ****     
- 343              		.loc 1 88 11 is_stmt 1 view .LVU65
- 344 0022 F3E7     		b	.L20
- 345              		.cfi_endproc
- 346              	.LFE142:
- 348              		.section	.text.Fsm_ctor,"ax",%progbits
- 349              		.align	1
- 350              		.global	Fsm_ctor
- 351              		.syntax unified
- 352              		.thumb
- 353              		.thumb_func
- 355              	Fsm_ctor:
- 356              	.LVL31:
- 357              	.LFB138:
-  46:Core/Src/Middleware/Active_Object/active_object.c ****     self->_handler = handler;
- 358              		.loc 1 46 1 view -0
- 359              		.cfi_startproc
- 360              		@ args = 0, pretend = 0, frame = 0
- 361              		@ frame_needed = 0, uses_anonymous_args = 0
- 362              		@ link register save eliminated.
-  47:Core/Src/Middleware/Active_Object/active_object.c ****     self->init = Fsm_init;
- 363              		.loc 1 47 5 view .LVU67
-  47:Core/Src/Middleware/Active_Object/active_object.c ****     self->init = Fsm_init;
- 364              		.loc 1 47 20 is_stmt 0 view .LVU68
- 365 0000 0160     		str	r1, [r0]
-  48:Core/Src/Middleware/Active_Object/active_object.c ****     self->dispatch = Fsm_dispatch;
- 366              		.loc 1 48 5 is_stmt 1 view .LVU69
-  48:Core/Src/Middleware/Active_Object/active_object.c ****     self->dispatch = Fsm_dispatch;
- 367              		.loc 1 48 16 is_stmt 0 view .LVU70
- 368 0002 034B     		ldr	r3, .L23
- 369 0004 4360     		str	r3, [r0, #4]
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s 			page 9
-
-
-  49:Core/Src/Middleware/Active_Object/active_object.c ****     self->setHandler = Fsm_setHandler;
- 370              		.loc 1 49 5 is_stmt 1 view .LVU71
-  49:Core/Src/Middleware/Active_Object/active_object.c ****     self->setHandler = Fsm_setHandler;
- 371              		.loc 1 49 20 is_stmt 0 view .LVU72
- 372 0006 034B     		ldr	r3, .L23+4
- 373 0008 8360     		str	r3, [r0, #8]
-  50:Core/Src/Middleware/Active_Object/active_object.c **** }
- 374              		.loc 1 50 5 is_stmt 1 view .LVU73
-  50:Core/Src/Middleware/Active_Object/active_object.c **** }
- 375              		.loc 1 50 22 is_stmt 0 view .LVU74
- 376 000a 034B     		ldr	r3, .L23+8
- 377 000c C360     		str	r3, [r0, #12]
-  51:Core/Src/Middleware/Active_Object/active_object.c **** 
- 378              		.loc 1 51 1 view .LVU75
- 379 000e 7047     		bx	lr
- 380              	.L24:
- 381              		.align	2
- 382              	.L23:
- 383 0010 00000000 		.word	Fsm_init
- 384 0014 00000000 		.word	Fsm_dispatch
- 385 0018 00000000 		.word	Fsm_setHandler
- 386              		.cfi_endproc
- 387              	.LFE138:
- 389              		.section	.text.Ao_ctor,"ax",%progbits
- 390              		.align	1
- 391              		.global	Ao_ctor
- 392              		.syntax unified
- 393              		.thumb
- 394              		.thumb_func
- 396              	Ao_ctor:
- 397              	.LVL32:
- 398              	.LFB143:
-  95:Core/Src/Middleware/Active_Object/active_object.c ****     }
-  96:Core/Src/Middleware/Active_Object/active_object.c **** }
-  97:Core/Src/Middleware/Active_Object/active_object.c **** 
-  98:Core/Src/Middleware/Active_Object/active_object.c **** void Ao_ctor(Ao * const self, StateHandler handler)
-  99:Core/Src/Middleware/Active_Object/active_object.c **** {
- 399              		.loc 1 99 1 is_stmt 1 view -0
- 400              		.cfi_startproc
- 401              		@ args = 0, pretend = 0, frame = 0
- 402              		@ frame_needed = 0, uses_anonymous_args = 0
- 403              		.loc 1 99 1 is_stmt 0 view .LVU77
- 404 0000 10B5     		push	{r4, lr}
- 405              	.LCFI8:
- 406              		.cfi_def_cfa_offset 8
- 407              		.cfi_offset 4, -8
- 408              		.cfi_offset 14, -4
- 409 0002 0446     		mov	r4, r0
- 100:Core/Src/Middleware/Active_Object/active_object.c ****     Fsm_ctor(self->_super, handler);
- 410              		.loc 1 100 5 is_stmt 1 view .LVU78
- 411 0004 0068     		ldr	r0, [r0]
- 412              	.LVL33:
- 413              		.loc 1 100 5 is_stmt 0 view .LVU79
- 414 0006 FFF7FEFF 		bl	Fsm_ctor
- 415              	.LVL34:
- 101:Core/Src/Middleware/Active_Object/active_object.c ****     self->start = Ao_start;
- 416              		.loc 1 101 5 is_stmt 1 view .LVU80
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s 			page 10
-
-
- 417              		.loc 1 101 17 is_stmt 0 view .LVU81
- 418 000a 044B     		ldr	r3, .L27
- 419 000c E360     		str	r3, [r4, #12]
- 102:Core/Src/Middleware/Active_Object/active_object.c ****     self->post = Ao_post;
- 420              		.loc 1 102 5 is_stmt 1 view .LVU82
- 421              		.loc 1 102 16 is_stmt 0 view .LVU83
- 422 000e 044B     		ldr	r3, .L27+4
- 423 0010 2361     		str	r3, [r4, #16]
- 103:Core/Src/Middleware/Active_Object/active_object.c ****     self->postFromISR = Ao_postFromISR;
- 424              		.loc 1 103 5 is_stmt 1 view .LVU84
- 425              		.loc 1 103 23 is_stmt 0 view .LVU85
- 426 0012 044B     		ldr	r3, .L27+8
- 427 0014 6361     		str	r3, [r4, #20]
- 104:Core/Src/Middleware/Active_Object/active_object.c ****     self->loopEvent = Ao_loopEvent;
- 428              		.loc 1 104 5 is_stmt 1 view .LVU86
- 429              		.loc 1 104 21 is_stmt 0 view .LVU87
- 430 0016 044B     		ldr	r3, .L27+12
- 431 0018 A361     		str	r3, [r4, #24]
- 105:Core/Src/Middleware/Active_Object/active_object.c **** }...
- 432              		.loc 1 105 1 view .LVU88
- 433 001a 10BD     		pop	{r4, pc}
- 434              	.LVL35:
- 435              	.L28:
- 436              		.loc 1 105 1 view .LVU89
- 437              		.align	2
- 438              	.L27:
- 439 001c 00000000 		.word	Ao_start
- 440 0020 00000000 		.word	Ao_post
- 441 0024 00000000 		.word	Ao_postFromISR
- 442 0028 00000000 		.word	Ao_loopEvent
- 443              		.cfi_endproc
- 444              	.LFE143:
- 446              		.section	.rodata.exit_evt,"a"
- 447              		.align	2
- 450              	exit_evt:
- 451 0000 0200     		.short	2
- 452              		.section	.rodata.entry_evt,"a"
- 453              		.align	2
- 456              	entry_evt:
- 457 0000 0100     		.short	1
- 458              		.text
- 459              	.Letext0:
- 460              		.file 2 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
- 461              		.file 3 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
- 462              		.file 4 "ThirdParty/FreeRTOS/include/projdefs.h"
- 463              		.file 5 "ThirdParty/FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h"
- 464              		.file 6 "ThirdParty/FreeRTOS/include/task.h"
- 465              		.file 7 "ThirdParty/FreeRTOS/include/queue.h"
- 466              		.file 8 "Core/Src/Middleware/Active_Object/active_object.h"
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s 			page 11
+ 389              		.loc 1 73 1 view .LVU82
+ 390 0026 7047     		bx	lr
+ 391              	.L25:
+ 392              		.align	2
+ 393              	.L24:
+ 394 0028 00000000 		.word	init
+ 395 002c 00000000 		.word	dispatch
+ 396 0030 00000000 		.word	post
+ 397 0034 00000000 		.word	postFromISR
+ 398 0038 00000000 		.word	loopEvent
+ 399 003c 00000000 		.word	start
+ 400              		.cfi_endproc
+ 401              	.LFE141:
+ 403              		.section	.rodata.entry_evt.0,"a"
+ 404              		.align	2
+ 407              	entry_evt.0:
+ 408 0000 0100     		.short	1
+ 409              		.section	.rodata.entry_evt.1,"a"
+ 410              		.align	2
+ 413              	entry_evt.1:
+ 414 0000 0100     		.short	1
+ 415              		.section	.rodata.exit_evt.2,"a"
+ 416              		.align	2
+ 419              	exit_evt.2:
+ 420 0000 0200     		.short	2
+ 421              		.section	.rodata.entry_evt.3,"a"
+ 422              		.align	2
+ 425              	entry_evt.3:
+ 426 0000 0100     		.short	1
+ 427              		.text
+ 428              	.Letext0:
+ 429              		.file 2 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
+ 430              		.file 3 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
+ 431              		.file 4 "ThirdParty/FreeRTOS/include/projdefs.h"
+ 432              		.file 5 "ThirdParty/FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h"
+ 433              		.file 6 "ThirdParty/FreeRTOS/include/FreeRTOS.h"
+ 434              		.file 7 "ThirdParty/FreeRTOS/include/task.h"
+ 435              		.file 8 "ThirdParty/FreeRTOS/include/queue.h"
+ 436              		.file 9 "Core/Src/Middleware/Active_Object/active_object.h"
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQMRiNp.s 			page 10
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 active_object.c
-C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s:21     .text.Fsm_init:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s:27     .text.Fsm_init:00000000 Fsm_init
-C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s:62     .text.Fsm_init:00000014 $d
-C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s:456    .rodata.entry_evt:00000000 entry_evt
-C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s:67     .text.Fsm_dispatch:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s:73     .text.Fsm_dispatch:00000000 Fsm_dispatch
-C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s:124    .text.Fsm_dispatch:0000001c $d
-C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s:450    .rodata.exit_evt:00000000 exit_evt
-C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s:130    .text.Fsm_setHandler:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s:136    .text.Fsm_setHandler:00000000 Fsm_setHandler
-C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s:153    .rodata.Ao_start.str1.4:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s:157    .text.Ao_start:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s:163    .text.Ao_start:00000000 Ao_start
-C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s:220    .text.Ao_start:0000002c $d
-C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s:225    .text.Ao_post:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s:231    .text.Ao_post:00000000 Ao_post
-C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s:258    .text.Ao_postFromISR:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s:264    .text.Ao_postFromISR:00000000 Ao_postFromISR
-C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s:290    .text.Ao_loopEvent:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s:296    .text.Ao_loopEvent:00000000 Ao_loopEvent
-C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s:349    .text.Fsm_ctor:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s:355    .text.Fsm_ctor:00000000 Fsm_ctor
-C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s:383    .text.Fsm_ctor:00000010 $d
-C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s:390    .text.Ao_ctor:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s:396    .text.Ao_ctor:00000000 Ao_ctor
-C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s:439    .text.Ao_ctor:0000001c $d
-C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s:447    .rodata.exit_evt:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccVxbCEb.s:453    .rodata.entry_evt:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccQMRiNp.s:21     .text.init:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccQMRiNp.s:26     .text.init:00000000 init
+C:\Users\ACER\AppData\Local\Temp\ccQMRiNp.s:60     .text.init:00000014 $d
+C:\Users\ACER\AppData\Local\Temp\ccQMRiNp.s:407    .rodata.entry_evt.0:00000000 entry_evt.0
+C:\Users\ACER\AppData\Local\Temp\ccQMRiNp.s:65     .text.dispatch:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccQMRiNp.s:70     .text.dispatch:00000000 dispatch
+C:\Users\ACER\AppData\Local\Temp\ccQMRiNp.s:123    .text.dispatch:0000001c $d
+C:\Users\ACER\AppData\Local\Temp\ccQMRiNp.s:419    .rodata.exit_evt.2:00000000 exit_evt.2
+C:\Users\ACER\AppData\Local\Temp\ccQMRiNp.s:413    .rodata.entry_evt.1:00000000 entry_evt.1
+C:\Users\ACER\AppData\Local\Temp\ccQMRiNp.s:129    .rodata.start.str1.4:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccQMRiNp.s:133    .text.start:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccQMRiNp.s:138    .text.start:00000000 start
+C:\Users\ACER\AppData\Local\Temp\ccQMRiNp.s:199    .text.start:00000030 $d
+C:\Users\ACER\AppData\Local\Temp\ccQMRiNp.s:204    .text.loopEvent:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccQMRiNp.s:209    .text.loopEvent:00000000 loopEvent
+C:\Users\ACER\AppData\Local\Temp\ccQMRiNp.s:260    .text.loopEvent:00000028 $d
+C:\Users\ACER\AppData\Local\Temp\ccQMRiNp.s:425    .rodata.entry_evt.3:00000000 entry_evt.3
+C:\Users\ACER\AppData\Local\Temp\ccQMRiNp.s:265    .text.postFromISR:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccQMRiNp.s:270    .text.postFromISR:00000000 postFromISR
+C:\Users\ACER\AppData\Local\Temp\ccQMRiNp.s:306    .text.post:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccQMRiNp.s:311    .text.post:00000000 post
+C:\Users\ACER\AppData\Local\Temp\ccQMRiNp.s:348    .text.Ao_new:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccQMRiNp.s:354    .text.Ao_new:00000000 Ao_new
+C:\Users\ACER\AppData\Local\Temp\ccQMRiNp.s:394    .text.Ao_new:00000028 $d
+C:\Users\ACER\AppData\Local\Temp\ccQMRiNp.s:404    .rodata.entry_evt.0:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccQMRiNp.s:410    .rodata.entry_evt.1:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccQMRiNp.s:416    .rodata.exit_evt.2:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccQMRiNp.s:422    .rodata.entry_evt.3:00000000 $d
 
 UNDEFINED SYMBOLS
 xQueueGenericCreate
 xTaskCreate
-xQueueGenericSend
-xQueueGenericSendFromISR
 xQueueReceive
+xQueueGenericSendFromISR
+xQueueGenericSend

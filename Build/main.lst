@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccirZoaa.s 			page 1
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccvpIBtD.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -32,129 +32,141 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccirZoaa.s 			page 1
    2:Core/Src/main.c **** #include "FreeRTOS.h"
    3:Core/Src/main.c **** #include "task.h"
    4:Core/Src/main.c **** 
-   5:Core/Src/main.c **** static StateEstimator state_estimator; 
-   6:Core/Src/main.c **** 
-   7:Core/Src/main.c **** int main(void)
-   8:Core/Src/main.c **** {
-  29              		.loc 1 8 1 view -0
+   5:Core/Src/main.c **** static struct StateEstimator state_estimator;
+   6:Core/Src/main.c **** static struct Ao* state_estimator_ao = &state_estimator.super; 
+   7:Core/Src/main.c **** 
+   8:Core/Src/main.c **** int main(void)
+   9:Core/Src/main.c **** {
+  29              		.loc 1 9 1 view -0
   30              		.cfi_startproc
   31              		@ Volatile: function does not return.
   32              		@ args = 0, pretend = 0, frame = 0
   33              		@ frame_needed = 0, uses_anonymous_args = 0
-  34 0000 08B5     		push	{r3, lr}
+  34 0000 00B5     		push	{lr}
   35              	.LCFI0:
-  36              		.cfi_def_cfa_offset 8
-  37              		.cfi_offset 3, -8
-  38              		.cfi_offset 14, -4
-   9:Core/Src/main.c ****   // System initialization
-  10:Core/Src/main.c ****   HAL_Init();
-  39              		.loc 1 10 3 view .LVU1
-  40 0002 FFF7FEFF 		bl	HAL_Init
-  41              	.LVL0:
-  11:Core/Src/main.c ****   SystemClock_Config();
-  42              		.loc 1 11 3 view .LVU2
-  43 0006 FFF7FEFF 		bl	SystemClock_Config
-  44              	.LVL1:
-  12:Core/Src/main.c ****   
-  13:Core/Src/main.c ****   // Periferal initialization
-  14:Core/Src/main.c ****   MX_GPIO_Init();
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccirZoaa.s 			page 2
+  36              		.cfi_def_cfa_offset 4
+  37              		.cfi_offset 14, -4
+  38 0002 83B0     		sub	sp, sp, #12
+  39              	.LCFI1:
+  40              		.cfi_def_cfa_offset 16
+  10:Core/Src/main.c ****   // System initialization
+  11:Core/Src/main.c **** 
+  12:Core/Src/main.c ****   HAL_Init();
+  41              		.loc 1 12 3 view .LVU1
+  42 0004 FFF7FEFF 		bl	HAL_Init
+  43              	.LVL0:
+  13:Core/Src/main.c ****   SystemClock_Config();
+  44              		.loc 1 13 3 view .LVU2
+  45 0008 FFF7FEFF 		bl	SystemClock_Config
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccvpIBtD.s 			page 2
 
 
-  45              		.loc 1 14 3 view .LVU3
-  46 000a FFF7FEFF 		bl	MX_GPIO_Init
-  47              	.LVL2:
-  15:Core/Src/main.c ****   Driver_MotorCommunicator_Init();
-  48              		.loc 1 15 3 view .LVU4
-  49 000e FFF7FEFF 		bl	Driver_MotorCommunicator_Init
-  50              	.LVL3:
-  16:Core/Src/main.c ****   Driver_StateEstimator_Init();
-  51              		.loc 1 16 3 view .LVU5
-  52 0012 FFF7FEFF 		bl	Driver_StateEstimator_Init
-  53              	.LVL4:
-  17:Core/Src/main.c ****   App_ComputerCommunicator_Init();
-  54              		.loc 1 17 3 view .LVU6
-  55 0016 FFF7FEFF 		bl	App_ComputerCommunicator_Init
-  56              	.LVL5:
-  18:Core/Src/main.c **** 
-  19:Core/Src/main.c ****   // Task initialization----------------------------------------------------------------
-  20:Core/Src/main.c ****   // State Estimator Task
-  21:Core/Src/main.c ****   StateEstimator_ctor(&state_estimator);
-  57              		.loc 1 21 3 view .LVU7
-  58 001a 064C     		ldr	r4, .L4
-  59 001c 2046     		mov	r0, r4
-  60 001e FFF7FEFF 		bl	StateEstimator_ctor
-  61              	.LVL6:
-  22:Core/Src/main.c ****   state_estimator._super.start(
-  62              		.loc 1 22 3 view .LVU8
-  63              		.loc 1 22 25 is_stmt 0 view .LVU9
-  64 0022 E568     		ldr	r5, [r4, #12]
-  65              		.loc 1 22 3 view .LVU10
-  66 0024 0523     		movs	r3, #5
-  67 0026 C822     		movs	r2, #200
-  68 0028 0321     		movs	r1, #3
-  69 002a 2046     		mov	r0, r4
-  70 002c A847     		blx	r5
-  71              	.LVL7:
-  23:Core/Src/main.c ****     &state_estimator._super,
-  24:Core/Src/main.c ****                           3,
-  25:Core/Src/main.c ****                         200,
-  26:Core/Src/main.c ****                          5
-  27:Core/Src/main.c ****   );
-  28:Core/Src/main.c **** 
-  29:Core/Src/main.c **** 
-  30:Core/Src/main.c ****   vTaskStartScheduler();
-  72              		.loc 1 30 3 is_stmt 1 view .LVU11
-  73 002e FFF7FEFF 		bl	vTaskStartScheduler
-  74              	.LVL8:
-  75              	.L2:
-  31:Core/Src/main.c ****   while(1){}
-  76              		.loc 1 31 3 view .LVU12
-  77              		.loc 1 31 12 view .LVU13
-  78              		.loc 1 31 8 view .LVU14
-  79 0032 FEE7     		b	.L2
-  80              	.L5:
-  81              		.align	2
-  82              	.L4:
-  83 0034 00000000 		.word	state_estimator
-  84              		.cfi_endproc
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccirZoaa.s 			page 3
+  46              	.LVL1:
+  14:Core/Src/main.c ****   
+  15:Core/Src/main.c ****   // Periferal initialization
+  16:Core/Src/main.c ****   MX_GPIO_Init();
+  47              		.loc 1 16 3 view .LVU3
+  48 000c FFF7FEFF 		bl	MX_GPIO_Init
+  49              	.LVL2:
+  17:Core/Src/main.c ****   Driver_MotorCommunicator_Init();
+  50              		.loc 1 17 3 view .LVU4
+  51 0010 FFF7FEFF 		bl	Driver_MotorCommunicator_Init
+  52              	.LVL3:
+  18:Core/Src/main.c ****   Driver_StateEstimator_Init();
+  53              		.loc 1 18 3 view .LVU5
+  54 0014 FFF7FEFF 		bl	Driver_StateEstimator_Init
+  55              	.LVL4:
+  19:Core/Src/main.c ****   App_ComputerCommunicator_Init();
+  56              		.loc 1 19 3 view .LVU6
+  57 0018 FFF7FEFF 		bl	App_ComputerCommunicator_Init
+  58              	.LVL5:
+  20:Core/Src/main.c **** 
+  21:Core/Src/main.c ****   // Task initialization----------------------------------------------------------------
+  22:Core/Src/main.c ****   // State Estimator Task
+  23:Core/Src/main.c ****   StateEstimator.new(&state_estimator);
+  59              		.loc 1 23 3 view .LVU7
+  60              		.loc 1 23 17 is_stmt 0 view .LVU8
+  61 001c 084B     		ldr	r3, .L4
+  62 001e 1B68     		ldr	r3, [r3]
+  63              		.loc 1 23 3 view .LVU9
+  64 0020 084C     		ldr	r4, .L4+4
+  65 0022 2046     		mov	r0, r4
+  66 0024 9847     		blx	r3
+  67              	.LVL6:
+  24:Core/Src/main.c ****   state_estimator.super.start(state_estimator_ao,
+  68              		.loc 1 24 3 is_stmt 1 view .LVU10
+  69              		.loc 1 24 24 is_stmt 0 view .LVU11
+  70 0026 D4F8BC50 		ldr	r5, [r4, #188]
+  71              		.loc 1 24 3 view .LVU12
+  72 002a 0023     		movs	r3, #0
+  73 002c 0093     		str	r3, [sp]
+  74 002e 8223     		movs	r3, #130
+  75 0030 6422     		movs	r2, #100
+  76 0032 0121     		movs	r1, #1
+  77 0034 2046     		mov	r0, r4
+  78 0036 A847     		blx	r5
+  79              	.LVL7:
+  25:Core/Src/main.c ****                               1,
+  26:Core/Src/main.c ****                               100,
+  27:Core/Src/main.c ****                               configMINIMAL_STACK_SIZE,
+  28:Core/Src/main.c ****                               0U);
+  29:Core/Src/main.c ****     
+  30:Core/Src/main.c **** 
+  31:Core/Src/main.c **** 
+  32:Core/Src/main.c **** 
+  33:Core/Src/main.c ****   vTaskStartScheduler();
+  80              		.loc 1 33 3 is_stmt 1 view .LVU13
+  81 0038 FFF7FEFF 		bl	vTaskStartScheduler
+  82              	.LVL8:
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccvpIBtD.s 			page 3
 
 
-  85              	.LFE171:
-  87              		.section	.bss.state_estimator,"aw",%nobits
-  88              		.align	2
-  91              	state_estimator:
-  92 0000 00000000 		.space	76
-  92      00000000 
-  92      00000000 
-  92      00000000 
-  92      00000000 
-  93              		.text
-  94              	.Letext0:
-  95              		.file 2 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
-  96              		.file 3 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
-  97              		.file 4 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
-  98              		.file 5 "ThirdParty/FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h"
-  99              		.file 6 "ThirdParty/FreeRTOS/include/task.h"
- 100              		.file 7 "ThirdParty/FreeRTOS/include/queue.h"
- 101              		.file 8 "Core/Src/Middleware/Active_Object/active_object.h"
- 102              		.file 9 "Core/Src/Middleware/Topic/topic.h"
- 103              		.file 10 "Core/Src/Drivers/State_Estimator/state_estimator.h"
- 104              		.file 11 "Core/Src/Application/Computer_Communicator/computer_communicator.h"
- 105              		.file 12 "Core/Src/Drivers/Motor_Communicator/motor_communicator.h"
- 106              		.file 13 "Core/Src/Drivers/System_Config/system_config.h"
- 107              		.file 14 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccirZoaa.s 			page 4
+  83              	.L2:
+  34:Core/Src/main.c ****   while(1){}
+  84              		.loc 1 34 3 view .LVU14
+  85              		.loc 1 34 12 view .LVU15
+  86              		.loc 1 34 8 view .LVU16
+  87 003c FEE7     		b	.L2
+  88              	.L5:
+  89 003e 00BF     		.align	2
+  90              	.L4:
+  91 0040 00000000 		.word	StateEstimator
+  92 0044 00000000 		.word	state_estimator
+  93              		.cfi_endproc
+  94              	.LFE171:
+  96              		.section	.bss.state_estimator,"aw",%nobits
+  97              		.align	2
+ 100              	state_estimator:
+ 101 0000 00000000 		.space	212
+ 101      00000000 
+ 101      00000000 
+ 101      00000000 
+ 101      00000000 
+ 102              		.text
+ 103              	.Letext0:
+ 104              		.file 2 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
+ 105              		.file 3 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
+ 106              		.file 4 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 107              		.file 5 "ThirdParty/FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h"
+ 108              		.file 6 "ThirdParty/FreeRTOS/include/FreeRTOS.h"
+ 109              		.file 7 "ThirdParty/FreeRTOS/include/task.h"
+ 110              		.file 8 "ThirdParty/FreeRTOS/include/queue.h"
+ 111              		.file 9 "Core/Src/Middleware/Active_Object/active_object.h"
+ 112              		.file 10 "Core/Src/Drivers/State_Estimator/state_estimator.h"
+ 113              		.file 11 "Core/Src/Application/Computer_Communicator/computer_communicator.h"
+ 114              		.file 12 "Core/Src/Drivers/Motor_Communicator/motor_communicator.h"
+ 115              		.file 13 "Core/Src/Drivers/System_Config/system_config.h"
+ 116              		.file 14 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccvpIBtD.s 			page 4
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\ACER\AppData\Local\Temp\ccirZoaa.s:21     .text.main:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccirZoaa.s:27     .text.main:00000000 main
-C:\Users\ACER\AppData\Local\Temp\ccirZoaa.s:83     .text.main:00000034 $d
-C:\Users\ACER\AppData\Local\Temp\ccirZoaa.s:91     .bss.state_estimator:00000000 state_estimator
-C:\Users\ACER\AppData\Local\Temp\ccirZoaa.s:88     .bss.state_estimator:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccvpIBtD.s:21     .text.main:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccvpIBtD.s:27     .text.main:00000000 main
+C:\Users\ACER\AppData\Local\Temp\ccvpIBtD.s:91     .text.main:00000040 $d
+C:\Users\ACER\AppData\Local\Temp\ccvpIBtD.s:100    .bss.state_estimator:00000000 state_estimator
+C:\Users\ACER\AppData\Local\Temp\ccvpIBtD.s:97     .bss.state_estimator:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_Init
@@ -163,5 +175,5 @@ MX_GPIO_Init
 Driver_MotorCommunicator_Init
 Driver_StateEstimator_Init
 App_ComputerCommunicator_Init
-StateEstimator_ctor
 vTaskStartScheduler
+StateEstimator

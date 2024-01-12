@@ -1,17 +1,18 @@
 #include "active_object.h"
-static Event entry_evt = {.signal = ENTRY_SIG};
-static Event exit_evt = {.signal = EXIT_SIG};
 
-static void init(struct Ao * const self, Event * const event)
+static void init(struct Ao * const self, Event const * const event)
 {
+    static Event const entry_evt = {.signal = ENTRY_SIG};
     (*self->handler)(self, event);
     (*self->handler)(self, &entry_evt);
 }
 
-static void dispatch(struct Ao * const self, Event * const event)
+static void dispatch(struct Ao * const self, Event const * const event)
 {
     Status status;
     StateHandler prev_handler = self->handler;
+    static Event const entry_evt = {.signal = ENTRY_SIG};
+    static Event const exit_evt = {.signal = EXIT_SIG};
 
     status = (*self->handler)(self, event);
     if(status == TRAN_STATUS)
@@ -21,50 +22,52 @@ static void dispatch(struct Ao * const self, Event * const event)
     }
 }
 
-static void start(  
-    struct Ao * const self, 
-    uint8_t priority, 
-    uint32_t stack_size,
-    uint32_t queue_len)
+static void start(struct Ao * const self,
+                  uint8_t prio,       /* priority (1-based) */
+                  uint32_t queueLen,
+                  uint32_t stackSize,
+                  uint16_t opt)
 {
-    self->queue = xQueueCreate(queue_len, sizeof(void **));
-    xTaskCreate(&self->loopEvent, "Active Object", stack_size, (void *)self, priority, &self->thread);
+    uint32_t stk_depth = (stackSize / sizeof(StackType_t));
+    uint32_t a[queueLen];
+    (void)opt; /* unused parameter */
+    
+    self->queue = xQueueCreate(queueLen, sizeof(Event *));
+
+    xTaskCreate(self->loopEvent, "AO", stk_depth, self, prio + tskIDLE_PRIORITY, &self->thread);
 }
 
-static void post(struct Ao * const self, Event * const event)
+static void post(struct Ao * const self, Event const * const event)
 {
-    xQueueOverwrite(self->queue, (void *)event);
+    xQueueSendToBack(self->queue, (void *)&event, (TickType_t)0);
 }
 
-static void postFromISR(struct Ao * const self, Event * const event, BaseType_t *pxHigherPriorityTaskWoken)
+static void postFromISR(struct Ao * const self, Event const * const event, BaseType_t *pxHigherPriorityTaskWoken)
 {
-    BaseType_t xHigherPriorityTaskWoken = pdFALSE;
-    xQueueOverwriteFromISR(self->queue, (void *)event, &xHigherPriorityTaskWoken); 
+    xQueueSendToBackFromISR(self->queue, (void *)&event, pxHigherPriorityTaskWoken); 
 }
 
 static void loopEvent(void * pData)
 {
     struct Ao * ao_instance = (struct Ao *)pData;
-    Event * event;
+    static Event const entry_evt = {.signal = ENTRY_SIG};
     ao_instance->init(ao_instance, &entry_evt);
 
     while(1)
     {
-        xQueueReceive(ao_instance->queue, (void *)event, portMAX_DELAY);
+        Event * event;
+        xQueueReceive(ao_instance->queue, &event, portMAX_DELAY);
         ao_instance->dispatch(ao_instance, (Event *)event);
     }
 }
 
-static struct Ao new(StateHandler handler)
+void Ao_new(struct Ao * const self, StateHandler handler)
 {
-    return (struct Ao){
-        .handler = &handler, 
-        .init = &init,
-        .dispatch = &dispatch,
-        .post = &post,
-        .postFromISR = &postFromISR,
-        .loopEvent = &loopEvent,
-        .start = &start,
-    };
+    self->handler = handler;
+    self->init = &init;
+    self->dispatch = &dispatch;
+    self->post = &post;
+    self->postFromISR = &postFromISR;
+    self->loopEvent = &loopEvent;
+    self->start = &start;
 }
-extern const struct AoClass Ao={.new=&new};

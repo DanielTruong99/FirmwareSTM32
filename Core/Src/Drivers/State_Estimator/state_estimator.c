@@ -6,28 +6,60 @@ TIM_HandleTypeDef htim4;
 TIM_HandleTypeDef htim7;
 static int16_t pendlm_counter = 0;
 static int16_t motor_counter = 0;
-static TimeEvent time_event;
-
+static struct Ao * ao_estimator;
 
 static void MX_TIM3_Init(void);
 static void MX_TIM4_Init(void);
 static void MX_TIM7_Init(void);
 
-Status initial(struct StateEstimator *const self, Event *const event)
+Status initial(struct StateEstimator *const self, Event const * const event)
 {
-
+  Status status;
+  status = TRAN_STATUS;
+  self->super.handler = (StateHandler)self->wait;
+  return status;
 }
 
-Status wait(struct StateEstimator *const self, Event *const event)
+Status wait(struct StateEstimator *const self, Event const * const event)
 {
+  Status status;
+  
+  switch (event->signal)
+  {
+    case ENTRY_SIG:
+    {
+      HAL_TIM_Base_Start_IT(&htim7);
+      HAL_TIM_Encoder_Start_IT(&htim3, TIM_CHANNEL_ALL);
+      HAL_TIM_Encoder_Start_IT(&htim4, TIM_CHANNEL_ALL);
 
+      status = HANDLED_STATUS;
+      break;
+    }
+
+    case TIMEOUT_2KHz_SIG:
+    {
+      
+
+      status = HANDLED_STATUS;
+      break;
+    }
+    
+    default:
+    {
+      status = IGNORED_STATUS;
+      break;
+    }
+      
+  }
+
+  return status;
 }
 
-static struct StateEstimator new()
+static void new(struct StateEstimator * const self)
 {
-  struct StateEstimator instance = {.initial=&initial, .wait=&wait};
-  instance.super = Ao.new(&initial);
-  return instance;
+  self->initial=&initial; self->wait=&wait;
+  Ao_new(&self->super, (StateHandler)&initial);
+  ao_estimator = &self->super;
 }
 const struct StateEstimatorClass StateEstimator={.new=&new};
 
@@ -38,14 +70,14 @@ const struct StateEstimatorClass StateEstimator={.new=&new};
   */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
+  BaseType_t xHigherPriorityTaskWoken = pdFALSE;
   if(htim->Instance == TIM7)
   {
-    // BaseType_t xHigherPriorityTaskWoken = pdFALSE;
-  
-    // time_event._motor_counter = motor_counter;
-    // time_event._pendlm_counter = pendlm_counter;
-    // state_estimator->_super.postFromISR(&state_estimator->_super, &time_event, &xHigherPriorityTaskWoken);
+    static const Event time_evt = {TIMEOUT_2KHz_SIG};
+    ao_estimator->postFromISR(ao_estimator, &time_evt, &xHigherPriorityTaskWoken);
   }
+
+  portEND_SWITCHING_ISR(xHigherPriorityTaskWoken);
 }
 
 /**
@@ -100,9 +132,9 @@ void Driver_StateEstimator_Init()
   MX_TIM4_Init(); // Pendullum encoder
   MX_TIM7_Init(); // Basic timer for generating periodic task running at 2kHz
 
-  HAL_TIM_Base_Start_IT(&htim7);
-  HAL_TIM_Encoder_Start_IT(&htim3, TIM_CHANNEL_ALL);
-  HAL_TIM_Encoder_Start_IT(&htim4, TIM_CHANNEL_ALL);
+  // HAL_TIM_Base_Start_IT(&htim7);
+  // HAL_TIM_Encoder_Start_IT(&htim3, TIM_CHANNEL_ALL);
+  // HAL_TIM_Encoder_Start_IT(&htim4, TIM_CHANNEL_ALL);
 }
 
 /**

@@ -13,6 +13,7 @@
         "math.h": "c",
         "arm_math.h": "c",
         "core_cm4.h": "c",
-        "*.tcc": "c"
+        "*.tcc": "c",
+        "numbers": "c"
     }
 }
