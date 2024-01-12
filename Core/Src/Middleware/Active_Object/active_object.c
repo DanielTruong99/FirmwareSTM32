@@ -29,7 +29,6 @@ static void start(struct Ao * const self,
                   uint16_t opt)
 {
     uint32_t stk_depth = (stackSize / sizeof(StackType_t));
-    uint32_t a[queueLen];
     (void)opt; /* unused parameter */
     
     self->queue = xQueueCreate(queueLen, sizeof(Event *));

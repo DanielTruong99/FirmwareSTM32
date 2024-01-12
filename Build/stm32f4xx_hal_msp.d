@@ -26,7 +26,7 @@ Build/stm32f4xx_hal_msp.o: Core/Src/stm32f4xx_hal_msp.c Core/Src/main.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
  Core/Src/Drivers/Motor_Communicator/motor_communicator.h \
- Core/Src/Drivers/State_Estimator/state_estimator.h \
+ Core/Src/Application/State_Estimator/state_estimator.h \
  Core/Src/Middleware/Active_Object/active_object.h \
  ThirdParty/FreeRTOS/include/FreeRTOS.h \
  ThirdParty/FreeRTOS/FreeRTOSConfig.h \
@@ -37,7 +37,7 @@ Build/stm32f4xx_hal_msp.o: Core/Src/stm32f4xx_hal_msp.c Core/Src/main.h \
  ThirdParty/FreeRTOS/include/mpu_wrappers.h \
  ThirdParty/FreeRTOS/include/queue.h ThirdParty/FreeRTOS/include/task.h \
  ThirdParty/FreeRTOS/include/list.h Drivers/CMSIS/DSP/Include/arm_math.h \
- Core/Src/Middleware/Topic/topic.h \
+ Core/Src/Middleware/Topic/topic.h Core/Src/Drivers/Encoder/encoder.h \
  Core/Src/Application/Computer_Communicator/computer_communicator.h \
  Core/Src/Drivers/System_Config/system_config.h
 Core/Src/main.h:
@@ -70,7 +70,7 @@ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 Core/Src/Drivers/Motor_Communicator/motor_communicator.h:
-Core/Src/Drivers/State_Estimator/state_estimator.h:
+Core/Src/Application/State_Estimator/state_estimator.h:
 Core/Src/Middleware/Active_Object/active_object.h:
 ThirdParty/FreeRTOS/include/FreeRTOS.h:
 ThirdParty/FreeRTOS/FreeRTOSConfig.h:
@@ -84,5 +84,6 @@ ThirdParty/FreeRTOS/include/task.h:
 ThirdParty/FreeRTOS/include/list.h:
 Drivers/CMSIS/DSP/Include/arm_math.h:
 Core/Src/Middleware/Topic/topic.h:
+Core/Src/Drivers/Encoder/encoder.h:
 Core/Src/Application/Computer_Communicator/computer_communicator.h:
 Core/Src/Drivers/System_Config/system_config.h:

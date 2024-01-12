@@ -1,67 +1,18 @@
-#include "state_estimator.h"
+#include "encoder.h"
 
 /*Private Interfacce*/
 TIM_HandleTypeDef htim3;
 TIM_HandleTypeDef htim4;
 TIM_HandleTypeDef htim7;
-static int16_t pendlm_counter = 0;
+extern struct Ao * ao_estimator;
+
 static int16_t motor_counter = 0;
-static struct Ao * ao_estimator;
+static int16_t pendlm_counter = 0;
 
 static void MX_TIM3_Init(void);
 static void MX_TIM4_Init(void);
 static void MX_TIM7_Init(void);
 
-Status initial(struct StateEstimator *const self, Event const * const event)
-{
-  Status status;
-  status = TRAN_STATUS;
-  self->super.handler = (StateHandler)self->wait;
-  return status;
-}
-
-Status wait(struct StateEstimator *const self, Event const * const event)
-{
-  Status status;
-  
-  switch (event->signal)
-  {
-    case ENTRY_SIG:
-    {
-      HAL_TIM_Base_Start_IT(&htim7);
-      HAL_TIM_Encoder_Start_IT(&htim3, TIM_CHANNEL_ALL);
-      HAL_TIM_Encoder_Start_IT(&htim4, TIM_CHANNEL_ALL);
-
-      status = HANDLED_STATUS;
-      break;
-    }
-
-    case TIMEOUT_2KHz_SIG:
-    {
-      
-
-      status = HANDLED_STATUS;
-      break;
-    }
-    
-    default:
-    {
-      status = IGNORED_STATUS;
-      break;
-    }
-      
-  }
-
-  return status;
-}
-
-static void new(struct StateEstimator * const self)
-{
-  self->initial=&initial; self->wait=&wait;
-  Ao_new(&self->super, (StateHandler)&initial);
-  ao_estimator = &self->super;
-}
-const struct StateEstimatorClass StateEstimator={.new=&new};
 
 /**
   * @brief  Period elapsed callback in non-blocking mode
@@ -126,7 +77,7 @@ void TIM7_IRQHandler(void)
 /**
   * @brief This function initialize USART1.
   */
-void Driver_StateEstimator_Init()
+void Driver_Encoder_Init()
 {
   MX_TIM3_Init(); // Motor encoder
   MX_TIM4_Init(); // Pendullum encoder

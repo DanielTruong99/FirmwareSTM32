@@ -5,6 +5,7 @@
 #include "active_object.h"
 #include "arm_math.h"
 #include "topic.h"
+#include "encoder.h"
 
 typedef struct TimeEvent TimeEvent;
 
@@ -32,11 +33,6 @@ extern const struct StateEstimatorClass
     void (*new)(struct StateEstimator * self);
 } StateEstimator;
 
-
-/*Public Interfacce*/
-void Driver_StateEstimator_Init();
-void HAL_TIM_Encoder_MspInit(TIM_HandleTypeDef* htim_encoder);
-void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htim_base);
 
 
 #endif /* _STATE_ESTIMATOR_H */

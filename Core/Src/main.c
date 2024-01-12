@@ -15,7 +15,7 @@ int main(void)
   // Periferal initialization
   MX_GPIO_Init();
   Driver_MotorCommunicator_Init();
-  Driver_StateEstimator_Init();
+  Driver_Encoder_Init();
   App_ComputerCommunicator_Init();
 
   // Task initialization----------------------------------------------------------------

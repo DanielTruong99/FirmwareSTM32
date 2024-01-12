@@ -6154,15 +6154,18 @@ Discarded input sections
  .text          0x00000000        0x0 Build/computer_communicator.o
  .data          0x00000000        0x0 Build/computer_communicator.o
  .bss           0x00000000        0x0 Build/computer_communicator.o
+ .text          0x00000000        0x0 Build/state_estimator.o
+ .data          0x00000000        0x0 Build/state_estimator.o
+ .bss           0x00000000        0x0 Build/state_estimator.o
  .text          0x00000000        0x0 Build/active_object.o
  .data          0x00000000        0x0 Build/active_object.o
  .bss           0x00000000        0x0 Build/active_object.o
  .text          0x00000000        0x0 Build/motor_communicator.o
  .data          0x00000000        0x0 Build/motor_communicator.o
  .bss           0x00000000        0x0 Build/motor_communicator.o
- .text          0x00000000        0x0 Build/state_estimator.o
- .data          0x00000000        0x0 Build/state_estimator.o
- .bss           0x00000000        0x0 Build/state_estimator.o
+ .text          0x00000000        0x0 Build/encoder.o
+ .data          0x00000000        0x0 Build/encoder.o
+ .bss           0x00000000        0x0 Build/encoder.o
  .text          0x00000000        0x0 Build/system_config.o
  .data          0x00000000        0x0 Build/system_config.o
  .bss           0x00000000        0x0 Build/system_config.o
@@ -6865,9 +6868,10 @@ LOAD Build/arm_rfft_init_q31.o
 LOAD Build/arm_rfft_q15.o
 LOAD Build/arm_rfft_q31.o
 LOAD Build/computer_communicator.o
+LOAD Build/state_estimator.o
 LOAD Build/active_object.o
 LOAD Build/motor_communicator.o
-LOAD Build/state_estimator.o
+LOAD Build/encoder.o
 LOAD Build/system_config.o
 LOAD Build/port.o
 LOAD Build/heap_4.o
@@ -7202,68 +7206,68 @@ LOAD D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-no
  .text.App_ComputerCommunicator_Init
                 0x08002e48       0x10 Build/computer_communicator.o
                 0x08002e48                App_ComputerCommunicator_Init
- .text.init     0x08002e58       0x18 Build/active_object.o
+ .text.initial  0x08002e58        0xa Build/state_estimator.o
+                0x08002e58                initial
+ *fill*         0x08002e62        0x2 
+ .text.wait     0x08002e64       0x3c Build/state_estimator.o
+                0x08002e64                wait
+ .text.new      0x08002ea0       0x28 Build/state_estimator.o
+ .text.init     0x08002ec8       0x18 Build/active_object.o
  .text.dispatch
-                0x08002e70       0x24 Build/active_object.o
- .text.start    0x08002e94       0x34 Build/active_object.o
+                0x08002ee0       0x24 Build/active_object.o
+ .text.start    0x08002f04       0x34 Build/active_object.o
  .text.loopEvent
-                0x08002ec8       0x2c Build/active_object.o
+                0x08002f38       0x2c Build/active_object.o
  .text.postFromISR
-                0x08002ef4       0x16 Build/active_object.o
- .text.post     0x08002f0a       0x18 Build/active_object.o
- *fill*         0x08002f22        0x2 
- .text.Ao_new   0x08002f24       0x40 Build/active_object.o
-                0x08002f24                Ao_new
+                0x08002f64       0x16 Build/active_object.o
+ .text.post     0x08002f7a       0x18 Build/active_object.o
+ *fill*         0x08002f92        0x2 
+ .text.Ao_new   0x08002f94       0x40 Build/active_object.o
+                0x08002f94                Ao_new
  .text.UART_Init
-                0x08002f64       0x28 Build/motor_communicator.o
+                0x08002fd4       0x28 Build/motor_communicator.o
  .text.USART2_IRQHandler
-                0x08002f8c       0x10 Build/motor_communicator.o
-                0x08002f8c                USART2_IRQHandler
+                0x08002ffc       0x10 Build/motor_communicator.o
+                0x08002ffc                USART2_IRQHandler
  .text.HAL_UART_RxCpltCallback
-                0x08002f9c        0x2 Build/motor_communicator.o
-                0x08002f9c                HAL_UART_RxCpltCallback
- *fill*         0x08002f9e        0x2 
+                0x0800300c        0x2 Build/motor_communicator.o
+                0x0800300c                HAL_UART_RxCpltCallback
+ *fill*         0x0800300e        0x2 
  .text.Driver_MotorCommunicator_Init
-                0x08002fa0       0x10 Build/motor_communicator.o
-                0x08002fa0                Driver_MotorCommunicator_Init
+                0x08003010       0x10 Build/motor_communicator.o
+                0x08003010                Driver_MotorCommunicator_Init
  .text.HAL_UART_MspInit
-                0x08002fb0       0xe4 Build/motor_communicator.o
-                0x08002fb0                HAL_UART_MspInit
- .text.initial  0x08003094        0xa Build/state_estimator.o
-                0x08003094                initial
- *fill*         0x0800309e        0x2 
- .text.wait     0x080030a0       0x3c Build/state_estimator.o
-                0x080030a0                wait
- .text.new      0x080030dc       0x28 Build/state_estimator.o
+                0x08003020       0xe4 Build/motor_communicator.o
+                0x08003020                HAL_UART_MspInit
  .text.MX_TIM3_Init
-                0x08003104       0x54 Build/state_estimator.o
+                0x08003104       0x54 Build/encoder.o
  .text.MX_TIM4_Init
-                0x08003158       0x54 Build/state_estimator.o
+                0x08003158       0x54 Build/encoder.o
  .text.MX_TIM7_Init
-                0x080031ac       0x40 Build/state_estimator.o
+                0x080031ac       0x40 Build/encoder.o
  .text.HAL_TIM_PeriodElapsedCallback
-                0x080031ec       0x4c Build/state_estimator.o
+                0x080031ec       0x4c Build/encoder.o
                 0x080031ec                HAL_TIM_PeriodElapsedCallback
  .text.HAL_TIM_IC_CaptureCallback
-                0x08003238       0x30 Build/state_estimator.o
+                0x08003238       0x30 Build/encoder.o
                 0x08003238                HAL_TIM_IC_CaptureCallback
  .text.TIM3_IRQHandler
-                0x08003268       0x10 Build/state_estimator.o
+                0x08003268       0x10 Build/encoder.o
                 0x08003268                TIM3_IRQHandler
  .text.TIM4_IRQHandler
-                0x08003278       0x10 Build/state_estimator.o
+                0x08003278       0x10 Build/encoder.o
                 0x08003278                TIM4_IRQHandler
  .text.TIM7_IRQHandler
-                0x08003288       0x10 Build/state_estimator.o
+                0x08003288       0x10 Build/encoder.o
                 0x08003288                TIM7_IRQHandler
- .text.Driver_StateEstimator_Init
-                0x08003298       0x10 Build/state_estimator.o
-                0x08003298                Driver_StateEstimator_Init
+ .text.Driver_Encoder_Init
+                0x08003298       0x10 Build/encoder.o
+                0x08003298                Driver_Encoder_Init
  .text.HAL_TIM_Encoder_MspInit
-                0x080032a8       0xe0 Build/state_estimator.o
+                0x080032a8       0xe0 Build/encoder.o
                 0x080032a8                HAL_TIM_Encoder_MspInit
  .text.HAL_TIM_Base_MspInit
-                0x08003388       0x40 Build/state_estimator.o
+                0x08003388       0x40 Build/encoder.o
                 0x08003388                HAL_TIM_Base_MspInit
  .text.Error_Handler
                 0x080033c8        0x4 Build/system_config.o
@@ -7459,27 +7463,27 @@ LOAD D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-no
                 0x08003e44        0x5 Build/timers.o
  .rodata.xTimerCreateTimerTask.str1.4
                 0x08003e44        0x8 Build/timers.o
+ .rodata.StateEstimator
+                0x08003e44        0x4 Build/state_estimator.o
+                0x08003e44                StateEstimator
  .rodata.start.str1.4
-                0x08003e44        0x3 Build/active_object.o
+                0x08003e48        0x3 Build/active_object.o
  .rodata.entry_evt.0
-                0x08003e44        0x2 Build/active_object.o
- *fill*         0x08003e46        0x2 
- .rodata.entry_evt.1
                 0x08003e48        0x2 Build/active_object.o
  *fill*         0x08003e4a        0x2 
- .rodata.exit_evt.2
+ .rodata.entry_evt.1
                 0x08003e4c        0x2 Build/active_object.o
  *fill*         0x08003e4e        0x2 
- .rodata.entry_evt.3
+ .rodata.exit_evt.2
                 0x08003e50        0x2 Build/active_object.o
  *fill*         0x08003e52        0x2 
- .rodata.time_evt.0
-                0x08003e54        0x2 Build/state_estimator.o
+ .rodata.entry_evt.3
+                0x08003e54        0x2 Build/active_object.o
  *fill*         0x08003e56        0x2 
- .rodata.StateEstimator
-                0x08003e58        0x4 Build/state_estimator.o
-                0x08003e58                StateEstimator
+ .rodata.time_evt.0
+                0x08003e58        0x2 Build/encoder.o
                 0x08003e5c                        . = ALIGN (0x4)
+ *fill*         0x08003e5a        0x2 
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
@@ -7628,18 +7632,19 @@ LOAD D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-no
  .bss.xActiveTimerList1
                 0x20000270       0x14 Build/timers.o
  .bss.huart3    0x20000284       0x44 Build/computer_communicator.o
- .bss.huart2    0x200002c8       0x44 Build/motor_communicator.o
  .bss.ao_estimator
-                0x2000030c        0x4 Build/state_estimator.o
- .bss.motor_counter
-                0x20000310        0x2 Build/state_estimator.o
+                0x200002c8        0x4 Build/state_estimator.o
+                0x200002c8                ao_estimator
+ .bss.huart2    0x200002cc       0x44 Build/motor_communicator.o
  .bss.pendlm_counter
-                0x20000312        0x2 Build/state_estimator.o
- .bss.htim7     0x20000314       0x48 Build/state_estimator.o
+                0x20000310        0x2 Build/encoder.o
+ .bss.motor_counter
+                0x20000312        0x2 Build/encoder.o
+ .bss.htim7     0x20000314       0x48 Build/encoder.o
                 0x20000314                htim7
- .bss.htim4     0x2000035c       0x48 Build/state_estimator.o
+ .bss.htim4     0x2000035c       0x48 Build/encoder.o
                 0x2000035c                htim4
- .bss.htim3     0x200003a4       0x48 Build/state_estimator.o
+ .bss.htim3     0x200003a4       0x48 Build/encoder.o
                 0x200003a4                htim3
  .bss.ulMaxPRIGROUPValue
                 0x200003ec        0x4 Build/port.o
@@ -7720,42 +7725,44 @@ LOAD D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-no
  .ARM.attributes
                 0x00000396       0x34 Build/computer_communicator.o
  .ARM.attributes
-                0x000003ca       0x34 Build/active_object.o
+                0x000003ca       0x34 Build/state_estimator.o
  .ARM.attributes
-                0x000003fe       0x34 Build/motor_communicator.o
+                0x000003fe       0x34 Build/active_object.o
  .ARM.attributes
-                0x00000432       0x34 Build/state_estimator.o
+                0x00000432       0x34 Build/motor_communicator.o
  .ARM.attributes
-                0x00000466       0x34 Build/system_config.o
+                0x00000466       0x34 Build/encoder.o
  .ARM.attributes
-                0x0000049a       0x34 Build/port.o
+                0x0000049a       0x34 Build/system_config.o
  .ARM.attributes
-                0x000004ce       0x34 Build/heap_4.o
+                0x000004ce       0x34 Build/port.o
  .ARM.attributes
-                0x00000502       0x21 Build/startup_stm32f407xx.o
+                0x00000502       0x34 Build/heap_4.o
  .ARM.attributes
-                0x00000523       0x34 D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gnu-toolchain-13.2.Rel1-mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memset.o)
+                0x00000536       0x21 Build/startup_stm32f407xx.o
  .ARM.attributes
-                0x00000557       0x34 D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gnu-toolchain-13.2.Rel1-mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-init.o)
+                0x00000557       0x34 D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gnu-toolchain-13.2.Rel1-mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memset.o)
  .ARM.attributes
-                0x0000058b       0x34 D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gnu-toolchain-13.2.Rel1-mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memcpy-stub.o)
+                0x0000058b       0x34 D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gnu-toolchain-13.2.Rel1-mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-init.o)
  .ARM.attributes
-                0x000005bf       0x22 D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gnu-toolchain-13.2.Rel1-mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libgcc.a(_aeabi_uldivmod.o)
+                0x000005bf       0x34 D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gnu-toolchain-13.2.Rel1-mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memcpy-stub.o)
  .ARM.attributes
-                0x000005e1       0x34 D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gnu-toolchain-13.2.Rel1-mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libgcc.a(_udivmoddi4.o)
+                0x000005f3       0x22 D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gnu-toolchain-13.2.Rel1-mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libgcc.a(_aeabi_uldivmod.o)
  .ARM.attributes
-                0x00000615       0x22 D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gnu-toolchain-13.2.Rel1-mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libgcc.a(_dvmd_tls.o)
+                0x00000615       0x34 D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gnu-toolchain-13.2.Rel1-mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libgcc.a(_udivmoddi4.o)
  .ARM.attributes
-                0x00000637       0x34 D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gnu-toolchain-13.2.Rel1-mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard/crtend.o
+                0x00000649       0x22 D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gnu-toolchain-13.2.Rel1-mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libgcc.a(_dvmd_tls.o)
  .ARM.attributes
-                0x0000066b       0x22 D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gnu-toolchain-13.2.Rel1-mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard/crtn.o
+                0x0000066b       0x34 D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gnu-toolchain-13.2.Rel1-mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard/crtend.o
+ .ARM.attributes
+                0x0000069f       0x22 D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gnu-toolchain-13.2.Rel1-mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard/crtn.o
 OUTPUT(Build/FirmwareSTM32.elf elf32-littlearm)
 LOAD linker stubs
 LOAD D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gnu-toolchain-13.2.Rel1-mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libc.a
 LOAD D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gnu-toolchain-13.2.Rel1-mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libm.a
 LOAD D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gnu-toolchain-13.2.Rel1-mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libgcc.a
 
-.debug_info     0x00000000    0x1b1df
+.debug_info     0x00000000    0x1be51
  .debug_info    0x00000000      0xafa Build/stm32f4xx_hal.o
  .debug_info    0x00000afa     0x1186 Build/stm32f4xx_hal_cortex.o
  .debug_info    0x00001c80      0xbce Build/stm32f4xx_hal_dma.o
@@ -7773,15 +7780,16 @@ LOAD D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-no
  .debug_info    0x00011a93     0x3398 Build/tasks.o
  .debug_info    0x00014e2b     0x14fb Build/timers.o
  .debug_info    0x00016326      0x719 Build/computer_communicator.o
- .debug_info    0x00016a3f      0xb32 Build/active_object.o
- .debug_info    0x00017571      0xe4c Build/motor_communicator.o
- .debug_info    0x000183bd     0x1af3 Build/state_estimator.o
- .debug_info    0x00019eb0      0x65d Build/system_config.o
- .debug_info    0x0001a50d      0x5c2 Build/port.o
- .debug_info    0x0001aacf      0x6e0 Build/heap_4.o
- .debug_info    0x0001b1af       0x30 Build/startup_stm32f407xx.o
+ .debug_info    0x00016a3f      0xeec Build/state_estimator.o
+ .debug_info    0x0001792b      0xb07 Build/active_object.o
+ .debug_info    0x00018432      0xe4c Build/motor_communicator.o
+ .debug_info    0x0001927e     0x18a4 Build/encoder.o
+ .debug_info    0x0001ab22      0x65d Build/system_config.o
+ .debug_info    0x0001b17f      0x5c2 Build/port.o
+ .debug_info    0x0001b741      0x6e0 Build/heap_4.o
+ .debug_info    0x0001be21       0x30 Build/startup_stm32f407xx.o
 
-.debug_abbrev   0x00000000     0x38fe
+.debug_abbrev   0x00000000     0x3ae1
  .debug_abbrev  0x00000000      0x244 Build/stm32f4xx_hal.o
  .debug_abbrev  0x00000244      0x3d3 Build/stm32f4xx_hal_cortex.o
  .debug_abbrev  0x00000617      0x2fe Build/stm32f4xx_hal_dma.o
@@ -7799,15 +7807,16 @@ LOAD D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-no
  .debug_abbrev  0x00002019      0x403 Build/tasks.o
  .debug_abbrev  0x0000241c      0x33d Build/timers.o
  .debug_abbrev  0x00002759      0x1ac Build/computer_communicator.o
- .debug_abbrev  0x00002905      0x278 Build/active_object.o
- .debug_abbrev  0x00002b7d      0x24e Build/motor_communicator.o
- .debug_abbrev  0x00002dcb      0x3d0 Build/state_estimator.o
- .debug_abbrev  0x0000319b      0x1c2 Build/system_config.o
- .debug_abbrev  0x0000335d      0x2af Build/port.o
- .debug_abbrev  0x0000360c      0x2d5 Build/heap_4.o
- .debug_abbrev  0x000038e1       0x1d Build/startup_stm32f407xx.o
+ .debug_abbrev  0x00002905      0x2c3 Build/state_estimator.o
+ .debug_abbrev  0x00002bc8      0x252 Build/active_object.o
+ .debug_abbrev  0x00002e1a      0x24e Build/motor_communicator.o
+ .debug_abbrev  0x00003068      0x316 Build/encoder.o
+ .debug_abbrev  0x0000337e      0x1c2 Build/system_config.o
+ .debug_abbrev  0x00003540      0x2af Build/port.o
+ .debug_abbrev  0x000037ef      0x2d5 Build/heap_4.o
+ .debug_abbrev  0x00003ac4       0x1d Build/startup_stm32f407xx.o
 
-.debug_loc      0x00000000    0x172ee
+.debug_loc      0x00000000    0x172b0
  .debug_loc     0x00000000      0x1f9 Build/stm32f4xx_hal.o
  .debug_loc     0x000001f9      0x8df Build/stm32f4xx_hal_cortex.o
  .debug_loc     0x00000ad8      0xe9a Build/stm32f4xx_hal_dma.o
@@ -7824,14 +7833,15 @@ LOAD D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-no
  .debug_loc     0x00011cc0     0x3155 Build/tasks.o
  .debug_loc     0x00014e15     0x12b1 Build/timers.o
  .debug_loc     0x000160c6       0x8b Build/computer_communicator.o
- .debug_loc     0x00016151      0x471 Build/active_object.o
- .debug_loc     0x000165c2      0x140 Build/motor_communicator.o
- .debug_loc     0x00016702      0x43e Build/state_estimator.o
- .debug_loc     0x00016b40       0x72 Build/system_config.o
- .debug_loc     0x00016bb2      0x1c6 Build/port.o
- .debug_loc     0x00016d78      0x576 Build/heap_4.o
+ .debug_loc     0x00016151      0x16a Build/state_estimator.o
+ .debug_loc     0x000162bb      0x433 Build/active_object.o
+ .debug_loc     0x000166ee      0x140 Build/motor_communicator.o
+ .debug_loc     0x0001682e      0x2d4 Build/encoder.o
+ .debug_loc     0x00016b02       0x72 Build/system_config.o
+ .debug_loc     0x00016b74      0x1c6 Build/port.o
+ .debug_loc     0x00016d3a      0x576 Build/heap_4.o
 
-.debug_aranges  0x00000000     0x11f0
+.debug_aranges  0x00000000     0x1208
  .debug_aranges
                 0x00000000       0xf0 Build/stm32f4xx_hal.o
  .debug_aranges
@@ -7867,21 +7877,23 @@ LOAD D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-no
  .debug_aranges
                 0x00000f70       0x30 Build/computer_communicator.o
  .debug_aranges
-                0x00000fa0       0x50 Build/active_object.o
+                0x00000fa0       0x30 Build/state_estimator.o
  .debug_aranges
-                0x00000ff0       0x40 Build/motor_communicator.o
+                0x00000fd0       0x50 Build/active_object.o
  .debug_aranges
-                0x00001030       0x88 Build/state_estimator.o
+                0x00001020       0x40 Build/motor_communicator.o
  .debug_aranges
-                0x000010b8       0x30 Build/system_config.o
+                0x00001060       0x70 Build/encoder.o
  .debug_aranges
-                0x000010e8       0x80 Build/port.o
+                0x000010d0       0x30 Build/system_config.o
  .debug_aranges
-                0x00001168       0x60 Build/heap_4.o
+                0x00001100       0x80 Build/port.o
  .debug_aranges
-                0x000011c8       0x28 Build/startup_stm32f407xx.o
+                0x00001180       0x60 Build/heap_4.o
+ .debug_aranges
+                0x000011e0       0x28 Build/startup_stm32f407xx.o
 
-.debug_ranges   0x00000000     0x1400
+.debug_ranges   0x00000000     0x1408
  .debug_ranges  0x00000000       0xe0 Build/stm32f4xx_hal.o
  .debug_ranges  0x000000e0       0xc8 Build/stm32f4xx_hal_cortex.o
  .debug_ranges  0x000001a8       0x80 Build/stm32f4xx_hal_dma.o
@@ -7899,15 +7911,16 @@ LOAD D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-no
  .debug_ranges  0x00000ce0      0x428 Build/tasks.o
  .debug_ranges  0x00001108       0xd8 Build/timers.o
  .debug_ranges  0x000011e0       0x20 Build/computer_communicator.o
- .debug_ranges  0x00001200       0x40 Build/active_object.o
- .debug_ranges  0x00001240       0x30 Build/motor_communicator.o
- .debug_ranges  0x00001270       0x78 Build/state_estimator.o
- .debug_ranges  0x000012e8       0x20 Build/system_config.o
- .debug_ranges  0x00001308       0x88 Build/port.o
- .debug_ranges  0x00001390       0x50 Build/heap_4.o
- .debug_ranges  0x000013e0       0x20 Build/startup_stm32f407xx.o
+ .debug_ranges  0x00001200       0x20 Build/state_estimator.o
+ .debug_ranges  0x00001220       0x40 Build/active_object.o
+ .debug_ranges  0x00001260       0x30 Build/motor_communicator.o
+ .debug_ranges  0x00001290       0x60 Build/encoder.o
+ .debug_ranges  0x000012f0       0x20 Build/system_config.o
+ .debug_ranges  0x00001310       0x88 Build/port.o
+ .debug_ranges  0x00001398       0x50 Build/heap_4.o
+ .debug_ranges  0x000013e8       0x20 Build/startup_stm32f407xx.o
 
-.debug_line     0x00000000    0x1517c
+.debug_line     0x00000000    0x154e1
  .debug_line    0x00000000      0x61d Build/stm32f4xx_hal.o
  .debug_line    0x0000061d      0x89e Build/stm32f4xx_hal_cortex.o
  .debug_line    0x00000ebb      0xee9 Build/stm32f4xx_hal_dma.o
@@ -7916,49 +7929,51 @@ LOAD D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-no
  .debug_line    0x0000318a     0x47ed Build/stm32f4xx_hal_tim.o
  .debug_line    0x00007977     0x1b83 Build/stm32f4xx_hal_tim_ex.o
  .debug_line    0x000094fa     0x3665 Build/stm32f4xx_hal_uart.o
- .debug_line    0x0000cb5f      0x3b6 Build/main.o
- .debug_line    0x0000cf15      0x20c Build/stm32f4xx_hal_msp.o
- .debug_line    0x0000d121       0xc8 Build/stm32f4xx_it.o
- .debug_line    0x0000d1e9      0x304 Build/system_stm32f4xx.o
- .debug_line    0x0000d4ed      0x3db Build/list.o
- .debug_line    0x0000d8c8     0x1c6e Build/queue.o
- .debug_line    0x0000f536     0x2a06 Build/tasks.o
- .debug_line    0x00011f3c      0xc83 Build/timers.o
- .debug_line    0x00012bbf      0x309 Build/computer_communicator.o
- .debug_line    0x00012ec8      0x3b4 Build/active_object.o
- .debug_line    0x0001327c      0x3e8 Build/motor_communicator.o
- .debug_line    0x00013664      0x784 Build/state_estimator.o
- .debug_line    0x00013de8      0x3ab Build/system_config.o
- .debug_line    0x00014193      0x6aa Build/port.o
- .debug_line    0x0001483d      0x8cc Build/heap_4.o
- .debug_line    0x00015109       0x73 Build/startup_stm32f407xx.o
+ .debug_line    0x0000cb5f      0x3e0 Build/main.o
+ .debug_line    0x0000cf3f      0x20c Build/stm32f4xx_hal_msp.o
+ .debug_line    0x0000d14b       0xc8 Build/stm32f4xx_it.o
+ .debug_line    0x0000d213      0x304 Build/system_stm32f4xx.o
+ .debug_line    0x0000d517      0x3db Build/list.o
+ .debug_line    0x0000d8f2     0x1c6e Build/queue.o
+ .debug_line    0x0000f560     0x2a06 Build/tasks.o
+ .debug_line    0x00011f66      0xc83 Build/timers.o
+ .debug_line    0x00012be9      0x309 Build/computer_communicator.o
+ .debug_line    0x00012ef2      0x3c0 Build/state_estimator.o
+ .debug_line    0x000132b2      0x3b2 Build/active_object.o
+ .debug_line    0x00013664      0x3e8 Build/motor_communicator.o
+ .debug_line    0x00013a4c      0x701 Build/encoder.o
+ .debug_line    0x0001414d      0x3ab Build/system_config.o
+ .debug_line    0x000144f8      0x6aa Build/port.o
+ .debug_line    0x00014ba2      0x8cc Build/heap_4.o
+ .debug_line    0x0001546e       0x73 Build/startup_stm32f407xx.o
 
-.debug_str      0x00000000     0x5e4c
- .debug_str     0x00000000     0x5e4c Build/stm32f4xx_hal.o
+.debug_str      0x00000000     0x5e6c
+ .debug_str     0x00000000     0x5e6c Build/stm32f4xx_hal.o
                                 0xb58 (size before relaxing)
- .debug_str     0x00005e4c      0xc20 Build/stm32f4xx_hal_cortex.o
- .debug_str     0x00005e4c      0x76a Build/stm32f4xx_hal_dma.o
- .debug_str     0x00005e4c      0x4d4 Build/stm32f4xx_hal_gpio.o
- .debug_str     0x00005e4c      0x6fa Build/stm32f4xx_hal_rcc.o
- .debug_str     0x00005e4c     0x16e3 Build/stm32f4xx_hal_tim.o
- .debug_str     0x00005e4c      0xeff Build/stm32f4xx_hal_tim_ex.o
- .debug_str     0x00005e4c      0xd4d Build/stm32f4xx_hal_uart.o
- .debug_str     0x00005e4c      0x582 Build/main.o
- .debug_str     0x00005e4c      0x2c1 Build/stm32f4xx_hal_msp.o
- .debug_str     0x00005e4c      0x1fe Build/stm32f4xx_it.o
- .debug_str     0x00005e4c      0x369 Build/system_stm32f4xx.o
- .debug_str     0x00005e4c      0x2e2 Build/list.o
- .debug_str     0x00005e4c      0xb9d Build/queue.o
- .debug_str     0x00005e4c     0x11f8 Build/tasks.o
- .debug_str     0x00005e4c      0x92c Build/timers.o
- .debug_str     0x00005e4c      0x6ae Build/computer_communicator.o
- .debug_str     0x00005e4c      0x55c Build/active_object.o
- .debug_str     0x00005e4c      0xd6b Build/motor_communicator.o
- .debug_str     0x00005e4c     0x13c2 Build/state_estimator.o
- .debug_str     0x00005e4c      0x493 Build/system_config.o
- .debug_str     0x00005e4c      0x45e Build/port.o
- .debug_str     0x00005e4c      0x530 Build/heap_4.o
- .debug_str     0x00005e4c       0x76 Build/startup_stm32f407xx.o
+ .debug_str     0x00005e6c      0xc20 Build/stm32f4xx_hal_cortex.o
+ .debug_str     0x00005e6c      0x76a Build/stm32f4xx_hal_dma.o
+ .debug_str     0x00005e6c      0x4d4 Build/stm32f4xx_hal_gpio.o
+ .debug_str     0x00005e6c      0x6fa Build/stm32f4xx_hal_rcc.o
+ .debug_str     0x00005e6c     0x16e3 Build/stm32f4xx_hal_tim.o
+ .debug_str     0x00005e6c      0xeff Build/stm32f4xx_hal_tim_ex.o
+ .debug_str     0x00005e6c      0xd4d Build/stm32f4xx_hal_uart.o
+ .debug_str     0x00005e6c      0x57b Build/main.o
+ .debug_str     0x00005e6c      0x2c1 Build/stm32f4xx_hal_msp.o
+ .debug_str     0x00005e6c      0x1fe Build/stm32f4xx_it.o
+ .debug_str     0x00005e6c      0x369 Build/system_stm32f4xx.o
+ .debug_str     0x00005e6c      0x2e2 Build/list.o
+ .debug_str     0x00005e6c      0xb9d Build/queue.o
+ .debug_str     0x00005e6c     0x11f8 Build/tasks.o
+ .debug_str     0x00005e6c      0x92c Build/timers.o
+ .debug_str     0x00005e6c      0x6ae Build/computer_communicator.o
+ .debug_str     0x00005e6c      0xa9a Build/state_estimator.o
+ .debug_str     0x00005e6c      0x55c Build/active_object.o
+ .debug_str     0x00005e6c      0xd6b Build/motor_communicator.o
+ .debug_str     0x00005e6c     0x132d Build/encoder.o
+ .debug_str     0x00005e6c      0x493 Build/system_config.o
+ .debug_str     0x00005e6c      0x45e Build/port.o
+ .debug_str     0x00005e6c      0x530 Build/heap_4.o
+ .debug_str     0x00005e6c       0x76 Build/startup_stm32f407xx.o
 
 .comment        0x00000000       0x44
  .comment       0x00000000       0x44 Build/stm32f4xx_hal.o
@@ -7979,14 +7994,15 @@ LOAD D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-no
  .comment       0x00000044       0x45 Build/tasks.o
  .comment       0x00000044       0x45 Build/timers.o
  .comment       0x00000044       0x45 Build/computer_communicator.o
+ .comment       0x00000044       0x45 Build/state_estimator.o
  .comment       0x00000044       0x45 Build/active_object.o
  .comment       0x00000044       0x45 Build/motor_communicator.o
- .comment       0x00000044       0x45 Build/state_estimator.o
+ .comment       0x00000044       0x45 Build/encoder.o
  .comment       0x00000044       0x45 Build/system_config.o
  .comment       0x00000044       0x45 Build/port.o
  .comment       0x00000044       0x45 Build/heap_4.o
 
-.debug_frame    0x00000000     0x30e8
+.debug_frame    0x00000000     0x30f8
  .debug_frame   0x00000000      0x1ec Build/stm32f4xx_hal.o
  .debug_frame   0x000001ec      0x1cc Build/stm32f4xx_hal_cortex.o
  .debug_frame   0x000003b8      0x188 Build/stm32f4xx_hal_dma.o
@@ -8004,17 +8020,18 @@ LOAD D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-no
  .debug_frame   0x00002198      0x644 Build/tasks.o
  .debug_frame   0x000027dc      0x2bc Build/timers.o
  .debug_frame   0x00002a98       0x58 Build/computer_communicator.o
- .debug_frame   0x00002af0       0xcc Build/active_object.o
- .debug_frame   0x00002bbc       0x88 Build/motor_communicator.o
- .debug_frame   0x00002c44      0x17c Build/state_estimator.o
- .debug_frame   0x00002dc0       0x58 Build/system_config.o
- .debug_frame   0x00002e18      0x110 Build/port.o
- .debug_frame   0x00002f28       0xec Build/heap_4.o
- .debug_frame   0x00003014       0x20 D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gnu-toolchain-13.2.Rel1-mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memset.o)
- .debug_frame   0x00003034       0x2c D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gnu-toolchain-13.2.Rel1-mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-init.o)
- .debug_frame   0x00003060       0x28 D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gnu-toolchain-13.2.Rel1-mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memcpy-stub.o)
- .debug_frame   0x00003088       0x2c D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gnu-toolchain-13.2.Rel1-mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libgcc.a(_aeabi_uldivmod.o)
- .debug_frame   0x000030b4       0x34 D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gnu-toolchain-13.2.Rel1-mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libgcc.a(_udivmoddi4.o)
+ .debug_frame   0x00002af0       0x50 Build/state_estimator.o
+ .debug_frame   0x00002b40       0xcc Build/active_object.o
+ .debug_frame   0x00002c0c       0x88 Build/motor_communicator.o
+ .debug_frame   0x00002c94      0x13c Build/encoder.o
+ .debug_frame   0x00002dd0       0x58 Build/system_config.o
+ .debug_frame   0x00002e28      0x110 Build/port.o
+ .debug_frame   0x00002f38       0xec Build/heap_4.o
+ .debug_frame   0x00003024       0x20 D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gnu-toolchain-13.2.Rel1-mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memset.o)
+ .debug_frame   0x00003044       0x2c D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gnu-toolchain-13.2.Rel1-mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-init.o)
+ .debug_frame   0x00003070       0x28 D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gnu-toolchain-13.2.Rel1-mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memcpy-stub.o)
+ .debug_frame   0x00003098       0x2c D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gnu-toolchain-13.2.Rel1-mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libgcc.a(_aeabi_uldivmod.o)
+ .debug_frame   0x000030c4       0x34 D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gnu-toolchain-13.2.Rel1-mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libgcc.a(_udivmoddi4.o)
 
 .debug_line_str
                 0x00000000       0xd5
@@ -8064,9 +8081,9 @@ DMA2_Stream6_IRQHandler                           Build/startup_stm32f407xx.o
 DMA2_Stream7_IRQHandler                           Build/startup_stm32f407xx.o
 DebugMon_Handler                                  Build/stm32f4xx_it.o
 Default_Handler                                   Build/startup_stm32f407xx.o
-Driver_MotorCommunicator_Init                     Build/motor_communicator.o
+Driver_Encoder_Init                               Build/encoder.o
                                                   Build/main.o
-Driver_StateEstimator_Init                        Build/state_estimator.o
+Driver_MotorCommunicator_Init                     Build/motor_communicator.o
                                                   Build/main.o
 ETH_IRQHandler                                    Build/startup_stm32f407xx.o
 ETH_WKUP_IRQHandler                               Build/startup_stm32f407xx.o
@@ -8148,7 +8165,7 @@ HAL_GPIO_DeInit                                   Build/stm32f4xx_hal_gpio.o
 HAL_GPIO_EXTI_Callback                            Build/stm32f4xx_hal_gpio.o
 HAL_GPIO_EXTI_IRQHandler                          Build/stm32f4xx_hal_gpio.o
 HAL_GPIO_Init                                     Build/stm32f4xx_hal_gpio.o
-                                                  Build/state_estimator.o
+                                                  Build/encoder.o
                                                   Build/motor_communicator.o
                                                   Build/stm32f4xx_hal_rcc.o
 HAL_GPIO_LockPin                                  Build/stm32f4xx_hal_gpio.o
@@ -8193,7 +8210,7 @@ HAL_MultiProcessor_Init                           Build/stm32f4xx_hal_uart.o
 HAL_NVIC_ClearPendingIRQ                          Build/stm32f4xx_hal_cortex.o
 HAL_NVIC_DisableIRQ                               Build/stm32f4xx_hal_cortex.o
 HAL_NVIC_EnableIRQ                                Build/stm32f4xx_hal_cortex.o
-                                                  Build/state_estimator.o
+                                                  Build/encoder.o
                                                   Build/motor_communicator.o
 HAL_NVIC_GetActive                                Build/stm32f4xx_hal_cortex.o
 HAL_NVIC_GetPendingIRQ                            Build/stm32f4xx_hal_cortex.o
@@ -8201,7 +8218,7 @@ HAL_NVIC_GetPriority                              Build/stm32f4xx_hal_cortex.o
 HAL_NVIC_GetPriorityGrouping                      Build/stm32f4xx_hal_cortex.o
 HAL_NVIC_SetPendingIRQ                            Build/stm32f4xx_hal_cortex.o
 HAL_NVIC_SetPriority                              Build/stm32f4xx_hal_cortex.o
-                                                  Build/state_estimator.o
+                                                  Build/encoder.o
                                                   Build/motor_communicator.o
                                                   Build/stm32f4xx_hal.o
 HAL_NVIC_SetPriorityGrouping                      Build/stm32f4xx_hal_cortex.o
@@ -8284,7 +8301,7 @@ HAL_TIMEx_HallSensor_Stop                         Build/stm32f4xx_hal_tim_ex.o
 HAL_TIMEx_HallSensor_Stop_DMA                     Build/stm32f4xx_hal_tim_ex.o
 HAL_TIMEx_HallSensor_Stop_IT                      Build/stm32f4xx_hal_tim_ex.o
 HAL_TIMEx_MasterConfigSynchronization             Build/stm32f4xx_hal_tim_ex.o
-                                                  Build/state_estimator.o
+                                                  Build/encoder.o
 HAL_TIMEx_OCN_Start                               Build/stm32f4xx_hal_tim_ex.o
 HAL_TIMEx_OCN_Start_DMA                           Build/stm32f4xx_hal_tim_ex.o
 HAL_TIMEx_OCN_Start_IT                            Build/stm32f4xx_hal_tim_ex.o
@@ -8305,9 +8322,9 @@ HAL_TIMEx_RemapConfig                             Build/stm32f4xx_hal_tim_ex.o
 HAL_TIM_Base_DeInit                               Build/stm32f4xx_hal_tim.o
 HAL_TIM_Base_GetState                             Build/stm32f4xx_hal_tim.o
 HAL_TIM_Base_Init                                 Build/stm32f4xx_hal_tim.o
-                                                  Build/state_estimator.o
+                                                  Build/encoder.o
 HAL_TIM_Base_MspDeInit                            Build/stm32f4xx_hal_tim.o
-HAL_TIM_Base_MspInit                              Build/state_estimator.o
+HAL_TIM_Base_MspInit                              Build/encoder.o
                                                   Build/stm32f4xx_hal_tim.o
 HAL_TIM_Base_Start                                Build/stm32f4xx_hal_tim.o
 HAL_TIM_Base_Start_DMA                            Build/stm32f4xx_hal_tim.o
@@ -8329,9 +8346,9 @@ HAL_TIM_DMABurst_WriteStop                        Build/stm32f4xx_hal_tim.o
 HAL_TIM_Encoder_DeInit                            Build/stm32f4xx_hal_tim.o
 HAL_TIM_Encoder_GetState                          Build/stm32f4xx_hal_tim.o
 HAL_TIM_Encoder_Init                              Build/stm32f4xx_hal_tim.o
-                                                  Build/state_estimator.o
+                                                  Build/encoder.o
 HAL_TIM_Encoder_MspDeInit                         Build/stm32f4xx_hal_tim.o
-HAL_TIM_Encoder_MspInit                           Build/state_estimator.o
+HAL_TIM_Encoder_MspInit                           Build/encoder.o
                                                   Build/stm32f4xx_hal_tim.o
 HAL_TIM_Encoder_Start                             Build/stm32f4xx_hal_tim.o
 HAL_TIM_Encoder_Start_DMA                         Build/stm32f4xx_hal_tim.o
@@ -8345,7 +8362,7 @@ HAL_TIM_ErrorCallback                             Build/stm32f4xx_hal_tim.o
 HAL_TIM_GenerateEvent                             Build/stm32f4xx_hal_tim.o
 HAL_TIM_GetActiveChannel                          Build/stm32f4xx_hal_tim.o
 HAL_TIM_GetChannelState                           Build/stm32f4xx_hal_tim.o
-HAL_TIM_IC_CaptureCallback                        Build/state_estimator.o
+HAL_TIM_IC_CaptureCallback                        Build/encoder.o
                                                   Build/stm32f4xx_hal_tim.o
 HAL_TIM_IC_CaptureHalfCpltCallback                Build/stm32f4xx_hal_tim.o
 HAL_TIM_IC_ConfigChannel                          Build/stm32f4xx_hal_tim.o
@@ -8361,7 +8378,7 @@ HAL_TIM_IC_Stop                                   Build/stm32f4xx_hal_tim.o
 HAL_TIM_IC_Stop_DMA                               Build/stm32f4xx_hal_tim.o
 HAL_TIM_IC_Stop_IT                                Build/stm32f4xx_hal_tim.o
 HAL_TIM_IRQHandler                                Build/stm32f4xx_hal_tim.o
-                                                  Build/state_estimator.o
+                                                  Build/encoder.o
 HAL_TIM_OC_ConfigChannel                          Build/stm32f4xx_hal_tim.o
 HAL_TIM_OC_DeInit                                 Build/stm32f4xx_hal_tim.o
 HAL_TIM_OC_DelayElapsedCallback                   Build/stm32f4xx_hal_tim.o
@@ -8400,7 +8417,7 @@ HAL_TIM_PWM_Start_IT                              Build/stm32f4xx_hal_tim.o
 HAL_TIM_PWM_Stop                                  Build/stm32f4xx_hal_tim.o
 HAL_TIM_PWM_Stop_DMA                              Build/stm32f4xx_hal_tim.o
 HAL_TIM_PWM_Stop_IT                               Build/stm32f4xx_hal_tim.o
-HAL_TIM_PeriodElapsedCallback                     Build/state_estimator.o
+HAL_TIM_PeriodElapsedCallback                     Build/encoder.o
                                                   Build/stm32f4xx_hal_tim.o
 HAL_TIM_PeriodElapsedHalfCpltCallback             Build/stm32f4xx_hal_tim.o
 HAL_TIM_ReadCapturedValue                         Build/stm32f4xx_hal_tim.o
@@ -8497,11 +8514,11 @@ TIM1_CC_IRQHandler                                Build/startup_stm32f407xx.o
 TIM1_TRG_COM_TIM11_IRQHandler                     Build/startup_stm32f407xx.o
 TIM1_UP_TIM10_IRQHandler                          Build/startup_stm32f407xx.o
 TIM2_IRQHandler                                   Build/startup_stm32f407xx.o
-TIM3_IRQHandler                                   Build/state_estimator.o
-TIM4_IRQHandler                                   Build/state_estimator.o
+TIM3_IRQHandler                                   Build/encoder.o
+TIM4_IRQHandler                                   Build/encoder.o
 TIM5_IRQHandler                                   Build/startup_stm32f407xx.o
 TIM6_DAC_IRQHandler                               Build/startup_stm32f407xx.o
-TIM7_IRQHandler                                   Build/state_estimator.o
+TIM7_IRQHandler                                   Build/encoder.o
 TIM8_BRK_TIM12_IRQHandler                         Build/startup_stm32f407xx.o
 TIM8_CC_IRQHandler                                Build/startup_stm32f407xx.o
 TIM8_TRG_COM_TIM14_IRQHandler                     Build/startup_stm32f407xx.o
@@ -8745,6 +8762,8 @@ _write                                            D:/Software/Arm Toolchain/arm-
                                                   D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gnu-toolchain-13.2.Rel1-mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-writer.o)
 _write_r                                          D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gnu-toolchain-13.2.Rel1-mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-writer.o)
                                                   D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gnu-toolchain-13.2.Rel1-mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-stdio.o)
+ao_estimator                                      Build/state_estimator.o
+                                                  Build/encoder.o
 armBitRevIndexTable1024                           Build/arm_common_tables.o
                                                   Build/arm_rfft_fast_init_f32.o
                                                   Build/arm_const_structs.o
@@ -9241,9 +9260,12 @@ exit                                              D:/Software/Arm Toolchain/arm-
 fflush                                            D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gnu-toolchain-13.2.Rel1-mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-fflush.o)
 g_pfnVectors                                      Build/startup_stm32f407xx.o
 hardware_init_hook                                D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gnu-toolchain-13.2.Rel1-mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard/crt0.o
-htim3                                             Build/state_estimator.o
-htim4                                             Build/state_estimator.o
-htim7                                             Build/state_estimator.o
+htim3                                             Build/encoder.o
+                                                  Build/state_estimator.o
+htim4                                             Build/encoder.o
+                                                  Build/state_estimator.o
+htim7                                             Build/encoder.o
+                                                  Build/state_estimator.o
 initial                                           Build/state_estimator.o
 main                                              Build/main.o
                                                   Build/startup_stm32f407xx.o
@@ -9255,7 +9277,7 @@ memset                                            D:/Software/Arm Toolchain/arm-
                                                   D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gnu-toolchain-13.2.Rel1-mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.2.1/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-findfp.o)
                                                   Build/heap_4.o
                                                   Build/system_config.o
-                                                  Build/state_estimator.o
+                                                  Build/encoder.o
                                                   Build/arm_lms_norm_init_q31.o
                                                   Build/arm_lms_norm_init_q15.o
                                                   Build/arm_lms_norm_init_f32.o
