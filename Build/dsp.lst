@@ -1,0 +1,358 @@
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccJ5FHHf.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"dsp.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Core/Src/Application/State_Estimator/Dsp/dsp.c"
+  20              		.section	.text.cvtAngle,"ax",%progbits
+  21              		.align	1
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	cvtAngle:
+  27              	.LVL0:
+  28              	.LFB168:
+   1:Core/Src/Application/State_Estimator/Dsp/dsp.c **** #include "dsp.h"
+   2:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
+   3:Core/Src/Application/State_Estimator/Dsp/dsp.c **** static void cvtAngle(struct Dsp * const self, Encoder const * const encoder_topic)
+   4:Core/Src/Application/State_Estimator/Dsp/dsp.c **** {
+  29              		.loc 1 4 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+   5:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->motor_angle = self->motor_resol * encoder_topic->motor_counter;
+  34              		.loc 1 5 5 view .LVU1
+  35              		.loc 1 5 29 is_stmt 0 view .LVU2
+  36 0000 90ED007A 		vldr.32	s14, [r0]
+  37              		.loc 1 5 58 view .LVU3
+  38 0004 B1F90230 		ldrsh	r3, [r1, #2]
+  39 0008 07EE903A 		vmov	s15, r3	@ int
+  40              		.loc 1 5 43 view .LVU4
+  41 000c F8EEE77A 		vcvt.f32.s32	s15, s15
+  42 0010 67EE877A 		vmul.f32	s15, s15, s14
+  43              		.loc 1 5 23 view .LVU5
+  44 0014 C0ED027A 		vstr.32	s15, [r0, #8]
+   6:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->pendlm_angle = self->pendlm_resol * encoder_topic->pendlm_counter;
+  45              		.loc 1 6 5 is_stmt 1 view .LVU6
+  46              		.loc 1 6 30 is_stmt 0 view .LVU7
+  47 0018 90ED017A 		vldr.32	s14, [r0, #4]
+  48              		.loc 1 6 60 view .LVU8
+  49 001c B1F90030 		ldrsh	r3, [r1]
+  50 0020 07EE903A 		vmov	s15, r3	@ int
+  51              		.loc 1 6 45 view .LVU9
+  52 0024 F8EEE77A 		vcvt.f32.s32	s15, s15
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccJ5FHHf.s 			page 2
+
+
+  53 0028 67EE877A 		vmul.f32	s15, s15, s14
+  54              		.loc 1 6 24 view .LVU10
+  55 002c C0ED037A 		vstr.32	s15, [r0, #12]
+   7:Core/Src/Application/State_Estimator/Dsp/dsp.c **** }
+  56              		.loc 1 7 1 view .LVU11
+  57 0030 7047     		bx	lr
+  58              		.cfi_endproc
+  59              	.LFE168:
+  61              		.section	.text.filter,"ax",%progbits
+  62              		.align	1
+  63              		.syntax unified
+  64              		.thumb
+  65              		.thumb_func
+  67              	filter:
+  68              	.LVL1:
+  69              	.LFB169:
+   8:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
+   9:Core/Src/Application/State_Estimator/Dsp/dsp.c **** static void filter(struct Dsp * const self)
+  10:Core/Src/Application/State_Estimator/Dsp/dsp.c **** {
+  70              		.loc 1 10 1 is_stmt 1 view -0
+  71              		.cfi_startproc
+  72              		@ args = 0, pretend = 0, frame = 0
+  73              		@ frame_needed = 0, uses_anonymous_args = 0
+  74              		@ link register save eliminated.
+  11:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->filtered_motor_angle = self->motor_angle;
+  75              		.loc 1 11 5 view .LVU13
+  76              		.loc 1 11 38 is_stmt 0 view .LVU14
+  77 0000 8368     		ldr	r3, [r0, #8]	@ float
+  78              		.loc 1 11 32 view .LVU15
+  79 0002 0361     		str	r3, [r0, #16]	@ float
+  12:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->filtered_pendlm_angle = self->pendlm_angle;
+  80              		.loc 1 12 5 is_stmt 1 view .LVU16
+  81              		.loc 1 12 39 is_stmt 0 view .LVU17
+  82 0004 C368     		ldr	r3, [r0, #12]	@ float
+  83              		.loc 1 12 33 view .LVU18
+  84 0006 4361     		str	r3, [r0, #20]	@ float
+  13:Core/Src/Application/State_Estimator/Dsp/dsp.c **** }
+  85              		.loc 1 13 1 view .LVU19
+  86 0008 7047     		bx	lr
+  87              		.cfi_endproc
+  88              	.LFE169:
+  90              		.section	.text.estimate,"ax",%progbits
+  91              		.align	1
+  92              		.syntax unified
+  93              		.thumb
+  94              		.thumb_func
+  96              	estimate:
+  97              	.LVL2:
+  98              	.LFB170:
+  14:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
+  15:Core/Src/Application/State_Estimator/Dsp/dsp.c **** static void estimate(struct Dsp * const self)
+  16:Core/Src/Application/State_Estimator/Dsp/dsp.c **** {
+  99              		.loc 1 16 1 is_stmt 1 view -0
+ 100              		.cfi_startproc
+ 101              		@ args = 0, pretend = 0, frame = 0
+ 102              		@ frame_needed = 0, uses_anonymous_args = 0
+ 103              		@ link register save eliminated.
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccJ5FHHf.s 			page 3
+
+
+  17:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->estimated_motor_data.angle = self->filtered_motor_angle;
+ 104              		.loc 1 17 5 view .LVU21
+ 105              		.loc 1 17 44 is_stmt 0 view .LVU22
+ 106 0000 0369     		ldr	r3, [r0, #16]	@ float
+ 107              		.loc 1 17 38 view .LVU23
+ 108 0002 8361     		str	r3, [r0, #24]	@ float
+  18:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->estimated_pendlm_data.angle = self->filtered_pendlm_angle;
+ 109              		.loc 1 18 5 is_stmt 1 view .LVU24
+ 110              		.loc 1 18 45 is_stmt 0 view .LVU25
+ 111 0004 4369     		ldr	r3, [r0, #20]	@ float
+ 112              		.loc 1 18 39 view .LVU26
+ 113 0006 4362     		str	r3, [r0, #36]	@ float
+  19:Core/Src/Application/State_Estimator/Dsp/dsp.c **** }
+ 114              		.loc 1 19 1 view .LVU27
+ 115 0008 7047     		bx	lr
+ 116              		.cfi_endproc
+ 117              	.LFE170:
+ 119              		.section	.text.processNewData,"ax",%progbits
+ 120              		.align	1
+ 121              		.syntax unified
+ 122              		.thumb
+ 123              		.thumb_func
+ 125              	processNewData:
+ 126              	.LVL3:
+ 127              	.LFB171:
+  20:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
+  21:Core/Src/Application/State_Estimator/Dsp/dsp.c **** static void processNewData(struct Dsp * const self, Encoder const * const encoder_topic, State * co
+  22:Core/Src/Application/State_Estimator/Dsp/dsp.c **** {
+ 128              		.loc 1 22 1 is_stmt 1 view -0
+ 129              		.cfi_startproc
+ 130              		@ args = 0, pretend = 0, frame = 0
+ 131              		@ frame_needed = 0, uses_anonymous_args = 0
+ 132              		.loc 1 22 1 is_stmt 0 view .LVU29
+ 133 0000 38B5     		push	{r3, r4, r5, lr}
+ 134              	.LCFI0:
+ 135              		.cfi_def_cfa_offset 16
+ 136              		.cfi_offset 3, -16
+ 137              		.cfi_offset 4, -12
+ 138              		.cfi_offset 5, -8
+ 139              		.cfi_offset 14, -4
+ 140 0002 0446     		mov	r4, r0
+ 141 0004 1546     		mov	r5, r2
+  23:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     /*Output to self->motor_angle, pendlm_angle*/
+  24:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->cvtAngle(self, encoder_topic);
+ 142              		.loc 1 24 5 is_stmt 1 view .LVU30
+ 143              		.loc 1 24 9 is_stmt 0 view .LVU31
+ 144 0006 436B     		ldr	r3, [r0, #52]
+ 145              		.loc 1 24 5 view .LVU32
+ 146 0008 9847     		blx	r3
+ 147              	.LVL4:
+  25:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
+  26:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     /*Output to self->filtered_motor_angle, self->filtered_pendlm_angle*/
+  27:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->filter(self);
+ 148              		.loc 1 27 5 is_stmt 1 view .LVU33
+ 149              		.loc 1 27 9 is_stmt 0 view .LVU34
+ 150 000a A36B     		ldr	r3, [r4, #56]
+ 151              		.loc 1 27 5 view .LVU35
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccJ5FHHf.s 			page 4
+
+
+ 152 000c 2046     		mov	r0, r4
+ 153 000e 9847     		blx	r3
+ 154              	.LVL5:
+  28:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
+  29:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     /*Output to self->estimated_motor_data, self->estimated_pendlm_data*/
+  30:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->estimate(self);
+ 155              		.loc 1 30 5 is_stmt 1 view .LVU36
+ 156              		.loc 1 30 9 is_stmt 0 view .LVU37
+ 157 0010 E36B     		ldr	r3, [r4, #60]
+ 158              		.loc 1 30 5 view .LVU38
+ 159 0012 2046     		mov	r0, r4
+ 160 0014 9847     		blx	r3
+ 161              	.LVL6:
+  31:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
+  32:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     /*Copy estimated data into state_topic*/
+  33:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     state_topic->motor = self->estimated_motor_data;
+ 162              		.loc 1 33 5 is_stmt 1 view .LVU39
+ 163              		.loc 1 33 24 is_stmt 0 view .LVU40
+ 164 0016 04F11803 		add	r3, r4, #24
+ 165 001a 93E80700 		ldm	r3, {r0, r1, r2}
+ 166 001e 85E80700 		stm	r5, {r0, r1, r2}
+  34:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     state_topic->pendlm = self->estimated_pendlm_data;
+ 167              		.loc 1 34 5 is_stmt 1 view .LVU41
+ 168              		.loc 1 34 25 is_stmt 0 view .LVU42
+ 169 0022 0C35     		adds	r5, r5, #12
+ 170              	.LVL7:
+ 171              		.loc 1 34 25 view .LVU43
+ 172 0024 2434     		adds	r4, r4, #36
+ 173              	.LVL8:
+ 174              		.loc 1 34 25 view .LVU44
+ 175 0026 94E80700 		ldm	r4, {r0, r1, r2}
+ 176 002a 85E80700 		stm	r5, {r0, r1, r2}
+  35:Core/Src/Application/State_Estimator/Dsp/dsp.c **** }
+ 177              		.loc 1 35 1 view .LVU45
+ 178 002e 38BD     		pop	{r3, r4, r5, pc}
+ 179              		.loc 1 35 1 view .LVU46
+ 180              		.cfi_endproc
+ 181              	.LFE171:
+ 183              		.section	.text.Dsp_new,"ax",%progbits
+ 184              		.align	1
+ 185              		.global	Dsp_new
+ 186              		.syntax unified
+ 187              		.thumb
+ 188              		.thumb_func
+ 190              	Dsp_new:
+ 191              	.LVL9:
+ 192              	.LFB172:
+  36:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
+  37:Core/Src/Application/State_Estimator/Dsp/dsp.c **** void Dsp_new(struct Dsp * const self)
+  38:Core/Src/Application/State_Estimator/Dsp/dsp.c **** {
+ 193              		.loc 1 38 1 is_stmt 1 view -0
+ 194              		.cfi_startproc
+ 195              		@ args = 0, pretend = 0, frame = 0
+ 196              		@ frame_needed = 0, uses_anonymous_args = 0
+ 197              		@ link register save eliminated.
+  39:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     /*Assign function pointer*/
+  40:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->processNewData = &processNewData;
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccJ5FHHf.s 			page 5
+
+
+ 198              		.loc 1 40 5 view .LVU48
+ 199              		.loc 1 40 26 is_stmt 0 view .LVU49
+ 200 0000 0B4B     		ldr	r3, .L7
+ 201 0002 0363     		str	r3, [r0, #48]
+  41:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->cvtAngle = &cvtAngle;
+ 202              		.loc 1 41 5 is_stmt 1 view .LVU50
+ 203              		.loc 1 41 20 is_stmt 0 view .LVU51
+ 204 0004 0B4B     		ldr	r3, .L7+4
+ 205 0006 4363     		str	r3, [r0, #52]
+  42:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->estimate = &estimate;
+ 206              		.loc 1 42 5 is_stmt 1 view .LVU52
+ 207              		.loc 1 42 20 is_stmt 0 view .LVU53
+ 208 0008 0B4B     		ldr	r3, .L7+8
+ 209 000a C363     		str	r3, [r0, #60]
+  43:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->filter = &filter;
+ 210              		.loc 1 43 5 is_stmt 1 view .LVU54
+ 211              		.loc 1 43 18 is_stmt 0 view .LVU55
+ 212 000c 0B4B     		ldr	r3, .L7+12
+ 213 000e 8363     		str	r3, [r0, #56]
+  44:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
+  45:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     /*Define resolution for encoders*/
+  46:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->motor_resol = 2.0F * (float32_t)PI / (4.0F * 500.0F);
+ 214              		.loc 1 46 5 is_stmt 1 view .LVU56
+ 215              		.loc 1 46 23 is_stmt 0 view .LVU57
+ 216 0010 0B4B     		ldr	r3, .L7+16
+ 217 0012 0360     		str	r3, [r0]	@ float
+  47:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->pendlm_resol = 2.0F * (float32_t)PI / (4.0F * 1000.0F);
+ 218              		.loc 1 47 5 is_stmt 1 view .LVU58
+ 219              		.loc 1 47 24 is_stmt 0 view .LVU59
+ 220 0014 0B4B     		ldr	r3, .L7+20
+ 221 0016 4360     		str	r3, [r0, #4]	@ float
+  48:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
+  49:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     /*Initialize value for data member*/
+  50:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->motor_angle = 0.0F; self->pendlm_angle = 0.0F;
+ 222              		.loc 1 50 5 is_stmt 1 view .LVU60
+ 223              		.loc 1 50 23 is_stmt 0 view .LVU61
+ 224 0018 0023     		movs	r3, #0
+ 225 001a 8360     		str	r3, [r0, #8]	@ float
+ 226              		.loc 1 50 31 is_stmt 1 view .LVU62
+ 227              		.loc 1 50 50 is_stmt 0 view .LVU63
+ 228 001c C360     		str	r3, [r0, #12]	@ float
+  51:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->filtered_motor_angle = 0.0F; self->filtered_pendlm_angle = 0.0F;
+ 229              		.loc 1 51 5 is_stmt 1 view .LVU64
+ 230              		.loc 1 51 32 is_stmt 0 view .LVU65
+ 231 001e 0361     		str	r3, [r0, #16]	@ float
+ 232              		.loc 1 51 40 is_stmt 1 view .LVU66
+ 233              		.loc 1 51 68 is_stmt 0 view .LVU67
+ 234 0020 4361     		str	r3, [r0, #20]	@ float
+  52:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
+  53:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->estimated_motor_data.angle = 0.0F;
+ 235              		.loc 1 53 5 is_stmt 1 view .LVU68
+ 236              		.loc 1 53 38 is_stmt 0 view .LVU69
+ 237 0022 8361     		str	r3, [r0, #24]	@ float
+  54:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->estimated_motor_data.vel = 0.0F;
+ 238              		.loc 1 54 5 is_stmt 1 view .LVU70
+ 239              		.loc 1 54 36 is_stmt 0 view .LVU71
+ 240 0024 C361     		str	r3, [r0, #28]	@ float
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccJ5FHHf.s 			page 6
+
+
+  55:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->estimated_motor_data.acc = 0.0F;
+ 241              		.loc 1 55 5 is_stmt 1 view .LVU72
+ 242              		.loc 1 55 36 is_stmt 0 view .LVU73
+ 243 0026 0362     		str	r3, [r0, #32]	@ float
+  56:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->estimated_pendlm_data.angle = 0.0F;
+ 244              		.loc 1 56 5 is_stmt 1 view .LVU74
+ 245              		.loc 1 56 39 is_stmt 0 view .LVU75
+ 246 0028 4362     		str	r3, [r0, #36]	@ float
+  57:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->estimated_pendlm_data.vel = 0.0F;
+ 247              		.loc 1 57 5 is_stmt 1 view .LVU76
+ 248              		.loc 1 57 37 is_stmt 0 view .LVU77
+ 249 002a 8362     		str	r3, [r0, #40]	@ float
+  58:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->estimated_pendlm_data.acc = 0.0F;
+ 250              		.loc 1 58 5 is_stmt 1 view .LVU78
+ 251              		.loc 1 58 37 is_stmt 0 view .LVU79
+ 252 002c C362     		str	r3, [r0, #44]	@ float
+  59:Core/Src/Application/State_Estimator/Dsp/dsp.c **** }
+ 253              		.loc 1 59 1 view .LVU80
+ 254 002e 7047     		bx	lr
+ 255              	.L8:
+ 256              		.align	2
+ 257              	.L7:
+ 258 0030 00000000 		.word	processNewData
+ 259 0034 00000000 		.word	cvtAngle
+ 260 0038 00000000 		.word	estimate
+ 261 003c 00000000 		.word	filter
+ 262 0040 2EE34D3B 		.word	994960174
+ 263 0044 2EE3CD3A 		.word	986571566
+ 264              		.cfi_endproc
+ 265              	.LFE172:
+ 267              		.text
+ 268              	.Letext0:
+ 269              		.file 2 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
+ 270              		.file 3 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
+ 271              		.file 4 "Drivers/CMSIS/DSP/Include/arm_math.h"
+ 272              		.file 5 "Core/Src/Middleware/Topic/topic.h"
+ 273              		.file 6 "Core/Src/Application/State_Estimator/Dsp/dsp.h"
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccJ5FHHf.s 			page 7
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 dsp.c
+C:\Users\ACER\AppData\Local\Temp\ccJ5FHHf.s:21     .text.cvtAngle:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccJ5FHHf.s:26     .text.cvtAngle:00000000 cvtAngle
+C:\Users\ACER\AppData\Local\Temp\ccJ5FHHf.s:62     .text.filter:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccJ5FHHf.s:67     .text.filter:00000000 filter
+C:\Users\ACER\AppData\Local\Temp\ccJ5FHHf.s:91     .text.estimate:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccJ5FHHf.s:96     .text.estimate:00000000 estimate
+C:\Users\ACER\AppData\Local\Temp\ccJ5FHHf.s:120    .text.processNewData:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccJ5FHHf.s:125    .text.processNewData:00000000 processNewData
+C:\Users\ACER\AppData\Local\Temp\ccJ5FHHf.s:184    .text.Dsp_new:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccJ5FHHf.s:190    .text.Dsp_new:00000000 Dsp_new
+C:\Users\ACER\AppData\Local\Temp\ccJ5FHHf.s:258    .text.Dsp_new:00000030 $d
+
+NO UNDEFINED SYMBOLS

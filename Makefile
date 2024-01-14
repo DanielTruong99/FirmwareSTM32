@@ -43,6 +43,7 @@ $(wildcard Drivers/CMSIS/DSP/Source/*.c) \
 $(wildcard Drivers/CMSIS/DSP/Source/**/*.c) \
 Core/Src/Application/Computer_Communicator/computer_communicator.c \
 Core/Src/Application/State_Estimator/state_estimator.c \
+Core/Src/Application/State_Estimator/Dsp/dsp.c \
 Core/Src/Middleware/Active_Object/active_object.c \
 Core/Src/Drivers/Motor_Communicator/motor_communicator.c \
 Core/Src/Drivers/Encoder/encoder.c \
@@ -118,6 +119,7 @@ C_INCLUDES =  \
 -ICore/Src \
 -ICore/Src/Application/Computer_Communicator \
 -ICore/Src/Application/State_Estimator \
+-ICore/Src/Application/State_Estimator/Dsp \
 -ICore/Src/Middleware/Topic \
 -ICore/Src/Middleware/Active_Object \
 -ICore/Src/Drivers/Motor_Communicator \

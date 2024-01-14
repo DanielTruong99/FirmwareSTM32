@@ -5,10 +5,9 @@ TIM_HandleTypeDef htim3;
 TIM_HandleTypeDef htim4;
 TIM_HandleTypeDef htim7;
 extern struct Ao * ao_estimator;
+extern struct StateEstimator * state_estimator;
 
-static int16_t motor_counter = 0;
-static int16_t pendlm_counter = 0;
-
+static Encoder encoder_topic;
 static void MX_TIM3_Init(void);
 static void MX_TIM4_Init(void);
 static void MX_TIM7_Init(void);
@@ -38,16 +37,22 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
   */
 void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
 {
+  BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+  
   if(htim->Instance == TIM4)
   {
     // Read motor encoder counter value 
-    motor_counter = (int16_t)((uint32_t)__HAL_TIM_GET_COUNTER(htim));
+    encoder_topic.motor_counter = (int16_t)((uint32_t)__HAL_TIM_GET_COUNTER(htim));
+    state_estimator->publicFromISR(state_estimator->encoder_sub, &encoder_topic, &xHigherPriorityTaskWoken);
   }
   else if(htim->Instance == TIM3)
   {
     // Read pendullum encoder counter value 
-    pendlm_counter = (int16_t)((uint32_t)__HAL_TIM_GET_COUNTER(htim));
+    encoder_topic.pendlm_counter = (int16_t)((uint32_t)__HAL_TIM_GET_COUNTER(htim));
+    state_estimator->publicFromISR(state_estimator->encoder_sub, &encoder_topic, &xHigherPriorityTaskWoken);
   }
+
+  portEND_SWITCHING_ISR(xHigherPriorityTaskWoken);
 }
 
 /**
@@ -83,6 +88,8 @@ void Driver_Encoder_Init()
   MX_TIM4_Init(); // Pendullum encoder
   MX_TIM7_Init(); // Basic timer for generating periodic task running at 2kHz
 
+  encoder_topic.motor_counter = 0;
+  encoder_topic.pendlm_counter = 0;
   // HAL_TIM_Base_Start_IT(&htim7);
   // HAL_TIM_Encoder_Start_IT(&htim3, TIM_CHANNEL_ALL);
   // HAL_TIM_Encoder_Start_IT(&htim4, TIM_CHANNEL_ALL);

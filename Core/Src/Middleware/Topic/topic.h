@@ -1,28 +1,28 @@
 #ifndef _TOPIC_H
 #define _TOPIC_H
+#include "arm_math.h"
+#include "stdint.h"
 
-
-typedef struct EncoderTopic EncoderTopic;
-struct EncoderTopic
+typedef struct EncoderStruct
 {
-  float _resol; 
-  int16_t _counter;
-};
+  int16_t pendlm_counter;
+  int16_t motor_counter;
+} Encoder;
 
-typedef struct State State;
-struct State
+typedef struct StateDataStruct
 {
-    float _angle;
-    float _vel;
-    float _accel;
-};
+  float32_t angle;
+  float32_t vel;
+  float32_t acc;
+} StateData;
 
-typedef struct StateTopic StateTopic;
-struct StateTopic
+
+typedef struct StateStruct
 {
-  State _motor; 
-  State _pendlm;
-};
+  StateData motor;
+  StateData pendlm;
+} State;
+
 
 
 #endif /* _TOPIC_H */

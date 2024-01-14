@@ -6,6 +6,7 @@
 #include "arm_math.h"
 #include "topic.h"
 #include "encoder.h"
+#include "dsp.h"
 
 typedef struct TimeEvent TimeEvent;
 
@@ -22,11 +23,17 @@ struct StateEstimator
 {
     // Members --------------------------------
     struct Ao super;
+    struct Dsp * data_processor;
+    QueueHandle_t encoder_sub;
+    QueueHandle_t state_pub;
+
 
 
     // Methods --------------------------------------------------------
     Status (*initial)(struct StateEstimator *const self, Event const * const event);
     Status (*wait)(struct StateEstimator *const self, Event const * const event);
+    void (*public)(QueueHandle_t xQueue, const void * pvItemToQueue);
+    void (*publicFromISR)(QueueHandle_t xQueue, const void * pvItemToQueue, BaseType_t *pxHigherPriorityTaskWoken);
 };
 extern const struct StateEstimatorClass 
 {

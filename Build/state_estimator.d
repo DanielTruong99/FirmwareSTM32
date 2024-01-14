@@ -38,7 +38,8 @@ Build/state_estimator.o: \
  ThirdParty/FreeRTOS/include/queue.h ThirdParty/FreeRTOS/include/task.h \
  ThirdParty/FreeRTOS/include/list.h Drivers/CMSIS/DSP/Include/arm_math.h \
  Core/Src/Middleware/Topic/topic.h Core/Src/Drivers/Encoder/encoder.h \
- Core/Src/Application/State_Estimator/state_estimator.h
+ Core/Src/Application/State_Estimator/state_estimator.h \
+ Core/Src/Application/State_Estimator/Dsp/dsp.h
 Core/Src/Application/State_Estimator/state_estimator.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 Core/Src/stm32f4xx_hal_conf.h:
@@ -83,3 +84,4 @@ Drivers/CMSIS/DSP/Include/arm_math.h:
 Core/Src/Middleware/Topic/topic.h:
 Core/Src/Drivers/Encoder/encoder.h:
 Core/Src/Application/State_Estimator/state_estimator.h:
+Core/Src/Application/State_Estimator/Dsp/dsp.h:

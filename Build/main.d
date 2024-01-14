@@ -38,6 +38,7 @@ Build/main.o: Core/Src/main.c Core/Src/main.h \
  ThirdParty/FreeRTOS/include/queue.h ThirdParty/FreeRTOS/include/task.h \
  ThirdParty/FreeRTOS/include/list.h Drivers/CMSIS/DSP/Include/arm_math.h \
  Core/Src/Middleware/Topic/topic.h Core/Src/Drivers/Encoder/encoder.h \
+ Core/Src/Application/State_Estimator/Dsp/dsp.h \
  Core/Src/Application/Computer_Communicator/computer_communicator.h \
  Core/Src/Drivers/System_Config/system_config.h \
  ThirdParty/FreeRTOS/include/task.h
@@ -86,6 +87,7 @@ ThirdParty/FreeRTOS/include/list.h:
 Drivers/CMSIS/DSP/Include/arm_math.h:
 Core/Src/Middleware/Topic/topic.h:
 Core/Src/Drivers/Encoder/encoder.h:
+Core/Src/Application/State_Estimator/Dsp/dsp.h:
 Core/Src/Application/Computer_Communicator/computer_communicator.h:
 Core/Src/Drivers/System_Config/system_config.h:
 ThirdParty/FreeRTOS/include/task.h:

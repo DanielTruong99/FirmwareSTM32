@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc7rY42d.s 			page 1
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cce694B8.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -36,35 +36,36 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc7rY42d.s 			page 1
    5:Core/Src/Application/State_Estimator/state_estimator.c **** extern TIM_HandleTypeDef htim4;
    6:Core/Src/Application/State_Estimator/state_estimator.c **** extern TIM_HandleTypeDef htim7;
    7:Core/Src/Application/State_Estimator/state_estimator.c **** struct Ao * ao_estimator;
-   8:Core/Src/Application/State_Estimator/state_estimator.c **** 
+   8:Core/Src/Application/State_Estimator/state_estimator.c **** struct StateEstimator * state_estimator;
    9:Core/Src/Application/State_Estimator/state_estimator.c **** 
-  10:Core/Src/Application/State_Estimator/state_estimator.c **** Status initial(struct StateEstimator *const self, Event const * const event)
-  11:Core/Src/Application/State_Estimator/state_estimator.c **** {
-  30              		.loc 1 11 1 view -0
+  10:Core/Src/Application/State_Estimator/state_estimator.c **** 
+  11:Core/Src/Application/State_Estimator/state_estimator.c **** Status initial(struct StateEstimator *const self, Event const * const event)
+  12:Core/Src/Application/State_Estimator/state_estimator.c **** {
+  30              		.loc 1 12 1 view -0
   31              		.cfi_startproc
   32              		@ args = 0, pretend = 0, frame = 0
   33              		@ frame_needed = 0, uses_anonymous_args = 0
   34              		@ link register save eliminated.
-  12:Core/Src/Application/State_Estimator/state_estimator.c ****   Status status;
-  35              		.loc 1 12 3 view .LVU1
-  13:Core/Src/Application/State_Estimator/state_estimator.c ****   status = TRAN_STATUS;
-  36              		.loc 1 13 3 view .LVU2
-  14:Core/Src/Application/State_Estimator/state_estimator.c ****   self->super.handler = (StateHandler)self->wait;
-  37              		.loc 1 14 3 view .LVU3
-  38              		.loc 1 14 43 is_stmt 0 view .LVU4
-  39 0000 D0F8D030 		ldr	r3, [r0, #208]
-  40              		.loc 1 14 23 view .LVU5
+  13:Core/Src/Application/State_Estimator/state_estimator.c ****   Status status;
+  35              		.loc 1 13 3 view .LVU1
+  14:Core/Src/Application/State_Estimator/state_estimator.c ****   status = TRAN_STATUS;
+  36              		.loc 1 14 3 view .LVU2
+  15:Core/Src/Application/State_Estimator/state_estimator.c ****   self->super.handler = (StateHandler)self->wait;
+  37              		.loc 1 15 3 view .LVU3
+  38              		.loc 1 15 43 is_stmt 0 view .LVU4
+  39 0000 D0F8DC30 		ldr	r3, [r0, #220]
+  40              		.loc 1 15 23 view .LVU5
   41 0004 0360     		str	r3, [r0]
-  15:Core/Src/Application/State_Estimator/state_estimator.c ****   return status;
-  42              		.loc 1 15 3 is_stmt 1 view .LVU6
-  16:Core/Src/Application/State_Estimator/state_estimator.c **** }
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc7rY42d.s 			page 2
+  16:Core/Src/Application/State_Estimator/state_estimator.c ****   return status;
+  42              		.loc 1 16 3 is_stmt 1 view .LVU6
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cce694B8.s 			page 2
 
 
-  43              		.loc 1 16 1 is_stmt 0 view .LVU7
+  17:Core/Src/Application/State_Estimator/state_estimator.c **** }
+  43              		.loc 1 17 1 is_stmt 0 view .LVU7
   44 0006 0020     		movs	r0, #0
   45              	.LVL1:
-  46              		.loc 1 16 1 view .LVU8
+  46              		.loc 1 17 1 view .LVU8
   47 0008 7047     		bx	lr
   48              		.cfi_endproc
   49              	.LFE168:
@@ -77,217 +78,461 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc7rY42d.s 			page 1
   58              	wait:
   59              	.LVL2:
   60              	.LFB169:
-  17:Core/Src/Application/State_Estimator/state_estimator.c **** 
-  18:Core/Src/Application/State_Estimator/state_estimator.c **** Status wait(struct StateEstimator *const self, Event const * const event)
-  19:Core/Src/Application/State_Estimator/state_estimator.c **** {
-  61              		.loc 1 19 1 is_stmt 1 view -0
+  18:Core/Src/Application/State_Estimator/state_estimator.c **** 
+  19:Core/Src/Application/State_Estimator/state_estimator.c **** Status wait(struct StateEstimator *const self, Event const * const event)
+  20:Core/Src/Application/State_Estimator/state_estimator.c **** {
+  61              		.loc 1 20 1 is_stmt 1 view -0
   62              		.cfi_startproc
   63              		@ args = 0, pretend = 0, frame = 0
   64              		@ frame_needed = 0, uses_anonymous_args = 0
-  65              		.loc 1 19 1 is_stmt 0 view .LVU10
-  66 0000 08B5     		push	{r3, lr}
+  65              		.loc 1 20 1 is_stmt 0 view .LVU10
+  66 0000 10B5     		push	{r4, lr}
   67              	.LCFI0:
   68              		.cfi_def_cfa_offset 8
-  69              		.cfi_offset 3, -8
+  69              		.cfi_offset 4, -8
   70              		.cfi_offset 14, -4
-  20:Core/Src/Application/State_Estimator/state_estimator.c ****   Status status;
-  71              		.loc 1 20 3 is_stmt 1 view .LVU11
-  21:Core/Src/Application/State_Estimator/state_estimator.c ****   
-  22:Core/Src/Application/State_Estimator/state_estimator.c ****   switch (event->signal)
-  72              		.loc 1 22 3 view .LVU12
-  73              		.loc 1 22 16 is_stmt 0 view .LVU13
+  21:Core/Src/Application/State_Estimator/state_estimator.c ****   Status status;
+  71              		.loc 1 21 3 is_stmt 1 view .LVU11
+  22:Core/Src/Application/State_Estimator/state_estimator.c ****   
+  23:Core/Src/Application/State_Estimator/state_estimator.c ****   switch (event->signal)
+  72              		.loc 1 23 3 view .LVU12
+  73              		.loc 1 23 16 is_stmt 0 view .LVU13
   74 0002 0B88     		ldrh	r3, [r1]
-  75              		.loc 1 22 3 view .LVU14
+  75              		.loc 1 23 3 view .LVU14
   76 0004 012B     		cmp	r3, #1
-  77 0006 03D0     		beq	.L3
-  78 0008 032B     		cmp	r3, #3
-  79 000a 0ED1     		bne	.L5
-  80 000c 0120     		movs	r0, #1
-  81              	.LVL3:
-  82              		.loc 1 22 3 view .LVU15
-  83 000e 0BE0     		b	.L4
-  84              	.LVL4:
-  85              	.L3:
-  23:Core/Src/Application/State_Estimator/state_estimator.c ****   {
-  24:Core/Src/Application/State_Estimator/state_estimator.c ****     case ENTRY_SIG:
-  25:Core/Src/Application/State_Estimator/state_estimator.c ****     {
-  26:Core/Src/Application/State_Estimator/state_estimator.c ****       HAL_TIM_Base_Start_IT(&htim7);
-  86              		.loc 1 26 7 is_stmt 1 view .LVU16
-  87 0010 0748     		ldr	r0, .L7
-  88              	.LVL5:
-  89              		.loc 1 26 7 is_stmt 0 view .LVU17
-  90 0012 FFF7FEFF 		bl	HAL_TIM_Base_Start_IT
-  91              	.LVL6:
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc7rY42d.s 			page 3
+  77 0006 04D0     		beq	.L3
+  78 0008 0446     		mov	r4, r0
+  79 000a 032B     		cmp	r3, #3
+  80 000c 0ED0     		beq	.L4
+  81 000e 0220     		movs	r0, #2
+  82              	.LVL3:
+  83              		.loc 1 23 3 view .LVU15
+  84 0010 0BE0     		b	.L5
+  85              	.LVL4:
+  86              	.L3:
+  24:Core/Src/Application/State_Estimator/state_estimator.c ****   {
+  25:Core/Src/Application/State_Estimator/state_estimator.c ****     case ENTRY_SIG:
+  26:Core/Src/Application/State_Estimator/state_estimator.c ****     {
+  27:Core/Src/Application/State_Estimator/state_estimator.c ****       HAL_TIM_Base_Start_IT(&htim7);
+  87              		.loc 1 27 7 is_stmt 1 view .LVU16
+  88 0012 1148     		ldr	r0, .L8
+  89              	.LVL5:
+  90              		.loc 1 27 7 is_stmt 0 view .LVU17
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cce694B8.s 			page 3
 
 
-  27:Core/Src/Application/State_Estimator/state_estimator.c ****       HAL_TIM_Encoder_Start_IT(&htim3, TIM_CHANNEL_ALL);
-  92              		.loc 1 27 7 is_stmt 1 view .LVU18
-  93 0016 3C21     		movs	r1, #60
-  94 0018 0648     		ldr	r0, .L7+4
-  95 001a FFF7FEFF 		bl	HAL_TIM_Encoder_Start_IT
-  96              	.LVL7:
-  28:Core/Src/Application/State_Estimator/state_estimator.c ****       HAL_TIM_Encoder_Start_IT(&htim4, TIM_CHANNEL_ALL);
-  97              		.loc 1 28 7 view .LVU19
-  98 001e 3C21     		movs	r1, #60
-  99 0020 0548     		ldr	r0, .L7+8
- 100 0022 FFF7FEFF 		bl	HAL_TIM_Encoder_Start_IT
- 101              	.LVL8:
-  29:Core/Src/Application/State_Estimator/state_estimator.c **** 
-  30:Core/Src/Application/State_Estimator/state_estimator.c ****       status = HANDLED_STATUS;
- 102              		.loc 1 30 7 view .LVU20
+  91 0014 FFF7FEFF 		bl	HAL_TIM_Base_Start_IT
+  92              	.LVL6:
+  28:Core/Src/Application/State_Estimator/state_estimator.c ****       HAL_TIM_Encoder_Start_IT(&htim3, TIM_CHANNEL_ALL);
+  93              		.loc 1 28 7 is_stmt 1 view .LVU18
+  94 0018 3C21     		movs	r1, #60
+  95 001a 1048     		ldr	r0, .L8+4
+  96 001c FFF7FEFF 		bl	HAL_TIM_Encoder_Start_IT
+  97              	.LVL7:
+  29:Core/Src/Application/State_Estimator/state_estimator.c ****       HAL_TIM_Encoder_Start_IT(&htim4, TIM_CHANNEL_ALL);
+  98              		.loc 1 29 7 view .LVU19
+  99 0020 3C21     		movs	r1, #60
+ 100 0022 0F48     		ldr	r0, .L8+8
+ 101 0024 FFF7FEFF 		bl	HAL_TIM_Encoder_Start_IT
+ 102              	.LVL8:
+  30:Core/Src/Application/State_Estimator/state_estimator.c **** 
+  31:Core/Src/Application/State_Estimator/state_estimator.c ****       status = HANDLED_STATUS;
+ 103              		.loc 1 31 7 view .LVU20
+  32:Core/Src/Application/State_Estimator/state_estimator.c ****       break;
+ 104              		.loc 1 32 7 view .LVU21
   31:Core/Src/Application/State_Estimator/state_estimator.c ****       break;
- 103              		.loc 1 31 7 view .LVU21
-  30:Core/Src/Application/State_Estimator/state_estimator.c ****       break;
- 104              		.loc 1 30 14 is_stmt 0 view .LVU22
- 105 0026 0120     		movs	r0, #1
- 106              	.LVL9:
- 107              	.L4:
-  32:Core/Src/Application/State_Estimator/state_estimator.c ****     }
-  33:Core/Src/Application/State_Estimator/state_estimator.c **** 
-  34:Core/Src/Application/State_Estimator/state_estimator.c ****     case TIMEOUT_2KHz_SIG:
-  35:Core/Src/Application/State_Estimator/state_estimator.c ****     {
-  36:Core/Src/Application/State_Estimator/state_estimator.c ****       
-  37:Core/Src/Application/State_Estimator/state_estimator.c **** 
-  38:Core/Src/Application/State_Estimator/state_estimator.c ****       status = HANDLED_STATUS;
-  39:Core/Src/Application/State_Estimator/state_estimator.c ****       break;
-  40:Core/Src/Application/State_Estimator/state_estimator.c ****     }
-  41:Core/Src/Application/State_Estimator/state_estimator.c ****     
-  42:Core/Src/Application/State_Estimator/state_estimator.c ****     default:
-  43:Core/Src/Application/State_Estimator/state_estimator.c ****     {
-  44:Core/Src/Application/State_Estimator/state_estimator.c ****       status = IGNORED_STATUS;
-  45:Core/Src/Application/State_Estimator/state_estimator.c ****       break;
-  46:Core/Src/Application/State_Estimator/state_estimator.c ****     }
-  47:Core/Src/Application/State_Estimator/state_estimator.c ****       
-  48:Core/Src/Application/State_Estimator/state_estimator.c ****   }
-  49:Core/Src/Application/State_Estimator/state_estimator.c **** 
-  50:Core/Src/Application/State_Estimator/state_estimator.c ****   return status;
- 108              		.loc 1 50 3 is_stmt 1 view .LVU23
-  51:Core/Src/Application/State_Estimator/state_estimator.c **** }
- 109              		.loc 1 51 1 is_stmt 0 view .LVU24
- 110 0028 08BD     		pop	{r3, pc}
- 111              	.LVL10:
- 112              	.L5:
-  44:Core/Src/Application/State_Estimator/state_estimator.c ****       break;
- 113              		.loc 1 44 14 view .LVU25
- 114 002a 0220     		movs	r0, #2
- 115              	.LVL11:
-  44:Core/Src/Application/State_Estimator/state_estimator.c ****       break;
- 116              		.loc 1 44 14 view .LVU26
- 117 002c FCE7     		b	.L4
- 118              	.L8:
- 119 002e 00BF     		.align	2
- 120              	.L7:
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc7rY42d.s 			page 4
+ 105              		.loc 1 31 14 is_stmt 0 view .LVU22
+ 106 0028 0120     		movs	r0, #1
+ 107              	.LVL9:
+ 108              	.L5:
+  33:Core/Src/Application/State_Estimator/state_estimator.c ****     }
+  34:Core/Src/Application/State_Estimator/state_estimator.c **** 
+  35:Core/Src/Application/State_Estimator/state_estimator.c ****     case TIMEOUT_2KHz_SIG:
+  36:Core/Src/Application/State_Estimator/state_estimator.c ****     {
+  37:Core/Src/Application/State_Estimator/state_estimator.c ****       static Encoder encoder_topic = {0};
+  38:Core/Src/Application/State_Estimator/state_estimator.c ****       static State state_topic = {.motor ={0.0F}, .pendlm = {0.0F}};
+  39:Core/Src/Application/State_Estimator/state_estimator.c ****       BaseType_t is_success;
+  40:Core/Src/Application/State_Estimator/state_estimator.c ****       is_success = xQueuePeek(self->encoder_sub, &encoder_topic, 0);
+  41:Core/Src/Application/State_Estimator/state_estimator.c **** 
+  42:Core/Src/Application/State_Estimator/state_estimator.c ****       if (is_success)
+  43:Core/Src/Application/State_Estimator/state_estimator.c ****       {
+  44:Core/Src/Application/State_Estimator/state_estimator.c ****         /*Input: encoder_topic; Ouput: state_topic*/
+  45:Core/Src/Application/State_Estimator/state_estimator.c ****         self->data_processor->processNewData(self->data_processor, &encoder_topic, &state_topic);
+  46:Core/Src/Application/State_Estimator/state_estimator.c ****       }
+  47:Core/Src/Application/State_Estimator/state_estimator.c **** 
+  48:Core/Src/Application/State_Estimator/state_estimator.c ****       /*Public into state topic*/
+  49:Core/Src/Application/State_Estimator/state_estimator.c ****       self->public(self->state_pub, &state_topic);
+  50:Core/Src/Application/State_Estimator/state_estimator.c ****       
+  51:Core/Src/Application/State_Estimator/state_estimator.c ****       status = HANDLED_STATUS;
+  52:Core/Src/Application/State_Estimator/state_estimator.c ****       break;
+  53:Core/Src/Application/State_Estimator/state_estimator.c ****     }
+  54:Core/Src/Application/State_Estimator/state_estimator.c ****     
+  55:Core/Src/Application/State_Estimator/state_estimator.c ****     default:
+  56:Core/Src/Application/State_Estimator/state_estimator.c ****     {
+  57:Core/Src/Application/State_Estimator/state_estimator.c ****       status = IGNORED_STATUS;
+  58:Core/Src/Application/State_Estimator/state_estimator.c ****       break;
+  59:Core/Src/Application/State_Estimator/state_estimator.c ****     }
+  60:Core/Src/Application/State_Estimator/state_estimator.c ****       
+  61:Core/Src/Application/State_Estimator/state_estimator.c ****   }
+  62:Core/Src/Application/State_Estimator/state_estimator.c **** 
+  63:Core/Src/Application/State_Estimator/state_estimator.c ****   return status;
+ 109              		.loc 1 63 3 is_stmt 1 view .LVU23
+  64:Core/Src/Application/State_Estimator/state_estimator.c **** }
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cce694B8.s 			page 4
 
 
- 121 0030 00000000 		.word	htim7
- 122 0034 00000000 		.word	htim3
- 123 0038 00000000 		.word	htim4
- 124              		.cfi_endproc
- 125              	.LFE169:
- 127              		.section	.text.new,"ax",%progbits
- 128              		.align	1
- 129              		.syntax unified
- 130              		.thumb
- 131              		.thumb_func
- 133              	new:
- 134              	.LVL12:
- 135              	.LFB170:
-  52:Core/Src/Application/State_Estimator/state_estimator.c **** 
-  53:Core/Src/Application/State_Estimator/state_estimator.c **** static void new(struct StateEstimator * const self)
-  54:Core/Src/Application/State_Estimator/state_estimator.c **** {
- 136              		.loc 1 54 1 is_stmt 1 view -0
- 137              		.cfi_startproc
- 138              		@ args = 0, pretend = 0, frame = 0
- 139              		@ frame_needed = 0, uses_anonymous_args = 0
- 140              		.loc 1 54 1 is_stmt 0 view .LVU28
- 141 0000 10B5     		push	{r4, lr}
- 142              	.LCFI1:
- 143              		.cfi_def_cfa_offset 8
- 144              		.cfi_offset 4, -8
- 145              		.cfi_offset 14, -4
- 146 0002 0446     		mov	r4, r0
-  55:Core/Src/Application/State_Estimator/state_estimator.c ****   self->initial=&initial; self->wait=&wait;
- 147              		.loc 1 55 3 is_stmt 1 view .LVU29
- 148              		.loc 1 55 16 is_stmt 0 view .LVU30
- 149 0004 0549     		ldr	r1, .L11
- 150 0006 C0F8CC10 		str	r1, [r0, #204]
- 151              		.loc 1 55 27 is_stmt 1 view .LVU31
- 152              		.loc 1 55 37 is_stmt 0 view .LVU32
- 153 000a 054B     		ldr	r3, .L11+4
- 154 000c C0F8D030 		str	r3, [r0, #208]
-  56:Core/Src/Application/State_Estimator/state_estimator.c ****   Ao_new(&self->super, (StateHandler)&initial);
- 155              		.loc 1 56 3 is_stmt 1 view .LVU33
- 156 0010 FFF7FEFF 		bl	Ao_new
- 157              	.LVL13:
-  57:Core/Src/Application/State_Estimator/state_estimator.c ****   ao_estimator = &self->super;
- 158              		.loc 1 57 3 view .LVU34
- 159              		.loc 1 57 16 is_stmt 0 view .LVU35
- 160 0014 034B     		ldr	r3, .L11+8
- 161 0016 1C60     		str	r4, [r3]
-  58:Core/Src/Application/State_Estimator/state_estimator.c **** }
- 162              		.loc 1 58 1 view .LVU36
- 163 0018 10BD     		pop	{r4, pc}
- 164              	.LVL14:
- 165              	.L12:
- 166              		.loc 1 58 1 view .LVU37
- 167 001a 00BF     		.align	2
- 168              	.L11:
- 169 001c 00000000 		.word	initial
- 170 0020 00000000 		.word	wait
- 171 0024 00000000 		.word	ao_estimator
- 172              		.cfi_endproc
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc7rY42d.s 			page 5
+ 110              		.loc 1 64 1 is_stmt 0 view .LVU24
+ 111 002a 10BD     		pop	{r4, pc}
+ 112              	.LVL10:
+ 113              	.L4:
+ 114              	.LBB2:
+  37:Core/Src/Application/State_Estimator/state_estimator.c ****       static State state_topic = {.motor ={0.0F}, .pendlm = {0.0F}};
+ 115              		.loc 1 37 7 is_stmt 1 view .LVU25
+  38:Core/Src/Application/State_Estimator/state_estimator.c ****       BaseType_t is_success;
+ 116              		.loc 1 38 7 view .LVU26
+  39:Core/Src/Application/State_Estimator/state_estimator.c ****       is_success = xQueuePeek(self->encoder_sub, &encoder_topic, 0);
+ 117              		.loc 1 39 7 view .LVU27
+  40:Core/Src/Application/State_Estimator/state_estimator.c **** 
+ 118              		.loc 1 40 7 view .LVU28
+  40:Core/Src/Application/State_Estimator/state_estimator.c **** 
+ 119              		.loc 1 40 20 is_stmt 0 view .LVU29
+ 120 002c 0022     		movs	r2, #0
+ 121 002e 0D49     		ldr	r1, .L8+12
+ 122              	.LVL11:
+  40:Core/Src/Application/State_Estimator/state_estimator.c **** 
+ 123              		.loc 1 40 20 view .LVU30
+ 124 0030 D0F8D000 		ldr	r0, [r0, #208]
+ 125              	.LVL12:
+  40:Core/Src/Application/State_Estimator/state_estimator.c **** 
+ 126              		.loc 1 40 20 view .LVU31
+ 127 0034 FFF7FEFF 		bl	xQueuePeek
+ 128              	.LVL13:
+  42:Core/Src/Application/State_Estimator/state_estimator.c ****       {
+ 129              		.loc 1 42 7 is_stmt 1 view .LVU32
+  42:Core/Src/Application/State_Estimator/state_estimator.c ****       {
+ 130              		.loc 1 42 10 is_stmt 0 view .LVU33
+ 131 0038 28B1     		cbz	r0, .L6
+  45:Core/Src/Application/State_Estimator/state_estimator.c ****       }
+ 132              		.loc 1 45 9 is_stmt 1 view .LVU34
+  45:Core/Src/Application/State_Estimator/state_estimator.c ****       }
+ 133              		.loc 1 45 13 is_stmt 0 view .LVU35
+ 134 003a D4F8CC00 		ldr	r0, [r4, #204]
+ 135              	.LVL14:
+  45:Core/Src/Application/State_Estimator/state_estimator.c ****       }
+ 136              		.loc 1 45 29 view .LVU36
+ 137 003e 036B     		ldr	r3, [r0, #48]
+  45:Core/Src/Application/State_Estimator/state_estimator.c ****       }
+ 138              		.loc 1 45 9 view .LVU37
+ 139 0040 094A     		ldr	r2, .L8+16
+ 140 0042 0849     		ldr	r1, .L8+12
+ 141 0044 9847     		blx	r3
+ 142              	.LVL15:
+ 143              	.L6:
+  49:Core/Src/Application/State_Estimator/state_estimator.c ****       
+ 144              		.loc 1 49 7 is_stmt 1 view .LVU38
+  49:Core/Src/Application/State_Estimator/state_estimator.c ****       
+ 145              		.loc 1 49 11 is_stmt 0 view .LVU39
+ 146 0046 D4F8E030 		ldr	r3, [r4, #224]
+  49:Core/Src/Application/State_Estimator/state_estimator.c ****       
+ 147              		.loc 1 49 7 view .LVU40
+ 148 004a 0749     		ldr	r1, .L8+16
+ 149 004c D4F8D400 		ldr	r0, [r4, #212]
+ 150 0050 9847     		blx	r3
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cce694B8.s 			page 5
 
 
- 173              	.LFE170:
- 175              		.global	StateEstimator
- 176              		.section	.rodata.StateEstimator,"a"
- 177              		.align	2
- 180              	StateEstimator:
- 181 0000 00000000 		.word	new
- 182              		.global	ao_estimator
- 183              		.section	.bss.ao_estimator,"aw",%nobits
- 184              		.align	2
- 187              	ao_estimator:
- 188 0000 00000000 		.space	4
- 189              		.text
- 190              	.Letext0:
- 191              		.file 2 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
- 192              		.file 3 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
- 193              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h"
- 194              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
- 195              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
- 196              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
- 197              		.file 8 "ThirdParty/FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h"
- 198              		.file 9 "ThirdParty/FreeRTOS/include/FreeRTOS.h"
- 199              		.file 10 "ThirdParty/FreeRTOS/include/task.h"
- 200              		.file 11 "ThirdParty/FreeRTOS/include/queue.h"
- 201              		.file 12 "Core/Src/Middleware/Active_Object/active_object.h"
- 202              		.file 13 "Core/Src/Application/State_Estimator/state_estimator.h"
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc7rY42d.s 			page 6
+ 151              	.LVL16:
+  51:Core/Src/Application/State_Estimator/state_estimator.c ****       break;
+ 152              		.loc 1 51 7 is_stmt 1 view .LVU41
+  52:Core/Src/Application/State_Estimator/state_estimator.c ****     }
+ 153              		.loc 1 52 7 view .LVU42
+  51:Core/Src/Application/State_Estimator/state_estimator.c ****       break;
+ 154              		.loc 1 51 14 is_stmt 0 view .LVU43
+ 155 0052 0120     		movs	r0, #1
+  52:Core/Src/Application/State_Estimator/state_estimator.c ****     }
+ 156              		.loc 1 52 7 view .LVU44
+ 157 0054 E9E7     		b	.L5
+ 158              	.L9:
+ 159 0056 00BF     		.align	2
+ 160              	.L8:
+ 161 0058 00000000 		.word	htim7
+ 162 005c 00000000 		.word	htim3
+ 163 0060 00000000 		.word	htim4
+ 164 0064 00000000 		.word	encoder_topic.1
+ 165 0068 00000000 		.word	state_topic.0
+ 166              	.LBE2:
+ 167              		.cfi_endproc
+ 168              	.LFE169:
+ 170              		.section	.text.public,"ax",%progbits
+ 171              		.align	1
+ 172              		.global	public
+ 173              		.syntax unified
+ 174              		.thumb
+ 175              		.thumb_func
+ 177              	public:
+ 178              	.LVL17:
+ 179              	.LFB170:
+  65:Core/Src/Application/State_Estimator/state_estimator.c **** 
+  66:Core/Src/Application/State_Estimator/state_estimator.c **** void public(QueueHandle_t xQueue, const void * pvItemToQueue)
+  67:Core/Src/Application/State_Estimator/state_estimator.c **** {
+ 180              		.loc 1 67 1 is_stmt 1 view -0
+ 181              		.cfi_startproc
+ 182              		@ args = 0, pretend = 0, frame = 0
+ 183              		@ frame_needed = 0, uses_anonymous_args = 0
+ 184              		.loc 1 67 1 is_stmt 0 view .LVU46
+ 185 0000 08B5     		push	{r3, lr}
+ 186              	.LCFI1:
+ 187              		.cfi_def_cfa_offset 8
+ 188              		.cfi_offset 3, -8
+ 189              		.cfi_offset 14, -4
+  68:Core/Src/Application/State_Estimator/state_estimator.c ****   xQueueOverwrite(xQueue, pvItemToQueue);
+ 190              		.loc 1 68 3 is_stmt 1 view .LVU47
+ 191 0002 0223     		movs	r3, #2
+ 192 0004 0022     		movs	r2, #0
+ 193 0006 FFF7FEFF 		bl	xQueueGenericSend
+ 194              	.LVL18:
+  69:Core/Src/Application/State_Estimator/state_estimator.c **** }
+ 195              		.loc 1 69 1 is_stmt 0 view .LVU48
+ 196 000a 08BD     		pop	{r3, pc}
+ 197              		.cfi_endproc
+ 198              	.LFE170:
+ 200              		.section	.text.publicFromISR,"ax",%progbits
+ 201              		.align	1
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cce694B8.s 			page 6
+
+
+ 202              		.global	publicFromISR
+ 203              		.syntax unified
+ 204              		.thumb
+ 205              		.thumb_func
+ 207              	publicFromISR:
+ 208              	.LVL19:
+ 209              	.LFB171:
+  70:Core/Src/Application/State_Estimator/state_estimator.c **** 
+  71:Core/Src/Application/State_Estimator/state_estimator.c **** void publicFromISR(QueueHandle_t xQueue, const void * pvItemToQueue, BaseType_t *pxHigherPriorityTa
+  72:Core/Src/Application/State_Estimator/state_estimator.c **** {
+ 210              		.loc 1 72 1 is_stmt 1 view -0
+ 211              		.cfi_startproc
+ 212              		@ args = 0, pretend = 0, frame = 0
+ 213              		@ frame_needed = 0, uses_anonymous_args = 0
+ 214              		.loc 1 72 1 is_stmt 0 view .LVU50
+ 215 0000 08B5     		push	{r3, lr}
+ 216              	.LCFI2:
+ 217              		.cfi_def_cfa_offset 8
+ 218              		.cfi_offset 3, -8
+ 219              		.cfi_offset 14, -4
+  73:Core/Src/Application/State_Estimator/state_estimator.c ****   xQueueOverwriteFromISR(xQueue, pvItemToQueue, pxHigherPriorityTaskWoken);
+ 220              		.loc 1 73 3 is_stmt 1 view .LVU51
+ 221 0002 0223     		movs	r3, #2
+ 222 0004 FFF7FEFF 		bl	xQueueGenericSendFromISR
+ 223              	.LVL20:
+  74:Core/Src/Application/State_Estimator/state_estimator.c **** }
+ 224              		.loc 1 74 1 is_stmt 0 view .LVU52
+ 225 0008 08BD     		pop	{r3, pc}
+ 226              		.cfi_endproc
+ 227              	.LFE171:
+ 229              		.section	.text.new,"ax",%progbits
+ 230              		.align	1
+ 231              		.syntax unified
+ 232              		.thumb
+ 233              		.thumb_func
+ 235              	new:
+ 236              	.LVL21:
+ 237              	.LFB172:
+  75:Core/Src/Application/State_Estimator/state_estimator.c **** 
+  76:Core/Src/Application/State_Estimator/state_estimator.c **** static void new(struct StateEstimator * const self)
+  77:Core/Src/Application/State_Estimator/state_estimator.c **** {
+ 238              		.loc 1 77 1 is_stmt 1 view -0
+ 239              		.cfi_startproc
+ 240              		@ args = 0, pretend = 0, frame = 0
+ 241              		@ frame_needed = 0, uses_anonymous_args = 0
+ 242              		.loc 1 77 1 is_stmt 0 view .LVU54
+ 243 0000 10B5     		push	{r4, lr}
+ 244              	.LCFI3:
+ 245              		.cfi_def_cfa_offset 8
+ 246              		.cfi_offset 4, -8
+ 247              		.cfi_offset 14, -4
+ 248 0002 0446     		mov	r4, r0
+  78:Core/Src/Application/State_Estimator/state_estimator.c ****   /*Specify function pointer*/
+  79:Core/Src/Application/State_Estimator/state_estimator.c ****   self->initial=&initial; self->wait=&wait;
+ 249              		.loc 1 79 3 is_stmt 1 view .LVU55
+ 250              		.loc 1 79 16 is_stmt 0 view .LVU56
+ 251 0004 1349     		ldr	r1, .L16
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cce694B8.s 			page 7
+
+
+ 252 0006 C0F8D810 		str	r1, [r0, #216]
+ 253              		.loc 1 79 27 is_stmt 1 view .LVU57
+ 254              		.loc 1 79 37 is_stmt 0 view .LVU58
+ 255 000a 134B     		ldr	r3, .L16+4
+ 256 000c C0F8DC30 		str	r3, [r0, #220]
+  80:Core/Src/Application/State_Estimator/state_estimator.c ****   self->public=&public; self->publicFromISR = &publicFromISR;
+ 257              		.loc 1 80 3 is_stmt 1 view .LVU59
+ 258              		.loc 1 80 15 is_stmt 0 view .LVU60
+ 259 0010 124B     		ldr	r3, .L16+8
+ 260 0012 C0F8E030 		str	r3, [r0, #224]
+ 261              		.loc 1 80 25 is_stmt 1 view .LVU61
+ 262              		.loc 1 80 45 is_stmt 0 view .LVU62
+ 263 0016 124B     		ldr	r3, .L16+12
+ 264 0018 C0F8E430 		str	r3, [r0, #228]
+  81:Core/Src/Application/State_Estimator/state_estimator.c **** 
+  82:Core/Src/Application/State_Estimator/state_estimator.c ****   /*Initialize members*/
+  83:Core/Src/Application/State_Estimator/state_estimator.c ****   Ao_new(&self->super, (StateHandler)&initial);
+ 265              		.loc 1 83 3 is_stmt 1 view .LVU63
+ 266 001c FFF7FEFF 		bl	Ao_new
+ 267              	.LVL22:
+  84:Core/Src/Application/State_Estimator/state_estimator.c ****   self->data_processor = ( struct Dsp * ) pvPortMalloc( sizeof( struct Dsp ) );
+ 268              		.loc 1 84 3 view .LVU64
+ 269              		.loc 1 84 43 is_stmt 0 view .LVU65
+ 270 0020 4020     		movs	r0, #64
+ 271 0022 FFF7FEFF 		bl	pvPortMalloc
+ 272              	.LVL23:
+ 273              		.loc 1 84 24 discriminator 1 view .LVU66
+ 274 0026 C4F8CC00 		str	r0, [r4, #204]
+  85:Core/Src/Application/State_Estimator/state_estimator.c ****   Dsp_new(self->data_processor);
+ 275              		.loc 1 85 3 is_stmt 1 view .LVU67
+ 276 002a FFF7FEFF 		bl	Dsp_new
+ 277              	.LVL24:
+  86:Core/Src/Application/State_Estimator/state_estimator.c **** 
+  87:Core/Src/Application/State_Estimator/state_estimator.c ****   /*Cache Ao for using in Encoder driver*/
+  88:Core/Src/Application/State_Estimator/state_estimator.c ****   ao_estimator = &self->super;
+ 278              		.loc 1 88 3 view .LVU68
+ 279              		.loc 1 88 16 is_stmt 0 view .LVU69
+ 280 002e 0D4B     		ldr	r3, .L16+16
+ 281 0030 1C60     		str	r4, [r3]
+  89:Core/Src/Application/State_Estimator/state_estimator.c ****   state_estimator = self;
+ 282              		.loc 1 89 3 is_stmt 1 view .LVU70
+ 283              		.loc 1 89 19 is_stmt 0 view .LVU71
+ 284 0032 0D4B     		ldr	r3, .L16+20
+ 285 0034 1C60     		str	r4, [r3]
+  90:Core/Src/Application/State_Estimator/state_estimator.c **** 
+  91:Core/Src/Application/State_Estimator/state_estimator.c ****   /*Initialize Queue for Mailbox as subsribers, publishers*/
+  92:Core/Src/Application/State_Estimator/state_estimator.c ****   self->encoder_sub = xQueueCreate( 1, sizeof( Encoder ) );
+ 286              		.loc 1 92 3 is_stmt 1 view .LVU72
+ 287              		.loc 1 92 23 is_stmt 0 view .LVU73
+ 288 0036 0022     		movs	r2, #0
+ 289 0038 0421     		movs	r1, #4
+ 290 003a 0120     		movs	r0, #1
+ 291 003c FFF7FEFF 		bl	xQueueGenericCreate
+ 292              	.LVL25:
+ 293              		.loc 1 92 21 discriminator 1 view .LVU74
+ 294 0040 C4F8D000 		str	r0, [r4, #208]
+  93:Core/Src/Application/State_Estimator/state_estimator.c ****   self->state_pub = xQueueCreate( 1, sizeof( State ) );
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cce694B8.s 			page 8
+
+
+ 295              		.loc 1 93 3 is_stmt 1 view .LVU75
+ 296              		.loc 1 93 21 is_stmt 0 view .LVU76
+ 297 0044 0022     		movs	r2, #0
+ 298 0046 1821     		movs	r1, #24
+ 299 0048 0120     		movs	r0, #1
+ 300 004a FFF7FEFF 		bl	xQueueGenericCreate
+ 301              	.LVL26:
+ 302              		.loc 1 93 19 discriminator 1 view .LVU77
+ 303 004e C4F8D400 		str	r0, [r4, #212]
+  94:Core/Src/Application/State_Estimator/state_estimator.c **** }
+ 304              		.loc 1 94 1 view .LVU78
+ 305 0052 10BD     		pop	{r4, pc}
+ 306              	.LVL27:
+ 307              	.L17:
+ 308              		.loc 1 94 1 view .LVU79
+ 309              		.align	2
+ 310              	.L16:
+ 311 0054 00000000 		.word	initial
+ 312 0058 00000000 		.word	wait
+ 313 005c 00000000 		.word	public
+ 314 0060 00000000 		.word	publicFromISR
+ 315 0064 00000000 		.word	ao_estimator
+ 316 0068 00000000 		.word	state_estimator
+ 317              		.cfi_endproc
+ 318              	.LFE172:
+ 320              		.section	.bss.state_topic.0,"aw",%nobits
+ 321              		.align	2
+ 324              	state_topic.0:
+ 325 0000 00000000 		.space	24
+ 325      00000000 
+ 325      00000000 
+ 325      00000000 
+ 325      00000000 
+ 326              		.section	.bss.encoder_topic.1,"aw",%nobits
+ 327              		.align	2
+ 330              	encoder_topic.1:
+ 331 0000 00000000 		.space	4
+ 332              		.global	StateEstimator
+ 333              		.section	.rodata.StateEstimator,"a"
+ 334              		.align	2
+ 337              	StateEstimator:
+ 338 0000 00000000 		.word	new
+ 339              		.global	state_estimator
+ 340              		.section	.bss.state_estimator,"aw",%nobits
+ 341              		.align	2
+ 344              	state_estimator:
+ 345 0000 00000000 		.space	4
+ 346              		.global	ao_estimator
+ 347              		.section	.bss.ao_estimator,"aw",%nobits
+ 348              		.align	2
+ 351              	ao_estimator:
+ 352 0000 00000000 		.space	4
+ 353              		.text
+ 354              	.Letext0:
+ 355              		.file 2 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
+ 356              		.file 3 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
+ 357              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h"
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cce694B8.s 			page 9
+
+
+ 358              		.file 5 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
+ 359              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 360              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 361              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
+ 362              		.file 9 "ThirdParty/FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h"
+ 363              		.file 10 "ThirdParty/FreeRTOS/include/FreeRTOS.h"
+ 364              		.file 11 "ThirdParty/FreeRTOS/include/task.h"
+ 365              		.file 12 "ThirdParty/FreeRTOS/include/queue.h"
+ 366              		.file 13 "Core/Src/Middleware/Active_Object/active_object.h"
+ 367              		.file 14 "Drivers/CMSIS/DSP/Include/arm_math.h"
+ 368              		.file 15 "Core/Src/Middleware/Topic/topic.h"
+ 369              		.file 16 "Core/Src/Application/State_Estimator/Dsp/dsp.h"
+ 370              		.file 17 "Core/Src/Application/State_Estimator/state_estimator.h"
+ 371              		.file 18 "ThirdParty/FreeRTOS/include/portable.h"
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cce694B8.s 			page 10
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 state_estimator.c
-C:\Users\ACER\AppData\Local\Temp\cc7rY42d.s:21     .text.initial:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\cc7rY42d.s:27     .text.initial:00000000 initial
-C:\Users\ACER\AppData\Local\Temp\cc7rY42d.s:52     .text.wait:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\cc7rY42d.s:58     .text.wait:00000000 wait
-C:\Users\ACER\AppData\Local\Temp\cc7rY42d.s:121    .text.wait:00000030 $d
-C:\Users\ACER\AppData\Local\Temp\cc7rY42d.s:128    .text.new:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\cc7rY42d.s:133    .text.new:00000000 new
-C:\Users\ACER\AppData\Local\Temp\cc7rY42d.s:169    .text.new:0000001c $d
-C:\Users\ACER\AppData\Local\Temp\cc7rY42d.s:187    .bss.ao_estimator:00000000 ao_estimator
-C:\Users\ACER\AppData\Local\Temp\cc7rY42d.s:180    .rodata.StateEstimator:00000000 StateEstimator
-C:\Users\ACER\AppData\Local\Temp\cc7rY42d.s:177    .rodata.StateEstimator:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\cc7rY42d.s:184    .bss.ao_estimator:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\cce694B8.s:21     .text.initial:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\cce694B8.s:27     .text.initial:00000000 initial
+C:\Users\ACER\AppData\Local\Temp\cce694B8.s:52     .text.wait:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\cce694B8.s:58     .text.wait:00000000 wait
+C:\Users\ACER\AppData\Local\Temp\cce694B8.s:161    .text.wait:00000058 $d
+C:\Users\ACER\AppData\Local\Temp\cce694B8.s:330    .bss.encoder_topic.1:00000000 encoder_topic.1
+C:\Users\ACER\AppData\Local\Temp\cce694B8.s:324    .bss.state_topic.0:00000000 state_topic.0
+C:\Users\ACER\AppData\Local\Temp\cce694B8.s:171    .text.public:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\cce694B8.s:177    .text.public:00000000 public
+C:\Users\ACER\AppData\Local\Temp\cce694B8.s:201    .text.publicFromISR:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\cce694B8.s:207    .text.publicFromISR:00000000 publicFromISR
+C:\Users\ACER\AppData\Local\Temp\cce694B8.s:230    .text.new:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\cce694B8.s:235    .text.new:00000000 new
+C:\Users\ACER\AppData\Local\Temp\cce694B8.s:311    .text.new:00000054 $d
+C:\Users\ACER\AppData\Local\Temp\cce694B8.s:351    .bss.ao_estimator:00000000 ao_estimator
+C:\Users\ACER\AppData\Local\Temp\cce694B8.s:344    .bss.state_estimator:00000000 state_estimator
+C:\Users\ACER\AppData\Local\Temp\cce694B8.s:321    .bss.state_topic.0:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\cce694B8.s:327    .bss.encoder_topic.1:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\cce694B8.s:337    .rodata.StateEstimator:00000000 StateEstimator
+C:\Users\ACER\AppData\Local\Temp\cce694B8.s:334    .rodata.StateEstimator:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\cce694B8.s:341    .bss.state_estimator:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\cce694B8.s:348    .bss.ao_estimator:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_TIM_Base_Start_IT
 HAL_TIM_Encoder_Start_IT
+xQueuePeek
 htim7
 htim3
 htim4
+xQueueGenericSend
+xQueueGenericSendFromISR
 Ao_new
+pvPortMalloc
+Dsp_new
+xQueueGenericCreate

@@ -14,6 +14,8 @@
         "arm_math.h": "c",
         "core_cm4.h": "c",
         "*.tcc": "c",
-        "numbers": "c"
+        "numbers": "c",
+        "stdint.h": "c",
+        "_default_types.h": "c"
     }
 }
