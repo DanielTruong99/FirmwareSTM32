@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccZUYF0U.s 			page 1
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccUS5jgc.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -35,9 +35,15 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccZUYF0U.s 			page 1
    5:Core/Src/main.c **** static struct StateEstimator state_estimator;
    6:Core/Src/main.c **** static struct Ao* state_estimator_ao = &state_estimator.super; 
    7:Core/Src/main.c **** 
-   8:Core/Src/main.c **** int main(void)
-   9:Core/Src/main.c **** {
-  29              		.loc 1 9 1 view -0
+   8:Core/Src/main.c **** static struct MotorCommunicator motor_communicator;
+   9:Core/Src/main.c **** static struct Ao* motor_communicator_ao = &motor_communicator.super; 
+  10:Core/Src/main.c **** 
+  11:Core/Src/main.c **** static struct ComputerCommunicator computer_communicator;
+  12:Core/Src/main.c **** static struct Ao* computer_communicator_ao = &computer_communicator.super; 
+  13:Core/Src/main.c **** 
+  14:Core/Src/main.c **** int main(void)
+  15:Core/Src/main.c **** {
+  29              		.loc 1 15 1 view -0
   30              		.cfi_startproc
   31              		@ Volatile: function does not return.
   32              		@ args = 0, pretend = 0, frame = 0
@@ -49,135 +55,219 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccZUYF0U.s 			page 1
   38 0002 83B0     		sub	sp, sp, #12
   39              	.LCFI1:
   40              		.cfi_def_cfa_offset 16
-  10:Core/Src/main.c ****   // System initialization
-  11:Core/Src/main.c **** 
-  12:Core/Src/main.c ****   HAL_Init();
-  41              		.loc 1 12 3 view .LVU1
+  16:Core/Src/main.c ****   // System initialization
+  17:Core/Src/main.c **** 
+  18:Core/Src/main.c ****   HAL_Init();
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccUS5jgc.s 			page 2
+
+
+  41              		.loc 1 18 3 view .LVU1
   42 0004 FFF7FEFF 		bl	HAL_Init
   43              	.LVL0:
-  13:Core/Src/main.c ****   SystemClock_Config();
-  44              		.loc 1 13 3 view .LVU2
+  19:Core/Src/main.c ****   SystemClock_Config();
+  44              		.loc 1 19 3 view .LVU2
   45 0008 FFF7FEFF 		bl	SystemClock_Config
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccZUYF0U.s 			page 2
-
-
   46              	.LVL1:
-  14:Core/Src/main.c ****   
-  15:Core/Src/main.c ****   // Periferal initialization
-  16:Core/Src/main.c ****   MX_GPIO_Init();
-  47              		.loc 1 16 3 view .LVU3
+  20:Core/Src/main.c ****   
+  21:Core/Src/main.c ****   // Periferal initialization
+  22:Core/Src/main.c ****   MX_GPIO_Init();
+  47              		.loc 1 22 3 view .LVU3
   48 000c FFF7FEFF 		bl	MX_GPIO_Init
   49              	.LVL2:
-  17:Core/Src/main.c ****   Driver_MotorCommunicator_Init();
-  50              		.loc 1 17 3 view .LVU4
-  51 0010 FFF7FEFF 		bl	Driver_MotorCommunicator_Init
+  23:Core/Src/main.c ****   Driver_USART_Init();
+  50              		.loc 1 23 3 view .LVU4
+  51 0010 FFF7FEFF 		bl	Driver_USART_Init
   52              	.LVL3:
-  18:Core/Src/main.c ****   Driver_Encoder_Init();
-  53              		.loc 1 18 3 view .LVU5
+  24:Core/Src/main.c ****   Driver_Encoder_Init();
+  53              		.loc 1 24 3 view .LVU5
   54 0014 FFF7FEFF 		bl	Driver_Encoder_Init
   55              	.LVL4:
-  19:Core/Src/main.c ****   App_ComputerCommunicator_Init();
-  56              		.loc 1 19 3 view .LVU6
-  57 0018 FFF7FEFF 		bl	App_ComputerCommunicator_Init
-  58              	.LVL5:
-  20:Core/Src/main.c **** 
-  21:Core/Src/main.c ****   // Task initialization----------------------------------------------------------------
-  22:Core/Src/main.c ****   // State Estimator Task
-  23:Core/Src/main.c ****   StateEstimator.new(&state_estimator);
-  59              		.loc 1 23 3 view .LVU7
-  60              		.loc 1 23 17 is_stmt 0 view .LVU8
-  61 001c 084B     		ldr	r3, .L4
-  62 001e 1B68     		ldr	r3, [r3]
-  63              		.loc 1 23 3 view .LVU9
-  64 0020 084C     		ldr	r4, .L4+4
-  65 0022 2046     		mov	r0, r4
-  66 0024 9847     		blx	r3
-  67              	.LVL6:
-  24:Core/Src/main.c ****   state_estimator.super.start(state_estimator_ao,
-  68              		.loc 1 24 3 is_stmt 1 view .LVU10
-  69              		.loc 1 24 24 is_stmt 0 view .LVU11
-  70 0026 D4F8BC50 		ldr	r5, [r4, #188]
-  71              		.loc 1 24 3 view .LVU12
-  72 002a 0023     		movs	r3, #0
-  73 002c 0093     		str	r3, [sp]
-  74 002e 8223     		movs	r3, #130
-  75 0030 6422     		movs	r2, #100
-  76 0032 0121     		movs	r1, #1
-  77 0034 2046     		mov	r0, r4
-  78 0036 A847     		blx	r5
-  79              	.LVL7:
-  25:Core/Src/main.c ****                               1,
-  26:Core/Src/main.c ****                               100,
-  27:Core/Src/main.c ****                               configMINIMAL_STACK_SIZE,
-  28:Core/Src/main.c ****                               0U);
-  29:Core/Src/main.c ****     
-  30:Core/Src/main.c **** 
-  31:Core/Src/main.c **** 
-  32:Core/Src/main.c **** 
-  33:Core/Src/main.c ****   vTaskStartScheduler();
-  80              		.loc 1 33 3 is_stmt 1 view .LVU13
-  81 0038 FFF7FEFF 		bl	vTaskStartScheduler
-  82              	.LVL8:
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccZUYF0U.s 			page 3
+  25:Core/Src/main.c **** 
+  26:Core/Src/main.c ****   // Task initialization----------------------------------------------------------------
+  27:Core/Src/main.c ****   // State Estimator Task
+  28:Core/Src/main.c ****   StateEstimator.new(&state_estimator);
+  56              		.loc 1 28 3 view .LVU6
+  57              		.loc 1 28 17 is_stmt 0 view .LVU7
+  58 0018 164B     		ldr	r3, .L4
+  59 001a 1B68     		ldr	r3, [r3]
+  60              		.loc 1 28 3 view .LVU8
+  61 001c 164C     		ldr	r4, .L4+4
+  62 001e 2046     		mov	r0, r4
+  63 0020 9847     		blx	r3
+  64              	.LVL5:
+  29:Core/Src/main.c ****   state_estimator.super.start(state_estimator_ao,
+  65              		.loc 1 29 3 is_stmt 1 view .LVU9
+  66              		.loc 1 29 24 is_stmt 0 view .LVU10
+  67 0022 D4F8BC60 		ldr	r6, [r4, #188]
+  68              		.loc 1 29 3 view .LVU11
+  69 0026 0025     		movs	r5, #0
+  70 0028 0095     		str	r5, [sp]
+  71 002a 4FF48073 		mov	r3, #256
+  72 002e 1422     		movs	r2, #20
+  73 0030 0321     		movs	r1, #3
+  74 0032 2046     		mov	r0, r4
+  75 0034 B047     		blx	r6
+  76              	.LVL6:
+  30:Core/Src/main.c ****                               3,
+  31:Core/Src/main.c ****                               20,
+  32:Core/Src/main.c ****                               configMINIMAL_STACK_SIZE + 126,
+  33:Core/Src/main.c ****                               0U);
+  34:Core/Src/main.c **** 
+  35:Core/Src/main.c ****   // Motor Communicator Task
+  36:Core/Src/main.c ****   MotorCommunicator.new(&motor_communicator);
+  77              		.loc 1 36 3 is_stmt 1 view .LVU12
+  78              		.loc 1 36 20 is_stmt 0 view .LVU13
+  79 0036 114B     		ldr	r3, .L4+8
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccUS5jgc.s 			page 3
 
 
-  83              	.L2:
-  34:Core/Src/main.c ****   while(1){}
-  84              		.loc 1 34 3 view .LVU14
-  85              		.loc 1 34 12 view .LVU15
-  86              		.loc 1 34 8 view .LVU16
-  87 003c FEE7     		b	.L2
-  88              	.L5:
-  89 003e 00BF     		.align	2
-  90              	.L4:
-  91 0040 00000000 		.word	StateEstimator
-  92 0044 00000000 		.word	state_estimator
-  93              		.cfi_endproc
-  94              	.LFE171:
-  96              		.section	.bss.state_estimator,"aw",%nobits
-  97              		.align	2
- 100              	state_estimator:
- 101 0000 00000000 		.space	232
- 101      00000000 
- 101      00000000 
- 101      00000000 
- 101      00000000 
- 102              		.text
- 103              	.Letext0:
- 104              		.file 2 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
- 105              		.file 3 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
- 106              		.file 4 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
- 107              		.file 5 "ThirdParty/FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h"
- 108              		.file 6 "ThirdParty/FreeRTOS/include/FreeRTOS.h"
- 109              		.file 7 "ThirdParty/FreeRTOS/include/task.h"
- 110              		.file 8 "ThirdParty/FreeRTOS/include/queue.h"
- 111              		.file 9 "Core/Src/Middleware/Active_Object/active_object.h"
- 112              		.file 10 "Drivers/CMSIS/DSP/Include/arm_math.h"
- 113              		.file 11 "Core/Src/Middleware/Topic/topic.h"
- 114              		.file 12 "Core/Src/Application/State_Estimator/Dsp/dsp.h"
- 115              		.file 13 "Core/Src/Application/State_Estimator/state_estimator.h"
- 116              		.file 14 "Core/Src/Application/Computer_Communicator/computer_communicator.h"
- 117              		.file 15 "Core/Src/Drivers/Encoder/encoder.h"
- 118              		.file 16 "Core/Src/Drivers/Motor_Communicator/motor_communicator.h"
- 119              		.file 17 "Core/Src/Drivers/System_Config/system_config.h"
- 120              		.file 18 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccZUYF0U.s 			page 4
+  80 0038 1B68     		ldr	r3, [r3]
+  81              		.loc 1 36 3 view .LVU14
+  82 003a 114C     		ldr	r4, .L4+12
+  83 003c 2046     		mov	r0, r4
+  84 003e 9847     		blx	r3
+  85              	.LVL7:
+  37:Core/Src/main.c ****   motor_communicator.super.start(motor_communicator_ao,
+  86              		.loc 1 37 3 is_stmt 1 view .LVU15
+  87              		.loc 1 37 27 is_stmt 0 view .LVU16
+  88 0040 D4F8BC60 		ldr	r6, [r4, #188]
+  89              		.loc 1 37 3 view .LVU17
+  90 0044 0095     		str	r5, [sp]
+  91 0046 4FF48073 		mov	r3, #256
+  92 004a 0F22     		movs	r2, #15
+  93 004c 0221     		movs	r1, #2
+  94 004e 2046     		mov	r0, r4
+  95 0050 B047     		blx	r6
+  96              	.LVL8:
+  38:Core/Src/main.c ****                               2,
+  39:Core/Src/main.c ****                               15,
+  40:Core/Src/main.c ****                               configMINIMAL_STACK_SIZE + 126,
+  41:Core/Src/main.c ****                               0U);        
+  42:Core/Src/main.c **** 
+  43:Core/Src/main.c ****   // Computer Communicator Task
+  44:Core/Src/main.c ****   ComputerCommunicator.new(&computer_communicator);
+  97              		.loc 1 44 3 is_stmt 1 view .LVU18
+  98              		.loc 1 44 23 is_stmt 0 view .LVU19
+  99 0052 0C4B     		ldr	r3, .L4+16
+ 100 0054 1B68     		ldr	r3, [r3]
+ 101              		.loc 1 44 3 view .LVU20
+ 102 0056 0C4C     		ldr	r4, .L4+20
+ 103 0058 2046     		mov	r0, r4
+ 104 005a 9847     		blx	r3
+ 105              	.LVL9:
+  45:Core/Src/main.c ****   computer_communicator.super.start(computer_communicator_ao,
+ 106              		.loc 1 45 3 is_stmt 1 view .LVU21
+ 107              		.loc 1 45 30 is_stmt 0 view .LVU22
+ 108 005c D4F8BC60 		ldr	r6, [r4, #188]
+ 109              		.loc 1 45 3 view .LVU23
+ 110 0060 0095     		str	r5, [sp]
+ 111 0062 4FF4FA63 		mov	r3, #2000
+ 112 0066 0F22     		movs	r2, #15
+ 113 0068 0121     		movs	r1, #1
+ 114 006a 2046     		mov	r0, r4
+ 115 006c B047     		blx	r6
+ 116              	.LVL10:
+  46:Core/Src/main.c ****                               1,
+  47:Core/Src/main.c ****                               15,
+  48:Core/Src/main.c ****                               2000,
+  49:Core/Src/main.c ****                               0U);                   
+  50:Core/Src/main.c ****     
+  51:Core/Src/main.c **** 
+  52:Core/Src/main.c **** 
+  53:Core/Src/main.c **** 
+  54:Core/Src/main.c ****   vTaskStartScheduler();
+ 117              		.loc 1 54 3 is_stmt 1 view .LVU24
+ 118 006e FFF7FEFF 		bl	vTaskStartScheduler
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccUS5jgc.s 			page 4
+
+
+ 119              	.LVL11:
+ 120              	.L2:
+  55:Core/Src/main.c ****   while(1){}
+ 121              		.loc 1 55 3 view .LVU25
+ 122              		.loc 1 55 12 view .LVU26
+ 123              		.loc 1 55 8 view .LVU27
+ 124 0072 FEE7     		b	.L2
+ 125              	.L5:
+ 126              		.align	2
+ 127              	.L4:
+ 128 0074 00000000 		.word	StateEstimator
+ 129 0078 00000000 		.word	state_estimator
+ 130 007c 00000000 		.word	MotorCommunicator
+ 131 0080 00000000 		.word	motor_communicator
+ 132 0084 00000000 		.word	ComputerCommunicator
+ 133 0088 00000000 		.word	computer_communicator
+ 134              		.cfi_endproc
+ 135              	.LFE171:
+ 137              		.section	.bss.computer_communicator,"aw",%nobits
+ 138              		.align	2
+ 141              	computer_communicator:
+ 142 0000 00000000 		.space	228
+ 142      00000000 
+ 142      00000000 
+ 142      00000000 
+ 142      00000000 
+ 143              		.section	.bss.motor_communicator,"aw",%nobits
+ 144              		.align	2
+ 147              	motor_communicator:
+ 148 0000 00000000 		.space	228
+ 148      00000000 
+ 148      00000000 
+ 148      00000000 
+ 148      00000000 
+ 149              		.section	.bss.state_estimator,"aw",%nobits
+ 150              		.align	2
+ 153              	state_estimator:
+ 154 0000 00000000 		.space	232
+ 154      00000000 
+ 154      00000000 
+ 154      00000000 
+ 154      00000000 
+ 155              		.text
+ 156              	.Letext0:
+ 157              		.file 2 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
+ 158              		.file 3 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
+ 159              		.file 4 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 160              		.file 5 "ThirdParty/FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h"
+ 161              		.file 6 "ThirdParty/FreeRTOS/include/FreeRTOS.h"
+ 162              		.file 7 "ThirdParty/FreeRTOS/include/task.h"
+ 163              		.file 8 "ThirdParty/FreeRTOS/include/queue.h"
+ 164              		.file 9 "Core/Src/Middleware/Active_Object/active_object.h"
+ 165              		.file 10 "Drivers/CMSIS/DSP/Include/arm_math.h"
+ 166              		.file 11 "Core/Src/Middleware/Topic/topic.h"
+ 167              		.file 12 "Core/Src/Application/Motor_Communicator/motor_communicator.h"
+ 168              		.file 13 "Core/Src/Application/State_Estimator/Dsp/dsp.h"
+ 169              		.file 14 "Core/Src/Application/State_Estimator/state_estimator.h"
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccUS5jgc.s 			page 5
+
+
+ 170              		.file 15 "Core/Src/Application/Computer_Communicator/computer_communicator.h"
+ 171              		.file 16 "Core/Src/Drivers/Encoder/encoder.h"
+ 172              		.file 17 "Core/Src/Drivers/Usart/usart.h"
+ 173              		.file 18 "Core/Src/Drivers/System_Config/system_config.h"
+ 174              		.file 19 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccUS5jgc.s 			page 6
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\ACER\AppData\Local\Temp\ccZUYF0U.s:21     .text.main:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccZUYF0U.s:27     .text.main:00000000 main
-C:\Users\ACER\AppData\Local\Temp\ccZUYF0U.s:91     .text.main:00000040 $d
-C:\Users\ACER\AppData\Local\Temp\ccZUYF0U.s:100    .bss.state_estimator:00000000 state_estimator
-C:\Users\ACER\AppData\Local\Temp\ccZUYF0U.s:97     .bss.state_estimator:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccUS5jgc.s:21     .text.main:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccUS5jgc.s:27     .text.main:00000000 main
+C:\Users\ACER\AppData\Local\Temp\ccUS5jgc.s:128    .text.main:00000074 $d
+C:\Users\ACER\AppData\Local\Temp\ccUS5jgc.s:153    .bss.state_estimator:00000000 state_estimator
+C:\Users\ACER\AppData\Local\Temp\ccUS5jgc.s:147    .bss.motor_communicator:00000000 motor_communicator
+C:\Users\ACER\AppData\Local\Temp\ccUS5jgc.s:141    .bss.computer_communicator:00000000 computer_communicator
+C:\Users\ACER\AppData\Local\Temp\ccUS5jgc.s:138    .bss.computer_communicator:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccUS5jgc.s:144    .bss.motor_communicator:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccUS5jgc.s:150    .bss.state_estimator:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_Init
 SystemClock_Config
 MX_GPIO_Init
-Driver_MotorCommunicator_Init
+Driver_USART_Init
 Driver_Encoder_Init
-App_ComputerCommunicator_Init
 vTaskStartScheduler
 StateEstimator
+MotorCommunicator
+ComputerCommunicator

@@ -42,10 +42,11 @@ $(wildcard ThirdParty/FreeRTOS/*.c) \
 $(wildcard Drivers/CMSIS/DSP/Source/*.c) \
 $(wildcard Drivers/CMSIS/DSP/Source/**/*.c) \
 Core/Src/Application/Computer_Communicator/computer_communicator.c \
+Core/Src/Application/Motor_Communicator/motor_communicator.c \
 Core/Src/Application/State_Estimator/state_estimator.c \
 Core/Src/Application/State_Estimator/Dsp/dsp.c \
 Core/Src/Middleware/Active_Object/active_object.c \
-Core/Src/Drivers/Motor_Communicator/motor_communicator.c \
+Core/Src/Drivers/Usart/usart.c \
 Core/Src/Drivers/Encoder/encoder.c \
 Core/Src/Drivers/System_Config/system_config.c \
 ThirdParty/FreeRTOS/portable/GCC/ARM_CM4F/port.c \
@@ -118,11 +119,12 @@ AS_INCLUDES =
 C_INCLUDES =  \
 -ICore/Src \
 -ICore/Src/Application/Computer_Communicator \
+-ICore/Src/Application/Motor_Communicator \
 -ICore/Src/Application/State_Estimator \
 -ICore/Src/Application/State_Estimator/Dsp \
 -ICore/Src/Middleware/Topic \
 -ICore/Src/Middleware/Active_Object \
--ICore/Src/Drivers/Motor_Communicator \
+-ICore/Src/Drivers/Usart \
 -ICore/Src/Drivers/Encoder \
 -ICore/Src/Drivers/System_Config \
 -IDrivers/STM32F4xx_HAL_Driver/Inc \
@@ -133,7 +135,7 @@ C_INCLUDES =  \
 -IThirdParty/FreeRTOS/include \
 -IThirdParty/FreeRTOS \
 -IThirdParty/FreeRTOS/portable/GCC/ARM_CM4F \
--Iarm-none-eabi/include 
+# -Iarm-none-eabi/include \
 
 
 

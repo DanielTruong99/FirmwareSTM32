@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s 			page 1
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s 			page 1
   61 0014 00000000 		.word	arm_cfft_sR_q15_len1024
   62              		.global	arm_rfft_sR_q15_len1024
   63              		.section	.rodata.arm_rfft_sR_q15_len1024,"a"
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s 			page 2
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s 			page 2
 
 
   64              		.align	2
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s 			page 1
  128 0008 80000000 		.word	128
  129 000c 00000000 		.word	realCoefAQ15
  130 0010 00000000 		.word	realCoefBQ15
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s 			page 3
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s 			page 3
 
 
  131 0014 00000000 		.word	arm_cfft_sR_q15_len32
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s 			page 1
  195 0004 00       		.byte	0
  196 0005 01       		.byte	1
  197 0006 0000     		.space	2
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s 			page 4
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s 			page 4
 
 
  198 0008 08000000 		.word	8
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s 			page 1
  260              		.align	2
  263              	arm_rfft_sR_q31_len32:
  264 0000 20000000 		.word	32
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s 			page 5
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s 			page 5
 
 
  265 0004 00       		.byte	0
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s 			page 1
  327 000c B801     		.short	440
  328 000e 0000     		.space	2
  329 0010 0002     		.short	512
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s 			page 6
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s 			page 6
 
 
  330 0012 0000     		.space	2
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s 			page 1
  392              		.global	arm_cfft_sR_q15_len4096
  393              		.section	.rodata.arm_cfft_sR_q15_len4096,"a"
  394              		.align	2
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s 			page 7
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s 			page 7
 
 
  397              	arm_cfft_sR_q15_len4096:
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s 			page 1
  461 0008 00000000 		.word	armBitRevIndexTable_fixed_128
  462 000c 7000     		.short	112
  463 000e 0000     		.space	2
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s 			page 8
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s 			page 8
 
 
  464              		.global	arm_cfft_sR_q15_len64
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s 			page 1
  530 0000 0004     		.short	1024
  531 0002 0000     		.space	2
  532 0004 00000000 		.word	twiddleCoef_1024_q31
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s 			page 9
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s 			page 9
 
 
  533 0008 00000000 		.word	armBitRevIndexTable_fixed_1024
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s 			page 1
  597              		.section	.rodata.arm_cfft_sR_q31_len16,"a"
  598              		.align	2
  601              	arm_cfft_sR_q31_len16:
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s 			page 10
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s 			page 10
 
 
  602 0000 1000     		.short	16
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s 			page 1
  666 000c B801     		.short	440
  667 000e 0000     		.space	2
  668              		.global	arm_cfft_sR_f32_len128
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s 			page 11
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s 			page 11
 
 
  669              		.section	.rodata.arm_cfft_sR_f32_len128,"a"
@@ -647,127 +647,127 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s 			page 1
  720              		.file 4 "Drivers/CMSIS/DSP/Include/arm_math.h"
  721              		.file 5 "Drivers/CMSIS/DSP/Include/arm_common_tables.h"
  722              		.file 6 "Drivers/CMSIS/DSP/Include/arm_const_structs.h"
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s 			page 12
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s 			page 12
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 arm_const_structs.c
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:25     .rodata.arm_rfft_sR_q15_len8192:00000000 arm_rfft_sR_q15_len8192
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:22     .rodata.arm_rfft_sR_q15_len8192:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:397    .rodata.arm_cfft_sR_q15_len4096:00000000 arm_cfft_sR_q15_len4096
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:39     .rodata.arm_rfft_sR_q15_len4096:00000000 arm_rfft_sR_q15_len4096
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:36     .rodata.arm_rfft_sR_q15_len4096:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:409    .rodata.arm_cfft_sR_q15_len2048:00000000 arm_cfft_sR_q15_len2048
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:53     .rodata.arm_rfft_sR_q15_len2048:00000000 arm_rfft_sR_q15_len2048
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:50     .rodata.arm_rfft_sR_q15_len2048:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:421    .rodata.arm_cfft_sR_q15_len1024:00000000 arm_cfft_sR_q15_len1024
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:67     .rodata.arm_rfft_sR_q15_len1024:00000000 arm_rfft_sR_q15_len1024
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:64     .rodata.arm_rfft_sR_q15_len1024:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:433    .rodata.arm_cfft_sR_q15_len512:00000000 arm_cfft_sR_q15_len512
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:81     .rodata.arm_rfft_sR_q15_len512:00000000 arm_rfft_sR_q15_len512
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:78     .rodata.arm_rfft_sR_q15_len512:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:445    .rodata.arm_cfft_sR_q15_len256:00000000 arm_cfft_sR_q15_len256
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:95     .rodata.arm_rfft_sR_q15_len256:00000000 arm_rfft_sR_q15_len256
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:92     .rodata.arm_rfft_sR_q15_len256:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:457    .rodata.arm_cfft_sR_q15_len128:00000000 arm_cfft_sR_q15_len128
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:109    .rodata.arm_rfft_sR_q15_len128:00000000 arm_rfft_sR_q15_len128
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:106    .rodata.arm_rfft_sR_q15_len128:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:469    .rodata.arm_cfft_sR_q15_len64:00000000 arm_cfft_sR_q15_len64
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:123    .rodata.arm_rfft_sR_q15_len64:00000000 arm_rfft_sR_q15_len64
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:120    .rodata.arm_rfft_sR_q15_len64:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:481    .rodata.arm_cfft_sR_q15_len32:00000000 arm_cfft_sR_q15_len32
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:137    .rodata.arm_rfft_sR_q15_len32:00000000 arm_rfft_sR_q15_len32
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:134    .rodata.arm_rfft_sR_q15_len32:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:493    .rodata.arm_cfft_sR_q15_len16:00000000 arm_cfft_sR_q15_len16
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:151    .rodata.arm_rfft_sR_q31_len8192:00000000 arm_rfft_sR_q31_len8192
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:148    .rodata.arm_rfft_sR_q31_len8192:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:505    .rodata.arm_cfft_sR_q31_len4096:00000000 arm_cfft_sR_q31_len4096
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:165    .rodata.arm_rfft_sR_q31_len4096:00000000 arm_rfft_sR_q31_len4096
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:162    .rodata.arm_rfft_sR_q31_len4096:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:517    .rodata.arm_cfft_sR_q31_len2048:00000000 arm_cfft_sR_q31_len2048
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:179    .rodata.arm_rfft_sR_q31_len2048:00000000 arm_rfft_sR_q31_len2048
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:176    .rodata.arm_rfft_sR_q31_len2048:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:529    .rodata.arm_cfft_sR_q31_len1024:00000000 arm_cfft_sR_q31_len1024
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:193    .rodata.arm_rfft_sR_q31_len1024:00000000 arm_rfft_sR_q31_len1024
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:190    .rodata.arm_rfft_sR_q31_len1024:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:541    .rodata.arm_cfft_sR_q31_len512:00000000 arm_cfft_sR_q31_len512
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:207    .rodata.arm_rfft_sR_q31_len512:00000000 arm_rfft_sR_q31_len512
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:204    .rodata.arm_rfft_sR_q31_len512:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:553    .rodata.arm_cfft_sR_q31_len256:00000000 arm_cfft_sR_q31_len256
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:221    .rodata.arm_rfft_sR_q31_len256:00000000 arm_rfft_sR_q31_len256
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:218    .rodata.arm_rfft_sR_q31_len256:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:565    .rodata.arm_cfft_sR_q31_len128:00000000 arm_cfft_sR_q31_len128
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:235    .rodata.arm_rfft_sR_q31_len128:00000000 arm_rfft_sR_q31_len128
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:232    .rodata.arm_rfft_sR_q31_len128:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:577    .rodata.arm_cfft_sR_q31_len64:00000000 arm_cfft_sR_q31_len64
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:249    .rodata.arm_rfft_sR_q31_len64:00000000 arm_rfft_sR_q31_len64
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:246    .rodata.arm_rfft_sR_q31_len64:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:589    .rodata.arm_cfft_sR_q31_len32:00000000 arm_cfft_sR_q31_len32
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:263    .rodata.arm_rfft_sR_q31_len32:00000000 arm_rfft_sR_q31_len32
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:260    .rodata.arm_rfft_sR_q31_len32:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:601    .rodata.arm_cfft_sR_q31_len16:00000000 arm_cfft_sR_q31_len16
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:277    .rodata.arm_rfft_fast_sR_f32_len4096:00000000 arm_rfft_fast_sR_f32_len4096
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s 			page 13
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:25     .rodata.arm_rfft_sR_q15_len8192:00000000 arm_rfft_sR_q15_len8192
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:22     .rodata.arm_rfft_sR_q15_len8192:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:397    .rodata.arm_cfft_sR_q15_len4096:00000000 arm_cfft_sR_q15_len4096
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:39     .rodata.arm_rfft_sR_q15_len4096:00000000 arm_rfft_sR_q15_len4096
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:36     .rodata.arm_rfft_sR_q15_len4096:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:409    .rodata.arm_cfft_sR_q15_len2048:00000000 arm_cfft_sR_q15_len2048
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:53     .rodata.arm_rfft_sR_q15_len2048:00000000 arm_rfft_sR_q15_len2048
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:50     .rodata.arm_rfft_sR_q15_len2048:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:421    .rodata.arm_cfft_sR_q15_len1024:00000000 arm_cfft_sR_q15_len1024
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:67     .rodata.arm_rfft_sR_q15_len1024:00000000 arm_rfft_sR_q15_len1024
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:64     .rodata.arm_rfft_sR_q15_len1024:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:433    .rodata.arm_cfft_sR_q15_len512:00000000 arm_cfft_sR_q15_len512
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:81     .rodata.arm_rfft_sR_q15_len512:00000000 arm_rfft_sR_q15_len512
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:78     .rodata.arm_rfft_sR_q15_len512:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:445    .rodata.arm_cfft_sR_q15_len256:00000000 arm_cfft_sR_q15_len256
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:95     .rodata.arm_rfft_sR_q15_len256:00000000 arm_rfft_sR_q15_len256
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:92     .rodata.arm_rfft_sR_q15_len256:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:457    .rodata.arm_cfft_sR_q15_len128:00000000 arm_cfft_sR_q15_len128
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:109    .rodata.arm_rfft_sR_q15_len128:00000000 arm_rfft_sR_q15_len128
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:106    .rodata.arm_rfft_sR_q15_len128:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:469    .rodata.arm_cfft_sR_q15_len64:00000000 arm_cfft_sR_q15_len64
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:123    .rodata.arm_rfft_sR_q15_len64:00000000 arm_rfft_sR_q15_len64
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:120    .rodata.arm_rfft_sR_q15_len64:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:481    .rodata.arm_cfft_sR_q15_len32:00000000 arm_cfft_sR_q15_len32
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:137    .rodata.arm_rfft_sR_q15_len32:00000000 arm_rfft_sR_q15_len32
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:134    .rodata.arm_rfft_sR_q15_len32:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:493    .rodata.arm_cfft_sR_q15_len16:00000000 arm_cfft_sR_q15_len16
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:151    .rodata.arm_rfft_sR_q31_len8192:00000000 arm_rfft_sR_q31_len8192
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:148    .rodata.arm_rfft_sR_q31_len8192:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:505    .rodata.arm_cfft_sR_q31_len4096:00000000 arm_cfft_sR_q31_len4096
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:165    .rodata.arm_rfft_sR_q31_len4096:00000000 arm_rfft_sR_q31_len4096
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:162    .rodata.arm_rfft_sR_q31_len4096:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:517    .rodata.arm_cfft_sR_q31_len2048:00000000 arm_cfft_sR_q31_len2048
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:179    .rodata.arm_rfft_sR_q31_len2048:00000000 arm_rfft_sR_q31_len2048
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:176    .rodata.arm_rfft_sR_q31_len2048:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:529    .rodata.arm_cfft_sR_q31_len1024:00000000 arm_cfft_sR_q31_len1024
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:193    .rodata.arm_rfft_sR_q31_len1024:00000000 arm_rfft_sR_q31_len1024
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:190    .rodata.arm_rfft_sR_q31_len1024:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:541    .rodata.arm_cfft_sR_q31_len512:00000000 arm_cfft_sR_q31_len512
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:207    .rodata.arm_rfft_sR_q31_len512:00000000 arm_rfft_sR_q31_len512
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:204    .rodata.arm_rfft_sR_q31_len512:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:553    .rodata.arm_cfft_sR_q31_len256:00000000 arm_cfft_sR_q31_len256
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:221    .rodata.arm_rfft_sR_q31_len256:00000000 arm_rfft_sR_q31_len256
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:218    .rodata.arm_rfft_sR_q31_len256:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:565    .rodata.arm_cfft_sR_q31_len128:00000000 arm_cfft_sR_q31_len128
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:235    .rodata.arm_rfft_sR_q31_len128:00000000 arm_rfft_sR_q31_len128
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:232    .rodata.arm_rfft_sR_q31_len128:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:577    .rodata.arm_cfft_sR_q31_len64:00000000 arm_cfft_sR_q31_len64
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:249    .rodata.arm_rfft_sR_q31_len64:00000000 arm_rfft_sR_q31_len64
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:246    .rodata.arm_rfft_sR_q31_len64:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:589    .rodata.arm_cfft_sR_q31_len32:00000000 arm_cfft_sR_q31_len32
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:263    .rodata.arm_rfft_sR_q31_len32:00000000 arm_rfft_sR_q31_len32
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:260    .rodata.arm_rfft_sR_q31_len32:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:601    .rodata.arm_cfft_sR_q31_len16:00000000 arm_cfft_sR_q31_len16
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:277    .rodata.arm_rfft_fast_sR_f32_len4096:00000000 arm_rfft_fast_sR_f32_len4096
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s 			page 13
 
 
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:274    .rodata.arm_rfft_fast_sR_f32_len4096:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:292    .rodata.arm_rfft_fast_sR_f32_len2048:00000000 arm_rfft_fast_sR_f32_len2048
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:289    .rodata.arm_rfft_fast_sR_f32_len2048:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:307    .rodata.arm_rfft_fast_sR_f32_len1024:00000000 arm_rfft_fast_sR_f32_len1024
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:304    .rodata.arm_rfft_fast_sR_f32_len1024:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:322    .rodata.arm_rfft_fast_sR_f32_len512:00000000 arm_rfft_fast_sR_f32_len512
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:319    .rodata.arm_rfft_fast_sR_f32_len512:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:337    .rodata.arm_rfft_fast_sR_f32_len256:00000000 arm_rfft_fast_sR_f32_len256
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:334    .rodata.arm_rfft_fast_sR_f32_len256:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:352    .rodata.arm_rfft_fast_sR_f32_len128:00000000 arm_rfft_fast_sR_f32_len128
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:349    .rodata.arm_rfft_fast_sR_f32_len128:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:367    .rodata.arm_rfft_fast_sR_f32_len64:00000000 arm_rfft_fast_sR_f32_len64
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:364    .rodata.arm_rfft_fast_sR_f32_len64:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:382    .rodata.arm_rfft_fast_sR_f32_len32:00000000 arm_rfft_fast_sR_f32_len32
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:379    .rodata.arm_rfft_fast_sR_f32_len32:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:394    .rodata.arm_cfft_sR_q15_len4096:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:406    .rodata.arm_cfft_sR_q15_len2048:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:418    .rodata.arm_cfft_sR_q15_len1024:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:430    .rodata.arm_cfft_sR_q15_len512:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:442    .rodata.arm_cfft_sR_q15_len256:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:454    .rodata.arm_cfft_sR_q15_len128:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:466    .rodata.arm_cfft_sR_q15_len64:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:478    .rodata.arm_cfft_sR_q15_len32:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:490    .rodata.arm_cfft_sR_q15_len16:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:502    .rodata.arm_cfft_sR_q31_len4096:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:514    .rodata.arm_cfft_sR_q31_len2048:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:526    .rodata.arm_cfft_sR_q31_len1024:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:538    .rodata.arm_cfft_sR_q31_len512:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:550    .rodata.arm_cfft_sR_q31_len256:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:562    .rodata.arm_cfft_sR_q31_len128:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:574    .rodata.arm_cfft_sR_q31_len64:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:586    .rodata.arm_cfft_sR_q31_len32:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:598    .rodata.arm_cfft_sR_q31_len16:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:613    .rodata.arm_cfft_sR_f32_len4096:00000000 arm_cfft_sR_f32_len4096
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:610    .rodata.arm_cfft_sR_f32_len4096:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:625    .rodata.arm_cfft_sR_f32_len2048:00000000 arm_cfft_sR_f32_len2048
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:622    .rodata.arm_cfft_sR_f32_len2048:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:637    .rodata.arm_cfft_sR_f32_len1024:00000000 arm_cfft_sR_f32_len1024
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:634    .rodata.arm_cfft_sR_f32_len1024:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:649    .rodata.arm_cfft_sR_f32_len512:00000000 arm_cfft_sR_f32_len512
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:646    .rodata.arm_cfft_sR_f32_len512:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:661    .rodata.arm_cfft_sR_f32_len256:00000000 arm_cfft_sR_f32_len256
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:658    .rodata.arm_cfft_sR_f32_len256:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:673    .rodata.arm_cfft_sR_f32_len128:00000000 arm_cfft_sR_f32_len128
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:670    .rodata.arm_cfft_sR_f32_len128:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:685    .rodata.arm_cfft_sR_f32_len64:00000000 arm_cfft_sR_f32_len64
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:682    .rodata.arm_cfft_sR_f32_len64:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:697    .rodata.arm_cfft_sR_f32_len32:00000000 arm_cfft_sR_f32_len32
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:694    .rodata.arm_cfft_sR_f32_len32:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:709    .rodata.arm_cfft_sR_f32_len16:00000000 arm_cfft_sR_f32_len16
-C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s:706    .rodata.arm_cfft_sR_f32_len16:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:274    .rodata.arm_rfft_fast_sR_f32_len4096:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:292    .rodata.arm_rfft_fast_sR_f32_len2048:00000000 arm_rfft_fast_sR_f32_len2048
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:289    .rodata.arm_rfft_fast_sR_f32_len2048:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:307    .rodata.arm_rfft_fast_sR_f32_len1024:00000000 arm_rfft_fast_sR_f32_len1024
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:304    .rodata.arm_rfft_fast_sR_f32_len1024:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:322    .rodata.arm_rfft_fast_sR_f32_len512:00000000 arm_rfft_fast_sR_f32_len512
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:319    .rodata.arm_rfft_fast_sR_f32_len512:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:337    .rodata.arm_rfft_fast_sR_f32_len256:00000000 arm_rfft_fast_sR_f32_len256
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:334    .rodata.arm_rfft_fast_sR_f32_len256:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:352    .rodata.arm_rfft_fast_sR_f32_len128:00000000 arm_rfft_fast_sR_f32_len128
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:349    .rodata.arm_rfft_fast_sR_f32_len128:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:367    .rodata.arm_rfft_fast_sR_f32_len64:00000000 arm_rfft_fast_sR_f32_len64
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:364    .rodata.arm_rfft_fast_sR_f32_len64:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:382    .rodata.arm_rfft_fast_sR_f32_len32:00000000 arm_rfft_fast_sR_f32_len32
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:379    .rodata.arm_rfft_fast_sR_f32_len32:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:394    .rodata.arm_cfft_sR_q15_len4096:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:406    .rodata.arm_cfft_sR_q15_len2048:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:418    .rodata.arm_cfft_sR_q15_len1024:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:430    .rodata.arm_cfft_sR_q15_len512:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:442    .rodata.arm_cfft_sR_q15_len256:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:454    .rodata.arm_cfft_sR_q15_len128:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:466    .rodata.arm_cfft_sR_q15_len64:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:478    .rodata.arm_cfft_sR_q15_len32:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:490    .rodata.arm_cfft_sR_q15_len16:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:502    .rodata.arm_cfft_sR_q31_len4096:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:514    .rodata.arm_cfft_sR_q31_len2048:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:526    .rodata.arm_cfft_sR_q31_len1024:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:538    .rodata.arm_cfft_sR_q31_len512:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:550    .rodata.arm_cfft_sR_q31_len256:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:562    .rodata.arm_cfft_sR_q31_len128:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:574    .rodata.arm_cfft_sR_q31_len64:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:586    .rodata.arm_cfft_sR_q31_len32:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:598    .rodata.arm_cfft_sR_q31_len16:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:613    .rodata.arm_cfft_sR_f32_len4096:00000000 arm_cfft_sR_f32_len4096
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:610    .rodata.arm_cfft_sR_f32_len4096:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:625    .rodata.arm_cfft_sR_f32_len2048:00000000 arm_cfft_sR_f32_len2048
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:622    .rodata.arm_cfft_sR_f32_len2048:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:637    .rodata.arm_cfft_sR_f32_len1024:00000000 arm_cfft_sR_f32_len1024
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:634    .rodata.arm_cfft_sR_f32_len1024:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:649    .rodata.arm_cfft_sR_f32_len512:00000000 arm_cfft_sR_f32_len512
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:646    .rodata.arm_cfft_sR_f32_len512:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:661    .rodata.arm_cfft_sR_f32_len256:00000000 arm_cfft_sR_f32_len256
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:658    .rodata.arm_cfft_sR_f32_len256:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:673    .rodata.arm_cfft_sR_f32_len128:00000000 arm_cfft_sR_f32_len128
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:670    .rodata.arm_cfft_sR_f32_len128:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:685    .rodata.arm_cfft_sR_f32_len64:00000000 arm_cfft_sR_f32_len64
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:682    .rodata.arm_cfft_sR_f32_len64:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:697    .rodata.arm_cfft_sR_f32_len32:00000000 arm_cfft_sR_f32_len32
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:694    .rodata.arm_cfft_sR_f32_len32:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:709    .rodata.arm_cfft_sR_f32_len16:00000000 arm_cfft_sR_f32_len16
+C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s:706    .rodata.arm_cfft_sR_f32_len16:00000000 $d
 
 UNDEFINED SYMBOLS
 realCoefAQ15
 realCoefBQ15
 realCoefAQ31
 realCoefBQ31
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccxw7RLS.s 			page 14
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccjUmR1i.s 			page 14
 
 
 twiddleCoef_2048

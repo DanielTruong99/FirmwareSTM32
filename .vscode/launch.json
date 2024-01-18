@@ -15,10 +15,11 @@
             "servertype": "openocd",
             // "serialNumber": "120513061416303030303032",
             // "interface": "swd",
-            "liveWatch": {
-                "enabled": true,
-                "samplesPerSecond": 3
-            },
+            // "liveWatch": {
+            //     "enabled": true,
+            //     "samplesPerSecond": 3
+            // },
+    
             "configFiles": [
                 "interface/stlink.cfg",
                 "target/stm32f4x.cfg",

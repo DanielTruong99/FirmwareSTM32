@@ -23,6 +23,11 @@ typedef struct StateStruct
   StateData pendlm;
 } State;
 
+typedef struct PWCStruct
+{
+  int16_t d;
+} PWC;
+
 
 
 #endif /* _TOPIC_H */

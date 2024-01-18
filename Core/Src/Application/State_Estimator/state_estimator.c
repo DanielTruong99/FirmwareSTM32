@@ -4,6 +4,7 @@
 extern TIM_HandleTypeDef htim3;
 extern TIM_HandleTypeDef htim4;
 extern TIM_HandleTypeDef htim7;
+extern struct ComputerCommunicator * computer_communicator;
 struct Ao * ao_estimator;
 struct StateEstimator * state_estimator;
 
@@ -47,6 +48,8 @@ Status wait(struct StateEstimator *const self, Event const * const event)
 
       /*Public into state topic*/
       self->public(self->state_pub, &state_topic);
+      static const Event state_evt = {STATE_UPDATED_SIG};
+      ao_estimator->post(&computer_communicator->super, &state_evt);
       
       status = HANDLED_STATUS;
       break;

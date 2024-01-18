@@ -10,7 +10,7 @@
                 "${workspaceFolder}/Core/Src/Application/State_Estimator/Dsp",
                 "${workspaceFolder}/Core/Src/Middleware/Topic",
                 "${workspaceFolder}/Core/Src/Middleware/Active_Object",
-                "${workspaceFolder}/Core/Src/Drivers/Motor_Communicator",
+                "${workspaceFolder}/Core/Src/Drivers/Usart",
                 "${workspaceFolder}/Core/Src/Drivers/Encoder",
                 "${workspaceFolder}/Core/Src/Drivers/System_Config",
                 "${workspaceFolder}/ThirdParty/FreeRTOS",

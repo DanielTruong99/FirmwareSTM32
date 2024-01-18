@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 1
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 1
   29:Core/Src/Drivers/Encoder/encoder.c **** 
   30:Core/Src/Drivers/Encoder/encoder.c ****   portEND_SWITCHING_ISR(xHigherPriorityTaskWoken);
   31:Core/Src/Drivers/Encoder/encoder.c **** }
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 2
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s 			page 2
 
 
   32:Core/Src/Drivers/Encoder/encoder.c **** 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 1
   86:Core/Src/Drivers/Encoder/encoder.c **** {
   87:Core/Src/Drivers/Encoder/encoder.c ****   MX_TIM3_Init(); // Motor encoder
   88:Core/Src/Drivers/Encoder/encoder.c ****   MX_TIM4_Init(); // Pendullum encoder
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 3
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s 			page 3
 
 
   89:Core/Src/Drivers/Encoder/encoder.c ****   MX_TIM7_Init(); // Basic timer for generating periodic task running at 2kHz
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 1
   58              		.loc 1 112 3 is_stmt 1 view .LVU7
   59              		.loc 1 112 24 is_stmt 0 view .LVU8
   60 001a 6560     		str	r5, [r4, #4]
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 4
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s 			page 4
 
 
  113:Core/Src/Drivers/Encoder/encoder.c ****   htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 1
  130:Core/Src/Drivers/Encoder/encoder.c ****   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
   98              		.loc 1 130 3 view .LVU32
   99              		.loc 1 130 37 is_stmt 0 view .LVU33
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 5
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s 			page 5
 
 
  100 003a 0195     		str	r5, [sp, #4]
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 1
  142              		.cfi_offset 14, -4
  143 0002 8DB0     		sub	sp, sp, #52
  144              	.LCFI4:
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 6
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s 			page 6
 
 
  145              		.cfi_def_cfa_offset 64
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 1
  187 002e 0593     		str	r3, [sp, #20]
  157:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC1Prescaler = TIM_ICPSC_DIV1;
  188              		.loc 1 157 3 is_stmt 1 view .LVU62
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 7
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s 			page 7
 
 
  158:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC1Filter = 0;
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 1
  227              		.cfi_endproc
  228              	.LFE175:
  230              		.section	.text.MX_TIM7_Init,"ax",%progbits
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 8
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s 			page 8
 
 
  231              		.align	1
@@ -470,15 +470,15 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 1
  265              		.loc 1 186 3 is_stmt 1 view .LVU87
  266              		.loc 1 186 26 is_stmt 0 view .LVU88
  267 0014 A560     		str	r5, [r4, #8]
- 187:Core/Src/Drivers/Encoder/encoder.c ****   htim7.Init.Period = 500;
+ 187:Core/Src/Drivers/Encoder/encoder.c ****   htim7.Init.Period = 1000;
  268              		.loc 1 187 3 is_stmt 1 view .LVU89
  269              		.loc 1 187 21 is_stmt 0 view .LVU90
- 270 0016 4FF4FA73 		mov	r3, #500
+ 270 0016 4FF47A73 		mov	r3, #1000
  271 001a E360     		str	r3, [r4, #12]
  188:Core/Src/Drivers/Encoder/encoder.c ****   htim7.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
  272              		.loc 1 188 3 is_stmt 1 view .LVU91
  273              		.loc 1 188 32 is_stmt 0 view .LVU92
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 9
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s 			page 9
 
 
  274 001c 8023     		movs	r3, #128
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 1
  318              	.LFB168:
   22:Core/Src/Drivers/Encoder/encoder.c ****   BaseType_t xHigherPriorityTaskWoken = pdFALSE;
  319              		.loc 1 22 1 is_stmt 1 view -0
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 10
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s 			page 10
 
 
  320              		.cfi_startproc
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 1
   30:Core/Src/Drivers/Encoder/encoder.c **** }
  362              		.loc 1 30 3 discriminator 3 view .LVU117
  363              		.thumb
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 11
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s 			page 11
 
 
  364              		.syntax unified
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 1
  413              		.cfi_startproc
  414              		@ args = 0, pretend = 0, frame = 8
  415              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 12
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s 			page 12
 
 
   39:Core/Src/Drivers/Encoder/encoder.c ****   BaseType_t xHigherPriorityTaskWoken = pdFALSE;
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 1
  457              	@ 55 "Core/Src/Drivers/Encoder/encoder.c" 1
  458 002a BFF36F8F 		isb
  459              	@ 0 "" 2
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 13
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s 			page 13
 
 
   55:Core/Src/Drivers/Encoder/encoder.c **** }
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 1
  501 004c 0749     		ldr	r1, .L27+8
  502 004e 0B80     		strh	r3, [r1]	@ movhi
   52:Core/Src/Drivers/Encoder/encoder.c ****   }
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 14
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s 			page 14
 
 
  503              		.loc 1 52 5 is_stmt 1 view .LVU151
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 1
  553 000c 00000000 		.word	htim3
  554              		.cfi_endproc
  555              	.LFE170:
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 15
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s 			page 15
 
 
  557              		.section	.text.TIM4_IRQHandler,"ax",%progbits
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 1
  609              	.LVL23:
   80:Core/Src/Drivers/Encoder/encoder.c **** 
  610              		.loc 1 80 1 is_stmt 0 view .LVU163
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 16
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s 			page 16
 
 
  611 0008 08BD     		pop	{r3, pc}
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 1
  658              	.L43:
  659 0018 00000000 		.word	encoder_topic
  660              		.cfi_endproc
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 17
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s 			page 17
 
 
  661              	.LFE173:
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 1
  217:Core/Src/Drivers/Encoder/encoder.c ****     /**TIM3 GPIO Configuration
  218:Core/Src/Drivers/Encoder/encoder.c ****     PA6     ------> TIM3_CH1
  219:Core/Src/Drivers/Encoder/encoder.c ****     PA7     ------> TIM3_CH2
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 18
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s 			page 18
 
 
  220:Core/Src/Drivers/Encoder/encoder.c ****     */
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 1
  719              		.loc 1 214 5 is_stmt 1 view .LVU183
  720              	.LBB3:
  214:Core/Src/Drivers/Encoder/encoder.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 19
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s 			page 19
 
 
  721              		.loc 1 214 5 view .LVU184
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 1
  223:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
  761              		.loc 1 223 5 is_stmt 1 view .LVU199
  223:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 20
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s 			page 20
 
 
  762              		.loc 1 223 26 is_stmt 0 view .LVU200
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 1
  804 008c 039A     		ldr	r2, [sp, #12]
  805              	.LBE5:
  235:Core/Src/Drivers/Encoder/encoder.c ****     __HAL_RCC_GPIOD_CLK_ENABLE();
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 21
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s 			page 21
 
 
  806              		.loc 1 235 5 view .LVU213
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 1
  843              		.loc 1 247 5 is_stmt 0 view .LVU230
  844 00b6 FFF7FEFF 		bl	HAL_GPIO_Init
  845              	.LVL36:
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 22
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s 			page 22
 
 
  250:Core/Src/Drivers/Encoder/encoder.c ****     HAL_NVIC_EnableIRQ(TIM4_IRQn);
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 1
  890 0008 7047     		bx	lr
  891              	.L59:
  263:Core/Src/Drivers/Encoder/encoder.c ****   if(htim_base->Instance==TIM7)
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 23
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s 			page 23
 
 
  892              		.loc 1 263 1 view .LVU238
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 1
  937              	.L60:
  938 003c 00140040 		.word	1073746944
  939              		.cfi_endproc
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 24
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s 			page 24
 
 
  940              	.LFE178:
@@ -1438,57 +1438,57 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 1
  993              		.file 18 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h"
  994              		.file 19 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h"
  995              		.file 20 "<built-in>"
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 25
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s 			page 25
 
 
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 26
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s 			page 26
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 encoder.c
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:21     .text.MX_TIM3_Init:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:26     .text.MX_TIM3_Init:00000000 MX_TIM3_Init
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:120    .text.MX_TIM3_Init:0000004c $d
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:973    .bss.htim3:00000000 htim3
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:126    .text.MX_TIM4_Init:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:131    .text.MX_TIM4_Init:00000000 MX_TIM4_Init
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:225    .text.MX_TIM4_Init:0000004c $d
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:966    .bss.htim4:00000000 htim4
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:231    .text.MX_TIM7_Init:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:236    .text.MX_TIM7_Init:00000000 MX_TIM7_Init
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:304    .text.MX_TIM7_Init:00000038 $d
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:959    .bss.htim7:00000000 htim7
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:310    .text.HAL_TIM_PeriodElapsedCallback:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:316    .text.HAL_TIM_PeriodElapsedCallback:00000000 HAL_TIM_PeriodElapsedCallback
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:395    .text.HAL_TIM_PeriodElapsedCallback:00000040 $d
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:946    .rodata.time_evt.0:00000000 time_evt.0
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:403    .text.HAL_TIM_IC_CaptureCallback:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:409    .text.HAL_TIM_IC_CaptureCallback:00000000 HAL_TIM_IC_CaptureCallback
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:519    .text.HAL_TIM_IC_CaptureCallback:00000064 $d
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:952    .bss.encoder_topic:00000000 encoder_topic
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:527    .text.TIM3_IRQHandler:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:533    .text.TIM3_IRQHandler:00000000 TIM3_IRQHandler
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:553    .text.TIM3_IRQHandler:0000000c $d
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:558    .text.TIM4_IRQHandler:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:564    .text.TIM4_IRQHandler:00000000 TIM4_IRQHandler
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:584    .text.TIM4_IRQHandler:0000000c $d
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:589    .text.TIM7_IRQHandler:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:595    .text.TIM7_IRQHandler:00000000 TIM7_IRQHandler
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:615    .text.TIM7_IRQHandler:0000000c $d
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:620    .text.Driver_Encoder_Init:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:626    .text.Driver_Encoder_Init:00000000 Driver_Encoder_Init
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:659    .text.Driver_Encoder_Init:00000018 $d
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:664    .text.HAL_TIM_Encoder_MspInit:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:670    .text.HAL_TIM_Encoder_MspInit:00000000 HAL_TIM_Encoder_MspInit
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:861    .text.HAL_TIM_Encoder_MspInit:000000cc $d
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:870    .text.HAL_TIM_Base_MspInit:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:876    .text.HAL_TIM_Base_MspInit:00000000 HAL_TIM_Base_MspInit
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:938    .text.HAL_TIM_Base_MspInit:0000003c $d
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:943    .rodata.time_evt.0:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:949    .bss.encoder_topic:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:956    .bss.htim7:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:963    .bss.htim4:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s:970    .bss.htim3:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:21     .text.MX_TIM3_Init:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:26     .text.MX_TIM3_Init:00000000 MX_TIM3_Init
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:120    .text.MX_TIM3_Init:0000004c $d
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:973    .bss.htim3:00000000 htim3
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:126    .text.MX_TIM4_Init:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:131    .text.MX_TIM4_Init:00000000 MX_TIM4_Init
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:225    .text.MX_TIM4_Init:0000004c $d
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:966    .bss.htim4:00000000 htim4
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:231    .text.MX_TIM7_Init:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:236    .text.MX_TIM7_Init:00000000 MX_TIM7_Init
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:304    .text.MX_TIM7_Init:00000038 $d
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:959    .bss.htim7:00000000 htim7
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:310    .text.HAL_TIM_PeriodElapsedCallback:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:316    .text.HAL_TIM_PeriodElapsedCallback:00000000 HAL_TIM_PeriodElapsedCallback
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:395    .text.HAL_TIM_PeriodElapsedCallback:00000040 $d
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:946    .rodata.time_evt.0:00000000 time_evt.0
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:403    .text.HAL_TIM_IC_CaptureCallback:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:409    .text.HAL_TIM_IC_CaptureCallback:00000000 HAL_TIM_IC_CaptureCallback
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:519    .text.HAL_TIM_IC_CaptureCallback:00000064 $d
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:952    .bss.encoder_topic:00000000 encoder_topic
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:527    .text.TIM3_IRQHandler:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:533    .text.TIM3_IRQHandler:00000000 TIM3_IRQHandler
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:553    .text.TIM3_IRQHandler:0000000c $d
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:558    .text.TIM4_IRQHandler:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:564    .text.TIM4_IRQHandler:00000000 TIM4_IRQHandler
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:584    .text.TIM4_IRQHandler:0000000c $d
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:589    .text.TIM7_IRQHandler:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:595    .text.TIM7_IRQHandler:00000000 TIM7_IRQHandler
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:615    .text.TIM7_IRQHandler:0000000c $d
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:620    .text.Driver_Encoder_Init:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:626    .text.Driver_Encoder_Init:00000000 Driver_Encoder_Init
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:659    .text.Driver_Encoder_Init:00000018 $d
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:664    .text.HAL_TIM_Encoder_MspInit:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:670    .text.HAL_TIM_Encoder_MspInit:00000000 HAL_TIM_Encoder_MspInit
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:861    .text.HAL_TIM_Encoder_MspInit:000000cc $d
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:870    .text.HAL_TIM_Base_MspInit:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:876    .text.HAL_TIM_Base_MspInit:00000000 HAL_TIM_Base_MspInit
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:938    .text.HAL_TIM_Base_MspInit:0000003c $d
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:943    .rodata.time_evt.0:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:949    .bss.encoder_topic:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:956    .bss.htim7:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:963    .bss.htim4:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s:970    .bss.htim3:00000000 $d
 
 UNDEFINED SYMBOLS
 memset
@@ -1501,6 +1501,6 @@ HAL_TIM_IRQHandler
 HAL_GPIO_Init
 HAL_NVIC_SetPriority
 HAL_NVIC_EnableIRQ
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccbUe5F5.s 			page 27
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccc4QO9Z.s 			page 27
 
 

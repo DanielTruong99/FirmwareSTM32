@@ -7,17 +7,11 @@
 #include "topic.h"
 #include "encoder.h"
 #include "dsp.h"
+#include "computer_communicator.h"
 
 typedef struct TimeEvent TimeEvent;
 
 enum StateEstimatorEvent{TIMEOUT_2KHz_SIG = USER_SIG};
-
-struct TimeEvent
-{
-    Event super;
-};
-
-
 
 struct StateEstimator
 {

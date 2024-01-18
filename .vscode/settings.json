@@ -16,6 +16,10 @@
         "*.tcc": "c",
         "numbers": "c",
         "stdint.h": "c",
-        "_default_types.h": "c"
-    }
+        "_default_types.h": "c",
+        "topic.h": "c",
+        "computer_communicator.h": "c",
+        "stdarg.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }

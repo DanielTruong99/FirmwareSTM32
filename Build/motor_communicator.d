@@ -1,6 +1,6 @@
 Build/motor_communicator.o: \
- Core/Src/Drivers/Motor_Communicator/motor_communicator.c \
- Core/Src/Drivers/Motor_Communicator/motor_communicator.h \
+ Core/Src/Application/Motor_Communicator/motor_communicator.c \
+ Core/Src/Application/Motor_Communicator/motor_communicator.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  Core/Src/stm32f4xx_hal_conf.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -26,8 +26,19 @@ Build/motor_communicator.o: \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
- Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
-Core/Src/Drivers/Motor_Communicator/motor_communicator.h:
+ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
+ Core/Src/Middleware/Active_Object/active_object.h \
+ ThirdParty/FreeRTOS/include/FreeRTOS.h \
+ ThirdParty/FreeRTOS/FreeRTOSConfig.h \
+ ThirdParty/FreeRTOS/include/projdefs.h \
+ ThirdParty/FreeRTOS/include/portable.h \
+ ThirdParty/FreeRTOS/include/deprecated_definitions.h \
+ ThirdParty/FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h \
+ ThirdParty/FreeRTOS/include/mpu_wrappers.h \
+ ThirdParty/FreeRTOS/include/queue.h ThirdParty/FreeRTOS/include/task.h \
+ ThirdParty/FreeRTOS/include/list.h Core/Src/Middleware/Topic/topic.h \
+ Drivers/CMSIS/DSP/Include/arm_math.h
+Core/Src/Application/Motor_Communicator/motor_communicator.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 Core/Src/stm32f4xx_hal_conf.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h:
@@ -56,3 +67,16 @@ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
+Core/Src/Middleware/Active_Object/active_object.h:
+ThirdParty/FreeRTOS/include/FreeRTOS.h:
+ThirdParty/FreeRTOS/FreeRTOSConfig.h:
+ThirdParty/FreeRTOS/include/projdefs.h:
+ThirdParty/FreeRTOS/include/portable.h:
+ThirdParty/FreeRTOS/include/deprecated_definitions.h:
+ThirdParty/FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h:
+ThirdParty/FreeRTOS/include/mpu_wrappers.h:
+ThirdParty/FreeRTOS/include/queue.h:
+ThirdParty/FreeRTOS/include/task.h:
+ThirdParty/FreeRTOS/include/list.h:
+Core/Src/Middleware/Topic/topic.h:
+Drivers/CMSIS/DSP/Include/arm_math.h:

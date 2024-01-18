@@ -27,8 +27,9 @@ extern "C" {
 #endif
 
 #include "stm32f4xx_hal.h"
-#include "motor_communicator.h"
+#include "usart.h"
 #include "state_estimator.h"
+#include "computer_communicator.h"
 #include "computer_communicator.h"
 #include "system_config.h"
 
