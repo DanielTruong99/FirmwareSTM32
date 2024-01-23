@@ -1,6 +1,7 @@
 #include "state_estimator.h"
 
 /*Private Interfacce*/
+extern TIM_HandleTypeDef htim2;
 extern TIM_HandleTypeDef htim3;
 extern TIM_HandleTypeDef htim4;
 extern TIM_HandleTypeDef htim7;
@@ -27,7 +28,7 @@ Status wait(struct StateEstimator *const self, Event const * const event)
     {
       HAL_TIM_Base_Start_IT(&htim7);
       HAL_TIM_Encoder_Start_IT(&htim3, TIM_CHANNEL_ALL);
-      HAL_TIM_Encoder_Start_IT(&htim4, TIM_CHANNEL_ALL);
+      HAL_TIM_Encoder_Start_IT(&htim2, TIM_CHANNEL_ALL);
 
       status = HANDLED_STATUS;
       break;
@@ -36,7 +37,7 @@ Status wait(struct StateEstimator *const self, Event const * const event)
     case TIMEOUT_2KHz_SIG:
     {
       static Encoder encoder_topic = {0};
-      static State state_topic = {.motor ={0.0F}, .pendlm = {0.0F}, .cart = {0.0F};
+      static State state_topic = {.motor ={0.0F}, .pendlm = {0.0F}, .cart = {0.0F}};
       BaseType_t is_success;
       is_success = xQueuePeek(self->encoder_sub, &encoder_topic, 0);
 

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s 			page 1
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -26,118 +26,171 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s 			page 1
   23              		.thumb
   24              		.thumb_func
   26              	MX_TIM3_Init:
-  27              	.LFB174:
+  27              	.LFB176:
    1:Core/Src/Drivers/Encoder/encoder.c **** #include "encoder.h"
    2:Core/Src/Drivers/Encoder/encoder.c **** 
    3:Core/Src/Drivers/Encoder/encoder.c **** /*Private Interfacce*/
-   4:Core/Src/Drivers/Encoder/encoder.c **** TIM_HandleTypeDef htim3;
-   5:Core/Src/Drivers/Encoder/encoder.c **** TIM_HandleTypeDef htim4;
-   6:Core/Src/Drivers/Encoder/encoder.c **** TIM_HandleTypeDef htim7;
-   7:Core/Src/Drivers/Encoder/encoder.c **** extern struct Ao * ao_estimator;
-   8:Core/Src/Drivers/Encoder/encoder.c **** extern struct StateEstimator * state_estimator;
-   9:Core/Src/Drivers/Encoder/encoder.c **** 
-  10:Core/Src/Drivers/Encoder/encoder.c **** static Encoder encoder_topic;
-  11:Core/Src/Drivers/Encoder/encoder.c **** static void MX_TIM3_Init(void);
-  12:Core/Src/Drivers/Encoder/encoder.c **** static void MX_TIM4_Init(void);
-  13:Core/Src/Drivers/Encoder/encoder.c **** static void MX_TIM7_Init(void);
-  14:Core/Src/Drivers/Encoder/encoder.c **** 
-  15:Core/Src/Drivers/Encoder/encoder.c **** 
-  16:Core/Src/Drivers/Encoder/encoder.c **** /**
-  17:Core/Src/Drivers/Encoder/encoder.c ****   * @brief  Period elapsed callback in non-blocking mode
-  18:Core/Src/Drivers/Encoder/encoder.c ****   * @param  htim TIM handle
-  19:Core/Src/Drivers/Encoder/encoder.c ****   * @retval None
-  20:Core/Src/Drivers/Encoder/encoder.c ****   */
-  21:Core/Src/Drivers/Encoder/encoder.c **** void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-  22:Core/Src/Drivers/Encoder/encoder.c **** {
-  23:Core/Src/Drivers/Encoder/encoder.c ****   BaseType_t xHigherPriorityTaskWoken = pdFALSE;
-  24:Core/Src/Drivers/Encoder/encoder.c ****   if(htim->Instance == TIM7)
-  25:Core/Src/Drivers/Encoder/encoder.c ****   {
-  26:Core/Src/Drivers/Encoder/encoder.c ****     static const Event time_evt = {TIMEOUT_2KHz_SIG};
-  27:Core/Src/Drivers/Encoder/encoder.c ****     ao_estimator->postFromISR(ao_estimator, &time_evt, &xHigherPriorityTaskWoken);
-  28:Core/Src/Drivers/Encoder/encoder.c ****   }
-  29:Core/Src/Drivers/Encoder/encoder.c **** 
-  30:Core/Src/Drivers/Encoder/encoder.c ****   portEND_SWITCHING_ISR(xHigherPriorityTaskWoken);
-  31:Core/Src/Drivers/Encoder/encoder.c **** }
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s 			page 2
+   4:Core/Src/Drivers/Encoder/encoder.c **** TIM_HandleTypeDef htim2;
+   5:Core/Src/Drivers/Encoder/encoder.c **** TIM_HandleTypeDef htim3;
+   6:Core/Src/Drivers/Encoder/encoder.c **** TIM_HandleTypeDef htim4;
+   7:Core/Src/Drivers/Encoder/encoder.c **** TIM_HandleTypeDef htim7;
+   8:Core/Src/Drivers/Encoder/encoder.c **** extern struct Ao * ao_estimator;
+   9:Core/Src/Drivers/Encoder/encoder.c **** extern struct StateEstimator * state_estimator;
+  10:Core/Src/Drivers/Encoder/encoder.c **** 
+  11:Core/Src/Drivers/Encoder/encoder.c **** static Encoder encoder_topic;
+  12:Core/Src/Drivers/Encoder/encoder.c **** static void MX_TIM2_Init(void);
+  13:Core/Src/Drivers/Encoder/encoder.c **** static void MX_TIM3_Init(void);
+  14:Core/Src/Drivers/Encoder/encoder.c **** static void MX_TIM4_Init(void);
+  15:Core/Src/Drivers/Encoder/encoder.c **** static void MX_TIM7_Init(void);
+  16:Core/Src/Drivers/Encoder/encoder.c **** 
+  17:Core/Src/Drivers/Encoder/encoder.c **** 
+  18:Core/Src/Drivers/Encoder/encoder.c **** /**
+  19:Core/Src/Drivers/Encoder/encoder.c ****   * @brief  Period elapsed callback in non-blocking mode
+  20:Core/Src/Drivers/Encoder/encoder.c ****   * @param  htim TIM handle
+  21:Core/Src/Drivers/Encoder/encoder.c ****   * @retval None
+  22:Core/Src/Drivers/Encoder/encoder.c ****   */
+  23:Core/Src/Drivers/Encoder/encoder.c **** void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+  24:Core/Src/Drivers/Encoder/encoder.c **** {
+  25:Core/Src/Drivers/Encoder/encoder.c ****   BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+  26:Core/Src/Drivers/Encoder/encoder.c ****   if(htim->Instance == TIM7)
+  27:Core/Src/Drivers/Encoder/encoder.c ****   {
+  28:Core/Src/Drivers/Encoder/encoder.c ****     static const Event time_evt = {TIMEOUT_2KHz_SIG};
+  29:Core/Src/Drivers/Encoder/encoder.c ****     ao_estimator->postFromISR(ao_estimator, &time_evt, &xHigherPriorityTaskWoken);
+  30:Core/Src/Drivers/Encoder/encoder.c ****   }
+  31:Core/Src/Drivers/Encoder/encoder.c **** 
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s 			page 2
 
 
-  32:Core/Src/Drivers/Encoder/encoder.c **** 
-  33:Core/Src/Drivers/Encoder/encoder.c **** /**
-  34:Core/Src/Drivers/Encoder/encoder.c ****   * @brief  Input Capture callback in non-blocking mode
-  35:Core/Src/Drivers/Encoder/encoder.c ****   * @param  htim TIM IC handle
-  36:Core/Src/Drivers/Encoder/encoder.c ****   * @retval None
-  37:Core/Src/Drivers/Encoder/encoder.c ****   */
-  38:Core/Src/Drivers/Encoder/encoder.c **** void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
-  39:Core/Src/Drivers/Encoder/encoder.c **** {
-  40:Core/Src/Drivers/Encoder/encoder.c ****   BaseType_t xHigherPriorityTaskWoken = pdFALSE;
-  41:Core/Src/Drivers/Encoder/encoder.c ****   
-  42:Core/Src/Drivers/Encoder/encoder.c ****   if(htim->Instance == TIM4)
-  43:Core/Src/Drivers/Encoder/encoder.c ****   {
-  44:Core/Src/Drivers/Encoder/encoder.c ****     // Read motor encoder counter value 
-  45:Core/Src/Drivers/Encoder/encoder.c ****     encoder_topic.motor_counter = (int16_t)((uint32_t)__HAL_TIM_GET_COUNTER(htim));
-  46:Core/Src/Drivers/Encoder/encoder.c ****     state_estimator->publicFromISR(state_estimator->encoder_sub, &encoder_topic, &xHigherPriorityTa
-  47:Core/Src/Drivers/Encoder/encoder.c ****   }
-  48:Core/Src/Drivers/Encoder/encoder.c ****   else if(htim->Instance == TIM3)
-  49:Core/Src/Drivers/Encoder/encoder.c ****   {
-  50:Core/Src/Drivers/Encoder/encoder.c ****     // Read pendullum encoder counter value 
-  51:Core/Src/Drivers/Encoder/encoder.c ****     encoder_topic.pendlm_counter = (int16_t)((uint32_t)__HAL_TIM_GET_COUNTER(htim));
-  52:Core/Src/Drivers/Encoder/encoder.c ****     state_estimator->publicFromISR(state_estimator->encoder_sub, &encoder_topic, &xHigherPriorityTa
-  53:Core/Src/Drivers/Encoder/encoder.c ****   }
-  54:Core/Src/Drivers/Encoder/encoder.c **** 
-  55:Core/Src/Drivers/Encoder/encoder.c ****   portEND_SWITCHING_ISR(xHigherPriorityTaskWoken);
-  56:Core/Src/Drivers/Encoder/encoder.c **** }
-  57:Core/Src/Drivers/Encoder/encoder.c **** 
-  58:Core/Src/Drivers/Encoder/encoder.c **** /**
-  59:Core/Src/Drivers/Encoder/encoder.c ****   * @brief This function handles TIM3 global interrupt.
-  60:Core/Src/Drivers/Encoder/encoder.c ****   */
-  61:Core/Src/Drivers/Encoder/encoder.c **** void TIM3_IRQHandler(void)
-  62:Core/Src/Drivers/Encoder/encoder.c **** {
-  63:Core/Src/Drivers/Encoder/encoder.c ****   HAL_TIM_IRQHandler(&htim3);
-  64:Core/Src/Drivers/Encoder/encoder.c **** }
-  65:Core/Src/Drivers/Encoder/encoder.c **** 
-  66:Core/Src/Drivers/Encoder/encoder.c **** /**
-  67:Core/Src/Drivers/Encoder/encoder.c ****   * @brief This function handles TIM4 global interrupt.
-  68:Core/Src/Drivers/Encoder/encoder.c ****   */
-  69:Core/Src/Drivers/Encoder/encoder.c **** void TIM4_IRQHandler(void)
-  70:Core/Src/Drivers/Encoder/encoder.c **** {
-  71:Core/Src/Drivers/Encoder/encoder.c ****   HAL_TIM_IRQHandler(&htim4);
-  72:Core/Src/Drivers/Encoder/encoder.c **** }
-  73:Core/Src/Drivers/Encoder/encoder.c **** 
-  74:Core/Src/Drivers/Encoder/encoder.c **** /**
-  75:Core/Src/Drivers/Encoder/encoder.c ****   * @brief This function handles TIM7 global interrupt.
-  76:Core/Src/Drivers/Encoder/encoder.c ****   */
-  77:Core/Src/Drivers/Encoder/encoder.c **** void TIM7_IRQHandler(void)
-  78:Core/Src/Drivers/Encoder/encoder.c **** {
-  79:Core/Src/Drivers/Encoder/encoder.c ****   HAL_TIM_IRQHandler(&htim7);
-  80:Core/Src/Drivers/Encoder/encoder.c **** }
-  81:Core/Src/Drivers/Encoder/encoder.c **** 
-  82:Core/Src/Drivers/Encoder/encoder.c **** /**
-  83:Core/Src/Drivers/Encoder/encoder.c ****   * @brief This function initialize USART1.
-  84:Core/Src/Drivers/Encoder/encoder.c ****   */
-  85:Core/Src/Drivers/Encoder/encoder.c **** void Driver_Encoder_Init()
-  86:Core/Src/Drivers/Encoder/encoder.c **** {
-  87:Core/Src/Drivers/Encoder/encoder.c ****   MX_TIM3_Init(); // Motor encoder
-  88:Core/Src/Drivers/Encoder/encoder.c ****   MX_TIM4_Init(); // Pendullum encoder
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s 			page 3
+  32:Core/Src/Drivers/Encoder/encoder.c ****   portEND_SWITCHING_ISR(xHigherPriorityTaskWoken);
+  33:Core/Src/Drivers/Encoder/encoder.c **** }
+  34:Core/Src/Drivers/Encoder/encoder.c **** 
+  35:Core/Src/Drivers/Encoder/encoder.c **** /**
+  36:Core/Src/Drivers/Encoder/encoder.c ****   * @brief  Input Capture callback in non-blocking mode
+  37:Core/Src/Drivers/Encoder/encoder.c ****   * @param  htim TIM IC handle
+  38:Core/Src/Drivers/Encoder/encoder.c ****   * @retval None
+  39:Core/Src/Drivers/Encoder/encoder.c ****   */
+  40:Core/Src/Drivers/Encoder/encoder.c **** void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
+  41:Core/Src/Drivers/Encoder/encoder.c **** {
+  42:Core/Src/Drivers/Encoder/encoder.c ****   BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+  43:Core/Src/Drivers/Encoder/encoder.c ****   
+  44:Core/Src/Drivers/Encoder/encoder.c ****   if(htim->Instance == TIM2)
+  45:Core/Src/Drivers/Encoder/encoder.c ****   {
+  46:Core/Src/Drivers/Encoder/encoder.c ****     // Read motor encoder counter value 
+  47:Core/Src/Drivers/Encoder/encoder.c ****     encoder_topic.motor_counter = (int32_t)((uint32_t)__HAL_TIM_GET_COUNTER(htim));
+  48:Core/Src/Drivers/Encoder/encoder.c ****     state_estimator->publicFromISR(state_estimator->encoder_sub, &encoder_topic, &xHigherPriorityTa
+  49:Core/Src/Drivers/Encoder/encoder.c ****   }
+  50:Core/Src/Drivers/Encoder/encoder.c ****   else if(htim->Instance == TIM3)
+  51:Core/Src/Drivers/Encoder/encoder.c ****   {
+  52:Core/Src/Drivers/Encoder/encoder.c ****     // Read pendullum encoder counter value 
+  53:Core/Src/Drivers/Encoder/encoder.c ****     encoder_topic.pendlm_counter = (int16_t)((uint32_t)__HAL_TIM_GET_COUNTER(htim));
+  54:Core/Src/Drivers/Encoder/encoder.c ****     state_estimator->publicFromISR(state_estimator->encoder_sub, &encoder_topic, &xHigherPriorityTa
+  55:Core/Src/Drivers/Encoder/encoder.c ****   }
+  56:Core/Src/Drivers/Encoder/encoder.c **** 
+  57:Core/Src/Drivers/Encoder/encoder.c ****   portEND_SWITCHING_ISR(xHigherPriorityTaskWoken);
+  58:Core/Src/Drivers/Encoder/encoder.c **** }
+  59:Core/Src/Drivers/Encoder/encoder.c **** 
+  60:Core/Src/Drivers/Encoder/encoder.c **** /**
+  61:Core/Src/Drivers/Encoder/encoder.c ****   * @brief This function handles TIM2 global interrupt.
+  62:Core/Src/Drivers/Encoder/encoder.c ****   */
+  63:Core/Src/Drivers/Encoder/encoder.c **** void TIM2_IRQHandler(void)
+  64:Core/Src/Drivers/Encoder/encoder.c **** {
+  65:Core/Src/Drivers/Encoder/encoder.c ****   HAL_TIM_IRQHandler(&htim2);
+  66:Core/Src/Drivers/Encoder/encoder.c **** }
+  67:Core/Src/Drivers/Encoder/encoder.c **** 
+  68:Core/Src/Drivers/Encoder/encoder.c **** /**
+  69:Core/Src/Drivers/Encoder/encoder.c ****   * @brief This function handles TIM3 global interrupt.
+  70:Core/Src/Drivers/Encoder/encoder.c ****   */
+  71:Core/Src/Drivers/Encoder/encoder.c **** void TIM3_IRQHandler(void)
+  72:Core/Src/Drivers/Encoder/encoder.c **** {
+  73:Core/Src/Drivers/Encoder/encoder.c ****   HAL_TIM_IRQHandler(&htim3);
+  74:Core/Src/Drivers/Encoder/encoder.c **** }
+  75:Core/Src/Drivers/Encoder/encoder.c **** 
+  76:Core/Src/Drivers/Encoder/encoder.c **** /**
+  77:Core/Src/Drivers/Encoder/encoder.c ****   * @brief This function handles TIM4 global interrupt.
+  78:Core/Src/Drivers/Encoder/encoder.c ****   */
+  79:Core/Src/Drivers/Encoder/encoder.c **** void TIM4_IRQHandler(void)
+  80:Core/Src/Drivers/Encoder/encoder.c **** {
+  81:Core/Src/Drivers/Encoder/encoder.c ****   HAL_TIM_IRQHandler(&htim4);
+  82:Core/Src/Drivers/Encoder/encoder.c **** }
+  83:Core/Src/Drivers/Encoder/encoder.c **** 
+  84:Core/Src/Drivers/Encoder/encoder.c **** /**
+  85:Core/Src/Drivers/Encoder/encoder.c ****   * @brief This function handles TIM7 global interrupt.
+  86:Core/Src/Drivers/Encoder/encoder.c ****   */
+  87:Core/Src/Drivers/Encoder/encoder.c **** void TIM7_IRQHandler(void)
+  88:Core/Src/Drivers/Encoder/encoder.c **** {
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s 			page 3
 
 
-  89:Core/Src/Drivers/Encoder/encoder.c ****   MX_TIM7_Init(); // Basic timer for generating periodic task running at 2kHz
-  90:Core/Src/Drivers/Encoder/encoder.c **** 
-  91:Core/Src/Drivers/Encoder/encoder.c ****   encoder_topic.motor_counter = 0;
-  92:Core/Src/Drivers/Encoder/encoder.c ****   encoder_topic.pendlm_counter = 0;
-  93:Core/Src/Drivers/Encoder/encoder.c ****   // HAL_TIM_Base_Start_IT(&htim7);
-  94:Core/Src/Drivers/Encoder/encoder.c ****   // HAL_TIM_Encoder_Start_IT(&htim3, TIM_CHANNEL_ALL);
-  95:Core/Src/Drivers/Encoder/encoder.c ****   // HAL_TIM_Encoder_Start_IT(&htim4, TIM_CHANNEL_ALL);
-  96:Core/Src/Drivers/Encoder/encoder.c **** }
-  97:Core/Src/Drivers/Encoder/encoder.c **** 
-  98:Core/Src/Drivers/Encoder/encoder.c **** /**
-  99:Core/Src/Drivers/Encoder/encoder.c ****   * @brief TIM3 Initialization Function
- 100:Core/Src/Drivers/Encoder/encoder.c ****   * @param None
- 101:Core/Src/Drivers/Encoder/encoder.c ****   * @retval None
- 102:Core/Src/Drivers/Encoder/encoder.c ****   */
- 103:Core/Src/Drivers/Encoder/encoder.c **** static void MX_TIM3_Init(void)
- 104:Core/Src/Drivers/Encoder/encoder.c **** {
-  28              		.loc 1 104 1 view -0
+  89:Core/Src/Drivers/Encoder/encoder.c ****   HAL_TIM_IRQHandler(&htim7);
+  90:Core/Src/Drivers/Encoder/encoder.c **** }
+  91:Core/Src/Drivers/Encoder/encoder.c **** 
+  92:Core/Src/Drivers/Encoder/encoder.c **** /**
+  93:Core/Src/Drivers/Encoder/encoder.c ****   * @brief This function initialize USART1.
+  94:Core/Src/Drivers/Encoder/encoder.c ****   */
+  95:Core/Src/Drivers/Encoder/encoder.c **** void Driver_Encoder_Init()
+  96:Core/Src/Drivers/Encoder/encoder.c **** {
+  97:Core/Src/Drivers/Encoder/encoder.c ****   MX_TIM3_Init(); // Motor encoder
+  98:Core/Src/Drivers/Encoder/encoder.c ****   MX_TIM2_Init(); // Pendullum encoder
+  99:Core/Src/Drivers/Encoder/encoder.c ****   MX_TIM7_Init(); // Basic timer for generating periodic task running at 2kHz
+ 100:Core/Src/Drivers/Encoder/encoder.c **** 
+ 101:Core/Src/Drivers/Encoder/encoder.c ****   encoder_topic.motor_counter = 0;
+ 102:Core/Src/Drivers/Encoder/encoder.c ****   encoder_topic.pendlm_counter = 0;
+ 103:Core/Src/Drivers/Encoder/encoder.c ****   // HAL_TIM_Base_Start_IT(&htim7);
+ 104:Core/Src/Drivers/Encoder/encoder.c ****   // HAL_TIM_Encoder_Start_IT(&htim3, TIM_CHANNEL_ALL);
+ 105:Core/Src/Drivers/Encoder/encoder.c ****   // HAL_TIM_Encoder_Start_IT(&htim4, TIM_CHANNEL_ALL);
+ 106:Core/Src/Drivers/Encoder/encoder.c **** }
+ 107:Core/Src/Drivers/Encoder/encoder.c **** 
+ 108:Core/Src/Drivers/Encoder/encoder.c **** /**
+ 109:Core/Src/Drivers/Encoder/encoder.c ****   * @brief TIM2 Initialization Function
+ 110:Core/Src/Drivers/Encoder/encoder.c ****   * @param None
+ 111:Core/Src/Drivers/Encoder/encoder.c ****   * @retval None
+ 112:Core/Src/Drivers/Encoder/encoder.c ****   */
+ 113:Core/Src/Drivers/Encoder/encoder.c **** static void MX_TIM2_Init(void)
+ 114:Core/Src/Drivers/Encoder/encoder.c **** {
+ 115:Core/Src/Drivers/Encoder/encoder.c ****   TIM_Encoder_InitTypeDef sConfig = {0};
+ 116:Core/Src/Drivers/Encoder/encoder.c ****   TIM_MasterConfigTypeDef sMasterConfig = {0};
+ 117:Core/Src/Drivers/Encoder/encoder.c **** 
+ 118:Core/Src/Drivers/Encoder/encoder.c ****   /* USER CODE BEGIN TIM2_Init 1 */
+ 119:Core/Src/Drivers/Encoder/encoder.c **** 
+ 120:Core/Src/Drivers/Encoder/encoder.c ****   /* USER CODE END TIM2_Init 1 */
+ 121:Core/Src/Drivers/Encoder/encoder.c ****   htim2.Instance = TIM2;
+ 122:Core/Src/Drivers/Encoder/encoder.c ****   htim2.Init.Prescaler = 0;
+ 123:Core/Src/Drivers/Encoder/encoder.c ****   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
+ 124:Core/Src/Drivers/Encoder/encoder.c ****   htim2.Init.Period = 4294967295;
+ 125:Core/Src/Drivers/Encoder/encoder.c ****   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+ 126:Core/Src/Drivers/Encoder/encoder.c ****   htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+ 127:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.EncoderMode = TIM_ENCODERMODE_TI12;
+ 128:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC1Polarity = TIM_ICPOLARITY_RISING;
+ 129:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC1Selection = TIM_ICSELECTION_DIRECTTI;
+ 130:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC1Prescaler = TIM_ICPSC_DIV1;
+ 131:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC1Filter = 0;
+ 132:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC2Polarity = TIM_ICPOLARITY_RISING;
+ 133:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC2Selection = TIM_ICSELECTION_DIRECTTI;
+ 134:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC2Prescaler = TIM_ICPSC_DIV1;
+ 135:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC2Filter = 0;
+ 136:Core/Src/Drivers/Encoder/encoder.c ****   if (HAL_TIM_Encoder_Init(&htim2, &sConfig) != HAL_OK)
+ 137:Core/Src/Drivers/Encoder/encoder.c ****   {
+ 138:Core/Src/Drivers/Encoder/encoder.c ****     // Error_Handler();
+ 139:Core/Src/Drivers/Encoder/encoder.c ****   }
+ 140:Core/Src/Drivers/Encoder/encoder.c ****   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+ 141:Core/Src/Drivers/Encoder/encoder.c ****   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+ 142:Core/Src/Drivers/Encoder/encoder.c ****   if (HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig) != HAL_OK)
+ 143:Core/Src/Drivers/Encoder/encoder.c ****   {
+ 144:Core/Src/Drivers/Encoder/encoder.c ****     // Error_Handler();
+ 145:Core/Src/Drivers/Encoder/encoder.c ****   }
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s 			page 4
+
+
+ 146:Core/Src/Drivers/Encoder/encoder.c **** }
+ 147:Core/Src/Drivers/Encoder/encoder.c **** 
+ 148:Core/Src/Drivers/Encoder/encoder.c **** /**
+ 149:Core/Src/Drivers/Encoder/encoder.c ****   * @brief TIM3 Initialization Function
+ 150:Core/Src/Drivers/Encoder/encoder.c ****   * @param None
+ 151:Core/Src/Drivers/Encoder/encoder.c ****   * @retval None
+ 152:Core/Src/Drivers/Encoder/encoder.c ****   */
+ 153:Core/Src/Drivers/Encoder/encoder.c **** static void MX_TIM3_Init(void)
+ 154:Core/Src/Drivers/Encoder/encoder.c **** {
+  28              		.loc 1 154 1 view -0
   29              		.cfi_startproc
   30              		@ args = 0, pretend = 0, frame = 48
   31              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -150,115 +203,115 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s 			page 1
   38 0002 8DB0     		sub	sp, sp, #52
   39              	.LCFI1:
   40              		.cfi_def_cfa_offset 64
- 105:Core/Src/Drivers/Encoder/encoder.c ****   TIM_Encoder_InitTypeDef sConfig = {0};
-  41              		.loc 1 105 3 view .LVU1
-  42              		.loc 1 105 27 is_stmt 0 view .LVU2
+ 155:Core/Src/Drivers/Encoder/encoder.c ****   TIM_Encoder_InitTypeDef sConfig = {0};
+  41              		.loc 1 155 3 view .LVU1
+  42              		.loc 1 155 27 is_stmt 0 view .LVU2
   43 0004 2422     		movs	r2, #36
   44 0006 0021     		movs	r1, #0
   45 0008 03A8     		add	r0, sp, #12
   46 000a FFF7FEFF 		bl	memset
   47              	.LVL0:
- 106:Core/Src/Drivers/Encoder/encoder.c ****   TIM_MasterConfigTypeDef sMasterConfig = {0};
-  48              		.loc 1 106 3 is_stmt 1 view .LVU3
-  49              		.loc 1 106 27 is_stmt 0 view .LVU4
+ 156:Core/Src/Drivers/Encoder/encoder.c ****   TIM_MasterConfigTypeDef sMasterConfig = {0};
+  48              		.loc 1 156 3 is_stmt 1 view .LVU3
+  49              		.loc 1 156 27 is_stmt 0 view .LVU4
   50 000e 0025     		movs	r5, #0
   51 0010 0195     		str	r5, [sp, #4]
   52 0012 0295     		str	r5, [sp, #8]
- 107:Core/Src/Drivers/Encoder/encoder.c **** 
- 108:Core/Src/Drivers/Encoder/encoder.c ****   /* USER CODE BEGIN TIM3_Init 1 */
- 109:Core/Src/Drivers/Encoder/encoder.c **** 
- 110:Core/Src/Drivers/Encoder/encoder.c ****   /* USER CODE END TIM3_Init 1 */
- 111:Core/Src/Drivers/Encoder/encoder.c ****   htim3.Instance = TIM3;
-  53              		.loc 1 111 3 is_stmt 1 view .LVU5
-  54              		.loc 1 111 18 is_stmt 0 view .LVU6
+ 157:Core/Src/Drivers/Encoder/encoder.c **** 
+ 158:Core/Src/Drivers/Encoder/encoder.c ****   /* USER CODE BEGIN TIM3_Init 1 */
+ 159:Core/Src/Drivers/Encoder/encoder.c **** 
+ 160:Core/Src/Drivers/Encoder/encoder.c ****   /* USER CODE END TIM3_Init 1 */
+ 161:Core/Src/Drivers/Encoder/encoder.c ****   htim3.Instance = TIM3;
+  53              		.loc 1 161 3 is_stmt 1 view .LVU5
+  54              		.loc 1 161 18 is_stmt 0 view .LVU6
   55 0014 0D4C     		ldr	r4, .L3
   56 0016 0E4B     		ldr	r3, .L3+4
   57 0018 2360     		str	r3, [r4]
- 112:Core/Src/Drivers/Encoder/encoder.c ****   htim3.Init.Prescaler = 0;
-  58              		.loc 1 112 3 is_stmt 1 view .LVU7
-  59              		.loc 1 112 24 is_stmt 0 view .LVU8
+ 162:Core/Src/Drivers/Encoder/encoder.c ****   htim3.Init.Prescaler = 0;
+  58              		.loc 1 162 3 is_stmt 1 view .LVU7
+  59              		.loc 1 162 24 is_stmt 0 view .LVU8
   60 001a 6560     		str	r5, [r4, #4]
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s 			page 4
-
-
- 113:Core/Src/Drivers/Encoder/encoder.c ****   htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
-  61              		.loc 1 113 3 is_stmt 1 view .LVU9
-  62              		.loc 1 113 26 is_stmt 0 view .LVU10
+ 163:Core/Src/Drivers/Encoder/encoder.c ****   htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
+  61              		.loc 1 163 3 is_stmt 1 view .LVU9
+  62              		.loc 1 163 26 is_stmt 0 view .LVU10
   63 001c A560     		str	r5, [r4, #8]
- 114:Core/Src/Drivers/Encoder/encoder.c ****   htim3.Init.Period = 65535;
-  64              		.loc 1 114 3 is_stmt 1 view .LVU11
-  65              		.loc 1 114 21 is_stmt 0 view .LVU12
+ 164:Core/Src/Drivers/Encoder/encoder.c ****   htim3.Init.Period = 65535;
+  64              		.loc 1 164 3 is_stmt 1 view .LVU11
+  65              		.loc 1 164 21 is_stmt 0 view .LVU12
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s 			page 5
+
+
   66 001e 4FF6FF73 		movw	r3, #65535
   67 0022 E360     		str	r3, [r4, #12]
- 115:Core/Src/Drivers/Encoder/encoder.c ****   htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-  68              		.loc 1 115 3 is_stmt 1 view .LVU13
-  69              		.loc 1 115 28 is_stmt 0 view .LVU14
+ 165:Core/Src/Drivers/Encoder/encoder.c ****   htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  68              		.loc 1 165 3 is_stmt 1 view .LVU13
+  69              		.loc 1 165 28 is_stmt 0 view .LVU14
   70 0024 2561     		str	r5, [r4, #16]
- 116:Core/Src/Drivers/Encoder/encoder.c ****   htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-  71              		.loc 1 116 3 is_stmt 1 view .LVU15
-  72              		.loc 1 116 32 is_stmt 0 view .LVU16
+ 166:Core/Src/Drivers/Encoder/encoder.c ****   htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  71              		.loc 1 166 3 is_stmt 1 view .LVU15
+  72              		.loc 1 166 32 is_stmt 0 view .LVU16
   73 0026 A561     		str	r5, [r4, #24]
- 117:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.EncoderMode = TIM_ENCODERMODE_TI12;
-  74              		.loc 1 117 3 is_stmt 1 view .LVU17
-  75              		.loc 1 117 23 is_stmt 0 view .LVU18
+ 167:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.EncoderMode = TIM_ENCODERMODE_TI12;
+  74              		.loc 1 167 3 is_stmt 1 view .LVU17
+  75              		.loc 1 167 23 is_stmt 0 view .LVU18
   76 0028 0323     		movs	r3, #3
   77 002a 0393     		str	r3, [sp, #12]
- 118:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC1Polarity = TIM_ICPOLARITY_RISING;
-  78              		.loc 1 118 3 is_stmt 1 view .LVU19
- 119:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC1Selection = TIM_ICSELECTION_DIRECTTI;
-  79              		.loc 1 119 3 view .LVU20
-  80              		.loc 1 119 24 is_stmt 0 view .LVU21
+ 168:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC1Polarity = TIM_ICPOLARITY_RISING;
+  78              		.loc 1 168 3 is_stmt 1 view .LVU19
+ 169:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC1Selection = TIM_ICSELECTION_DIRECTTI;
+  79              		.loc 1 169 3 view .LVU20
+  80              		.loc 1 169 24 is_stmt 0 view .LVU21
   81 002c 0123     		movs	r3, #1
   82 002e 0593     		str	r3, [sp, #20]
- 120:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC1Prescaler = TIM_ICPSC_DIV1;
-  83              		.loc 1 120 3 is_stmt 1 view .LVU22
- 121:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC1Filter = 0;
-  84              		.loc 1 121 3 view .LVU23
- 122:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC2Polarity = TIM_ICPOLARITY_RISING;
-  85              		.loc 1 122 3 view .LVU24
- 123:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC2Selection = TIM_ICSELECTION_DIRECTTI;
-  86              		.loc 1 123 3 view .LVU25
-  87              		.loc 1 123 24 is_stmt 0 view .LVU26
+ 170:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC1Prescaler = TIM_ICPSC_DIV1;
+  83              		.loc 1 170 3 is_stmt 1 view .LVU22
+ 171:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC1Filter = 0;
+  84              		.loc 1 171 3 view .LVU23
+ 172:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC2Polarity = TIM_ICPOLARITY_RISING;
+  85              		.loc 1 172 3 view .LVU24
+ 173:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC2Selection = TIM_ICSELECTION_DIRECTTI;
+  86              		.loc 1 173 3 view .LVU25
+  87              		.loc 1 173 24 is_stmt 0 view .LVU26
   88 0030 0993     		str	r3, [sp, #36]
- 124:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC2Prescaler = TIM_ICPSC_DIV1;
-  89              		.loc 1 124 3 is_stmt 1 view .LVU27
- 125:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC2Filter = 0;
-  90              		.loc 1 125 3 view .LVU28
- 126:Core/Src/Drivers/Encoder/encoder.c ****   if (HAL_TIM_Encoder_Init(&htim3, &sConfig) != HAL_OK)
-  91              		.loc 1 126 3 view .LVU29
-  92              		.loc 1 126 7 is_stmt 0 view .LVU30
+ 174:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC2Prescaler = TIM_ICPSC_DIV1;
+  89              		.loc 1 174 3 is_stmt 1 view .LVU27
+ 175:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC2Filter = 0;
+  90              		.loc 1 175 3 view .LVU28
+ 176:Core/Src/Drivers/Encoder/encoder.c ****   if (HAL_TIM_Encoder_Init(&htim3, &sConfig) != HAL_OK)
+  91              		.loc 1 176 3 view .LVU29
+  92              		.loc 1 176 7 is_stmt 0 view .LVU30
   93 0032 03A9     		add	r1, sp, #12
   94 0034 2046     		mov	r0, r4
   95 0036 FFF7FEFF 		bl	HAL_TIM_Encoder_Init
   96              	.LVL1:
- 127:Core/Src/Drivers/Encoder/encoder.c ****   {
- 128:Core/Src/Drivers/Encoder/encoder.c ****     // Error_Handler();
- 129:Core/Src/Drivers/Encoder/encoder.c ****   }
-  97              		.loc 1 129 3 is_stmt 1 view .LVU31
- 130:Core/Src/Drivers/Encoder/encoder.c ****   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
-  98              		.loc 1 130 3 view .LVU32
-  99              		.loc 1 130 37 is_stmt 0 view .LVU33
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s 			page 5
-
-
+ 177:Core/Src/Drivers/Encoder/encoder.c ****   {
+ 178:Core/Src/Drivers/Encoder/encoder.c ****     // Error_Handler();
+ 179:Core/Src/Drivers/Encoder/encoder.c ****   }
+  97              		.loc 1 179 3 is_stmt 1 view .LVU31
+ 180:Core/Src/Drivers/Encoder/encoder.c ****   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  98              		.loc 1 180 3 view .LVU32
+  99              		.loc 1 180 37 is_stmt 0 view .LVU33
  100 003a 0195     		str	r5, [sp, #4]
- 131:Core/Src/Drivers/Encoder/encoder.c ****   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
- 101              		.loc 1 131 3 is_stmt 1 view .LVU34
- 102              		.loc 1 131 33 is_stmt 0 view .LVU35
+ 181:Core/Src/Drivers/Encoder/encoder.c ****   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+ 101              		.loc 1 181 3 is_stmt 1 view .LVU34
+ 102              		.loc 1 181 33 is_stmt 0 view .LVU35
  103 003c 0295     		str	r5, [sp, #8]
- 132:Core/Src/Drivers/Encoder/encoder.c ****   if (HAL_TIMEx_MasterConfigSynchronization(&htim3, &sMasterConfig) != HAL_OK)
- 104              		.loc 1 132 3 is_stmt 1 view .LVU36
- 105              		.loc 1 132 7 is_stmt 0 view .LVU37
+ 182:Core/Src/Drivers/Encoder/encoder.c ****   if (HAL_TIMEx_MasterConfigSynchronization(&htim3, &sMasterConfig) != HAL_OK)
+ 104              		.loc 1 182 3 is_stmt 1 view .LVU36
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s 			page 6
+
+
+ 105              		.loc 1 182 7 is_stmt 0 view .LVU37
  106 003e 01A9     		add	r1, sp, #4
  107 0040 2046     		mov	r0, r4
  108 0042 FFF7FEFF 		bl	HAL_TIMEx_MasterConfigSynchronization
  109              	.LVL2:
- 133:Core/Src/Drivers/Encoder/encoder.c ****   {
- 134:Core/Src/Drivers/Encoder/encoder.c ****     // Error_Handler();
- 135:Core/Src/Drivers/Encoder/encoder.c ****   }
- 110              		.loc 1 135 3 is_stmt 1 view .LVU38
- 136:Core/Src/Drivers/Encoder/encoder.c **** }
- 111              		.loc 1 136 1 is_stmt 0 view .LVU39
+ 183:Core/Src/Drivers/Encoder/encoder.c ****   {
+ 184:Core/Src/Drivers/Encoder/encoder.c ****     // Error_Handler();
+ 185:Core/Src/Drivers/Encoder/encoder.c ****   }
+ 110              		.loc 1 185 3 is_stmt 1 view .LVU38
+ 186:Core/Src/Drivers/Encoder/encoder.c **** }
+ 111              		.loc 1 186 1 is_stmt 0 view .LVU39
  112 0046 0DB0     		add	sp, sp, #52
  113              	.LCFI2:
  114              		.cfi_def_cfa_offset 12
@@ -270,23 +323,16 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s 			page 1
  120 004c 00000000 		.word	htim3
  121 0050 00040040 		.word	1073742848
  122              		.cfi_endproc
- 123              	.LFE174:
- 125              		.section	.text.MX_TIM4_Init,"ax",%progbits
+ 123              	.LFE176:
+ 125              		.section	.text.MX_TIM2_Init,"ax",%progbits
  126              		.align	1
  127              		.syntax unified
  128              		.thumb
  129              		.thumb_func
- 131              	MX_TIM4_Init:
+ 131              	MX_TIM2_Init:
  132              	.LFB175:
- 137:Core/Src/Drivers/Encoder/encoder.c **** 
- 138:Core/Src/Drivers/Encoder/encoder.c **** /**
- 139:Core/Src/Drivers/Encoder/encoder.c ****   * @brief TIM4 Initialization Function
- 140:Core/Src/Drivers/Encoder/encoder.c ****   * @param None
- 141:Core/Src/Drivers/Encoder/encoder.c ****   * @retval None
- 142:Core/Src/Drivers/Encoder/encoder.c ****   */
- 143:Core/Src/Drivers/Encoder/encoder.c **** static void MX_TIM4_Init(void)
- 144:Core/Src/Drivers/Encoder/encoder.c **** {
- 133              		.loc 1 144 1 is_stmt 1 view -0
+ 114:Core/Src/Drivers/Encoder/encoder.c ****   TIM_Encoder_InitTypeDef sConfig = {0};
+ 133              		.loc 1 114 1 is_stmt 1 view -0
  134              		.cfi_startproc
  135              		@ args = 0, pretend = 0, frame = 48
  136              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -298,1190 +344,1409 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s 			page 1
  142              		.cfi_offset 14, -4
  143 0002 8DB0     		sub	sp, sp, #52
  144              	.LCFI4:
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s 			page 6
-
-
  145              		.cfi_def_cfa_offset 64
- 145:Core/Src/Drivers/Encoder/encoder.c ****   TIM_Encoder_InitTypeDef sConfig = {0};
- 146              		.loc 1 145 3 view .LVU41
- 147              		.loc 1 145 27 is_stmt 0 view .LVU42
+ 115:Core/Src/Drivers/Encoder/encoder.c ****   TIM_MasterConfigTypeDef sMasterConfig = {0};
+ 146              		.loc 1 115 3 view .LVU41
+ 115:Core/Src/Drivers/Encoder/encoder.c ****   TIM_MasterConfigTypeDef sMasterConfig = {0};
+ 147              		.loc 1 115 27 is_stmt 0 view .LVU42
  148 0004 2422     		movs	r2, #36
  149 0006 0021     		movs	r1, #0
  150 0008 03A8     		add	r0, sp, #12
  151 000a FFF7FEFF 		bl	memset
  152              	.LVL3:
- 146:Core/Src/Drivers/Encoder/encoder.c ****   TIM_MasterConfigTypeDef sMasterConfig = {0};
- 153              		.loc 1 146 3 is_stmt 1 view .LVU43
- 154              		.loc 1 146 27 is_stmt 0 view .LVU44
+ 116:Core/Src/Drivers/Encoder/encoder.c **** 
+ 153              		.loc 1 116 3 is_stmt 1 view .LVU43
+ 116:Core/Src/Drivers/Encoder/encoder.c **** 
+ 154              		.loc 1 116 27 is_stmt 0 view .LVU44
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s 			page 7
+
+
  155 000e 0025     		movs	r5, #0
  156 0010 0195     		str	r5, [sp, #4]
  157 0012 0295     		str	r5, [sp, #8]
- 147:Core/Src/Drivers/Encoder/encoder.c **** 
- 148:Core/Src/Drivers/Encoder/encoder.c ****   htim4.Instance = TIM4;
- 158              		.loc 1 148 3 is_stmt 1 view .LVU45
- 159              		.loc 1 148 18 is_stmt 0 view .LVU46
+ 121:Core/Src/Drivers/Encoder/encoder.c ****   htim2.Init.Prescaler = 0;
+ 158              		.loc 1 121 3 is_stmt 1 view .LVU45
+ 121:Core/Src/Drivers/Encoder/encoder.c ****   htim2.Init.Prescaler = 0;
+ 159              		.loc 1 121 18 is_stmt 0 view .LVU46
  160 0014 0D4C     		ldr	r4, .L7
- 161 0016 0E4B     		ldr	r3, .L7+4
- 162 0018 2360     		str	r3, [r4]
- 149:Core/Src/Drivers/Encoder/encoder.c ****   htim4.Init.Prescaler = 0;
- 163              		.loc 1 149 3 is_stmt 1 view .LVU47
- 164              		.loc 1 149 24 is_stmt 0 view .LVU48
- 165 001a 6560     		str	r5, [r4, #4]
- 150:Core/Src/Drivers/Encoder/encoder.c ****   htim4.Init.CounterMode = TIM_COUNTERMODE_UP;
- 166              		.loc 1 150 3 is_stmt 1 view .LVU49
- 167              		.loc 1 150 26 is_stmt 0 view .LVU50
- 168 001c A560     		str	r5, [r4, #8]
- 151:Core/Src/Drivers/Encoder/encoder.c ****   htim4.Init.Period = 65535;
- 169              		.loc 1 151 3 is_stmt 1 view .LVU51
- 170              		.loc 1 151 21 is_stmt 0 view .LVU52
- 171 001e 4FF6FF73 		movw	r3, #65535
- 172 0022 E360     		str	r3, [r4, #12]
- 152:Core/Src/Drivers/Encoder/encoder.c ****   htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
- 173              		.loc 1 152 3 is_stmt 1 view .LVU53
- 174              		.loc 1 152 28 is_stmt 0 view .LVU54
- 175 0024 2561     		str	r5, [r4, #16]
- 153:Core/Src/Drivers/Encoder/encoder.c ****   htim4.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
- 176              		.loc 1 153 3 is_stmt 1 view .LVU55
- 177              		.loc 1 153 32 is_stmt 0 view .LVU56
- 178 0026 A561     		str	r5, [r4, #24]
- 154:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.EncoderMode = TIM_ENCODERMODE_TI12;
- 179              		.loc 1 154 3 is_stmt 1 view .LVU57
- 180              		.loc 1 154 23 is_stmt 0 view .LVU58
- 181 0028 0323     		movs	r3, #3
- 182 002a 0393     		str	r3, [sp, #12]
- 155:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC1Polarity = TIM_ICPOLARITY_RISING;
- 183              		.loc 1 155 3 is_stmt 1 view .LVU59
- 156:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC1Selection = TIM_ICSELECTION_DIRECTTI;
- 184              		.loc 1 156 3 view .LVU60
- 185              		.loc 1 156 24 is_stmt 0 view .LVU61
- 186 002c 0123     		movs	r3, #1
- 187 002e 0593     		str	r3, [sp, #20]
- 157:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC1Prescaler = TIM_ICPSC_DIV1;
- 188              		.loc 1 157 3 is_stmt 1 view .LVU62
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s 			page 7
+ 161 0016 4FF08043 		mov	r3, #1073741824
+ 162 001a 2360     		str	r3, [r4]
+ 122:Core/Src/Drivers/Encoder/encoder.c ****   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
+ 163              		.loc 1 122 3 is_stmt 1 view .LVU47
+ 122:Core/Src/Drivers/Encoder/encoder.c ****   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
+ 164              		.loc 1 122 24 is_stmt 0 view .LVU48
+ 165 001c 6560     		str	r5, [r4, #4]
+ 123:Core/Src/Drivers/Encoder/encoder.c ****   htim2.Init.Period = 4294967295;
+ 166              		.loc 1 123 3 is_stmt 1 view .LVU49
+ 123:Core/Src/Drivers/Encoder/encoder.c ****   htim2.Init.Period = 4294967295;
+ 167              		.loc 1 123 26 is_stmt 0 view .LVU50
+ 168 001e A560     		str	r5, [r4, #8]
+ 124:Core/Src/Drivers/Encoder/encoder.c ****   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+ 169              		.loc 1 124 3 is_stmt 1 view .LVU51
+ 124:Core/Src/Drivers/Encoder/encoder.c ****   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+ 170              		.loc 1 124 21 is_stmt 0 view .LVU52
+ 171 0020 4FF0FF33 		mov	r3, #-1
+ 172 0024 E360     		str	r3, [r4, #12]
+ 125:Core/Src/Drivers/Encoder/encoder.c ****   htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+ 173              		.loc 1 125 3 is_stmt 1 view .LVU53
+ 125:Core/Src/Drivers/Encoder/encoder.c ****   htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+ 174              		.loc 1 125 28 is_stmt 0 view .LVU54
+ 175 0026 2561     		str	r5, [r4, #16]
+ 126:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.EncoderMode = TIM_ENCODERMODE_TI12;
+ 176              		.loc 1 126 3 is_stmt 1 view .LVU55
+ 126:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.EncoderMode = TIM_ENCODERMODE_TI12;
+ 177              		.loc 1 126 32 is_stmt 0 view .LVU56
+ 178 0028 A561     		str	r5, [r4, #24]
+ 127:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC1Polarity = TIM_ICPOLARITY_RISING;
+ 179              		.loc 1 127 3 is_stmt 1 view .LVU57
+ 127:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC1Polarity = TIM_ICPOLARITY_RISING;
+ 180              		.loc 1 127 23 is_stmt 0 view .LVU58
+ 181 002a 0323     		movs	r3, #3
+ 182 002c 0393     		str	r3, [sp, #12]
+ 128:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC1Selection = TIM_ICSELECTION_DIRECTTI;
+ 183              		.loc 1 128 3 is_stmt 1 view .LVU59
+ 129:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC1Prescaler = TIM_ICPSC_DIV1;
+ 184              		.loc 1 129 3 view .LVU60
+ 129:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC1Prescaler = TIM_ICPSC_DIV1;
+ 185              		.loc 1 129 24 is_stmt 0 view .LVU61
+ 186 002e 0123     		movs	r3, #1
+ 187 0030 0593     		str	r3, [sp, #20]
+ 130:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC1Filter = 0;
+ 188              		.loc 1 130 3 is_stmt 1 view .LVU62
+ 131:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC2Polarity = TIM_ICPOLARITY_RISING;
+ 189              		.loc 1 131 3 view .LVU63
+ 132:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC2Selection = TIM_ICSELECTION_DIRECTTI;
+ 190              		.loc 1 132 3 view .LVU64
+ 133:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC2Prescaler = TIM_ICPSC_DIV1;
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s 			page 8
 
 
- 158:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC1Filter = 0;
- 189              		.loc 1 158 3 view .LVU63
- 159:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC2Polarity = TIM_ICPOLARITY_RISING;
- 190              		.loc 1 159 3 view .LVU64
- 160:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC2Selection = TIM_ICSELECTION_DIRECTTI;
- 191              		.loc 1 160 3 view .LVU65
- 192              		.loc 1 160 24 is_stmt 0 view .LVU66
- 193 0030 0993     		str	r3, [sp, #36]
- 161:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC2Prescaler = TIM_ICPSC_DIV1;
- 194              		.loc 1 161 3 is_stmt 1 view .LVU67
- 162:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC2Filter = 0;
- 195              		.loc 1 162 3 view .LVU68
- 163:Core/Src/Drivers/Encoder/encoder.c ****   if (HAL_TIM_Encoder_Init(&htim4, &sConfig) != HAL_OK)
- 196              		.loc 1 163 3 view .LVU69
- 197              		.loc 1 163 7 is_stmt 0 view .LVU70
- 198 0032 03A9     		add	r1, sp, #12
- 199 0034 2046     		mov	r0, r4
- 200 0036 FFF7FEFF 		bl	HAL_TIM_Encoder_Init
+ 191              		.loc 1 133 3 view .LVU65
+ 133:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC2Prescaler = TIM_ICPSC_DIV1;
+ 192              		.loc 1 133 24 is_stmt 0 view .LVU66
+ 193 0032 0993     		str	r3, [sp, #36]
+ 134:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC2Filter = 0;
+ 194              		.loc 1 134 3 is_stmt 1 view .LVU67
+ 135:Core/Src/Drivers/Encoder/encoder.c ****   if (HAL_TIM_Encoder_Init(&htim2, &sConfig) != HAL_OK)
+ 195              		.loc 1 135 3 view .LVU68
+ 136:Core/Src/Drivers/Encoder/encoder.c ****   {
+ 196              		.loc 1 136 3 view .LVU69
+ 136:Core/Src/Drivers/Encoder/encoder.c ****   {
+ 197              		.loc 1 136 7 is_stmt 0 view .LVU70
+ 198 0034 03A9     		add	r1, sp, #12
+ 199 0036 2046     		mov	r0, r4
+ 200 0038 FFF7FEFF 		bl	HAL_TIM_Encoder_Init
  201              	.LVL4:
- 164:Core/Src/Drivers/Encoder/encoder.c ****   {
- 165:Core/Src/Drivers/Encoder/encoder.c ****     // Error_Handler();
- 166:Core/Src/Drivers/Encoder/encoder.c ****   }
- 202              		.loc 1 166 3 is_stmt 1 view .LVU71
- 167:Core/Src/Drivers/Encoder/encoder.c ****   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
- 203              		.loc 1 167 3 view .LVU72
- 204              		.loc 1 167 37 is_stmt 0 view .LVU73
- 205 003a 0195     		str	r5, [sp, #4]
- 168:Core/Src/Drivers/Encoder/encoder.c ****   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
- 206              		.loc 1 168 3 is_stmt 1 view .LVU74
- 207              		.loc 1 168 33 is_stmt 0 view .LVU75
- 208 003c 0295     		str	r5, [sp, #8]
- 169:Core/Src/Drivers/Encoder/encoder.c ****   if (HAL_TIMEx_MasterConfigSynchronization(&htim4, &sMasterConfig) != HAL_OK)
- 209              		.loc 1 169 3 is_stmt 1 view .LVU76
- 210              		.loc 1 169 7 is_stmt 0 view .LVU77
- 211 003e 01A9     		add	r1, sp, #4
- 212 0040 2046     		mov	r0, r4
- 213 0042 FFF7FEFF 		bl	HAL_TIMEx_MasterConfigSynchronization
+ 139:Core/Src/Drivers/Encoder/encoder.c ****   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+ 202              		.loc 1 139 3 is_stmt 1 view .LVU71
+ 140:Core/Src/Drivers/Encoder/encoder.c ****   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+ 203              		.loc 1 140 3 view .LVU72
+ 140:Core/Src/Drivers/Encoder/encoder.c ****   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+ 204              		.loc 1 140 37 is_stmt 0 view .LVU73
+ 205 003c 0195     		str	r5, [sp, #4]
+ 141:Core/Src/Drivers/Encoder/encoder.c ****   if (HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig) != HAL_OK)
+ 206              		.loc 1 141 3 is_stmt 1 view .LVU74
+ 141:Core/Src/Drivers/Encoder/encoder.c ****   if (HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig) != HAL_OK)
+ 207              		.loc 1 141 33 is_stmt 0 view .LVU75
+ 208 003e 0295     		str	r5, [sp, #8]
+ 142:Core/Src/Drivers/Encoder/encoder.c ****   {
+ 209              		.loc 1 142 3 is_stmt 1 view .LVU76
+ 142:Core/Src/Drivers/Encoder/encoder.c ****   {
+ 210              		.loc 1 142 7 is_stmt 0 view .LVU77
+ 211 0040 01A9     		add	r1, sp, #4
+ 212 0042 2046     		mov	r0, r4
+ 213 0044 FFF7FEFF 		bl	HAL_TIMEx_MasterConfigSynchronization
  214              	.LVL5:
- 170:Core/Src/Drivers/Encoder/encoder.c ****   {
- 171:Core/Src/Drivers/Encoder/encoder.c ****     // Error_Handler();
- 172:Core/Src/Drivers/Encoder/encoder.c ****   }
- 215              		.loc 1 172 3 is_stmt 1 view .LVU78
- 173:Core/Src/Drivers/Encoder/encoder.c **** }
- 216              		.loc 1 173 1 is_stmt 0 view .LVU79
- 217 0046 0DB0     		add	sp, sp, #52
+ 145:Core/Src/Drivers/Encoder/encoder.c **** }
+ 215              		.loc 1 145 3 is_stmt 1 view .LVU78
+ 146:Core/Src/Drivers/Encoder/encoder.c **** 
+ 216              		.loc 1 146 1 is_stmt 0 view .LVU79
+ 217 0048 0DB0     		add	sp, sp, #52
  218              	.LCFI5:
  219              		.cfi_def_cfa_offset 12
  220              		@ sp needed
- 221 0048 30BD     		pop	{r4, r5, pc}
+ 221 004a 30BD     		pop	{r4, r5, pc}
  222              	.L8:
- 223 004a 00BF     		.align	2
+ 223              		.align	2
  224              	.L7:
- 225 004c 00000000 		.word	htim4
- 226 0050 00080040 		.word	1073743872
- 227              		.cfi_endproc
- 228              	.LFE175:
- 230              		.section	.text.MX_TIM7_Init,"ax",%progbits
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s 			page 8
+ 225 004c 00000000 		.word	htim2
+ 226              		.cfi_endproc
+ 227              	.LFE175:
+ 229              		.section	.text.MX_TIM7_Init,"ax",%progbits
+ 230              		.align	1
+ 231              		.syntax unified
+ 232              		.thumb
+ 233              		.thumb_func
+ 235              	MX_TIM7_Init:
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s 			page 9
 
 
- 231              		.align	1
- 232              		.syntax unified
- 233              		.thumb
- 234              		.thumb_func
- 236              	MX_TIM7_Init:
- 237              	.LFB176:
- 174:Core/Src/Drivers/Encoder/encoder.c **** 
- 175:Core/Src/Drivers/Encoder/encoder.c **** /**
- 176:Core/Src/Drivers/Encoder/encoder.c ****   * @brief TIM7 Initialization Function
- 177:Core/Src/Drivers/Encoder/encoder.c ****   * @param None
- 178:Core/Src/Drivers/Encoder/encoder.c ****   * @retval None
- 179:Core/Src/Drivers/Encoder/encoder.c ****   */
- 180:Core/Src/Drivers/Encoder/encoder.c **** static void MX_TIM7_Init(void)
- 181:Core/Src/Drivers/Encoder/encoder.c **** {
- 238              		.loc 1 181 1 is_stmt 1 view -0
- 239              		.cfi_startproc
- 240              		@ args = 0, pretend = 0, frame = 8
- 241              		@ frame_needed = 0, uses_anonymous_args = 0
- 242 0000 30B5     		push	{r4, r5, lr}
- 243              	.LCFI6:
- 244              		.cfi_def_cfa_offset 12
- 245              		.cfi_offset 4, -12
- 246              		.cfi_offset 5, -8
- 247              		.cfi_offset 14, -4
- 248 0002 83B0     		sub	sp, sp, #12
- 249              	.LCFI7:
- 250              		.cfi_def_cfa_offset 24
- 182:Core/Src/Drivers/Encoder/encoder.c ****   TIM_MasterConfigTypeDef sMasterConfig = {0};
- 251              		.loc 1 182 3 view .LVU81
- 252              		.loc 1 182 27 is_stmt 0 view .LVU82
- 253 0004 0025     		movs	r5, #0
- 254 0006 0095     		str	r5, [sp]
- 255 0008 0195     		str	r5, [sp, #4]
- 183:Core/Src/Drivers/Encoder/encoder.c **** 
- 184:Core/Src/Drivers/Encoder/encoder.c ****   htim7.Instance = TIM7;
- 256              		.loc 1 184 3 is_stmt 1 view .LVU83
- 257              		.loc 1 184 18 is_stmt 0 view .LVU84
- 258 000a 0B4C     		ldr	r4, .L11
- 259 000c 0B4B     		ldr	r3, .L11+4
- 260 000e 2360     		str	r3, [r4]
- 185:Core/Src/Drivers/Encoder/encoder.c ****   htim7.Init.Prescaler = 84;
- 261              		.loc 1 185 3 is_stmt 1 view .LVU85
- 262              		.loc 1 185 24 is_stmt 0 view .LVU86
- 263 0010 5423     		movs	r3, #84
- 264 0012 6360     		str	r3, [r4, #4]
- 186:Core/Src/Drivers/Encoder/encoder.c ****   htim7.Init.CounterMode = TIM_COUNTERMODE_UP;
- 265              		.loc 1 186 3 is_stmt 1 view .LVU87
- 266              		.loc 1 186 26 is_stmt 0 view .LVU88
- 267 0014 A560     		str	r5, [r4, #8]
- 187:Core/Src/Drivers/Encoder/encoder.c ****   htim7.Init.Period = 1000;
- 268              		.loc 1 187 3 is_stmt 1 view .LVU89
- 269              		.loc 1 187 21 is_stmt 0 view .LVU90
- 270 0016 4FF47A73 		mov	r3, #1000
- 271 001a E360     		str	r3, [r4, #12]
- 188:Core/Src/Drivers/Encoder/encoder.c ****   htim7.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
- 272              		.loc 1 188 3 is_stmt 1 view .LVU91
- 273              		.loc 1 188 32 is_stmt 0 view .LVU92
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s 			page 9
+ 236              	.LFB178:
+ 187:Core/Src/Drivers/Encoder/encoder.c **** 
+ 188:Core/Src/Drivers/Encoder/encoder.c **** /**
+ 189:Core/Src/Drivers/Encoder/encoder.c ****   * @brief TIM4 Initialization Function
+ 190:Core/Src/Drivers/Encoder/encoder.c ****   * @param None
+ 191:Core/Src/Drivers/Encoder/encoder.c ****   * @retval None
+ 192:Core/Src/Drivers/Encoder/encoder.c ****   */
+ 193:Core/Src/Drivers/Encoder/encoder.c **** static void MX_TIM4_Init(void)
+ 194:Core/Src/Drivers/Encoder/encoder.c **** {
+ 195:Core/Src/Drivers/Encoder/encoder.c ****   TIM_Encoder_InitTypeDef sConfig = {0};
+ 196:Core/Src/Drivers/Encoder/encoder.c ****   TIM_MasterConfigTypeDef sMasterConfig = {0};
+ 197:Core/Src/Drivers/Encoder/encoder.c **** 
+ 198:Core/Src/Drivers/Encoder/encoder.c ****   htim4.Instance = TIM4;
+ 199:Core/Src/Drivers/Encoder/encoder.c ****   htim4.Init.Prescaler = 0;
+ 200:Core/Src/Drivers/Encoder/encoder.c ****   htim4.Init.CounterMode = TIM_COUNTERMODE_UP;
+ 201:Core/Src/Drivers/Encoder/encoder.c ****   htim4.Init.Period = 65535;
+ 202:Core/Src/Drivers/Encoder/encoder.c ****   htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+ 203:Core/Src/Drivers/Encoder/encoder.c ****   htim4.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+ 204:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.EncoderMode = TIM_ENCODERMODE_TI12;
+ 205:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC1Polarity = TIM_ICPOLARITY_RISING;
+ 206:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC1Selection = TIM_ICSELECTION_DIRECTTI;
+ 207:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC1Prescaler = TIM_ICPSC_DIV1;
+ 208:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC1Filter = 0;
+ 209:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC2Polarity = TIM_ICPOLARITY_RISING;
+ 210:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC2Selection = TIM_ICSELECTION_DIRECTTI;
+ 211:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC2Prescaler = TIM_ICPSC_DIV1;
+ 212:Core/Src/Drivers/Encoder/encoder.c ****   sConfig.IC2Filter = 0;
+ 213:Core/Src/Drivers/Encoder/encoder.c ****   if (HAL_TIM_Encoder_Init(&htim4, &sConfig) != HAL_OK)
+ 214:Core/Src/Drivers/Encoder/encoder.c ****   {
+ 215:Core/Src/Drivers/Encoder/encoder.c ****     // Error_Handler();
+ 216:Core/Src/Drivers/Encoder/encoder.c ****   }
+ 217:Core/Src/Drivers/Encoder/encoder.c ****   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+ 218:Core/Src/Drivers/Encoder/encoder.c ****   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+ 219:Core/Src/Drivers/Encoder/encoder.c ****   if (HAL_TIMEx_MasterConfigSynchronization(&htim4, &sMasterConfig) != HAL_OK)
+ 220:Core/Src/Drivers/Encoder/encoder.c ****   {
+ 221:Core/Src/Drivers/Encoder/encoder.c ****     // Error_Handler();
+ 222:Core/Src/Drivers/Encoder/encoder.c ****   }
+ 223:Core/Src/Drivers/Encoder/encoder.c **** }
+ 224:Core/Src/Drivers/Encoder/encoder.c **** 
+ 225:Core/Src/Drivers/Encoder/encoder.c **** /**
+ 226:Core/Src/Drivers/Encoder/encoder.c ****   * @brief TIM7 Initialization Function
+ 227:Core/Src/Drivers/Encoder/encoder.c ****   * @param None
+ 228:Core/Src/Drivers/Encoder/encoder.c ****   * @retval None
+ 229:Core/Src/Drivers/Encoder/encoder.c ****   */
+ 230:Core/Src/Drivers/Encoder/encoder.c **** static void MX_TIM7_Init(void)
+ 231:Core/Src/Drivers/Encoder/encoder.c **** {
+ 237              		.loc 1 231 1 is_stmt 1 view -0
+ 238              		.cfi_startproc
+ 239              		@ args = 0, pretend = 0, frame = 8
+ 240              		@ frame_needed = 0, uses_anonymous_args = 0
+ 241 0000 30B5     		push	{r4, r5, lr}
+ 242              	.LCFI6:
+ 243              		.cfi_def_cfa_offset 12
+ 244              		.cfi_offset 4, -12
+ 245              		.cfi_offset 5, -8
+ 246              		.cfi_offset 14, -4
+ 247 0002 83B0     		sub	sp, sp, #12
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s 			page 10
 
 
- 274 001c 8023     		movs	r3, #128
- 275 001e A361     		str	r3, [r4, #24]
- 189:Core/Src/Drivers/Encoder/encoder.c ****   if (HAL_TIM_Base_Init(&htim7) != HAL_OK)
- 276              		.loc 1 189 3 is_stmt 1 view .LVU93
- 277              		.loc 1 189 7 is_stmt 0 view .LVU94
- 278 0020 2046     		mov	r0, r4
- 279 0022 FFF7FEFF 		bl	HAL_TIM_Base_Init
- 280              	.LVL6:
- 190:Core/Src/Drivers/Encoder/encoder.c ****   {
- 191:Core/Src/Drivers/Encoder/encoder.c ****     // Error_Handler();
- 192:Core/Src/Drivers/Encoder/encoder.c ****   }
- 281              		.loc 1 192 3 is_stmt 1 view .LVU95
- 193:Core/Src/Drivers/Encoder/encoder.c **** 
- 194:Core/Src/Drivers/Encoder/encoder.c ****   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
- 282              		.loc 1 194 3 view .LVU96
- 283              		.loc 1 194 37 is_stmt 0 view .LVU97
- 284 0026 0095     		str	r5, [sp]
- 195:Core/Src/Drivers/Encoder/encoder.c ****   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
- 285              		.loc 1 195 3 is_stmt 1 view .LVU98
- 286              		.loc 1 195 33 is_stmt 0 view .LVU99
- 287 0028 0195     		str	r5, [sp, #4]
- 196:Core/Src/Drivers/Encoder/encoder.c ****   if (HAL_TIMEx_MasterConfigSynchronization(&htim7, &sMasterConfig) != HAL_OK)
- 288              		.loc 1 196 3 is_stmt 1 view .LVU100
- 289              		.loc 1 196 7 is_stmt 0 view .LVU101
- 290 002a 6946     		mov	r1, sp
- 291 002c 2046     		mov	r0, r4
- 292 002e FFF7FEFF 		bl	HAL_TIMEx_MasterConfigSynchronization
- 293              	.LVL7:
- 197:Core/Src/Drivers/Encoder/encoder.c ****   {
- 198:Core/Src/Drivers/Encoder/encoder.c ****     // Error_Handler();
- 199:Core/Src/Drivers/Encoder/encoder.c ****   }
- 294              		.loc 1 199 3 is_stmt 1 view .LVU102
- 200:Core/Src/Drivers/Encoder/encoder.c **** }
- 295              		.loc 1 200 1 is_stmt 0 view .LVU103
- 296 0032 03B0     		add	sp, sp, #12
- 297              	.LCFI8:
- 298              		.cfi_def_cfa_offset 12
- 299              		@ sp needed
- 300 0034 30BD     		pop	{r4, r5, pc}
- 301              	.L12:
- 302 0036 00BF     		.align	2
- 303              	.L11:
- 304 0038 00000000 		.word	htim7
- 305 003c 00140040 		.word	1073746944
- 306              		.cfi_endproc
- 307              	.LFE176:
- 309              		.section	.text.HAL_TIM_PeriodElapsedCallback,"ax",%progbits
- 310              		.align	1
- 311              		.global	HAL_TIM_PeriodElapsedCallback
- 312              		.syntax unified
- 313              		.thumb
- 314              		.thumb_func
- 316              	HAL_TIM_PeriodElapsedCallback:
- 317              	.LVL8:
- 318              	.LFB168:
-  22:Core/Src/Drivers/Encoder/encoder.c ****   BaseType_t xHigherPriorityTaskWoken = pdFALSE;
- 319              		.loc 1 22 1 is_stmt 1 view -0
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s 			page 10
+ 248              	.LCFI7:
+ 249              		.cfi_def_cfa_offset 24
+ 232:Core/Src/Drivers/Encoder/encoder.c ****   TIM_MasterConfigTypeDef sMasterConfig = {0};
+ 250              		.loc 1 232 3 view .LVU81
+ 251              		.loc 1 232 27 is_stmt 0 view .LVU82
+ 252 0004 0025     		movs	r5, #0
+ 253 0006 0095     		str	r5, [sp]
+ 254 0008 0195     		str	r5, [sp, #4]
+ 233:Core/Src/Drivers/Encoder/encoder.c **** 
+ 234:Core/Src/Drivers/Encoder/encoder.c ****   htim7.Instance = TIM7;
+ 255              		.loc 1 234 3 is_stmt 1 view .LVU83
+ 256              		.loc 1 234 18 is_stmt 0 view .LVU84
+ 257 000a 0B4C     		ldr	r4, .L11
+ 258 000c 0B4B     		ldr	r3, .L11+4
+ 259 000e 2360     		str	r3, [r4]
+ 235:Core/Src/Drivers/Encoder/encoder.c ****   htim7.Init.Prescaler = 84;
+ 260              		.loc 1 235 3 is_stmt 1 view .LVU85
+ 261              		.loc 1 235 24 is_stmt 0 view .LVU86
+ 262 0010 5423     		movs	r3, #84
+ 263 0012 6360     		str	r3, [r4, #4]
+ 236:Core/Src/Drivers/Encoder/encoder.c ****   htim7.Init.CounterMode = TIM_COUNTERMODE_UP;
+ 264              		.loc 1 236 3 is_stmt 1 view .LVU87
+ 265              		.loc 1 236 26 is_stmt 0 view .LVU88
+ 266 0014 A560     		str	r5, [r4, #8]
+ 237:Core/Src/Drivers/Encoder/encoder.c ****   htim7.Init.Period = 1000;
+ 267              		.loc 1 237 3 is_stmt 1 view .LVU89
+ 268              		.loc 1 237 21 is_stmt 0 view .LVU90
+ 269 0016 4FF47A73 		mov	r3, #1000
+ 270 001a E360     		str	r3, [r4, #12]
+ 238:Core/Src/Drivers/Encoder/encoder.c ****   htim7.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
+ 271              		.loc 1 238 3 is_stmt 1 view .LVU91
+ 272              		.loc 1 238 32 is_stmt 0 view .LVU92
+ 273 001c 8023     		movs	r3, #128
+ 274 001e A361     		str	r3, [r4, #24]
+ 239:Core/Src/Drivers/Encoder/encoder.c ****   if (HAL_TIM_Base_Init(&htim7) != HAL_OK)
+ 275              		.loc 1 239 3 is_stmt 1 view .LVU93
+ 276              		.loc 1 239 7 is_stmt 0 view .LVU94
+ 277 0020 2046     		mov	r0, r4
+ 278 0022 FFF7FEFF 		bl	HAL_TIM_Base_Init
+ 279              	.LVL6:
+ 240:Core/Src/Drivers/Encoder/encoder.c ****   {
+ 241:Core/Src/Drivers/Encoder/encoder.c ****     // Error_Handler();
+ 242:Core/Src/Drivers/Encoder/encoder.c ****   }
+ 280              		.loc 1 242 3 is_stmt 1 view .LVU95
+ 243:Core/Src/Drivers/Encoder/encoder.c **** 
+ 244:Core/Src/Drivers/Encoder/encoder.c ****   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+ 281              		.loc 1 244 3 view .LVU96
+ 282              		.loc 1 244 37 is_stmt 0 view .LVU97
+ 283 0026 0095     		str	r5, [sp]
+ 245:Core/Src/Drivers/Encoder/encoder.c ****   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+ 284              		.loc 1 245 3 is_stmt 1 view .LVU98
+ 285              		.loc 1 245 33 is_stmt 0 view .LVU99
+ 286 0028 0195     		str	r5, [sp, #4]
+ 246:Core/Src/Drivers/Encoder/encoder.c ****   if (HAL_TIMEx_MasterConfigSynchronization(&htim7, &sMasterConfig) != HAL_OK)
+ 287              		.loc 1 246 3 is_stmt 1 view .LVU100
+ 288              		.loc 1 246 7 is_stmt 0 view .LVU101
+ 289 002a 6946     		mov	r1, sp
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s 			page 11
 
 
- 320              		.cfi_startproc
- 321              		@ args = 0, pretend = 0, frame = 8
- 322              		@ frame_needed = 0, uses_anonymous_args = 0
-  22:Core/Src/Drivers/Encoder/encoder.c ****   BaseType_t xHigherPriorityTaskWoken = pdFALSE;
- 323              		.loc 1 22 1 is_stmt 0 view .LVU105
- 324 0000 00B5     		push	{lr}
- 325              	.LCFI9:
- 326              		.cfi_def_cfa_offset 4
- 327              		.cfi_offset 14, -4
- 328 0002 83B0     		sub	sp, sp, #12
- 329              	.LCFI10:
- 330              		.cfi_def_cfa_offset 16
-  23:Core/Src/Drivers/Encoder/encoder.c ****   if(htim->Instance == TIM7)
- 331              		.loc 1 23 3 is_stmt 1 view .LVU106
-  23:Core/Src/Drivers/Encoder/encoder.c ****   if(htim->Instance == TIM7)
- 332              		.loc 1 23 14 is_stmt 0 view .LVU107
- 333 0004 0023     		movs	r3, #0
- 334 0006 0193     		str	r3, [sp, #4]
-  24:Core/Src/Drivers/Encoder/encoder.c ****   {
- 335              		.loc 1 24 3 is_stmt 1 view .LVU108
-  24:Core/Src/Drivers/Encoder/encoder.c ****   {
- 336              		.loc 1 24 10 is_stmt 0 view .LVU109
- 337 0008 0268     		ldr	r2, [r0]
-  24:Core/Src/Drivers/Encoder/encoder.c ****   {
- 338              		.loc 1 24 5 view .LVU110
- 339 000a 0D4B     		ldr	r3, .L18
- 340 000c 9A42     		cmp	r2, r3
- 341 000e 0ED0     		beq	.L17
- 342              	.LVL9:
- 343              	.L14:
-  30:Core/Src/Drivers/Encoder/encoder.c **** }
- 344              		.loc 1 30 3 is_stmt 1 view .LVU111
-  30:Core/Src/Drivers/Encoder/encoder.c **** }
- 345              		.loc 1 30 3 view .LVU112
- 346 0010 019B     		ldr	r3, [sp, #4]
- 347 0012 4BB1     		cbz	r3, .L13
-  30:Core/Src/Drivers/Encoder/encoder.c **** }
- 348              		.loc 1 30 3 discriminator 1 view .LVU113
- 349 0014 4FF0E023 		mov	r3, #-536813568
- 350 0018 4FF08052 		mov	r2, #268435456
- 351 001c C3F8042D 		str	r2, [r3, #3332]
-  30:Core/Src/Drivers/Encoder/encoder.c **** }
- 352              		.loc 1 30 3 discriminator 1 view .LVU114
- 353              		.syntax unified
- 354              	@ 30 "Core/Src/Drivers/Encoder/encoder.c" 1
- 355 0020 BFF34F8F 		dsb
- 356              	@ 0 "" 2
-  30:Core/Src/Drivers/Encoder/encoder.c **** }
- 357              		.loc 1 30 3 discriminator 1 view .LVU115
- 358              	@ 30 "Core/Src/Drivers/Encoder/encoder.c" 1
- 359 0024 BFF36F8F 		isb
- 360              	@ 0 "" 2
-  30:Core/Src/Drivers/Encoder/encoder.c **** }
- 361              		.loc 1 30 3 discriminator 3 view .LVU116
-  30:Core/Src/Drivers/Encoder/encoder.c **** }
- 362              		.loc 1 30 3 discriminator 3 view .LVU117
- 363              		.thumb
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s 			page 11
+ 290 002c 2046     		mov	r0, r4
+ 291 002e FFF7FEFF 		bl	HAL_TIMEx_MasterConfigSynchronization
+ 292              	.LVL7:
+ 247:Core/Src/Drivers/Encoder/encoder.c ****   {
+ 248:Core/Src/Drivers/Encoder/encoder.c ****     // Error_Handler();
+ 249:Core/Src/Drivers/Encoder/encoder.c ****   }
+ 293              		.loc 1 249 3 is_stmt 1 view .LVU102
+ 250:Core/Src/Drivers/Encoder/encoder.c **** }
+ 294              		.loc 1 250 1 is_stmt 0 view .LVU103
+ 295 0032 03B0     		add	sp, sp, #12
+ 296              	.LCFI8:
+ 297              		.cfi_def_cfa_offset 12
+ 298              		@ sp needed
+ 299 0034 30BD     		pop	{r4, r5, pc}
+ 300              	.L12:
+ 301 0036 00BF     		.align	2
+ 302              	.L11:
+ 303 0038 00000000 		.word	htim7
+ 304 003c 00140040 		.word	1073746944
+ 305              		.cfi_endproc
+ 306              	.LFE178:
+ 308              		.section	.text.HAL_TIM_PeriodElapsedCallback,"ax",%progbits
+ 309              		.align	1
+ 310              		.global	HAL_TIM_PeriodElapsedCallback
+ 311              		.syntax unified
+ 312              		.thumb
+ 313              		.thumb_func
+ 315              	HAL_TIM_PeriodElapsedCallback:
+ 316              	.LVL8:
+ 317              	.LFB168:
+  24:Core/Src/Drivers/Encoder/encoder.c ****   BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+ 318              		.loc 1 24 1 is_stmt 1 view -0
+ 319              		.cfi_startproc
+ 320              		@ args = 0, pretend = 0, frame = 8
+ 321              		@ frame_needed = 0, uses_anonymous_args = 0
+  24:Core/Src/Drivers/Encoder/encoder.c ****   BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+ 322              		.loc 1 24 1 is_stmt 0 view .LVU105
+ 323 0000 00B5     		push	{lr}
+ 324              	.LCFI9:
+ 325              		.cfi_def_cfa_offset 4
+ 326              		.cfi_offset 14, -4
+ 327 0002 83B0     		sub	sp, sp, #12
+ 328              	.LCFI10:
+ 329              		.cfi_def_cfa_offset 16
+  25:Core/Src/Drivers/Encoder/encoder.c ****   if(htim->Instance == TIM7)
+ 330              		.loc 1 25 3 is_stmt 1 view .LVU106
+  25:Core/Src/Drivers/Encoder/encoder.c ****   if(htim->Instance == TIM7)
+ 331              		.loc 1 25 14 is_stmt 0 view .LVU107
+ 332 0004 0023     		movs	r3, #0
+ 333 0006 0193     		str	r3, [sp, #4]
+  26:Core/Src/Drivers/Encoder/encoder.c ****   {
+ 334              		.loc 1 26 3 is_stmt 1 view .LVU108
+  26:Core/Src/Drivers/Encoder/encoder.c ****   {
+ 335              		.loc 1 26 10 is_stmt 0 view .LVU109
+ 336 0008 0268     		ldr	r2, [r0]
+  26:Core/Src/Drivers/Encoder/encoder.c ****   {
+ 337              		.loc 1 26 5 view .LVU110
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s 			page 12
 
 
- 364              		.syntax unified
- 365              	.L13:
-  31:Core/Src/Drivers/Encoder/encoder.c **** 
- 366              		.loc 1 31 1 is_stmt 0 view .LVU118
- 367 0028 03B0     		add	sp, sp, #12
- 368              	.LCFI11:
- 369              		.cfi_remember_state
- 370              		.cfi_def_cfa_offset 4
- 371              		@ sp needed
- 372 002a 5DF804FB 		ldr	pc, [sp], #4
- 373              	.LVL10:
- 374              	.L17:
- 375              	.LCFI12:
- 376              		.cfi_restore_state
- 377              	.LBB2:
-  26:Core/Src/Drivers/Encoder/encoder.c ****     ao_estimator->postFromISR(ao_estimator, &time_evt, &xHigherPriorityTaskWoken);
- 378              		.loc 1 26 5 is_stmt 1 view .LVU119
-  27:Core/Src/Drivers/Encoder/encoder.c ****   }
- 379              		.loc 1 27 5 view .LVU120
-  27:Core/Src/Drivers/Encoder/encoder.c ****   }
- 380              		.loc 1 27 17 is_stmt 0 view .LVU121
- 381 002e 054B     		ldr	r3, .L18+4
- 382 0030 1868     		ldr	r0, [r3]
- 383              	.LVL11:
-  27:Core/Src/Drivers/Encoder/encoder.c ****   }
- 384              		.loc 1 27 17 view .LVU122
- 385 0032 D0F8C430 		ldr	r3, [r0, #196]
-  27:Core/Src/Drivers/Encoder/encoder.c ****   }
- 386              		.loc 1 27 5 view .LVU123
- 387 0036 01AA     		add	r2, sp, #4
- 388 0038 0349     		ldr	r1, .L18+8
- 389 003a 9847     		blx	r3
- 390              	.LVL12:
- 391 003c E8E7     		b	.L14
- 392              	.L19:
- 393 003e 00BF     		.align	2
- 394              	.L18:
- 395 0040 00140040 		.word	1073746944
- 396 0044 00000000 		.word	ao_estimator
- 397 0048 00000000 		.word	time_evt.0
- 398              	.LBE2:
- 399              		.cfi_endproc
- 400              	.LFE168:
- 402              		.section	.text.HAL_TIM_IC_CaptureCallback,"ax",%progbits
- 403              		.align	1
- 404              		.global	HAL_TIM_IC_CaptureCallback
- 405              		.syntax unified
- 406              		.thumb
- 407              		.thumb_func
- 409              	HAL_TIM_IC_CaptureCallback:
- 410              	.LVL13:
- 411              	.LFB169:
-  39:Core/Src/Drivers/Encoder/encoder.c ****   BaseType_t xHigherPriorityTaskWoken = pdFALSE;
- 412              		.loc 1 39 1 is_stmt 1 view -0
- 413              		.cfi_startproc
- 414              		@ args = 0, pretend = 0, frame = 8
- 415              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s 			page 12
+ 338 000a 0D4B     		ldr	r3, .L18
+ 339 000c 9A42     		cmp	r2, r3
+ 340 000e 0ED0     		beq	.L17
+ 341              	.LVL9:
+ 342              	.L14:
+  32:Core/Src/Drivers/Encoder/encoder.c **** }
+ 343              		.loc 1 32 3 is_stmt 1 view .LVU111
+  32:Core/Src/Drivers/Encoder/encoder.c **** }
+ 344              		.loc 1 32 3 view .LVU112
+ 345 0010 019B     		ldr	r3, [sp, #4]
+ 346 0012 4BB1     		cbz	r3, .L13
+  32:Core/Src/Drivers/Encoder/encoder.c **** }
+ 347              		.loc 1 32 3 discriminator 1 view .LVU113
+ 348 0014 4FF0E023 		mov	r3, #-536813568
+ 349 0018 4FF08052 		mov	r2, #268435456
+ 350 001c C3F8042D 		str	r2, [r3, #3332]
+  32:Core/Src/Drivers/Encoder/encoder.c **** }
+ 351              		.loc 1 32 3 discriminator 1 view .LVU114
+ 352              		.syntax unified
+ 353              	@ 32 "Core/Src/Drivers/Encoder/encoder.c" 1
+ 354 0020 BFF34F8F 		dsb
+ 355              	@ 0 "" 2
+  32:Core/Src/Drivers/Encoder/encoder.c **** }
+ 356              		.loc 1 32 3 discriminator 1 view .LVU115
+ 357              	@ 32 "Core/Src/Drivers/Encoder/encoder.c" 1
+ 358 0024 BFF36F8F 		isb
+ 359              	@ 0 "" 2
+  32:Core/Src/Drivers/Encoder/encoder.c **** }
+ 360              		.loc 1 32 3 discriminator 3 view .LVU116
+  32:Core/Src/Drivers/Encoder/encoder.c **** }
+ 361              		.loc 1 32 3 discriminator 3 view .LVU117
+ 362              		.thumb
+ 363              		.syntax unified
+ 364              	.L13:
+  33:Core/Src/Drivers/Encoder/encoder.c **** 
+ 365              		.loc 1 33 1 is_stmt 0 view .LVU118
+ 366 0028 03B0     		add	sp, sp, #12
+ 367              	.LCFI11:
+ 368              		.cfi_remember_state
+ 369              		.cfi_def_cfa_offset 4
+ 370              		@ sp needed
+ 371 002a 5DF804FB 		ldr	pc, [sp], #4
+ 372              	.LVL10:
+ 373              	.L17:
+ 374              	.LCFI12:
+ 375              		.cfi_restore_state
+ 376              	.LBB2:
+  28:Core/Src/Drivers/Encoder/encoder.c ****     ao_estimator->postFromISR(ao_estimator, &time_evt, &xHigherPriorityTaskWoken);
+ 377              		.loc 1 28 5 is_stmt 1 view .LVU119
+  29:Core/Src/Drivers/Encoder/encoder.c ****   }
+ 378              		.loc 1 29 5 view .LVU120
+  29:Core/Src/Drivers/Encoder/encoder.c ****   }
+ 379              		.loc 1 29 17 is_stmt 0 view .LVU121
+ 380 002e 054B     		ldr	r3, .L18+4
+ 381 0030 1868     		ldr	r0, [r3]
+ 382              	.LVL11:
+  29:Core/Src/Drivers/Encoder/encoder.c ****   }
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s 			page 13
 
 
-  39:Core/Src/Drivers/Encoder/encoder.c ****   BaseType_t xHigherPriorityTaskWoken = pdFALSE;
- 416              		.loc 1 39 1 is_stmt 0 view .LVU125
- 417 0000 10B5     		push	{r4, lr}
- 418              	.LCFI13:
- 419              		.cfi_def_cfa_offset 8
- 420              		.cfi_offset 4, -8
- 421              		.cfi_offset 14, -4
- 422 0002 82B0     		sub	sp, sp, #8
- 423              	.LCFI14:
- 424              		.cfi_def_cfa_offset 16
-  40:Core/Src/Drivers/Encoder/encoder.c ****   
- 425              		.loc 1 40 3 is_stmt 1 view .LVU126
-  40:Core/Src/Drivers/Encoder/encoder.c ****   
- 426              		.loc 1 40 14 is_stmt 0 view .LVU127
- 427 0004 0023     		movs	r3, #0
- 428 0006 0193     		str	r3, [sp, #4]
-  42:Core/Src/Drivers/Encoder/encoder.c ****   {
- 429              		.loc 1 42 3 is_stmt 1 view .LVU128
-  42:Core/Src/Drivers/Encoder/encoder.c ****   {
- 430              		.loc 1 42 10 is_stmt 0 view .LVU129
- 431 0008 0368     		ldr	r3, [r0]
-  42:Core/Src/Drivers/Encoder/encoder.c ****   {
- 432              		.loc 1 42 5 view .LVU130
- 433 000a 164A     		ldr	r2, .L27
- 434 000c 9342     		cmp	r3, r2
- 435 000e 10D0     		beq	.L25
-  48:Core/Src/Drivers/Encoder/encoder.c ****   {
- 436              		.loc 1 48 8 is_stmt 1 view .LVU131
-  48:Core/Src/Drivers/Encoder/encoder.c ****   {
- 437              		.loc 1 48 10 is_stmt 0 view .LVU132
- 438 0010 154A     		ldr	r2, .L27+4
- 439 0012 9342     		cmp	r3, r2
- 440 0014 19D0     		beq	.L26
- 441              	.LVL14:
- 442              	.L22:
-  55:Core/Src/Drivers/Encoder/encoder.c **** }
- 443              		.loc 1 55 3 is_stmt 1 view .LVU133
-  55:Core/Src/Drivers/Encoder/encoder.c **** }
- 444              		.loc 1 55 3 view .LVU134
- 445 0016 019B     		ldr	r3, [sp, #4]
- 446 0018 4BB1     		cbz	r3, .L20
-  55:Core/Src/Drivers/Encoder/encoder.c **** }
- 447              		.loc 1 55 3 discriminator 1 view .LVU135
- 448 001a 4FF0E023 		mov	r3, #-536813568
- 449 001e 4FF08052 		mov	r2, #268435456
- 450 0022 C3F8042D 		str	r2, [r3, #3332]
-  55:Core/Src/Drivers/Encoder/encoder.c **** }
- 451              		.loc 1 55 3 discriminator 1 view .LVU136
- 452              		.syntax unified
- 453              	@ 55 "Core/Src/Drivers/Encoder/encoder.c" 1
- 454 0026 BFF34F8F 		dsb
- 455              	@ 0 "" 2
-  55:Core/Src/Drivers/Encoder/encoder.c **** }
- 456              		.loc 1 55 3 discriminator 1 view .LVU137
- 457              	@ 55 "Core/Src/Drivers/Encoder/encoder.c" 1
- 458 002a BFF36F8F 		isb
- 459              	@ 0 "" 2
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s 			page 13
+ 383              		.loc 1 29 17 view .LVU122
+ 384 0032 D0F8C430 		ldr	r3, [r0, #196]
+  29:Core/Src/Drivers/Encoder/encoder.c ****   }
+ 385              		.loc 1 29 5 view .LVU123
+ 386 0036 01AA     		add	r2, sp, #4
+ 387 0038 0349     		ldr	r1, .L18+8
+ 388 003a 9847     		blx	r3
+ 389              	.LVL12:
+ 390 003c E8E7     		b	.L14
+ 391              	.L19:
+ 392 003e 00BF     		.align	2
+ 393              	.L18:
+ 394 0040 00140040 		.word	1073746944
+ 395 0044 00000000 		.word	ao_estimator
+ 396 0048 00000000 		.word	time_evt.0
+ 397              	.LBE2:
+ 398              		.cfi_endproc
+ 399              	.LFE168:
+ 401              		.section	.text.HAL_TIM_IC_CaptureCallback,"ax",%progbits
+ 402              		.align	1
+ 403              		.global	HAL_TIM_IC_CaptureCallback
+ 404              		.syntax unified
+ 405              		.thumb
+ 406              		.thumb_func
+ 408              	HAL_TIM_IC_CaptureCallback:
+ 409              	.LVL13:
+ 410              	.LFB169:
+  41:Core/Src/Drivers/Encoder/encoder.c ****   BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+ 411              		.loc 1 41 1 is_stmt 1 view -0
+ 412              		.cfi_startproc
+ 413              		@ args = 0, pretend = 0, frame = 8
+ 414              		@ frame_needed = 0, uses_anonymous_args = 0
+  41:Core/Src/Drivers/Encoder/encoder.c ****   BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+ 415              		.loc 1 41 1 is_stmt 0 view .LVU125
+ 416 0000 10B5     		push	{r4, lr}
+ 417              	.LCFI13:
+ 418              		.cfi_def_cfa_offset 8
+ 419              		.cfi_offset 4, -8
+ 420              		.cfi_offset 14, -4
+ 421 0002 82B0     		sub	sp, sp, #8
+ 422              	.LCFI14:
+ 423              		.cfi_def_cfa_offset 16
+  42:Core/Src/Drivers/Encoder/encoder.c ****   
+ 424              		.loc 1 42 3 is_stmt 1 view .LVU126
+  42:Core/Src/Drivers/Encoder/encoder.c ****   
+ 425              		.loc 1 42 14 is_stmt 0 view .LVU127
+ 426 0004 0023     		movs	r3, #0
+ 427 0006 0193     		str	r3, [sp, #4]
+  44:Core/Src/Drivers/Encoder/encoder.c ****   {
+ 428              		.loc 1 44 3 is_stmt 1 view .LVU128
+  44:Core/Src/Drivers/Encoder/encoder.c ****   {
+ 429              		.loc 1 44 10 is_stmt 0 view .LVU129
+ 430 0008 0368     		ldr	r3, [r0]
+  44:Core/Src/Drivers/Encoder/encoder.c ****   {
+ 431              		.loc 1 44 5 view .LVU130
+ 432 000a B3F1804F 		cmp	r3, #1073741824
+ 433 000e 10D0     		beq	.L25
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s 			page 14
 
 
-  55:Core/Src/Drivers/Encoder/encoder.c **** }
- 460              		.loc 1 55 3 discriminator 3 view .LVU138
-  55:Core/Src/Drivers/Encoder/encoder.c **** }
- 461              		.loc 1 55 3 discriminator 3 view .LVU139
- 462              		.thumb
- 463              		.syntax unified
- 464              	.L20:
-  56:Core/Src/Drivers/Encoder/encoder.c **** 
- 465              		.loc 1 56 1 is_stmt 0 view .LVU140
- 466 002e 02B0     		add	sp, sp, #8
- 467              	.LCFI15:
- 468              		.cfi_remember_state
- 469              		.cfi_def_cfa_offset 8
- 470              		@ sp needed
- 471 0030 10BD     		pop	{r4, pc}
- 472              	.LVL15:
- 473              	.L25:
- 474              	.LCFI16:
- 475              		.cfi_restore_state
-  45:Core/Src/Drivers/Encoder/encoder.c ****     state_estimator->publicFromISR(state_estimator->encoder_sub, &encoder_topic, &xHigherPriorityTa
- 476              		.loc 1 45 5 is_stmt 1 view .LVU141
-  45:Core/Src/Drivers/Encoder/encoder.c ****     state_estimator->publicFromISR(state_estimator->encoder_sub, &encoder_topic, &xHigherPriorityTa
- 477              		.loc 1 45 55 is_stmt 0 view .LVU142
- 478 0032 5B6A     		ldr	r3, [r3, #36]
-  45:Core/Src/Drivers/Encoder/encoder.c ****     state_estimator->publicFromISR(state_estimator->encoder_sub, &encoder_topic, &xHigherPriorityTa
- 479              		.loc 1 45 33 view .LVU143
- 480 0034 0D49     		ldr	r1, .L27+8
- 481 0036 4B80     		strh	r3, [r1, #2]	@ movhi
-  46:Core/Src/Drivers/Encoder/encoder.c ****   }
- 482              		.loc 1 46 5 is_stmt 1 view .LVU144
-  46:Core/Src/Drivers/Encoder/encoder.c ****   }
- 483              		.loc 1 46 20 is_stmt 0 view .LVU145
- 484 0038 0D4B     		ldr	r3, .L27+12
- 485 003a 1B68     		ldr	r3, [r3]
- 486 003c D3F8E440 		ldr	r4, [r3, #228]
-  46:Core/Src/Drivers/Encoder/encoder.c ****   }
- 487              		.loc 1 46 5 view .LVU146
- 488 0040 01AA     		add	r2, sp, #4
- 489 0042 D3F8D000 		ldr	r0, [r3, #208]
- 490              	.LVL16:
-  46:Core/Src/Drivers/Encoder/encoder.c ****   }
- 491              		.loc 1 46 5 view .LVU147
- 492 0046 A047     		blx	r4
- 493              	.LVL17:
- 494 0048 E5E7     		b	.L22
- 495              	.LVL18:
- 496              	.L26:
-  51:Core/Src/Drivers/Encoder/encoder.c ****     state_estimator->publicFromISR(state_estimator->encoder_sub, &encoder_topic, &xHigherPriorityTa
- 497              		.loc 1 51 5 is_stmt 1 view .LVU148
-  51:Core/Src/Drivers/Encoder/encoder.c ****     state_estimator->publicFromISR(state_estimator->encoder_sub, &encoder_topic, &xHigherPriorityTa
- 498              		.loc 1 51 56 is_stmt 0 view .LVU149
- 499 004a 5B6A     		ldr	r3, [r3, #36]
-  51:Core/Src/Drivers/Encoder/encoder.c ****     state_estimator->publicFromISR(state_estimator->encoder_sub, &encoder_topic, &xHigherPriorityTa
- 500              		.loc 1 51 34 view .LVU150
- 501 004c 0749     		ldr	r1, .L27+8
- 502 004e 0B80     		strh	r3, [r1]	@ movhi
-  52:Core/Src/Drivers/Encoder/encoder.c ****   }
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s 			page 14
+  50:Core/Src/Drivers/Encoder/encoder.c ****   {
+ 434              		.loc 1 50 8 is_stmt 1 view .LVU131
+  50:Core/Src/Drivers/Encoder/encoder.c ****   {
+ 435              		.loc 1 50 10 is_stmt 0 view .LVU132
+ 436 0010 144A     		ldr	r2, .L27
+ 437 0012 9342     		cmp	r3, r2
+ 438 0014 19D0     		beq	.L26
+ 439              	.LVL14:
+ 440              	.L22:
+  57:Core/Src/Drivers/Encoder/encoder.c **** }
+ 441              		.loc 1 57 3 is_stmt 1 view .LVU133
+  57:Core/Src/Drivers/Encoder/encoder.c **** }
+ 442              		.loc 1 57 3 view .LVU134
+ 443 0016 019B     		ldr	r3, [sp, #4]
+ 444 0018 4BB1     		cbz	r3, .L20
+  57:Core/Src/Drivers/Encoder/encoder.c **** }
+ 445              		.loc 1 57 3 discriminator 1 view .LVU135
+ 446 001a 4FF0E023 		mov	r3, #-536813568
+ 447 001e 4FF08052 		mov	r2, #268435456
+ 448 0022 C3F8042D 		str	r2, [r3, #3332]
+  57:Core/Src/Drivers/Encoder/encoder.c **** }
+ 449              		.loc 1 57 3 discriminator 1 view .LVU136
+ 450              		.syntax unified
+ 451              	@ 57 "Core/Src/Drivers/Encoder/encoder.c" 1
+ 452 0026 BFF34F8F 		dsb
+ 453              	@ 0 "" 2
+  57:Core/Src/Drivers/Encoder/encoder.c **** }
+ 454              		.loc 1 57 3 discriminator 1 view .LVU137
+ 455              	@ 57 "Core/Src/Drivers/Encoder/encoder.c" 1
+ 456 002a BFF36F8F 		isb
+ 457              	@ 0 "" 2
+  57:Core/Src/Drivers/Encoder/encoder.c **** }
+ 458              		.loc 1 57 3 discriminator 3 view .LVU138
+  57:Core/Src/Drivers/Encoder/encoder.c **** }
+ 459              		.loc 1 57 3 discriminator 3 view .LVU139
+ 460              		.thumb
+ 461              		.syntax unified
+ 462              	.L20:
+  58:Core/Src/Drivers/Encoder/encoder.c **** 
+ 463              		.loc 1 58 1 is_stmt 0 view .LVU140
+ 464 002e 02B0     		add	sp, sp, #8
+ 465              	.LCFI15:
+ 466              		.cfi_remember_state
+ 467              		.cfi_def_cfa_offset 8
+ 468              		@ sp needed
+ 469 0030 10BD     		pop	{r4, pc}
+ 470              	.LVL15:
+ 471              	.L25:
+ 472              	.LCFI16:
+ 473              		.cfi_restore_state
+  47:Core/Src/Drivers/Encoder/encoder.c ****     state_estimator->publicFromISR(state_estimator->encoder_sub, &encoder_topic, &xHigherPriorityTa
+ 474              		.loc 1 47 5 is_stmt 1 view .LVU141
+  47:Core/Src/Drivers/Encoder/encoder.c ****     state_estimator->publicFromISR(state_estimator->encoder_sub, &encoder_topic, &xHigherPriorityTa
+ 475              		.loc 1 47 55 is_stmt 0 view .LVU142
+ 476 0032 5B6A     		ldr	r3, [r3, #36]
+  47:Core/Src/Drivers/Encoder/encoder.c ****     state_estimator->publicFromISR(state_estimator->encoder_sub, &encoder_topic, &xHigherPriorityTa
+ 477              		.loc 1 47 33 view .LVU143
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s 			page 15
 
 
- 503              		.loc 1 52 5 is_stmt 1 view .LVU151
-  52:Core/Src/Drivers/Encoder/encoder.c ****   }
- 504              		.loc 1 52 20 is_stmt 0 view .LVU152
- 505 0050 074B     		ldr	r3, .L27+12
- 506 0052 1B68     		ldr	r3, [r3]
- 507 0054 D3F8E440 		ldr	r4, [r3, #228]
-  52:Core/Src/Drivers/Encoder/encoder.c ****   }
- 508              		.loc 1 52 5 view .LVU153
- 509 0058 01AA     		add	r2, sp, #4
- 510 005a D3F8D000 		ldr	r0, [r3, #208]
- 511              	.LVL19:
-  52:Core/Src/Drivers/Encoder/encoder.c ****   }
- 512              		.loc 1 52 5 view .LVU154
- 513 005e A047     		blx	r4
- 514              	.LVL20:
- 515 0060 D9E7     		b	.L22
- 516              	.L28:
- 517 0062 00BF     		.align	2
- 518              	.L27:
- 519 0064 00080040 		.word	1073743872
- 520 0068 00040040 		.word	1073742848
- 521 006c 00000000 		.word	encoder_topic
- 522 0070 00000000 		.word	state_estimator
- 523              		.cfi_endproc
- 524              	.LFE169:
- 526              		.section	.text.TIM3_IRQHandler,"ax",%progbits
- 527              		.align	1
- 528              		.global	TIM3_IRQHandler
- 529              		.syntax unified
- 530              		.thumb
- 531              		.thumb_func
- 533              	TIM3_IRQHandler:
- 534              	.LFB170:
-  62:Core/Src/Drivers/Encoder/encoder.c ****   HAL_TIM_IRQHandler(&htim3);
- 535              		.loc 1 62 1 is_stmt 1 view -0
- 536              		.cfi_startproc
- 537              		@ args = 0, pretend = 0, frame = 0
- 538              		@ frame_needed = 0, uses_anonymous_args = 0
- 539 0000 08B5     		push	{r3, lr}
- 540              	.LCFI17:
- 541              		.cfi_def_cfa_offset 8
- 542              		.cfi_offset 3, -8
- 543              		.cfi_offset 14, -4
-  63:Core/Src/Drivers/Encoder/encoder.c **** }
- 544              		.loc 1 63 3 view .LVU156
- 545 0002 0248     		ldr	r0, .L31
- 546 0004 FFF7FEFF 		bl	HAL_TIM_IRQHandler
- 547              	.LVL21:
-  64:Core/Src/Drivers/Encoder/encoder.c **** 
- 548              		.loc 1 64 1 is_stmt 0 view .LVU157
- 549 0008 08BD     		pop	{r3, pc}
- 550              	.L32:
- 551 000a 00BF     		.align	2
- 552              	.L31:
- 553 000c 00000000 		.word	htim3
- 554              		.cfi_endproc
- 555              	.LFE170:
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s 			page 15
+ 478 0034 0C49     		ldr	r1, .L27+4
+ 479 0036 4B60     		str	r3, [r1, #4]
+  48:Core/Src/Drivers/Encoder/encoder.c ****   }
+ 480              		.loc 1 48 5 is_stmt 1 view .LVU144
+  48:Core/Src/Drivers/Encoder/encoder.c ****   }
+ 481              		.loc 1 48 20 is_stmt 0 view .LVU145
+ 482 0038 0C4B     		ldr	r3, .L27+8
+ 483 003a 1B68     		ldr	r3, [r3]
+ 484 003c D3F8E440 		ldr	r4, [r3, #228]
+  48:Core/Src/Drivers/Encoder/encoder.c ****   }
+ 485              		.loc 1 48 5 view .LVU146
+ 486 0040 01AA     		add	r2, sp, #4
+ 487 0042 D3F8D000 		ldr	r0, [r3, #208]
+ 488              	.LVL16:
+  48:Core/Src/Drivers/Encoder/encoder.c ****   }
+ 489              		.loc 1 48 5 view .LVU147
+ 490 0046 A047     		blx	r4
+ 491              	.LVL17:
+ 492 0048 E5E7     		b	.L22
+ 493              	.LVL18:
+ 494              	.L26:
+  53:Core/Src/Drivers/Encoder/encoder.c ****     state_estimator->publicFromISR(state_estimator->encoder_sub, &encoder_topic, &xHigherPriorityTa
+ 495              		.loc 1 53 5 is_stmt 1 view .LVU148
+  53:Core/Src/Drivers/Encoder/encoder.c ****     state_estimator->publicFromISR(state_estimator->encoder_sub, &encoder_topic, &xHigherPriorityTa
+ 496              		.loc 1 53 56 is_stmt 0 view .LVU149
+ 497 004a 5B6A     		ldr	r3, [r3, #36]
+  53:Core/Src/Drivers/Encoder/encoder.c ****     state_estimator->publicFromISR(state_estimator->encoder_sub, &encoder_topic, &xHigherPriorityTa
+ 498              		.loc 1 53 34 view .LVU150
+ 499 004c 0649     		ldr	r1, .L27+4
+ 500 004e 0B80     		strh	r3, [r1]	@ movhi
+  54:Core/Src/Drivers/Encoder/encoder.c ****   }
+ 501              		.loc 1 54 5 is_stmt 1 view .LVU151
+  54:Core/Src/Drivers/Encoder/encoder.c ****   }
+ 502              		.loc 1 54 20 is_stmt 0 view .LVU152
+ 503 0050 064B     		ldr	r3, .L27+8
+ 504 0052 1B68     		ldr	r3, [r3]
+ 505 0054 D3F8E440 		ldr	r4, [r3, #228]
+  54:Core/Src/Drivers/Encoder/encoder.c ****   }
+ 506              		.loc 1 54 5 view .LVU153
+ 507 0058 01AA     		add	r2, sp, #4
+ 508 005a D3F8D000 		ldr	r0, [r3, #208]
+ 509              	.LVL19:
+  54:Core/Src/Drivers/Encoder/encoder.c ****   }
+ 510              		.loc 1 54 5 view .LVU154
+ 511 005e A047     		blx	r4
+ 512              	.LVL20:
+ 513 0060 D9E7     		b	.L22
+ 514              	.L28:
+ 515 0062 00BF     		.align	2
+ 516              	.L27:
+ 517 0064 00040040 		.word	1073742848
+ 518 0068 00000000 		.word	encoder_topic
+ 519 006c 00000000 		.word	state_estimator
+ 520              		.cfi_endproc
+ 521              	.LFE169:
+ 523              		.section	.text.TIM2_IRQHandler,"ax",%progbits
+ 524              		.align	1
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s 			page 16
 
 
- 557              		.section	.text.TIM4_IRQHandler,"ax",%progbits
- 558              		.align	1
- 559              		.global	TIM4_IRQHandler
- 560              		.syntax unified
- 561              		.thumb
- 562              		.thumb_func
- 564              	TIM4_IRQHandler:
- 565              	.LFB171:
-  70:Core/Src/Drivers/Encoder/encoder.c ****   HAL_TIM_IRQHandler(&htim4);
- 566              		.loc 1 70 1 is_stmt 1 view -0
- 567              		.cfi_startproc
- 568              		@ args = 0, pretend = 0, frame = 0
- 569              		@ frame_needed = 0, uses_anonymous_args = 0
- 570 0000 08B5     		push	{r3, lr}
- 571              	.LCFI18:
- 572              		.cfi_def_cfa_offset 8
- 573              		.cfi_offset 3, -8
- 574              		.cfi_offset 14, -4
-  71:Core/Src/Drivers/Encoder/encoder.c **** }
- 575              		.loc 1 71 3 view .LVU159
- 576 0002 0248     		ldr	r0, .L35
- 577 0004 FFF7FEFF 		bl	HAL_TIM_IRQHandler
- 578              	.LVL22:
-  72:Core/Src/Drivers/Encoder/encoder.c **** 
- 579              		.loc 1 72 1 is_stmt 0 view .LVU160
- 580 0008 08BD     		pop	{r3, pc}
- 581              	.L36:
- 582 000a 00BF     		.align	2
- 583              	.L35:
- 584 000c 00000000 		.word	htim4
- 585              		.cfi_endproc
- 586              	.LFE171:
- 588              		.section	.text.TIM7_IRQHandler,"ax",%progbits
- 589              		.align	1
- 590              		.global	TIM7_IRQHandler
- 591              		.syntax unified
- 592              		.thumb
- 593              		.thumb_func
- 595              	TIM7_IRQHandler:
- 596              	.LFB172:
-  78:Core/Src/Drivers/Encoder/encoder.c ****   HAL_TIM_IRQHandler(&htim7);
- 597              		.loc 1 78 1 is_stmt 1 view -0
- 598              		.cfi_startproc
- 599              		@ args = 0, pretend = 0, frame = 0
- 600              		@ frame_needed = 0, uses_anonymous_args = 0
- 601 0000 08B5     		push	{r3, lr}
- 602              	.LCFI19:
- 603              		.cfi_def_cfa_offset 8
- 604              		.cfi_offset 3, -8
- 605              		.cfi_offset 14, -4
-  79:Core/Src/Drivers/Encoder/encoder.c **** }
- 606              		.loc 1 79 3 view .LVU162
- 607 0002 0248     		ldr	r0, .L39
- 608 0004 FFF7FEFF 		bl	HAL_TIM_IRQHandler
- 609              	.LVL23:
-  80:Core/Src/Drivers/Encoder/encoder.c **** 
- 610              		.loc 1 80 1 is_stmt 0 view .LVU163
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s 			page 16
+ 525              		.global	TIM2_IRQHandler
+ 526              		.syntax unified
+ 527              		.thumb
+ 528              		.thumb_func
+ 530              	TIM2_IRQHandler:
+ 531              	.LFB170:
+  64:Core/Src/Drivers/Encoder/encoder.c ****   HAL_TIM_IRQHandler(&htim2);
+ 532              		.loc 1 64 1 is_stmt 1 view -0
+ 533              		.cfi_startproc
+ 534              		@ args = 0, pretend = 0, frame = 0
+ 535              		@ frame_needed = 0, uses_anonymous_args = 0
+ 536 0000 08B5     		push	{r3, lr}
+ 537              	.LCFI17:
+ 538              		.cfi_def_cfa_offset 8
+ 539              		.cfi_offset 3, -8
+ 540              		.cfi_offset 14, -4
+  65:Core/Src/Drivers/Encoder/encoder.c **** }
+ 541              		.loc 1 65 3 view .LVU156
+ 542 0002 0248     		ldr	r0, .L31
+ 543 0004 FFF7FEFF 		bl	HAL_TIM_IRQHandler
+ 544              	.LVL21:
+  66:Core/Src/Drivers/Encoder/encoder.c **** 
+ 545              		.loc 1 66 1 is_stmt 0 view .LVU157
+ 546 0008 08BD     		pop	{r3, pc}
+ 547              	.L32:
+ 548 000a 00BF     		.align	2
+ 549              	.L31:
+ 550 000c 00000000 		.word	htim2
+ 551              		.cfi_endproc
+ 552              	.LFE170:
+ 554              		.section	.text.TIM3_IRQHandler,"ax",%progbits
+ 555              		.align	1
+ 556              		.global	TIM3_IRQHandler
+ 557              		.syntax unified
+ 558              		.thumb
+ 559              		.thumb_func
+ 561              	TIM3_IRQHandler:
+ 562              	.LFB171:
+  72:Core/Src/Drivers/Encoder/encoder.c ****   HAL_TIM_IRQHandler(&htim3);
+ 563              		.loc 1 72 1 is_stmt 1 view -0
+ 564              		.cfi_startproc
+ 565              		@ args = 0, pretend = 0, frame = 0
+ 566              		@ frame_needed = 0, uses_anonymous_args = 0
+ 567 0000 08B5     		push	{r3, lr}
+ 568              	.LCFI18:
+ 569              		.cfi_def_cfa_offset 8
+ 570              		.cfi_offset 3, -8
+ 571              		.cfi_offset 14, -4
+  73:Core/Src/Drivers/Encoder/encoder.c **** }
+ 572              		.loc 1 73 3 view .LVU159
+ 573 0002 0248     		ldr	r0, .L35
+ 574 0004 FFF7FEFF 		bl	HAL_TIM_IRQHandler
+ 575              	.LVL22:
+  74:Core/Src/Drivers/Encoder/encoder.c **** 
+ 576              		.loc 1 74 1 is_stmt 0 view .LVU160
+ 577 0008 08BD     		pop	{r3, pc}
+ 578              	.L36:
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s 			page 17
 
 
- 611 0008 08BD     		pop	{r3, pc}
- 612              	.L40:
- 613 000a 00BF     		.align	2
- 614              	.L39:
- 615 000c 00000000 		.word	htim7
- 616              		.cfi_endproc
- 617              	.LFE172:
- 619              		.section	.text.Driver_Encoder_Init,"ax",%progbits
- 620              		.align	1
- 621              		.global	Driver_Encoder_Init
- 622              		.syntax unified
- 623              		.thumb
- 624              		.thumb_func
- 626              	Driver_Encoder_Init:
- 627              	.LFB173:
-  86:Core/Src/Drivers/Encoder/encoder.c ****   MX_TIM3_Init(); // Motor encoder
- 628              		.loc 1 86 1 is_stmt 1 view -0
- 629              		.cfi_startproc
- 630              		@ args = 0, pretend = 0, frame = 0
- 631              		@ frame_needed = 0, uses_anonymous_args = 0
- 632 0000 08B5     		push	{r3, lr}
- 633              	.LCFI20:
- 634              		.cfi_def_cfa_offset 8
- 635              		.cfi_offset 3, -8
- 636              		.cfi_offset 14, -4
-  87:Core/Src/Drivers/Encoder/encoder.c ****   MX_TIM4_Init(); // Pendullum encoder
- 637              		.loc 1 87 3 view .LVU165
- 638 0002 FFF7FEFF 		bl	MX_TIM3_Init
- 639              	.LVL24:
-  88:Core/Src/Drivers/Encoder/encoder.c ****   MX_TIM7_Init(); // Basic timer for generating periodic task running at 2kHz
- 640              		.loc 1 88 3 view .LVU166
- 641 0006 FFF7FEFF 		bl	MX_TIM4_Init
- 642              	.LVL25:
-  89:Core/Src/Drivers/Encoder/encoder.c **** 
- 643              		.loc 1 89 3 view .LVU167
- 644 000a FFF7FEFF 		bl	MX_TIM7_Init
- 645              	.LVL26:
-  91:Core/Src/Drivers/Encoder/encoder.c ****   encoder_topic.pendlm_counter = 0;
- 646              		.loc 1 91 3 view .LVU168
-  91:Core/Src/Drivers/Encoder/encoder.c ****   encoder_topic.pendlm_counter = 0;
- 647              		.loc 1 91 31 is_stmt 0 view .LVU169
- 648 000e 024B     		ldr	r3, .L43
- 649 0010 0022     		movs	r2, #0
- 650 0012 5A80     		strh	r2, [r3, #2]	@ movhi
-  92:Core/Src/Drivers/Encoder/encoder.c ****   // HAL_TIM_Base_Start_IT(&htim7);
- 651              		.loc 1 92 3 is_stmt 1 view .LVU170
-  92:Core/Src/Drivers/Encoder/encoder.c ****   // HAL_TIM_Base_Start_IT(&htim7);
- 652              		.loc 1 92 32 is_stmt 0 view .LVU171
- 653 0014 1A80     		strh	r2, [r3]	@ movhi
-  96:Core/Src/Drivers/Encoder/encoder.c **** 
- 654              		.loc 1 96 1 view .LVU172
- 655 0016 08BD     		pop	{r3, pc}
- 656              	.L44:
- 657              		.align	2
- 658              	.L43:
- 659 0018 00000000 		.word	encoder_topic
- 660              		.cfi_endproc
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s 			page 17
+ 579 000a 00BF     		.align	2
+ 580              	.L35:
+ 581 000c 00000000 		.word	htim3
+ 582              		.cfi_endproc
+ 583              	.LFE171:
+ 585              		.section	.text.TIM4_IRQHandler,"ax",%progbits
+ 586              		.align	1
+ 587              		.global	TIM4_IRQHandler
+ 588              		.syntax unified
+ 589              		.thumb
+ 590              		.thumb_func
+ 592              	TIM4_IRQHandler:
+ 593              	.LFB172:
+  80:Core/Src/Drivers/Encoder/encoder.c ****   HAL_TIM_IRQHandler(&htim4);
+ 594              		.loc 1 80 1 is_stmt 1 view -0
+ 595              		.cfi_startproc
+ 596              		@ args = 0, pretend = 0, frame = 0
+ 597              		@ frame_needed = 0, uses_anonymous_args = 0
+ 598 0000 08B5     		push	{r3, lr}
+ 599              	.LCFI19:
+ 600              		.cfi_def_cfa_offset 8
+ 601              		.cfi_offset 3, -8
+ 602              		.cfi_offset 14, -4
+  81:Core/Src/Drivers/Encoder/encoder.c **** }
+ 603              		.loc 1 81 3 view .LVU162
+ 604 0002 0248     		ldr	r0, .L39
+ 605 0004 FFF7FEFF 		bl	HAL_TIM_IRQHandler
+ 606              	.LVL23:
+  82:Core/Src/Drivers/Encoder/encoder.c **** 
+ 607              		.loc 1 82 1 is_stmt 0 view .LVU163
+ 608 0008 08BD     		pop	{r3, pc}
+ 609              	.L40:
+ 610 000a 00BF     		.align	2
+ 611              	.L39:
+ 612 000c 00000000 		.word	htim4
+ 613              		.cfi_endproc
+ 614              	.LFE172:
+ 616              		.section	.text.TIM7_IRQHandler,"ax",%progbits
+ 617              		.align	1
+ 618              		.global	TIM7_IRQHandler
+ 619              		.syntax unified
+ 620              		.thumb
+ 621              		.thumb_func
+ 623              	TIM7_IRQHandler:
+ 624              	.LFB173:
+  88:Core/Src/Drivers/Encoder/encoder.c ****   HAL_TIM_IRQHandler(&htim7);
+ 625              		.loc 1 88 1 is_stmt 1 view -0
+ 626              		.cfi_startproc
+ 627              		@ args = 0, pretend = 0, frame = 0
+ 628              		@ frame_needed = 0, uses_anonymous_args = 0
+ 629 0000 08B5     		push	{r3, lr}
+ 630              	.LCFI20:
+ 631              		.cfi_def_cfa_offset 8
+ 632              		.cfi_offset 3, -8
+ 633              		.cfi_offset 14, -4
+  89:Core/Src/Drivers/Encoder/encoder.c **** }
+ 634              		.loc 1 89 3 view .LVU165
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s 			page 18
 
 
- 661              	.LFE173:
- 663              		.section	.text.HAL_TIM_Encoder_MspInit,"ax",%progbits
- 664              		.align	1
- 665              		.global	HAL_TIM_Encoder_MspInit
- 666              		.syntax unified
- 667              		.thumb
- 668              		.thumb_func
- 670              	HAL_TIM_Encoder_MspInit:
- 671              	.LVL27:
- 672              	.LFB177:
- 201:Core/Src/Drivers/Encoder/encoder.c **** 
- 202:Core/Src/Drivers/Encoder/encoder.c **** /**
- 203:Core/Src/Drivers/Encoder/encoder.c **** * @brief TIM_Encoder MSP Initialization
- 204:Core/Src/Drivers/Encoder/encoder.c **** * This function configures the hardware resources used in this example
- 205:Core/Src/Drivers/Encoder/encoder.c **** * @param htim_encoder: TIM_Encoder handle pointer
- 206:Core/Src/Drivers/Encoder/encoder.c **** * @retval None
- 207:Core/Src/Drivers/Encoder/encoder.c **** */
- 208:Core/Src/Drivers/Encoder/encoder.c **** void HAL_TIM_Encoder_MspInit(TIM_HandleTypeDef* htim_encoder)
- 209:Core/Src/Drivers/Encoder/encoder.c **** {
- 673              		.loc 1 209 1 is_stmt 1 view -0
- 674              		.cfi_startproc
- 675              		@ args = 0, pretend = 0, frame = 40
- 676              		@ frame_needed = 0, uses_anonymous_args = 0
- 677              		.loc 1 209 1 is_stmt 0 view .LVU174
- 678 0000 10B5     		push	{r4, lr}
- 679              	.LCFI21:
- 680              		.cfi_def_cfa_offset 8
- 681              		.cfi_offset 4, -8
- 682              		.cfi_offset 14, -4
- 683 0002 8AB0     		sub	sp, sp, #40
- 684              	.LCFI22:
- 685              		.cfi_def_cfa_offset 48
- 210:Core/Src/Drivers/Encoder/encoder.c ****   GPIO_InitTypeDef GPIO_InitStruct = {0};
- 686              		.loc 1 210 3 is_stmt 1 view .LVU175
- 687              		.loc 1 210 20 is_stmt 0 view .LVU176
- 688 0004 0023     		movs	r3, #0
- 689 0006 0593     		str	r3, [sp, #20]
- 690 0008 0693     		str	r3, [sp, #24]
- 691 000a 0793     		str	r3, [sp, #28]
- 692 000c 0893     		str	r3, [sp, #32]
- 693 000e 0993     		str	r3, [sp, #36]
- 211:Core/Src/Drivers/Encoder/encoder.c ****   if(htim_encoder->Instance==TIM3)
- 694              		.loc 1 211 3 is_stmt 1 view .LVU177
- 695              		.loc 1 211 18 is_stmt 0 view .LVU178
- 696 0010 0368     		ldr	r3, [r0]
- 697              		.loc 1 211 5 view .LVU179
- 698 0012 2D4A     		ldr	r2, .L51
- 699 0014 9342     		cmp	r3, r2
- 700 0016 04D0     		beq	.L49
- 212:Core/Src/Drivers/Encoder/encoder.c ****   {
- 213:Core/Src/Drivers/Encoder/encoder.c ****     /* Peripheral clock enable */
- 214:Core/Src/Drivers/Encoder/encoder.c ****     __HAL_RCC_TIM3_CLK_ENABLE();
- 215:Core/Src/Drivers/Encoder/encoder.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
- 216:Core/Src/Drivers/Encoder/encoder.c **** 
- 217:Core/Src/Drivers/Encoder/encoder.c ****     /**TIM3 GPIO Configuration
- 218:Core/Src/Drivers/Encoder/encoder.c ****     PA6     ------> TIM3_CH1
- 219:Core/Src/Drivers/Encoder/encoder.c ****     PA7     ------> TIM3_CH2
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s 			page 18
+ 635 0002 0248     		ldr	r0, .L43
+ 636 0004 FFF7FEFF 		bl	HAL_TIM_IRQHandler
+ 637              	.LVL24:
+  90:Core/Src/Drivers/Encoder/encoder.c **** 
+ 638              		.loc 1 90 1 is_stmt 0 view .LVU166
+ 639 0008 08BD     		pop	{r3, pc}
+ 640              	.L44:
+ 641 000a 00BF     		.align	2
+ 642              	.L43:
+ 643 000c 00000000 		.word	htim7
+ 644              		.cfi_endproc
+ 645              	.LFE173:
+ 647              		.section	.text.Driver_Encoder_Init,"ax",%progbits
+ 648              		.align	1
+ 649              		.global	Driver_Encoder_Init
+ 650              		.syntax unified
+ 651              		.thumb
+ 652              		.thumb_func
+ 654              	Driver_Encoder_Init:
+ 655              	.LFB174:
+  96:Core/Src/Drivers/Encoder/encoder.c ****   MX_TIM3_Init(); // Motor encoder
+ 656              		.loc 1 96 1 is_stmt 1 view -0
+ 657              		.cfi_startproc
+ 658              		@ args = 0, pretend = 0, frame = 0
+ 659              		@ frame_needed = 0, uses_anonymous_args = 0
+ 660 0000 08B5     		push	{r3, lr}
+ 661              	.LCFI21:
+ 662              		.cfi_def_cfa_offset 8
+ 663              		.cfi_offset 3, -8
+ 664              		.cfi_offset 14, -4
+  97:Core/Src/Drivers/Encoder/encoder.c ****   MX_TIM2_Init(); // Pendullum encoder
+ 665              		.loc 1 97 3 view .LVU168
+ 666 0002 FFF7FEFF 		bl	MX_TIM3_Init
+ 667              	.LVL25:
+  98:Core/Src/Drivers/Encoder/encoder.c ****   MX_TIM7_Init(); // Basic timer for generating periodic task running at 2kHz
+ 668              		.loc 1 98 3 view .LVU169
+ 669 0006 FFF7FEFF 		bl	MX_TIM2_Init
+ 670              	.LVL26:
+  99:Core/Src/Drivers/Encoder/encoder.c **** 
+ 671              		.loc 1 99 3 view .LVU170
+ 672 000a FFF7FEFF 		bl	MX_TIM7_Init
+ 673              	.LVL27:
+ 101:Core/Src/Drivers/Encoder/encoder.c ****   encoder_topic.pendlm_counter = 0;
+ 674              		.loc 1 101 3 view .LVU171
+ 101:Core/Src/Drivers/Encoder/encoder.c ****   encoder_topic.pendlm_counter = 0;
+ 675              		.loc 1 101 31 is_stmt 0 view .LVU172
+ 676 000e 024B     		ldr	r3, .L47
+ 677 0010 0022     		movs	r2, #0
+ 678 0012 5A60     		str	r2, [r3, #4]
+ 102:Core/Src/Drivers/Encoder/encoder.c ****   // HAL_TIM_Base_Start_IT(&htim7);
+ 679              		.loc 1 102 3 is_stmt 1 view .LVU173
+ 102:Core/Src/Drivers/Encoder/encoder.c ****   // HAL_TIM_Base_Start_IT(&htim7);
+ 680              		.loc 1 102 32 is_stmt 0 view .LVU174
+ 681 0014 1A80     		strh	r2, [r3]	@ movhi
+ 106:Core/Src/Drivers/Encoder/encoder.c **** 
+ 682              		.loc 1 106 1 view .LVU175
+ 683 0016 08BD     		pop	{r3, pc}
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s 			page 19
 
 
- 220:Core/Src/Drivers/Encoder/encoder.c ****     */
- 221:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Pin = GPIO_PIN_6|GPIO_PIN_7;
- 222:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
- 223:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Pull = GPIO_PULLUP;
- 224:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
- 225:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Alternate = GPIO_AF2_TIM3;
- 226:Core/Src/Drivers/Encoder/encoder.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
- 227:Core/Src/Drivers/Encoder/encoder.c **** 
- 228:Core/Src/Drivers/Encoder/encoder.c ****     /* TIM3 interrupt Init */
- 229:Core/Src/Drivers/Encoder/encoder.c ****     HAL_NVIC_SetPriority(TIM3_IRQn, 7, 0);
- 230:Core/Src/Drivers/Encoder/encoder.c ****     HAL_NVIC_EnableIRQ(TIM3_IRQn);
- 231:Core/Src/Drivers/Encoder/encoder.c ****   }
- 232:Core/Src/Drivers/Encoder/encoder.c ****   else if(htim_encoder->Instance==TIM4)
- 701              		.loc 1 232 8 is_stmt 1 view .LVU180
- 702              		.loc 1 232 10 is_stmt 0 view .LVU181
- 703 0018 2C4A     		ldr	r2, .L51+4
- 704 001a 9342     		cmp	r3, r2
- 705 001c 2BD0     		beq	.L50
- 706              	.LVL28:
- 707              	.L45:
- 233:Core/Src/Drivers/Encoder/encoder.c ****   {
- 234:Core/Src/Drivers/Encoder/encoder.c ****     /* Peripheral clock enable */
- 235:Core/Src/Drivers/Encoder/encoder.c ****     __HAL_RCC_TIM4_CLK_ENABLE();
- 236:Core/Src/Drivers/Encoder/encoder.c ****     __HAL_RCC_GPIOD_CLK_ENABLE();
- 237:Core/Src/Drivers/Encoder/encoder.c **** 
- 238:Core/Src/Drivers/Encoder/encoder.c ****     /**TIM4 GPIO Configuration
- 239:Core/Src/Drivers/Encoder/encoder.c ****     PD12     ------> TIM4_CH1
- 240:Core/Src/Drivers/Encoder/encoder.c ****     PD13     ------> TIM4_CH2
- 241:Core/Src/Drivers/Encoder/encoder.c ****     */
- 242:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Pin = GPIO_PIN_12|GPIO_PIN_13;
- 243:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
- 244:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
- 245:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
- 246:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Alternate = GPIO_AF2_TIM4;
- 247:Core/Src/Drivers/Encoder/encoder.c ****     HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
- 248:Core/Src/Drivers/Encoder/encoder.c **** 
- 249:Core/Src/Drivers/Encoder/encoder.c ****     /* TIM4 interrupt Init */
- 250:Core/Src/Drivers/Encoder/encoder.c ****     HAL_NVIC_SetPriority(TIM4_IRQn, 7, 0);
- 251:Core/Src/Drivers/Encoder/encoder.c ****     HAL_NVIC_EnableIRQ(TIM4_IRQn);
- 252:Core/Src/Drivers/Encoder/encoder.c ****   }
- 253:Core/Src/Drivers/Encoder/encoder.c **** 
- 254:Core/Src/Drivers/Encoder/encoder.c **** }
- 708              		.loc 1 254 1 view .LVU182
- 709 001e 0AB0     		add	sp, sp, #40
- 710              	.LCFI23:
- 711              		.cfi_remember_state
- 712              		.cfi_def_cfa_offset 8
- 713              		@ sp needed
- 714 0020 10BD     		pop	{r4, pc}
- 715              	.LVL29:
- 716              	.L49:
- 717              	.LCFI24:
- 718              		.cfi_restore_state
- 214:Core/Src/Drivers/Encoder/encoder.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
- 719              		.loc 1 214 5 is_stmt 1 view .LVU183
- 720              	.LBB3:
- 214:Core/Src/Drivers/Encoder/encoder.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s 			page 19
+ 684              	.L48:
+ 685              		.align	2
+ 686              	.L47:
+ 687 0018 00000000 		.word	encoder_topic
+ 688              		.cfi_endproc
+ 689              	.LFE174:
+ 691              		.section	.text.HAL_TIM_Encoder_MspInit,"ax",%progbits
+ 692              		.align	1
+ 693              		.global	HAL_TIM_Encoder_MspInit
+ 694              		.syntax unified
+ 695              		.thumb
+ 696              		.thumb_func
+ 698              	HAL_TIM_Encoder_MspInit:
+ 699              	.LVL28:
+ 700              	.LFB179:
+ 251:Core/Src/Drivers/Encoder/encoder.c **** 
+ 252:Core/Src/Drivers/Encoder/encoder.c **** /**
+ 253:Core/Src/Drivers/Encoder/encoder.c **** * @brief TIM_Encoder MSP Initialization
+ 254:Core/Src/Drivers/Encoder/encoder.c **** * This function configures the hardware resources used in this example
+ 255:Core/Src/Drivers/Encoder/encoder.c **** * @param htim_encoder: TIM_Encoder handle pointer
+ 256:Core/Src/Drivers/Encoder/encoder.c **** * @retval None
+ 257:Core/Src/Drivers/Encoder/encoder.c **** */
+ 258:Core/Src/Drivers/Encoder/encoder.c **** void HAL_TIM_Encoder_MspInit(TIM_HandleTypeDef* htim_encoder)
+ 259:Core/Src/Drivers/Encoder/encoder.c **** {
+ 701              		.loc 1 259 1 is_stmt 1 view -0
+ 702              		.cfi_startproc
+ 703              		@ args = 0, pretend = 0, frame = 48
+ 704              		@ frame_needed = 0, uses_anonymous_args = 0
+ 705              		.loc 1 259 1 is_stmt 0 view .LVU177
+ 706 0000 10B5     		push	{r4, lr}
+ 707              	.LCFI22:
+ 708              		.cfi_def_cfa_offset 8
+ 709              		.cfi_offset 4, -8
+ 710              		.cfi_offset 14, -4
+ 711 0002 8CB0     		sub	sp, sp, #48
+ 712              	.LCFI23:
+ 713              		.cfi_def_cfa_offset 56
+ 260:Core/Src/Drivers/Encoder/encoder.c ****   GPIO_InitTypeDef GPIO_InitStruct = {0};
+ 714              		.loc 1 260 3 is_stmt 1 view .LVU178
+ 715              		.loc 1 260 20 is_stmt 0 view .LVU179
+ 716 0004 0023     		movs	r3, #0
+ 717 0006 0793     		str	r3, [sp, #28]
+ 718 0008 0893     		str	r3, [sp, #32]
+ 719 000a 0993     		str	r3, [sp, #36]
+ 720 000c 0A93     		str	r3, [sp, #40]
+ 721 000e 0B93     		str	r3, [sp, #44]
+ 261:Core/Src/Drivers/Encoder/encoder.c ****   if(htim_encoder->Instance==TIM3)
+ 722              		.loc 1 261 3 is_stmt 1 view .LVU180
+ 723              		.loc 1 261 18 is_stmt 0 view .LVU181
+ 724 0010 0368     		ldr	r3, [r0]
+ 725              		.loc 1 261 5 view .LVU182
+ 726 0012 444A     		ldr	r2, .L57
+ 727 0014 9342     		cmp	r3, r2
+ 728 0016 07D0     		beq	.L54
+ 262:Core/Src/Drivers/Encoder/encoder.c ****   {
+ 263:Core/Src/Drivers/Encoder/encoder.c ****     /* Peripheral clock enable */
+ 264:Core/Src/Drivers/Encoder/encoder.c ****     __HAL_RCC_TIM3_CLK_ENABLE();
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s 			page 20
 
 
- 721              		.loc 1 214 5 view .LVU184
- 722 0022 0024     		movs	r4, #0
- 723 0024 0194     		str	r4, [sp, #4]
- 214:Core/Src/Drivers/Encoder/encoder.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
- 724              		.loc 1 214 5 view .LVU185
- 725 0026 2A4B     		ldr	r3, .L51+8
- 726 0028 1A6C     		ldr	r2, [r3, #64]
- 727 002a 42F00202 		orr	r2, r2, #2
- 728 002e 1A64     		str	r2, [r3, #64]
- 214:Core/Src/Drivers/Encoder/encoder.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
- 729              		.loc 1 214 5 view .LVU186
- 730 0030 1A6C     		ldr	r2, [r3, #64]
- 731 0032 02F00202 		and	r2, r2, #2
- 732 0036 0192     		str	r2, [sp, #4]
- 214:Core/Src/Drivers/Encoder/encoder.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
- 733              		.loc 1 214 5 view .LVU187
- 734 0038 019A     		ldr	r2, [sp, #4]
- 735              	.LBE3:
- 214:Core/Src/Drivers/Encoder/encoder.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
- 736              		.loc 1 214 5 view .LVU188
- 215:Core/Src/Drivers/Encoder/encoder.c **** 
- 737              		.loc 1 215 5 view .LVU189
- 738              	.LBB4:
- 215:Core/Src/Drivers/Encoder/encoder.c **** 
- 739              		.loc 1 215 5 view .LVU190
- 740 003a 0294     		str	r4, [sp, #8]
- 215:Core/Src/Drivers/Encoder/encoder.c **** 
- 741              		.loc 1 215 5 view .LVU191
- 742 003c 1A6B     		ldr	r2, [r3, #48]
- 743 003e 42F00102 		orr	r2, r2, #1
- 744 0042 1A63     		str	r2, [r3, #48]
- 215:Core/Src/Drivers/Encoder/encoder.c **** 
- 745              		.loc 1 215 5 view .LVU192
- 746 0044 1B6B     		ldr	r3, [r3, #48]
- 747 0046 03F00103 		and	r3, r3, #1
- 748 004a 0293     		str	r3, [sp, #8]
- 215:Core/Src/Drivers/Encoder/encoder.c **** 
- 749              		.loc 1 215 5 view .LVU193
- 750 004c 029B     		ldr	r3, [sp, #8]
- 751              	.LBE4:
- 215:Core/Src/Drivers/Encoder/encoder.c **** 
- 752              		.loc 1 215 5 view .LVU194
- 221:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
- 753              		.loc 1 221 5 view .LVU195
- 221:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
- 754              		.loc 1 221 25 is_stmt 0 view .LVU196
- 755 004e C023     		movs	r3, #192
- 756 0050 0593     		str	r3, [sp, #20]
- 222:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Pull = GPIO_PULLUP;
- 757              		.loc 1 222 5 is_stmt 1 view .LVU197
- 222:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Pull = GPIO_PULLUP;
- 758              		.loc 1 222 26 is_stmt 0 view .LVU198
- 759 0052 0223     		movs	r3, #2
- 760 0054 0693     		str	r3, [sp, #24]
- 223:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
- 761              		.loc 1 223 5 is_stmt 1 view .LVU199
- 223:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s 			page 20
+ 265:Core/Src/Drivers/Encoder/encoder.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
+ 266:Core/Src/Drivers/Encoder/encoder.c **** 
+ 267:Core/Src/Drivers/Encoder/encoder.c ****     /**TIM3 GPIO Configuration
+ 268:Core/Src/Drivers/Encoder/encoder.c ****     PA6     ------> TIM3_CH1
+ 269:Core/Src/Drivers/Encoder/encoder.c ****     PA7     ------> TIM3_CH2
+ 270:Core/Src/Drivers/Encoder/encoder.c ****     */
+ 271:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Pin = GPIO_PIN_6|GPIO_PIN_7;
+ 272:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 273:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 274:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 275:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Alternate = GPIO_AF2_TIM3;
+ 276:Core/Src/Drivers/Encoder/encoder.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+ 277:Core/Src/Drivers/Encoder/encoder.c **** 
+ 278:Core/Src/Drivers/Encoder/encoder.c ****     /* TIM3 interrupt Init */
+ 279:Core/Src/Drivers/Encoder/encoder.c ****     HAL_NVIC_SetPriority(TIM3_IRQn, 7, 0);
+ 280:Core/Src/Drivers/Encoder/encoder.c ****     HAL_NVIC_EnableIRQ(TIM3_IRQn);
+ 281:Core/Src/Drivers/Encoder/encoder.c ****   }
+ 282:Core/Src/Drivers/Encoder/encoder.c ****   else if(htim_encoder->Instance==TIM4)
+ 729              		.loc 1 282 8 is_stmt 1 view .LVU183
+ 730              		.loc 1 282 10 is_stmt 0 view .LVU184
+ 731 0018 434A     		ldr	r2, .L57+4
+ 732 001a 9342     		cmp	r3, r2
+ 733 001c 2CD0     		beq	.L55
+ 283:Core/Src/Drivers/Encoder/encoder.c ****   {
+ 284:Core/Src/Drivers/Encoder/encoder.c ****     /* Peripheral clock enable */
+ 285:Core/Src/Drivers/Encoder/encoder.c ****     __HAL_RCC_TIM4_CLK_ENABLE();
+ 286:Core/Src/Drivers/Encoder/encoder.c ****     __HAL_RCC_GPIOD_CLK_ENABLE();
+ 287:Core/Src/Drivers/Encoder/encoder.c **** 
+ 288:Core/Src/Drivers/Encoder/encoder.c ****     /**TIM4 GPIO Configuration
+ 289:Core/Src/Drivers/Encoder/encoder.c ****     PD12     ------> TIM4_CH1
+ 290:Core/Src/Drivers/Encoder/encoder.c ****     PD13     ------> TIM4_CH2
+ 291:Core/Src/Drivers/Encoder/encoder.c ****     */
+ 292:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Pin = GPIO_PIN_12|GPIO_PIN_13;
+ 293:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 294:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Pull = GPIO_PULLUP;
+ 295:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 296:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Alternate = GPIO_AF2_TIM4;
+ 297:Core/Src/Drivers/Encoder/encoder.c ****     HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+ 298:Core/Src/Drivers/Encoder/encoder.c **** 
+ 299:Core/Src/Drivers/Encoder/encoder.c ****     /* TIM4 interrupt Init */
+ 300:Core/Src/Drivers/Encoder/encoder.c ****     HAL_NVIC_SetPriority(TIM4_IRQn, 7, 0);
+ 301:Core/Src/Drivers/Encoder/encoder.c ****     HAL_NVIC_EnableIRQ(TIM4_IRQn);
+ 302:Core/Src/Drivers/Encoder/encoder.c ****   }
+ 303:Core/Src/Drivers/Encoder/encoder.c ****   else if(htim_encoder->Instance == TIM2)
+ 734              		.loc 1 303 8 is_stmt 1 view .LVU185
+ 735              		.loc 1 303 10 is_stmt 0 view .LVU186
+ 736 001e B3F1804F 		cmp	r3, #1073741824
+ 737 0022 54D0     		beq	.L56
+ 738              	.LVL29:
+ 739              	.L49:
+ 304:Core/Src/Drivers/Encoder/encoder.c ****   {
+ 305:Core/Src/Drivers/Encoder/encoder.c ****     __HAL_RCC_TIM2_CLK_ENABLE();
+ 306:Core/Src/Drivers/Encoder/encoder.c **** 
+ 307:Core/Src/Drivers/Encoder/encoder.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
+ 308:Core/Src/Drivers/Encoder/encoder.c ****     /**TIM2 GPIO Configuration
+ 309:Core/Src/Drivers/Encoder/encoder.c ****     PA0-WKUP     ------> TIM2_CH1
+ 310:Core/Src/Drivers/Encoder/encoder.c ****     PA1     ------> TIM2_CH2
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s 			page 21
 
 
- 762              		.loc 1 223 26 is_stmt 0 view .LVU200
- 763 0056 0122     		movs	r2, #1
- 764 0058 0792     		str	r2, [sp, #28]
- 224:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Alternate = GPIO_AF2_TIM3;
- 765              		.loc 1 224 5 is_stmt 1 view .LVU201
- 225:Core/Src/Drivers/Encoder/encoder.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
- 766              		.loc 1 225 5 view .LVU202
- 225:Core/Src/Drivers/Encoder/encoder.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
- 767              		.loc 1 225 31 is_stmt 0 view .LVU203
- 768 005a 0993     		str	r3, [sp, #36]
- 226:Core/Src/Drivers/Encoder/encoder.c **** 
- 769              		.loc 1 226 5 is_stmt 1 view .LVU204
- 770 005c 05A9     		add	r1, sp, #20
- 771 005e 1D48     		ldr	r0, .L51+12
- 772              	.LVL30:
- 226:Core/Src/Drivers/Encoder/encoder.c **** 
- 773              		.loc 1 226 5 is_stmt 0 view .LVU205
- 774 0060 FFF7FEFF 		bl	HAL_GPIO_Init
- 775              	.LVL31:
- 229:Core/Src/Drivers/Encoder/encoder.c ****     HAL_NVIC_EnableIRQ(TIM3_IRQn);
- 776              		.loc 1 229 5 is_stmt 1 view .LVU206
- 777 0064 2246     		mov	r2, r4
- 778 0066 0721     		movs	r1, #7
- 779 0068 1D20     		movs	r0, #29
- 780 006a FFF7FEFF 		bl	HAL_NVIC_SetPriority
- 781              	.LVL32:
- 230:Core/Src/Drivers/Encoder/encoder.c ****   }
- 782              		.loc 1 230 5 view .LVU207
- 783 006e 1D20     		movs	r0, #29
- 784 0070 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
- 785              	.LVL33:
- 786 0074 D3E7     		b	.L45
- 787              	.LVL34:
- 788              	.L50:
- 235:Core/Src/Drivers/Encoder/encoder.c ****     __HAL_RCC_GPIOD_CLK_ENABLE();
- 789              		.loc 1 235 5 view .LVU208
- 790              	.LBB5:
- 235:Core/Src/Drivers/Encoder/encoder.c ****     __HAL_RCC_GPIOD_CLK_ENABLE();
- 791              		.loc 1 235 5 view .LVU209
- 792 0076 0024     		movs	r4, #0
- 793 0078 0394     		str	r4, [sp, #12]
- 235:Core/Src/Drivers/Encoder/encoder.c ****     __HAL_RCC_GPIOD_CLK_ENABLE();
- 794              		.loc 1 235 5 view .LVU210
- 795 007a 154B     		ldr	r3, .L51+8
- 796 007c 1A6C     		ldr	r2, [r3, #64]
- 797 007e 42F00402 		orr	r2, r2, #4
- 798 0082 1A64     		str	r2, [r3, #64]
- 235:Core/Src/Drivers/Encoder/encoder.c ****     __HAL_RCC_GPIOD_CLK_ENABLE();
- 799              		.loc 1 235 5 view .LVU211
- 800 0084 1A6C     		ldr	r2, [r3, #64]
- 801 0086 02F00402 		and	r2, r2, #4
- 802 008a 0392     		str	r2, [sp, #12]
- 235:Core/Src/Drivers/Encoder/encoder.c ****     __HAL_RCC_GPIOD_CLK_ENABLE();
- 803              		.loc 1 235 5 view .LVU212
- 804 008c 039A     		ldr	r2, [sp, #12]
- 805              	.LBE5:
- 235:Core/Src/Drivers/Encoder/encoder.c ****     __HAL_RCC_GPIOD_CLK_ENABLE();
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s 			page 21
+ 311:Core/Src/Drivers/Encoder/encoder.c ****     */
+ 312:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1;
+ 313:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 314:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 315:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 316:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Alternate = GPIO_AF1_TIM2;
+ 317:Core/Src/Drivers/Encoder/encoder.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+ 318:Core/Src/Drivers/Encoder/encoder.c **** 
+ 319:Core/Src/Drivers/Encoder/encoder.c ****     /* TIM2 interrupt Init */
+ 320:Core/Src/Drivers/Encoder/encoder.c ****     HAL_NVIC_SetPriority(TIM2_IRQn, 7, 0);
+ 321:Core/Src/Drivers/Encoder/encoder.c ****     HAL_NVIC_EnableIRQ(TIM2_IRQn);
+ 322:Core/Src/Drivers/Encoder/encoder.c ****   }
+ 323:Core/Src/Drivers/Encoder/encoder.c **** 
+ 324:Core/Src/Drivers/Encoder/encoder.c **** }
+ 740              		.loc 1 324 1 view .LVU187
+ 741 0024 0CB0     		add	sp, sp, #48
+ 742              	.LCFI24:
+ 743              		.cfi_remember_state
+ 744              		.cfi_def_cfa_offset 8
+ 745              		@ sp needed
+ 746 0026 10BD     		pop	{r4, pc}
+ 747              	.LVL30:
+ 748              	.L54:
+ 749              	.LCFI25:
+ 750              		.cfi_restore_state
+ 264:Core/Src/Drivers/Encoder/encoder.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
+ 751              		.loc 1 264 5 is_stmt 1 view .LVU188
+ 752              	.LBB3:
+ 264:Core/Src/Drivers/Encoder/encoder.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
+ 753              		.loc 1 264 5 view .LVU189
+ 754 0028 0024     		movs	r4, #0
+ 755 002a 0194     		str	r4, [sp, #4]
+ 264:Core/Src/Drivers/Encoder/encoder.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
+ 756              		.loc 1 264 5 view .LVU190
+ 757 002c 3F4B     		ldr	r3, .L57+8
+ 758 002e 1A6C     		ldr	r2, [r3, #64]
+ 759 0030 42F00202 		orr	r2, r2, #2
+ 760 0034 1A64     		str	r2, [r3, #64]
+ 264:Core/Src/Drivers/Encoder/encoder.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
+ 761              		.loc 1 264 5 view .LVU191
+ 762 0036 1A6C     		ldr	r2, [r3, #64]
+ 763 0038 02F00202 		and	r2, r2, #2
+ 764 003c 0192     		str	r2, [sp, #4]
+ 264:Core/Src/Drivers/Encoder/encoder.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
+ 765              		.loc 1 264 5 view .LVU192
+ 766 003e 019A     		ldr	r2, [sp, #4]
+ 767              	.LBE3:
+ 264:Core/Src/Drivers/Encoder/encoder.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
+ 768              		.loc 1 264 5 view .LVU193
+ 265:Core/Src/Drivers/Encoder/encoder.c **** 
+ 769              		.loc 1 265 5 view .LVU194
+ 770              	.LBB4:
+ 265:Core/Src/Drivers/Encoder/encoder.c **** 
+ 771              		.loc 1 265 5 view .LVU195
+ 772 0040 0294     		str	r4, [sp, #8]
+ 265:Core/Src/Drivers/Encoder/encoder.c **** 
+ 773              		.loc 1 265 5 view .LVU196
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s 			page 22
 
 
- 806              		.loc 1 235 5 view .LVU213
- 236:Core/Src/Drivers/Encoder/encoder.c **** 
- 807              		.loc 1 236 5 view .LVU214
- 808              	.LBB6:
- 236:Core/Src/Drivers/Encoder/encoder.c **** 
- 809              		.loc 1 236 5 view .LVU215
- 810 008e 0494     		str	r4, [sp, #16]
- 236:Core/Src/Drivers/Encoder/encoder.c **** 
- 811              		.loc 1 236 5 view .LVU216
- 812 0090 1A6B     		ldr	r2, [r3, #48]
- 813 0092 42F00802 		orr	r2, r2, #8
- 814 0096 1A63     		str	r2, [r3, #48]
- 236:Core/Src/Drivers/Encoder/encoder.c **** 
- 815              		.loc 1 236 5 view .LVU217
- 816 0098 1B6B     		ldr	r3, [r3, #48]
- 817 009a 03F00803 		and	r3, r3, #8
- 818 009e 0493     		str	r3, [sp, #16]
- 236:Core/Src/Drivers/Encoder/encoder.c **** 
- 819              		.loc 1 236 5 view .LVU218
- 820 00a0 049B     		ldr	r3, [sp, #16]
- 821              	.LBE6:
- 236:Core/Src/Drivers/Encoder/encoder.c **** 
- 822              		.loc 1 236 5 view .LVU219
- 242:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
- 823              		.loc 1 242 5 view .LVU220
- 242:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
- 824              		.loc 1 242 25 is_stmt 0 view .LVU221
- 825 00a2 4FF44053 		mov	r3, #12288
- 826 00a6 0593     		str	r3, [sp, #20]
- 243:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
- 827              		.loc 1 243 5 is_stmt 1 view .LVU222
- 243:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
- 828              		.loc 1 243 26 is_stmt 0 view .LVU223
- 829 00a8 0223     		movs	r3, #2
- 830 00aa 0693     		str	r3, [sp, #24]
- 244:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
- 831              		.loc 1 244 5 is_stmt 1 view .LVU224
- 245:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Alternate = GPIO_AF2_TIM4;
- 832              		.loc 1 245 5 view .LVU225
- 246:Core/Src/Drivers/Encoder/encoder.c ****     HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
- 833              		.loc 1 246 5 view .LVU226
- 246:Core/Src/Drivers/Encoder/encoder.c ****     HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
- 834              		.loc 1 246 31 is_stmt 0 view .LVU227
- 835 00ac 0993     		str	r3, [sp, #36]
- 247:Core/Src/Drivers/Encoder/encoder.c **** 
- 836              		.loc 1 247 5 is_stmt 1 view .LVU228
- 837 00ae 05A9     		add	r1, sp, #20
- 838 00b0 0948     		ldr	r0, .L51+16
- 839              	.LVL35:
- 247:Core/Src/Drivers/Encoder/encoder.c **** 
- 840              		.loc 1 247 5 is_stmt 0 view .LVU229
- 841 00b2 FFF7FEFF 		bl	HAL_GPIO_Init
- 842              	.LVL36:
- 250:Core/Src/Drivers/Encoder/encoder.c ****     HAL_NVIC_EnableIRQ(TIM4_IRQn);
- 843              		.loc 1 250 5 is_stmt 1 view .LVU230
- 844 00b6 2246     		mov	r2, r4
- 845 00b8 0721     		movs	r1, #7
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s 			page 22
+ 774 0042 1A6B     		ldr	r2, [r3, #48]
+ 775 0044 42F00102 		orr	r2, r2, #1
+ 776 0048 1A63     		str	r2, [r3, #48]
+ 265:Core/Src/Drivers/Encoder/encoder.c **** 
+ 777              		.loc 1 265 5 view .LVU197
+ 778 004a 1B6B     		ldr	r3, [r3, #48]
+ 779 004c 03F00103 		and	r3, r3, #1
+ 780 0050 0293     		str	r3, [sp, #8]
+ 265:Core/Src/Drivers/Encoder/encoder.c **** 
+ 781              		.loc 1 265 5 view .LVU198
+ 782 0052 029B     		ldr	r3, [sp, #8]
+ 783              	.LBE4:
+ 265:Core/Src/Drivers/Encoder/encoder.c **** 
+ 784              		.loc 1 265 5 view .LVU199
+ 271:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 785              		.loc 1 271 5 view .LVU200
+ 271:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 786              		.loc 1 271 25 is_stmt 0 view .LVU201
+ 787 0054 C023     		movs	r3, #192
+ 788 0056 0793     		str	r3, [sp, #28]
+ 272:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 789              		.loc 1 272 5 is_stmt 1 view .LVU202
+ 272:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 790              		.loc 1 272 26 is_stmt 0 view .LVU203
+ 791 0058 0223     		movs	r3, #2
+ 792 005a 0893     		str	r3, [sp, #32]
+ 273:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 793              		.loc 1 273 5 is_stmt 1 view .LVU204
+ 274:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Alternate = GPIO_AF2_TIM3;
+ 794              		.loc 1 274 5 view .LVU205
+ 275:Core/Src/Drivers/Encoder/encoder.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+ 795              		.loc 1 275 5 view .LVU206
+ 275:Core/Src/Drivers/Encoder/encoder.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+ 796              		.loc 1 275 31 is_stmt 0 view .LVU207
+ 797 005c 0B93     		str	r3, [sp, #44]
+ 276:Core/Src/Drivers/Encoder/encoder.c **** 
+ 798              		.loc 1 276 5 is_stmt 1 view .LVU208
+ 799 005e 07A9     		add	r1, sp, #28
+ 800 0060 3348     		ldr	r0, .L57+12
+ 801              	.LVL31:
+ 276:Core/Src/Drivers/Encoder/encoder.c **** 
+ 802              		.loc 1 276 5 is_stmt 0 view .LVU209
+ 803 0062 FFF7FEFF 		bl	HAL_GPIO_Init
+ 804              	.LVL32:
+ 279:Core/Src/Drivers/Encoder/encoder.c ****     HAL_NVIC_EnableIRQ(TIM3_IRQn);
+ 805              		.loc 1 279 5 is_stmt 1 view .LVU210
+ 806 0066 2246     		mov	r2, r4
+ 807 0068 0721     		movs	r1, #7
+ 808 006a 1D20     		movs	r0, #29
+ 809 006c FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 810              	.LVL33:
+ 280:Core/Src/Drivers/Encoder/encoder.c ****   }
+ 811              		.loc 1 280 5 view .LVU211
+ 812 0070 1D20     		movs	r0, #29
+ 813 0072 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 814              	.LVL34:
+ 815 0076 D5E7     		b	.L49
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s 			page 23
 
 
- 846 00ba 1E20     		movs	r0, #30
- 847 00bc FFF7FEFF 		bl	HAL_NVIC_SetPriority
- 848              	.LVL37:
- 251:Core/Src/Drivers/Encoder/encoder.c ****   }
- 849              		.loc 1 251 5 view .LVU231
- 850 00c0 1E20     		movs	r0, #30
- 851 00c2 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
- 852              	.LVL38:
- 853              		.loc 1 254 1 is_stmt 0 view .LVU232
- 854 00c6 AAE7     		b	.L45
- 855              	.L52:
- 856              		.align	2
- 857              	.L51:
- 858 00c8 00040040 		.word	1073742848
- 859 00cc 00080040 		.word	1073743872
- 860 00d0 00380240 		.word	1073887232
- 861 00d4 00000240 		.word	1073872896
- 862 00d8 000C0240 		.word	1073875968
- 863              		.cfi_endproc
- 864              	.LFE177:
- 866              		.section	.text.HAL_TIM_Base_MspInit,"ax",%progbits
- 867              		.align	1
- 868              		.global	HAL_TIM_Base_MspInit
- 869              		.syntax unified
- 870              		.thumb
- 871              		.thumb_func
- 873              	HAL_TIM_Base_MspInit:
- 874              	.LVL39:
- 875              	.LFB178:
- 255:Core/Src/Drivers/Encoder/encoder.c **** 
- 256:Core/Src/Drivers/Encoder/encoder.c **** /**
- 257:Core/Src/Drivers/Encoder/encoder.c **** * @brief TIM_Base MSP Initialization
- 258:Core/Src/Drivers/Encoder/encoder.c **** * This function configures the hardware resources used in this example
- 259:Core/Src/Drivers/Encoder/encoder.c **** * @param htim_base: TIM_Base handle pointer
- 260:Core/Src/Drivers/Encoder/encoder.c **** * @retval None
- 261:Core/Src/Drivers/Encoder/encoder.c **** */
- 262:Core/Src/Drivers/Encoder/encoder.c **** void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htim_base)
- 263:Core/Src/Drivers/Encoder/encoder.c **** {
- 876              		.loc 1 263 1 is_stmt 1 view -0
- 877              		.cfi_startproc
- 878              		@ args = 0, pretend = 0, frame = 8
- 879              		@ frame_needed = 0, uses_anonymous_args = 0
- 264:Core/Src/Drivers/Encoder/encoder.c ****   if(htim_base->Instance==TIM7)
- 880              		.loc 1 264 3 view .LVU234
- 881              		.loc 1 264 15 is_stmt 0 view .LVU235
- 882 0000 0268     		ldr	r2, [r0]
- 883              		.loc 1 264 5 view .LVU236
- 884 0002 0E4B     		ldr	r3, .L60
- 885 0004 9A42     		cmp	r2, r3
- 886 0006 00D0     		beq	.L59
- 887 0008 7047     		bx	lr
- 888              	.L59:
- 263:Core/Src/Drivers/Encoder/encoder.c ****   if(htim_base->Instance==TIM7)
- 889              		.loc 1 263 1 view .LVU237
- 890 000a 00B5     		push	{lr}
- 891              	.LCFI25:
- 892              		.cfi_def_cfa_offset 4
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s 			page 23
+ 816              	.LVL35:
+ 817              	.L55:
+ 285:Core/Src/Drivers/Encoder/encoder.c ****     __HAL_RCC_GPIOD_CLK_ENABLE();
+ 818              		.loc 1 285 5 view .LVU212
+ 819              	.LBB5:
+ 285:Core/Src/Drivers/Encoder/encoder.c ****     __HAL_RCC_GPIOD_CLK_ENABLE();
+ 820              		.loc 1 285 5 view .LVU213
+ 821 0078 0024     		movs	r4, #0
+ 822 007a 0394     		str	r4, [sp, #12]
+ 285:Core/Src/Drivers/Encoder/encoder.c ****     __HAL_RCC_GPIOD_CLK_ENABLE();
+ 823              		.loc 1 285 5 view .LVU214
+ 824 007c 2B4B     		ldr	r3, .L57+8
+ 825 007e 1A6C     		ldr	r2, [r3, #64]
+ 826 0080 42F00402 		orr	r2, r2, #4
+ 827 0084 1A64     		str	r2, [r3, #64]
+ 285:Core/Src/Drivers/Encoder/encoder.c ****     __HAL_RCC_GPIOD_CLK_ENABLE();
+ 828              		.loc 1 285 5 view .LVU215
+ 829 0086 1A6C     		ldr	r2, [r3, #64]
+ 830 0088 02F00402 		and	r2, r2, #4
+ 831 008c 0392     		str	r2, [sp, #12]
+ 285:Core/Src/Drivers/Encoder/encoder.c ****     __HAL_RCC_GPIOD_CLK_ENABLE();
+ 832              		.loc 1 285 5 view .LVU216
+ 833 008e 039A     		ldr	r2, [sp, #12]
+ 834              	.LBE5:
+ 285:Core/Src/Drivers/Encoder/encoder.c ****     __HAL_RCC_GPIOD_CLK_ENABLE();
+ 835              		.loc 1 285 5 view .LVU217
+ 286:Core/Src/Drivers/Encoder/encoder.c **** 
+ 836              		.loc 1 286 5 view .LVU218
+ 837              	.LBB6:
+ 286:Core/Src/Drivers/Encoder/encoder.c **** 
+ 838              		.loc 1 286 5 view .LVU219
+ 839 0090 0494     		str	r4, [sp, #16]
+ 286:Core/Src/Drivers/Encoder/encoder.c **** 
+ 840              		.loc 1 286 5 view .LVU220
+ 841 0092 1A6B     		ldr	r2, [r3, #48]
+ 842 0094 42F00802 		orr	r2, r2, #8
+ 843 0098 1A63     		str	r2, [r3, #48]
+ 286:Core/Src/Drivers/Encoder/encoder.c **** 
+ 844              		.loc 1 286 5 view .LVU221
+ 845 009a 1B6B     		ldr	r3, [r3, #48]
+ 846 009c 03F00803 		and	r3, r3, #8
+ 847 00a0 0493     		str	r3, [sp, #16]
+ 286:Core/Src/Drivers/Encoder/encoder.c **** 
+ 848              		.loc 1 286 5 view .LVU222
+ 849 00a2 049B     		ldr	r3, [sp, #16]
+ 850              	.LBE6:
+ 286:Core/Src/Drivers/Encoder/encoder.c **** 
+ 851              		.loc 1 286 5 view .LVU223
+ 292:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 852              		.loc 1 292 5 view .LVU224
+ 292:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 853              		.loc 1 292 25 is_stmt 0 view .LVU225
+ 854 00a4 4FF44053 		mov	r3, #12288
+ 855 00a8 0793     		str	r3, [sp, #28]
+ 293:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Pull = GPIO_PULLUP;
+ 856              		.loc 1 293 5 is_stmt 1 view .LVU226
+ 293:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Pull = GPIO_PULLUP;
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s 			page 24
 
 
- 893              		.cfi_offset 14, -4
- 894 000c 83B0     		sub	sp, sp, #12
- 895              	.LCFI26:
- 896              		.cfi_def_cfa_offset 16
- 265:Core/Src/Drivers/Encoder/encoder.c ****   {
- 266:Core/Src/Drivers/Encoder/encoder.c ****     /* Peripheral clock enable */
- 267:Core/Src/Drivers/Encoder/encoder.c ****     __HAL_RCC_TIM7_CLK_ENABLE();
- 897              		.loc 1 267 5 is_stmt 1 view .LVU238
- 898              	.LBB7:
- 899              		.loc 1 267 5 view .LVU239
- 900 000e 0022     		movs	r2, #0
- 901 0010 0192     		str	r2, [sp, #4]
- 902              		.loc 1 267 5 view .LVU240
- 903 0012 03F50933 		add	r3, r3, #140288
- 904 0016 196C     		ldr	r1, [r3, #64]
- 905 0018 41F02001 		orr	r1, r1, #32
- 906 001c 1964     		str	r1, [r3, #64]
- 907              		.loc 1 267 5 view .LVU241
- 908 001e 1B6C     		ldr	r3, [r3, #64]
- 909 0020 03F02003 		and	r3, r3, #32
- 910 0024 0193     		str	r3, [sp, #4]
- 911              		.loc 1 267 5 view .LVU242
- 912 0026 019B     		ldr	r3, [sp, #4]
- 913              	.LBE7:
- 914              		.loc 1 267 5 view .LVU243
- 268:Core/Src/Drivers/Encoder/encoder.c **** 
- 269:Core/Src/Drivers/Encoder/encoder.c ****     /* TIM7 interrupt Init */
- 270:Core/Src/Drivers/Encoder/encoder.c ****     HAL_NVIC_SetPriority(TIM7_IRQn, 8, 0);
- 915              		.loc 1 270 5 view .LVU244
- 916 0028 0821     		movs	r1, #8
- 917 002a 3720     		movs	r0, #55
- 918              	.LVL40:
- 919              		.loc 1 270 5 is_stmt 0 view .LVU245
- 920 002c FFF7FEFF 		bl	HAL_NVIC_SetPriority
- 921              	.LVL41:
- 271:Core/Src/Drivers/Encoder/encoder.c ****     HAL_NVIC_EnableIRQ(TIM7_IRQn);
- 922              		.loc 1 271 5 is_stmt 1 view .LVU246
- 923 0030 3720     		movs	r0, #55
- 924 0032 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
- 925              	.LVL42:
- 272:Core/Src/Drivers/Encoder/encoder.c ****   }
- 273:Core/Src/Drivers/Encoder/encoder.c **** }...
- 926              		.loc 1 273 1 is_stmt 0 view .LVU247
- 927 0036 03B0     		add	sp, sp, #12
- 928              	.LCFI27:
- 929              		.cfi_def_cfa_offset 4
- 930              		@ sp needed
- 931 0038 5DF804FB 		ldr	pc, [sp], #4
- 932              	.L61:
- 933              		.align	2
- 934              	.L60:
- 935 003c 00140040 		.word	1073746944
- 936              		.cfi_endproc
- 937              	.LFE178:
- 939              		.section	.rodata.time_evt.0,"a"
- 940              		.align	2
- 943              	time_evt.0:
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s 			page 24
+ 857              		.loc 1 293 26 is_stmt 0 view .LVU227
+ 858 00aa 0223     		movs	r3, #2
+ 859 00ac 0893     		str	r3, [sp, #32]
+ 294:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 860              		.loc 1 294 5 is_stmt 1 view .LVU228
+ 294:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 861              		.loc 1 294 26 is_stmt 0 view .LVU229
+ 862 00ae 0122     		movs	r2, #1
+ 863 00b0 0992     		str	r2, [sp, #36]
+ 295:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Alternate = GPIO_AF2_TIM4;
+ 864              		.loc 1 295 5 is_stmt 1 view .LVU230
+ 296:Core/Src/Drivers/Encoder/encoder.c ****     HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+ 865              		.loc 1 296 5 view .LVU231
+ 296:Core/Src/Drivers/Encoder/encoder.c ****     HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+ 866              		.loc 1 296 31 is_stmt 0 view .LVU232
+ 867 00b2 0B93     		str	r3, [sp, #44]
+ 297:Core/Src/Drivers/Encoder/encoder.c **** 
+ 868              		.loc 1 297 5 is_stmt 1 view .LVU233
+ 869 00b4 07A9     		add	r1, sp, #28
+ 870 00b6 1F48     		ldr	r0, .L57+16
+ 871              	.LVL36:
+ 297:Core/Src/Drivers/Encoder/encoder.c **** 
+ 872              		.loc 1 297 5 is_stmt 0 view .LVU234
+ 873 00b8 FFF7FEFF 		bl	HAL_GPIO_Init
+ 874              	.LVL37:
+ 300:Core/Src/Drivers/Encoder/encoder.c ****     HAL_NVIC_EnableIRQ(TIM4_IRQn);
+ 875              		.loc 1 300 5 is_stmt 1 view .LVU235
+ 876 00bc 2246     		mov	r2, r4
+ 877 00be 0721     		movs	r1, #7
+ 878 00c0 1E20     		movs	r0, #30
+ 879 00c2 FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 880              	.LVL38:
+ 301:Core/Src/Drivers/Encoder/encoder.c ****   }
+ 881              		.loc 1 301 5 view .LVU236
+ 882 00c6 1E20     		movs	r0, #30
+ 883 00c8 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 884              	.LVL39:
+ 885 00cc AAE7     		b	.L49
+ 886              	.LVL40:
+ 887              	.L56:
+ 305:Core/Src/Drivers/Encoder/encoder.c **** 
+ 888              		.loc 1 305 5 view .LVU237
+ 889              	.LBB7:
+ 305:Core/Src/Drivers/Encoder/encoder.c **** 
+ 890              		.loc 1 305 5 view .LVU238
+ 891 00ce 0024     		movs	r4, #0
+ 892 00d0 0594     		str	r4, [sp, #20]
+ 305:Core/Src/Drivers/Encoder/encoder.c **** 
+ 893              		.loc 1 305 5 view .LVU239
+ 894 00d2 03F50E33 		add	r3, r3, #145408
+ 895 00d6 1A6C     		ldr	r2, [r3, #64]
+ 896 00d8 42F00102 		orr	r2, r2, #1
+ 897 00dc 1A64     		str	r2, [r3, #64]
+ 305:Core/Src/Drivers/Encoder/encoder.c **** 
+ 898              		.loc 1 305 5 view .LVU240
+ 899 00de 1A6C     		ldr	r2, [r3, #64]
+ 900 00e0 02F00102 		and	r2, r2, #1
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s 			page 25
 
 
- 944 0000 0300     		.short	3
- 945              		.section	.bss.encoder_topic,"aw",%nobits
- 946              		.align	2
- 949              	encoder_topic:
- 950 0000 00000000 		.space	4
- 951              		.global	htim7
- 952              		.section	.bss.htim7,"aw",%nobits
- 953              		.align	2
- 956              	htim7:
- 957 0000 00000000 		.space	72
- 957      00000000 
- 957      00000000 
- 957      00000000 
- 957      00000000 
- 958              		.global	htim4
- 959              		.section	.bss.htim4,"aw",%nobits
- 960              		.align	2
- 963              	htim4:
- 964 0000 00000000 		.space	72
- 964      00000000 
- 964      00000000 
- 964      00000000 
- 964      00000000 
- 965              		.global	htim3
- 966              		.section	.bss.htim3,"aw",%nobits
- 967              		.align	2
- 970              	htim3:
- 971 0000 00000000 		.space	72
- 971      00000000 
- 971      00000000 
- 971      00000000 
- 971      00000000 
- 972              		.text
- 973              	.Letext0:
- 974              		.file 2 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h"
- 975              		.file 3 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
- 976              		.file 4 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
- 977              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
- 978              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
- 979              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
- 980              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
- 981              		.file 9 "ThirdParty/FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h"
- 982              		.file 10 "ThirdParty/FreeRTOS/include/FreeRTOS.h"
- 983              		.file 11 "ThirdParty/FreeRTOS/include/task.h"
- 984              		.file 12 "ThirdParty/FreeRTOS/include/queue.h"
- 985              		.file 13 "Core/Src/Middleware/Active_Object/active_object.h"
- 986              		.file 14 "Drivers/CMSIS/DSP/Include/arm_math.h"
- 987              		.file 15 "Core/Src/Middleware/Topic/topic.h"
- 988              		.file 16 "Core/Src/Application/State_Estimator/Dsp/dsp.h"
- 989              		.file 17 "Core/Src/Application/State_Estimator/state_estimator.h"
- 990              		.file 18 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h"
- 991              		.file 19 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h"
- 992              		.file 20 "<built-in>"
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s 			page 25
+ 901 00e4 0592     		str	r2, [sp, #20]
+ 305:Core/Src/Drivers/Encoder/encoder.c **** 
+ 902              		.loc 1 305 5 view .LVU241
+ 903 00e6 059A     		ldr	r2, [sp, #20]
+ 904              	.LBE7:
+ 305:Core/Src/Drivers/Encoder/encoder.c **** 
+ 905              		.loc 1 305 5 view .LVU242
+ 307:Core/Src/Drivers/Encoder/encoder.c ****     /**TIM2 GPIO Configuration
+ 906              		.loc 1 307 5 view .LVU243
+ 907              	.LBB8:
+ 307:Core/Src/Drivers/Encoder/encoder.c ****     /**TIM2 GPIO Configuration
+ 908              		.loc 1 307 5 view .LVU244
+ 909 00e8 0694     		str	r4, [sp, #24]
+ 307:Core/Src/Drivers/Encoder/encoder.c ****     /**TIM2 GPIO Configuration
+ 910              		.loc 1 307 5 view .LVU245
+ 911 00ea 1A6B     		ldr	r2, [r3, #48]
+ 912 00ec 42F00102 		orr	r2, r2, #1
+ 913 00f0 1A63     		str	r2, [r3, #48]
+ 307:Core/Src/Drivers/Encoder/encoder.c ****     /**TIM2 GPIO Configuration
+ 914              		.loc 1 307 5 view .LVU246
+ 915 00f2 1B6B     		ldr	r3, [r3, #48]
+ 916 00f4 03F00103 		and	r3, r3, #1
+ 917 00f8 0693     		str	r3, [sp, #24]
+ 307:Core/Src/Drivers/Encoder/encoder.c ****     /**TIM2 GPIO Configuration
+ 918              		.loc 1 307 5 view .LVU247
+ 919 00fa 069B     		ldr	r3, [sp, #24]
+ 920              	.LBE8:
+ 307:Core/Src/Drivers/Encoder/encoder.c ****     /**TIM2 GPIO Configuration
+ 921              		.loc 1 307 5 view .LVU248
+ 312:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 922              		.loc 1 312 5 view .LVU249
+ 312:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 923              		.loc 1 312 25 is_stmt 0 view .LVU250
+ 924 00fc 0323     		movs	r3, #3
+ 925 00fe 0793     		str	r3, [sp, #28]
+ 313:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 926              		.loc 1 313 5 is_stmt 1 view .LVU251
+ 313:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 927              		.loc 1 313 26 is_stmt 0 view .LVU252
+ 928 0100 0223     		movs	r3, #2
+ 929 0102 0893     		str	r3, [sp, #32]
+ 314:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 930              		.loc 1 314 5 is_stmt 1 view .LVU253
+ 315:Core/Src/Drivers/Encoder/encoder.c ****     GPIO_InitStruct.Alternate = GPIO_AF1_TIM2;
+ 931              		.loc 1 315 5 view .LVU254
+ 316:Core/Src/Drivers/Encoder/encoder.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+ 932              		.loc 1 316 5 view .LVU255
+ 316:Core/Src/Drivers/Encoder/encoder.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+ 933              		.loc 1 316 31 is_stmt 0 view .LVU256
+ 934 0104 0123     		movs	r3, #1
+ 935 0106 0B93     		str	r3, [sp, #44]
+ 317:Core/Src/Drivers/Encoder/encoder.c **** 
+ 936              		.loc 1 317 5 is_stmt 1 view .LVU257
+ 937 0108 07A9     		add	r1, sp, #28
+ 938 010a 0948     		ldr	r0, .L57+12
+ 939              	.LVL41:
+ 317:Core/Src/Drivers/Encoder/encoder.c **** 
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s 			page 26
+
+
+ 940              		.loc 1 317 5 is_stmt 0 view .LVU258
+ 941 010c FFF7FEFF 		bl	HAL_GPIO_Init
+ 942              	.LVL42:
+ 320:Core/Src/Drivers/Encoder/encoder.c ****     HAL_NVIC_EnableIRQ(TIM2_IRQn);
+ 943              		.loc 1 320 5 is_stmt 1 view .LVU259
+ 944 0110 2246     		mov	r2, r4
+ 945 0112 0721     		movs	r1, #7
+ 946 0114 1C20     		movs	r0, #28
+ 947 0116 FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 948              	.LVL43:
+ 321:Core/Src/Drivers/Encoder/encoder.c ****   }
+ 949              		.loc 1 321 5 view .LVU260
+ 950 011a 1C20     		movs	r0, #28
+ 951 011c FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 952              	.LVL44:
+ 953              		.loc 1 324 1 is_stmt 0 view .LVU261
+ 954 0120 80E7     		b	.L49
+ 955              	.L58:
+ 956 0122 00BF     		.align	2
+ 957              	.L57:
+ 958 0124 00040040 		.word	1073742848
+ 959 0128 00080040 		.word	1073743872
+ 960 012c 00380240 		.word	1073887232
+ 961 0130 00000240 		.word	1073872896
+ 962 0134 000C0240 		.word	1073875968
+ 963              		.cfi_endproc
+ 964              	.LFE179:
+ 966              		.section	.text.HAL_TIM_Base_MspInit,"ax",%progbits
+ 967              		.align	1
+ 968              		.global	HAL_TIM_Base_MspInit
+ 969              		.syntax unified
+ 970              		.thumb
+ 971              		.thumb_func
+ 973              	HAL_TIM_Base_MspInit:
+ 974              	.LVL45:
+ 975              	.LFB180:
+ 325:Core/Src/Drivers/Encoder/encoder.c **** 
+ 326:Core/Src/Drivers/Encoder/encoder.c **** /**
+ 327:Core/Src/Drivers/Encoder/encoder.c **** * @brief TIM_Base MSP Initialization
+ 328:Core/Src/Drivers/Encoder/encoder.c **** * This function configures the hardware resources used in this example
+ 329:Core/Src/Drivers/Encoder/encoder.c **** * @param htim_base: TIM_Base handle pointer
+ 330:Core/Src/Drivers/Encoder/encoder.c **** * @retval None
+ 331:Core/Src/Drivers/Encoder/encoder.c **** */
+ 332:Core/Src/Drivers/Encoder/encoder.c **** void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htim_base)
+ 333:Core/Src/Drivers/Encoder/encoder.c **** {
+ 976              		.loc 1 333 1 is_stmt 1 view -0
+ 977              		.cfi_startproc
+ 978              		@ args = 0, pretend = 0, frame = 8
+ 979              		@ frame_needed = 0, uses_anonymous_args = 0
+ 334:Core/Src/Drivers/Encoder/encoder.c ****   if(htim_base->Instance==TIM7)
+ 980              		.loc 1 334 3 view .LVU263
+ 981              		.loc 1 334 15 is_stmt 0 view .LVU264
+ 982 0000 0268     		ldr	r2, [r0]
+ 983              		.loc 1 334 5 view .LVU265
+ 984 0002 0E4B     		ldr	r3, .L66
+ 985 0004 9A42     		cmp	r2, r3
+ 986 0006 00D0     		beq	.L65
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s 			page 27
+
+
+ 987 0008 7047     		bx	lr
+ 988              	.L65:
+ 333:Core/Src/Drivers/Encoder/encoder.c ****   if(htim_base->Instance==TIM7)
+ 989              		.loc 1 333 1 view .LVU266
+ 990 000a 00B5     		push	{lr}
+ 991              	.LCFI26:
+ 992              		.cfi_def_cfa_offset 4
+ 993              		.cfi_offset 14, -4
+ 994 000c 83B0     		sub	sp, sp, #12
+ 995              	.LCFI27:
+ 996              		.cfi_def_cfa_offset 16
+ 335:Core/Src/Drivers/Encoder/encoder.c ****   {
+ 336:Core/Src/Drivers/Encoder/encoder.c ****     /* Peripheral clock enable */
+ 337:Core/Src/Drivers/Encoder/encoder.c ****     __HAL_RCC_TIM7_CLK_ENABLE();
+ 997              		.loc 1 337 5 is_stmt 1 view .LVU267
+ 998              	.LBB9:
+ 999              		.loc 1 337 5 view .LVU268
+ 1000 000e 0022     		movs	r2, #0
+ 1001 0010 0192     		str	r2, [sp, #4]
+ 1002              		.loc 1 337 5 view .LVU269
+ 1003 0012 03F50933 		add	r3, r3, #140288
+ 1004 0016 196C     		ldr	r1, [r3, #64]
+ 1005 0018 41F02001 		orr	r1, r1, #32
+ 1006 001c 1964     		str	r1, [r3, #64]
+ 1007              		.loc 1 337 5 view .LVU270
+ 1008 001e 1B6C     		ldr	r3, [r3, #64]
+ 1009 0020 03F02003 		and	r3, r3, #32
+ 1010 0024 0193     		str	r3, [sp, #4]
+ 1011              		.loc 1 337 5 view .LVU271
+ 1012 0026 019B     		ldr	r3, [sp, #4]
+ 1013              	.LBE9:
+ 1014              		.loc 1 337 5 view .LVU272
+ 338:Core/Src/Drivers/Encoder/encoder.c **** 
+ 339:Core/Src/Drivers/Encoder/encoder.c ****     /* TIM7 interrupt Init */
+ 340:Core/Src/Drivers/Encoder/encoder.c ****     HAL_NVIC_SetPriority(TIM7_IRQn, 8, 0);
+ 1015              		.loc 1 340 5 view .LVU273
+ 1016 0028 0821     		movs	r1, #8
+ 1017 002a 3720     		movs	r0, #55
+ 1018              	.LVL46:
+ 1019              		.loc 1 340 5 is_stmt 0 view .LVU274
+ 1020 002c FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 1021              	.LVL47:
+ 341:Core/Src/Drivers/Encoder/encoder.c ****     HAL_NVIC_EnableIRQ(TIM7_IRQn);
+ 1022              		.loc 1 341 5 is_stmt 1 view .LVU275
+ 1023 0030 3720     		movs	r0, #55
+ 1024 0032 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 1025              	.LVL48:
+ 342:Core/Src/Drivers/Encoder/encoder.c ****   }
+ 343:Core/Src/Drivers/Encoder/encoder.c **** }...
+ 1026              		.loc 1 343 1 is_stmt 0 view .LVU276
+ 1027 0036 03B0     		add	sp, sp, #12
+ 1028              	.LCFI28:
+ 1029              		.cfi_def_cfa_offset 4
+ 1030              		@ sp needed
+ 1031 0038 5DF804FB 		ldr	pc, [sp], #4
+ 1032              	.L67:
+ 1033              		.align	2
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s 			page 28
+
+
+ 1034              	.L66:
+ 1035 003c 00140040 		.word	1073746944
+ 1036              		.cfi_endproc
+ 1037              	.LFE180:
+ 1039              		.section	.rodata.time_evt.0,"a"
+ 1040              		.align	2
+ 1043              	time_evt.0:
+ 1044 0000 0300     		.short	3
+ 1045              		.section	.bss.encoder_topic,"aw",%nobits
+ 1046              		.align	2
+ 1049              	encoder_topic:
+ 1050 0000 00000000 		.space	8
+ 1050      00000000 
+ 1051              		.global	htim7
+ 1052              		.section	.bss.htim7,"aw",%nobits
+ 1053              		.align	2
+ 1056              	htim7:
+ 1057 0000 00000000 		.space	72
+ 1057      00000000 
+ 1057      00000000 
+ 1057      00000000 
+ 1057      00000000 
+ 1058              		.global	htim4
+ 1059              		.section	.bss.htim4,"aw",%nobits
+ 1060              		.align	2
+ 1063              	htim4:
+ 1064 0000 00000000 		.space	72
+ 1064      00000000 
+ 1064      00000000 
+ 1064      00000000 
+ 1064      00000000 
+ 1065              		.global	htim3
+ 1066              		.section	.bss.htim3,"aw",%nobits
+ 1067              		.align	2
+ 1070              	htim3:
+ 1071 0000 00000000 		.space	72
+ 1071      00000000 
+ 1071      00000000 
+ 1071      00000000 
+ 1071      00000000 
+ 1072              		.global	htim2
+ 1073              		.section	.bss.htim2,"aw",%nobits
+ 1074              		.align	2
+ 1077              	htim2:
+ 1078 0000 00000000 		.space	72
+ 1078      00000000 
+ 1078      00000000 
+ 1078      00000000 
+ 1078      00000000 
+ 1079              		.text
+ 1080              	.Letext0:
+ 1081              		.file 2 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h"
+ 1082              		.file 3 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
+ 1083              		.file 4 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
+ 1084              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 1085              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
+ 1086              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s 			page 29
+
+
+ 1087              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
+ 1088              		.file 9 "ThirdParty/FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h"
+ 1089              		.file 10 "ThirdParty/FreeRTOS/include/FreeRTOS.h"
+ 1090              		.file 11 "ThirdParty/FreeRTOS/include/task.h"
+ 1091              		.file 12 "ThirdParty/FreeRTOS/include/queue.h"
+ 1092              		.file 13 "Core/Src/Middleware/Active_Object/active_object.h"
+ 1093              		.file 14 "Drivers/CMSIS/DSP/Include/arm_math.h"
+ 1094              		.file 15 "Core/Src/Middleware/Topic/topic.h"
+ 1095              		.file 16 "Core/Src/Application/State_Estimator/Dsp/dsp.h"
+ 1096              		.file 17 "Core/Src/Application/State_Estimator/state_estimator.h"
+ 1097              		.file 18 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h"
+ 1098              		.file 19 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h"
+ 1099              		.file 20 "<built-in>"
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s 			page 30
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 encoder.c
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:21     .text.MX_TIM3_Init:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:26     .text.MX_TIM3_Init:00000000 MX_TIM3_Init
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:120    .text.MX_TIM3_Init:0000004c $d
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:970    .bss.htim3:00000000 htim3
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:126    .text.MX_TIM4_Init:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:131    .text.MX_TIM4_Init:00000000 MX_TIM4_Init
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:225    .text.MX_TIM4_Init:0000004c $d
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:963    .bss.htim4:00000000 htim4
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:231    .text.MX_TIM7_Init:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:236    .text.MX_TIM7_Init:00000000 MX_TIM7_Init
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:304    .text.MX_TIM7_Init:00000038 $d
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:956    .bss.htim7:00000000 htim7
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:310    .text.HAL_TIM_PeriodElapsedCallback:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:316    .text.HAL_TIM_PeriodElapsedCallback:00000000 HAL_TIM_PeriodElapsedCallback
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:395    .text.HAL_TIM_PeriodElapsedCallback:00000040 $d
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:943    .rodata.time_evt.0:00000000 time_evt.0
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:403    .text.HAL_TIM_IC_CaptureCallback:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:409    .text.HAL_TIM_IC_CaptureCallback:00000000 HAL_TIM_IC_CaptureCallback
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:519    .text.HAL_TIM_IC_CaptureCallback:00000064 $d
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:949    .bss.encoder_topic:00000000 encoder_topic
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:527    .text.TIM3_IRQHandler:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:533    .text.TIM3_IRQHandler:00000000 TIM3_IRQHandler
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:553    .text.TIM3_IRQHandler:0000000c $d
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:558    .text.TIM4_IRQHandler:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:564    .text.TIM4_IRQHandler:00000000 TIM4_IRQHandler
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:584    .text.TIM4_IRQHandler:0000000c $d
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:589    .text.TIM7_IRQHandler:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:595    .text.TIM7_IRQHandler:00000000 TIM7_IRQHandler
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:615    .text.TIM7_IRQHandler:0000000c $d
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:620    .text.Driver_Encoder_Init:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:626    .text.Driver_Encoder_Init:00000000 Driver_Encoder_Init
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:659    .text.Driver_Encoder_Init:00000018 $d
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:664    .text.HAL_TIM_Encoder_MspInit:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:670    .text.HAL_TIM_Encoder_MspInit:00000000 HAL_TIM_Encoder_MspInit
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:858    .text.HAL_TIM_Encoder_MspInit:000000c8 $d
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:867    .text.HAL_TIM_Base_MspInit:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:873    .text.HAL_TIM_Base_MspInit:00000000 HAL_TIM_Base_MspInit
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:935    .text.HAL_TIM_Base_MspInit:0000003c $d
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:940    .rodata.time_evt.0:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:946    .bss.encoder_topic:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:953    .bss.htim7:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:960    .bss.htim4:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s:967    .bss.htim3:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:21     .text.MX_TIM3_Init:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:26     .text.MX_TIM3_Init:00000000 MX_TIM3_Init
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:120    .text.MX_TIM3_Init:0000004c $d
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:1070   .bss.htim3:00000000 htim3
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:126    .text.MX_TIM2_Init:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:131    .text.MX_TIM2_Init:00000000 MX_TIM2_Init
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:225    .text.MX_TIM2_Init:0000004c $d
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:1077   .bss.htim2:00000000 htim2
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:230    .text.MX_TIM7_Init:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:235    .text.MX_TIM7_Init:00000000 MX_TIM7_Init
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:303    .text.MX_TIM7_Init:00000038 $d
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:1056   .bss.htim7:00000000 htim7
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:309    .text.HAL_TIM_PeriodElapsedCallback:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:315    .text.HAL_TIM_PeriodElapsedCallback:00000000 HAL_TIM_PeriodElapsedCallback
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:394    .text.HAL_TIM_PeriodElapsedCallback:00000040 $d
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:1043   .rodata.time_evt.0:00000000 time_evt.0
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:402    .text.HAL_TIM_IC_CaptureCallback:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:408    .text.HAL_TIM_IC_CaptureCallback:00000000 HAL_TIM_IC_CaptureCallback
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:517    .text.HAL_TIM_IC_CaptureCallback:00000064 $d
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:1049   .bss.encoder_topic:00000000 encoder_topic
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:524    .text.TIM2_IRQHandler:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:530    .text.TIM2_IRQHandler:00000000 TIM2_IRQHandler
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:550    .text.TIM2_IRQHandler:0000000c $d
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:555    .text.TIM3_IRQHandler:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:561    .text.TIM3_IRQHandler:00000000 TIM3_IRQHandler
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:581    .text.TIM3_IRQHandler:0000000c $d
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:586    .text.TIM4_IRQHandler:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:592    .text.TIM4_IRQHandler:00000000 TIM4_IRQHandler
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:612    .text.TIM4_IRQHandler:0000000c $d
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:1063   .bss.htim4:00000000 htim4
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:617    .text.TIM7_IRQHandler:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:623    .text.TIM7_IRQHandler:00000000 TIM7_IRQHandler
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:643    .text.TIM7_IRQHandler:0000000c $d
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:648    .text.Driver_Encoder_Init:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:654    .text.Driver_Encoder_Init:00000000 Driver_Encoder_Init
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:687    .text.Driver_Encoder_Init:00000018 $d
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:692    .text.HAL_TIM_Encoder_MspInit:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:698    .text.HAL_TIM_Encoder_MspInit:00000000 HAL_TIM_Encoder_MspInit
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:958    .text.HAL_TIM_Encoder_MspInit:00000124 $d
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:967    .text.HAL_TIM_Base_MspInit:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:973    .text.HAL_TIM_Base_MspInit:00000000 HAL_TIM_Base_MspInit
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:1035   .text.HAL_TIM_Base_MspInit:0000003c $d
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:1040   .rodata.time_evt.0:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:1046   .bss.encoder_topic:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:1053   .bss.htim7:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:1060   .bss.htim4:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:1067   .bss.htim3:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s:1074   .bss.htim2:00000000 $d
 
 UNDEFINED SYMBOLS
 memset
@@ -1489,11 +1754,11 @@ HAL_TIM_Encoder_Init
 HAL_TIMEx_MasterConfigSynchronization
 HAL_TIM_Base_Init
 ao_estimator
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccluPWYg.s 			page 31
+
+
 state_estimator
 HAL_TIM_IRQHandler
 HAL_GPIO_Init
 HAL_NVIC_SetPriority
 HAL_NVIC_EnableIRQ
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccN9gpvu.s 			page 26
-
-

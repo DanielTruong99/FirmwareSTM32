@@ -2,7 +2,7 @@
 
 extern UART_HandleTypeDef huart3;
 extern struct StateEstimator * state_estimator;
-static char tx_data[15];
+static char tx_data[30];
 static char rx_data[15];
 struct Ao * ao_computer_communicator;
 struct ComputerCommunicator * computer_communicator;
@@ -78,7 +78,7 @@ static Status wait(struct ComputerCommunicator *const self, Event const * const 
             if(is_success)
             {
                 // sprintf(tx_data , "S%.3f %.3f\n", state_topic.pendlm.angle, state_topic.motor.angle);
-                sprintf(tx_data , ">v:%.3f\n>a:%.3f\n", state_topic.pendlm.vel, state_topic.pendlm.angle);
+                sprintf(tx_data , ">motor:%.3f\n>pendl:%.3f\n", state_topic.motor.angle, state_topic.pendlm.angle);
                 HAL_UART_Transmit_IT(&huart3, (uint8_t *)tx_data, (unsigned)strlen(tx_data));
 
                 self->super.handler = (StateHandler)self->sending;

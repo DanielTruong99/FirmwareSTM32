@@ -29,7 +29,7 @@ int main(void)
   state_estimator.super.start(state_estimator_ao,
                               3,
                               20,
-                              configMINIMAL_STACK_SIZE + 126,
+                              3000,
                               0U);
 
   // Motor Communicator Task

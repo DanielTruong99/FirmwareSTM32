@@ -15,6 +15,7 @@ static void Differentiator_apply(Differentiator * const self, float32_t * input,
     self->state[2] = self->state[1]; self->state[1] = x;
     
     /*Filter estimated first derivative*/
+    self->filter.numStages = 1;
     arm_biquad_cascade_df2T_f32(&self->filter, &diff_x, &filtered_diff_x, 1);
 
     /*Return output value*/
@@ -35,7 +36,7 @@ void Differentiator_new(Differentiator * const self, float32_t sample_time, uint
     self->state[1] = 0.0F;
 
     /*Initialize filter*/
-    self->filter_state = ( float32_t * ) pvPortMalloc( 2 * num_states ); 
+    self->filter_state = ( float32_t * ) pvPortMalloc( (2U * (uint32_t) num_states) * sizeof(float32_t) ); 
 
     arm_biquad_cascade_df2T_init_f32(&self->filter, num_states, filter_coeffs, self->filter_state);	
 }
@@ -79,14 +80,15 @@ static void cvtAngle(struct Dsp * const self, Encoder const * const encoder_topi
 static void filter(struct Dsp * const self)
 {
     /*Reduce abnormal reading angle*/
-    self->motor_reducer->apply(self->motor_reducer, &self->raw_motor_angle, &self->motor_angle);
-    self->pendlm_reducer->apply(self->pendlm_reducer, &self->raw_pendlm_angle, &self->pendlm_angle);
-    self->filtered_motor_angle = self->motor_angle;
-    self->filtered_pendlm_angle = self->pendlm_angle;
+    // self->motor_reducer->apply(self->motor_reducer, &self->raw_motor_angle, &self->motor_angle);
+    // self->pendlm_reducer->apply(self->pendlm_reducer, &self->raw_pendlm_angle, &self->pendlm_angle);
+    // self->filtered_motor_angle = self->motor_angle;
+    self->filtered_motor_angle = self->raw_motor_angle;
+    self->filtered_pendlm_angle = self->raw_pendlm_angle;
 
     /*Estimate first derivative and filter*/
     self->motor_differentiator->apply(self->motor_differentiator, &self->filtered_motor_angle, &self->filtered_motor_vel);
-    self->pendlm_differentiator->apply(self->pendlm_differentiator, &self->filtered_motor_angle, &self->filtered_pendlm_vel);
+    self->pendlm_differentiator->apply(self->pendlm_differentiator, &self->filtered_pendlm_angle, &self->filtered_pendlm_vel);
 }
 
 static void estimate(struct Dsp * const self)

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s 			page 1
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -32,7 +32,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s 			page 1
    2:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
    3:Core/Src/Application/Computer_Communicator/computer_communicator.c **** extern UART_HandleTypeDef huart3;
    4:Core/Src/Application/Computer_Communicator/computer_communicator.c **** extern struct StateEstimator * state_estimator;
-   5:Core/Src/Application/Computer_Communicator/computer_communicator.c **** static char tx_data[15];
+   5:Core/Src/Application/Computer_Communicator/computer_communicator.c **** static char tx_data[30];
    6:Core/Src/Application/Computer_Communicator/computer_communicator.c **** static char rx_data[15];
    7:Core/Src/Application/Computer_Communicator/computer_communicator.c **** struct Ao * ao_computer_communicator;
    8:Core/Src/Application/Computer_Communicator/computer_communicator.c **** struct ComputerCommunicator * computer_communicator;
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s 			page 1
   39              		.loc 1 17 23 view .LVU5
   40 0004 0360     		str	r3, [r0]
   18:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   return status;
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s 			page 2
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s 			page 2
 
 
   41              		.loc 1 18 3 is_stmt 1 view .LVU6
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s 			page 1
   79              	.LVL3:
   37:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
   38:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             break;
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s 			page 3
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s 			page 3
 
 
   80              		.loc 1 38 13 view .LVU18
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s 			page 1
  113              		.section	.text.new,"ax",%progbits
  114              		.align	1
  115              		.syntax unified
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s 			page 4
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s 			page 4
 
 
  116              		.thumb
@@ -209,7 +209,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s 			page 1
   78:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             if(is_success)
   79:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             {
   80:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 // sprintf(tx_data , "S%.3f %.3f\n", state_topic.pendlm.angle, state_topic.motor.an
-  81:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 sprintf(tx_data , ">v:%.3f\n>a:%.3f\n", state_topic.pendlm.vel, state_topic.pendlm.
+  81:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 sprintf(tx_data , ">motor:%.3f\n>pendl:%.3f\n", state_topic.motor.angle, state_topi
   82:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 HAL_UART_Transmit_IT(&huart3, (uint8_t *)tx_data, (unsigned)strlen(tx_data));
   83:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
   84:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 self->super.handler = (StateHandler)self->sending;
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s 			page 1
  107:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         }
  108:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         
  109:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     }
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s 			page 5
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s 			page 5
 
 
  110:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s 			page 1
  154 0022 FFF7FEFF 		bl	Ao_new
  155              	.LVL12:
  132:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s 			page 6
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s 			page 6
 
 
  133:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   /*Cache Ao for using in Encoder driver*/
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s 			page 1
  203 0000 08B5     		push	{r3, lr}
  204              	.LCFI1:
  205              		.cfi_def_cfa_offset 8
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s 			page 7
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s 			page 7
 
 
  206              		.cfi_offset 3, -8
@@ -408,17 +408,17 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s 			page 1
  247              		.section	.rodata.wait.str1.4,"aMS",%progbits,1
  248              		.align	2
  249              	.LC0:
- 250 0000 3E763A25 		.ascii	">v:%.3f\012>a:%.3f\012\000"
+ 250 0000 3E6D6F74 		.ascii	">motor:%.3f\012>pendl:%.3f\012\000"
+ 250      6F723A25 
  250      2E33660A 
- 250      3E613A25 
- 250      2E33660A 
- 250      00
+ 250      3E70656E 
+ 250      646C3A25 
  251              		.section	.text.wait,"ax",%progbits
  252              		.align	1
  253              		.syntax unified
  254              		.thumb
  255              		.thumb_func
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s 			page 8
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s 			page 8
 
 
  257              	wait:
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s 			page 1
   76:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
  299              		.loc 1 76 26 view .LVU70
  300 001a D3F8D400 		ldr	r0, [r3, #212]
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s 			page 9
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s 			page 9
 
 
  301              	.LVL20:
@@ -538,20 +538,20 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s 			page 1
  346              		.cfi_offset 8, -8
  347              		.cfi_offset 14, -4
  348              	.LBB3:
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s 			page 10
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s 			page 10
 
 
   81:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 HAL_UART_Transmit_IT(&huart3, (uint8_t *)tx_data, (unsigned)strlen(tx_data));
  349              		.loc 1 81 17 is_stmt 1 view .LVU80
   81:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 HAL_UART_Transmit_IT(&huart3, (uint8_t *)tx_data, (unsigned)strlen(tx_data));
- 350              		.loc 1 81 75 is_stmt 0 view .LVU81
+ 350              		.loc 1 81 82 is_stmt 0 view .LVU81
  351 0034 134B     		ldr	r3, .L27+4
   81:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 HAL_UART_Transmit_IT(&huart3, (uint8_t *)tx_data, (unsigned)strlen(tx_data));
- 352              		.loc 1 81 99 view .LVU82
+ 352              		.loc 1 81 108 view .LVU82
  353 0036 D3F80C80 		ldr	r8, [r3, #12]	@ float
   81:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 HAL_UART_Transmit_IT(&huart3, (uint8_t *)tx_data, (unsigned)strlen(tx_data));
  354              		.loc 1 81 17 view .LVU83
- 355 003a 1869     		ldr	r0, [r3, #16]	@ float
+ 355 003a 1868     		ldr	r0, [r3]	@ float
  356              	.LVL26:
   81:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 HAL_UART_Transmit_IT(&huart3, (uint8_t *)tx_data, (unsigned)strlen(tx_data));
  357              		.loc 1 81 17 view .LVU84
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s 			page 1
   85:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             }
  391              		.loc 1 85 24 is_stmt 0 view .LVU92
  392 0072 0020     		movs	r0, #0
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s 			page 11
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s 			page 11
 
 
  393 0074 D7E7     		b	.L18
@@ -654,11 +654,11 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s 			page 1
  438              		.section	.bss.state_topic.0,"aw",%nobits
  439              		.align	2
  442              	state_topic.0:
- 443 0000 00000000 		.space	24
+ 443 0000 00000000 		.space	36
  443      00000000 
  443      00000000 
  443      00000000 
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s 			page 12
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s 			page 12
 
 
  443      00000000 
@@ -680,10 +680,11 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s 			page 1
  465              		.section	.bss.tx_data,"aw",%nobits
  466              		.align	2
  469              	tx_data:
- 470 0000 00000000 		.space	15
+ 470 0000 00000000 		.space	30
  470      00000000 
  470      00000000 
- 470      000000
+ 470      00000000 
+ 470      00000000 
  471              		.text
  472              	.Letext0:
  473              		.file 2 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
@@ -705,36 +706,36 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s 			page 1
  489              		.file 18 "Core/Src/Application/Computer_Communicator/computer_communicator.h"
  490              		.file 19 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-g
  491              		.file 20 "Core/Src/printf.h"
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s 			page 13
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s 			page 13
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 computer_communicator.c
-C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s:21     .text.initial:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s:26     .text.initial:00000000 initial
-C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s:51     .text.sending:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s:56     .text.sending:00000000 sending
-C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s:114    .text.new:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s:119    .text.new:00000000 new
-C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s:178    .text.new:0000003c $d
-C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s:257    .text.wait:00000000 wait
-C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s:223    .text.public:00000000 public
-C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s:195    .text.publicFromISR:00000000 publicFromISR
-C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s:463    .bss.ao_computer_communicator:00000000 ao_computer_communicator
-C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s:456    .bss.computer_communicator:00000000 computer_communicator
-C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s:190    .text.publicFromISR:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s:218    .text.public:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s:248    .rodata.wait.str1.4:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s:252    .text.wait:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s:430    .text.wait:00000080 $d
-C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s:442    .bss.state_topic.0:00000000 state_topic.0
-C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s:469    .bss.tx_data:00000000 tx_data
-C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s:439    .bss.state_topic.0:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s:449    .rodata.ComputerCommunicator:00000000 ComputerCommunicator
-C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s:446    .rodata.ComputerCommunicator:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s:453    .bss.computer_communicator:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s:460    .bss.ao_computer_communicator:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccz54j3P.s:466    .bss.tx_data:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:21     .text.initial:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:26     .text.initial:00000000 initial
+C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:51     .text.sending:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:56     .text.sending:00000000 sending
+C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:114    .text.new:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:119    .text.new:00000000 new
+C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:178    .text.new:0000003c $d
+C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:257    .text.wait:00000000 wait
+C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:223    .text.public:00000000 public
+C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:195    .text.publicFromISR:00000000 publicFromISR
+C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:463    .bss.ao_computer_communicator:00000000 ao_computer_communicator
+C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:456    .bss.computer_communicator:00000000 computer_communicator
+C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:190    .text.publicFromISR:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:218    .text.public:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:248    .rodata.wait.str1.4:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:252    .text.wait:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:430    .text.wait:00000080 $d
+C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:442    .bss.state_topic.0:00000000 state_topic.0
+C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:469    .bss.tx_data:00000000 tx_data
+C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:439    .bss.state_topic.0:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:449    .rodata.ComputerCommunicator:00000000 ComputerCommunicator
+C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:446    .rodata.ComputerCommunicator:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:453    .bss.computer_communicator:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:460    .bss.ao_computer_communicator:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:466    .bss.tx_data:00000000 $d
 
 UNDEFINED SYMBOLS
 Ao_new

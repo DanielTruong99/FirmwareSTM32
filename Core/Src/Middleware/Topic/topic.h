@@ -6,7 +6,7 @@
 typedef struct EncoderStruct
 {
   int16_t pendlm_counter;
-  int16_t motor_counter;
+  int32_t motor_counter;
 } Encoder;
 
 typedef struct StateDataStruct

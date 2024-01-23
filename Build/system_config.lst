@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc5mXN8P.s 			page 1
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccth1POB.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc5mXN8P.s 			page 1
   13:Drivers/CMSIS/Include/cmsis_gcc.h ****  * not use this file except in compliance with the License.
   14:Drivers/CMSIS/Include/cmsis_gcc.h ****  * You may obtain a copy of the License at
   15:Drivers/CMSIS/Include/cmsis_gcc.h ****  *
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc5mXN8P.s 			page 2
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccth1POB.s 			page 2
 
 
   16:Drivers/CMSIS/Include/cmsis_gcc.h ****  * www.apache.org/licenses/LICENSE-2.0
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc5mXN8P.s 			page 1
   70:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __UNALIGNED_UINT32        /* deprecated */
   71:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic push
   72:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wpacked"
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc5mXN8P.s 			page 3
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccth1POB.s 			page 3
 
 
   73:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wattributes"
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc5mXN8P.s 			page 1
  127:Drivers/CMSIS/Include/cmsis_gcc.h ****            Can only be executed in Privileged modes.
  128:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
  129:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __enable_irq(void)
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc5mXN8P.s 			page 4
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccth1POB.s 			page 4
 
 
  130:Drivers/CMSIS/Include/cmsis_gcc.h **** {
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc5mXN8P.s 			page 1
   73              		.cfi_def_cfa_offset 4
   74              		.cfi_offset 14, -4
   75 0002 95B0     		sub	sp, sp, #84
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc5mXN8P.s 			page 5
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccth1POB.s 			page 5
 
 
   76              	.LCFI1:
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc5mXN8P.s 			page 1
  123              		.loc 1 20 3 view .LVU22
  124 0044 029B     		ldr	r3, [sp, #8]
  125              	.LBE7:
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc5mXN8P.s 			page 6
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccth1POB.s 			page 6
 
 
  126              		.loc 1 20 3 view .LVU23
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc5mXN8P.s 			page 1
   37:Core/Src/Drivers/System_Config/system_config.c **** 
   38:Core/Src/Drivers/System_Config/system_config.c ****   /** Initializes the CPU, AHB and APB buses clocks
   39:Core/Src/Drivers/System_Config/system_config.c ****   */
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc5mXN8P.s 			page 7
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccth1POB.s 			page 7
 
 
   40:Core/Src/Drivers/System_Config/system_config.c ****   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc5mXN8P.s 			page 1
  205              	.L8:
   49:Core/Src/Drivers/System_Config/system_config.c ****   }
  206              		.loc 1 49 5 view .LVU58
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc5mXN8P.s 			page 8
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccth1POB.s 			page 8
 
 
  207 009a FFF7FEFF 		bl	Error_Handler
@@ -455,112 +455,93 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc5mXN8P.s 			page 1
  235              	.LBB8:
  236              		.loc 1 56 3 view .LVU61
  237 0002 0022     		movs	r2, #0
- 238 0004 0092     		str	r2, [sp]
+ 238 0004 0192     		str	r2, [sp, #4]
  239              		.loc 1 56 3 view .LVU62
- 240 0006 154B     		ldr	r3, .L13
+ 240 0006 104B     		ldr	r3, .L13
  241 0008 196B     		ldr	r1, [r3, #48]
  242 000a 41F08001 		orr	r1, r1, #128
  243 000e 1963     		str	r1, [r3, #48]
  244              		.loc 1 56 3 view .LVU63
  245 0010 196B     		ldr	r1, [r3, #48]
  246 0012 01F08001 		and	r1, r1, #128
- 247 0016 0091     		str	r1, [sp]
+ 247 0016 0191     		str	r1, [sp, #4]
  248              		.loc 1 56 3 view .LVU64
- 249 0018 0099     		ldr	r1, [sp]
+ 249 0018 0199     		ldr	r1, [sp, #4]
  250              	.LBE8:
  251              		.loc 1 56 3 view .LVU65
   57:Core/Src/Drivers/System_Config/system_config.c ****   __HAL_RCC_GPIOA_CLK_ENABLE();
  252              		.loc 1 57 3 view .LVU66
  253              	.LBB9:
  254              		.loc 1 57 3 view .LVU67
- 255 001a 0192     		str	r2, [sp, #4]
+ 255 001a 0292     		str	r2, [sp, #8]
  256              		.loc 1 57 3 view .LVU68
  257 001c 196B     		ldr	r1, [r3, #48]
  258 001e 41F00101 		orr	r1, r1, #1
  259 0022 1963     		str	r1, [r3, #48]
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc5mXN8P.s 			page 9
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccth1POB.s 			page 9
 
 
  260              		.loc 1 57 3 view .LVU69
  261 0024 196B     		ldr	r1, [r3, #48]
  262 0026 01F00101 		and	r1, r1, #1
- 263 002a 0191     		str	r1, [sp, #4]
+ 263 002a 0291     		str	r1, [sp, #8]
  264              		.loc 1 57 3 view .LVU70
- 265 002c 0199     		ldr	r1, [sp, #4]
+ 265 002c 0299     		ldr	r1, [sp, #8]
  266              	.LBE9:
  267              		.loc 1 57 3 view .LVU71
   58:Core/Src/Drivers/System_Config/system_config.c ****   __HAL_RCC_GPIOB_CLK_ENABLE();
  268              		.loc 1 58 3 view .LVU72
  269              	.LBB10:
  270              		.loc 1 58 3 view .LVU73
- 271 002e 0292     		str	r2, [sp, #8]
+ 271 002e 0392     		str	r2, [sp, #12]
  272              		.loc 1 58 3 view .LVU74
- 273 0030 196B     		ldr	r1, [r3, #48]
- 274 0032 41F00201 		orr	r1, r1, #2
- 275 0036 1963     		str	r1, [r3, #48]
+ 273 0030 1A6B     		ldr	r2, [r3, #48]
+ 274 0032 42F00202 		orr	r2, r2, #2
+ 275 0036 1A63     		str	r2, [r3, #48]
  276              		.loc 1 58 3 view .LVU75
- 277 0038 196B     		ldr	r1, [r3, #48]
- 278 003a 01F00201 		and	r1, r1, #2
- 279 003e 0291     		str	r1, [sp, #8]
+ 277 0038 1B6B     		ldr	r3, [r3, #48]
+ 278 003a 03F00203 		and	r3, r3, #2
+ 279 003e 0393     		str	r3, [sp, #12]
  280              		.loc 1 58 3 view .LVU76
- 281 0040 0299     		ldr	r1, [sp, #8]
+ 281 0040 039B     		ldr	r3, [sp, #12]
  282              	.LBE10:
  283              		.loc 1 58 3 view .LVU77
-  59:Core/Src/Drivers/System_Config/system_config.c ****   __HAL_RCC_GPIOD_CLK_ENABLE();
- 284              		.loc 1 59 3 view .LVU78
- 285              	.LBB11:
- 286              		.loc 1 59 3 view .LVU79
- 287 0042 0392     		str	r2, [sp, #12]
- 288              		.loc 1 59 3 view .LVU80
- 289 0044 1A6B     		ldr	r2, [r3, #48]
- 290 0046 42F00802 		orr	r2, r2, #8
- 291 004a 1A63     		str	r2, [r3, #48]
- 292              		.loc 1 59 3 view .LVU81
- 293 004c 1B6B     		ldr	r3, [r3, #48]
- 294 004e 03F00803 		and	r3, r3, #8
- 295 0052 0393     		str	r3, [sp, #12]
- 296              		.loc 1 59 3 view .LVU82
- 297 0054 039B     		ldr	r3, [sp, #12]
- 298              	.LBE11:
- 299              		.loc 1 59 3 view .LVU83
+  59:Core/Src/Drivers/System_Config/system_config.c ****   // __HAL_RCC_GPIOD_CLK_ENABLE();
   60:Core/Src/Drivers/System_Config/system_config.c **** }...
- 300              		.loc 1 60 1 is_stmt 0 view .LVU84
- 301 0056 04B0     		add	sp, sp, #16
- 302              	.LCFI5:
- 303              		.cfi_def_cfa_offset 0
- 304              		@ sp needed
- 305 0058 7047     		bx	lr
- 306              	.L14:
- 307 005a 00BF     		.align	2
- 308              	.L13:
- 309 005c 00380240 		.word	1073887232
- 310              		.cfi_endproc
- 311              	.LFE132:
- 313              		.text
- 314              	.Letext0:
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc5mXN8P.s 			page 10
-
-
- 315              		.file 3 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
- 316              		.file 4 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
- 317              		.file 5 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h"
- 318              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
- 319              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h"
- 320              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h"
- 321              		.file 9 "<built-in>"
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc5mXN8P.s 			page 11
+ 284              		.loc 1 60 1 is_stmt 0 view .LVU78
+ 285 0042 04B0     		add	sp, sp, #16
+ 286              	.LCFI5:
+ 287              		.cfi_def_cfa_offset 0
+ 288              		@ sp needed
+ 289 0044 7047     		bx	lr
+ 290              	.L14:
+ 291 0046 00BF     		.align	2
+ 292              	.L13:
+ 293 0048 00380240 		.word	1073887232
+ 294              		.cfi_endproc
+ 295              	.LFE132:
+ 297              		.text
+ 298              	.Letext0:
+ 299              		.file 3 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
+ 300              		.file 4 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
+ 301              		.file 5 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h"
+ 302              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 303              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h"
+ 304              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h"
+ 305              		.file 9 "<built-in>"
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccth1POB.s 			page 10
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 system_config.c
-C:\Users\ACER\AppData\Local\Temp\cc5mXN8P.s:21     .text.Error_Handler:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\cc5mXN8P.s:27     .text.Error_Handler:00000000 Error_Handler
-C:\Users\ACER\AppData\Local\Temp\cc5mXN8P.s:59     .text.SystemClock_Config:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\cc5mXN8P.s:65     .text.SystemClock_Config:00000000 SystemClock_Config
-C:\Users\ACER\AppData\Local\Temp\cc5mXN8P.s:212    .text.SystemClock_Config:000000a0 $d
-C:\Users\ACER\AppData\Local\Temp\cc5mXN8P.s:218    .text.MX_GPIO_Init:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\cc5mXN8P.s:224    .text.MX_GPIO_Init:00000000 MX_GPIO_Init
-C:\Users\ACER\AppData\Local\Temp\cc5mXN8P.s:309    .text.MX_GPIO_Init:0000005c $d
+C:\Users\ACER\AppData\Local\Temp\ccth1POB.s:21     .text.Error_Handler:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccth1POB.s:27     .text.Error_Handler:00000000 Error_Handler
+C:\Users\ACER\AppData\Local\Temp\ccth1POB.s:59     .text.SystemClock_Config:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccth1POB.s:65     .text.SystemClock_Config:00000000 SystemClock_Config
+C:\Users\ACER\AppData\Local\Temp\ccth1POB.s:212    .text.SystemClock_Config:000000a0 $d
+C:\Users\ACER\AppData\Local\Temp\ccth1POB.s:218    .text.MX_GPIO_Init:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccth1POB.s:224    .text.MX_GPIO_Init:00000000 MX_GPIO_Init
+C:\Users\ACER\AppData\Local\Temp\ccth1POB.s:293    .text.MX_GPIO_Init:00000048 $d
 
 UNDEFINED SYMBOLS
 memset
