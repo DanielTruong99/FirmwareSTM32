@@ -21,6 +21,7 @@ typedef struct StateStruct
 {
   StateData motor;
   StateData pendlm;
+  StateData cart;
 } State;
 
 typedef struct PWCStruct

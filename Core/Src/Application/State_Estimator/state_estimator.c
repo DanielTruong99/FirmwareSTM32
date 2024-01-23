@@ -36,7 +36,7 @@ Status wait(struct StateEstimator *const self, Event const * const event)
     case TIMEOUT_2KHz_SIG:
     {
       static Encoder encoder_topic = {0};
-      static State state_topic = {.motor ={0.0F}, .pendlm = {0.0F}};
+      static State state_topic = {.motor ={0.0F}, .pendlm = {0.0F}, .cart = {0.0F};
       BaseType_t is_success;
       is_success = xQueuePeek(self->encoder_sub, &encoder_topic, 0);
 
@@ -48,6 +48,8 @@ Status wait(struct StateEstimator *const self, Event const * const event)
 
       /*Public into state topic*/
       self->public(self->state_pub, &state_topic);
+
+      /*Post STATE_UPDATED_SIG event into computer_communicator queue*/
       static const Event state_evt = {STATE_UPDATED_SIG};
       ao_estimator->post(&computer_communicator->super, &state_evt);
       

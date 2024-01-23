@@ -19,7 +19,9 @@
         "_default_types.h": "c",
         "topic.h": "c",
         "computer_communicator.h": "c",
-        "stdarg.h": "c"
+        "stdarg.h": "c",
+        "queue.h": "c",
+        "filter_data.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

@@ -4,6 +4,7 @@
 #include "stm32f4xx_hal.h"
 #include "active_object.h"
 #include "topic.h"
+#include "printf.h"
 
 enum MotorCommunicatorEvent{PWC_TRIGGER_SIG = USER_SIG, COMMAND_SENDED_SIG};
 

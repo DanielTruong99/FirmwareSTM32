@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s 			page 1
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cchSDxR8.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s 			page 1
   15:Core/Src/Application/Motor_Communicator/motor_communicator.c **** }
   42              		.loc 1 15 1 is_stmt 0 view .LVU7
   43 0006 0020     		movs	r0, #0
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s 			page 2
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cchSDxR8.s 			page 2
 
 
   44              	.LVL1:
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s 			page 1
   32:Core/Src/Application/Motor_Communicator/motor_communicator.c ****             status = TRAN_STATUS;
   81              		.loc 1 32 20 is_stmt 0 view .LVU19
   82 0010 0020     		movs	r0, #0
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s 			page 3
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cchSDxR8.s 			page 3
 
 
   83              	.LVL4:
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s 			page 1
  119              	new:
  120              	.LVL11:
  121              	.LFB173:
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s 			page 4
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cchSDxR8.s 			page 4
 
 
   53:Core/Src/Application/Motor_Communicator/motor_communicator.c **** 
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s 			page 1
  107:Core/Src/Application/Motor_Communicator/motor_communicator.c **** 
  108:Core/Src/Application/Motor_Communicator/motor_communicator.c **** static void public(QueueHandle_t xQueue, const void * pvItemToQueue)
  109:Core/Src/Application/Motor_Communicator/motor_communicator.c **** {
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s 			page 5
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cchSDxR8.s 			page 5
 
 
  110:Core/Src/Application/Motor_Communicator/motor_communicator.c ****   xQueueOverwrite(xQueue, pvItemToQueue);
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s 			page 1
  157              		.loc 1 128 25 is_stmt 0 view .LVU42
  158 0026 0B4B     		ldr	r3, .L10+20
  159 0028 1C60     		str	r4, [r3]
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s 			page 6
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cchSDxR8.s 			page 6
 
 
  129:Core/Src/Application/Motor_Communicator/motor_communicator.c ****   motor_communicator = self;
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s 			page 1
  115:Core/Src/Application/Motor_Communicator/motor_communicator.c **** }
  209              		.loc 1 115 3 is_stmt 1 view .LVU52
  210 0002 0223     		movs	r3, #2
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s 			page 7
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cchSDxR8.s 			page 7
 
 
  211 0004 FFF7FEFF 		bl	xQueueGenericSendFromISR
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s 			page 1
  261              		.cfi_startproc
  262              		@ args = 0, pretend = 0, frame = 0
  263              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s 			page 8
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cchSDxR8.s 			page 8
 
 
   55:Core/Src/Application/Motor_Communicator/motor_communicator.c **** 
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s 			page 1
  303 001e 02E0     		b	.L18
  304              	.LVL24:
  305              	.L23:
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s 			page 9
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cchSDxR8.s 			page 9
 
 
   83:Core/Src/Application/Motor_Communicator/motor_communicator.c ****             }
@@ -498,160 +498,158 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s 			page 1
  316 0026 38BD     		pop	{r3, r4, r5, pc}
  317              	.LVL26:
  318              	.L24:
- 319              	.LBB4:
- 320              	.LBB3:
+ 319              	.LBB3:
   75:Core/Src/Application/Motor_Communicator/motor_communicator.c ****                 HAL_UART_Transmit_IT(&huart2, (uint8_t *)tx_data, (unsigned)strlen(tx_data));
- 321              		.loc 1 75 17 is_stmt 1 view .LVU78
- 322 0028 0D4D     		ldr	r5, .L25+4
- 323 002a 0C4B     		ldr	r3, .L25
- 324 002c B3F90020 		ldrsh	r2, [r3]
- 325 0030 0C49     		ldr	r1, .L25+8
- 326 0032 2846     		mov	r0, r5
- 327              	.LVL27:
+ 320              		.loc 1 75 17 is_stmt 1 view .LVU78
+ 321 0028 0D4D     		ldr	r5, .L25+4
+ 322 002a 0C4B     		ldr	r3, .L25
+ 323 002c B3F90020 		ldrsh	r2, [r3]
+ 324 0030 0C49     		ldr	r1, .L25+8
+ 325 0032 2846     		mov	r0, r5
+ 326              	.LVL27:
   75:Core/Src/Application/Motor_Communicator/motor_communicator.c ****                 HAL_UART_Transmit_IT(&huart2, (uint8_t *)tx_data, (unsigned)strlen(tx_data));
- 328              		.loc 1 75 17 is_stmt 0 view .LVU79
- 329 0034 FFF7FEFF 		bl	sprintf
- 330              	.LVL28:
+ 327              		.loc 1 75 17 is_stmt 0 view .LVU79
+ 328 0034 FFF7FEFF 		bl	sprintf_
+ 329              	.LVL28:
   76:Core/Src/Application/Motor_Communicator/motor_communicator.c **** 
- 331              		.loc 1 76 17 is_stmt 1 view .LVU80
+ 330              		.loc 1 76 17 is_stmt 1 view .LVU80
   76:Core/Src/Application/Motor_Communicator/motor_communicator.c **** 
- 332              		.loc 1 76 77 is_stmt 0 view .LVU81
- 333 0038 2846     		mov	r0, r5
- 334 003a FFF7FEFF 		bl	strlen
- 335              	.LVL29:
+ 331              		.loc 1 76 77 is_stmt 0 view .LVU81
+ 332 0038 2846     		mov	r0, r5
+ 333 003a FFF7FEFF 		bl	strlen
+ 334              	.LVL29:
   76:Core/Src/Application/Motor_Communicator/motor_communicator.c **** 
- 336              		.loc 1 76 17 discriminator 1 view .LVU82
- 337 003e 82B2     		uxth	r2, r0
- 338 0040 2946     		mov	r1, r5
- 339 0042 0948     		ldr	r0, .L25+12
- 340 0044 FFF7FEFF 		bl	HAL_UART_Transmit_IT
- 341              	.LVL30:
+ 335              		.loc 1 76 17 discriminator 1 view .LVU82
+ 336 003e 82B2     		uxth	r2, r0
+ 337 0040 2946     		mov	r1, r5
+ 338 0042 0948     		ldr	r0, .L25+12
+ 339 0044 FFF7FEFF 		bl	HAL_UART_Transmit_IT
+ 340              	.LVL30:
   78:Core/Src/Application/Motor_Communicator/motor_communicator.c ****                 status = TRAN_STATUS;
- 342              		.loc 1 78 17 is_stmt 1 view .LVU83
+ 341              		.loc 1 78 17 is_stmt 1 view .LVU83
   78:Core/Src/Application/Motor_Communicator/motor_communicator.c ****                 status = TRAN_STATUS;
- 343              		.loc 1 78 57 is_stmt 0 view .LVU84
- 344 0048 D4F8D830 		ldr	r3, [r4, #216]
+ 342              		.loc 1 78 57 is_stmt 0 view .LVU84
+ 343 0048 D4F8D830 		ldr	r3, [r4, #216]
   78:Core/Src/Application/Motor_Communicator/motor_communicator.c ****                 status = TRAN_STATUS;
- 345              		.loc 1 78 37 view .LVU85
- 346 004c 2360     		str	r3, [r4]
+ 344              		.loc 1 78 37 view .LVU85
+ 345 004c 2360     		str	r3, [r4]
   79:Core/Src/Application/Motor_Communicator/motor_communicator.c ****             }
- 347              		.loc 1 79 17 is_stmt 1 view .LVU86
- 348              	.LVL31:
+ 346              		.loc 1 79 17 is_stmt 1 view .LVU86
+ 347              	.LVL31:
   79:Core/Src/Application/Motor_Communicator/motor_communicator.c ****             }
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s 			page 10
+ 348              		.loc 1 79 24 is_stmt 0 view .LVU87
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cchSDxR8.s 			page 10
 
 
- 349              		.loc 1 79 24 is_stmt 0 view .LVU87
- 350 004e 0020     		movs	r0, #0
- 351              	.LBE3:
- 352 0050 E9E7     		b	.L18
- 353              	.LVL32:
- 354              	.L19:
+ 349 004e 0020     		movs	r0, #0
+ 350 0050 E9E7     		b	.L18
+ 351              	.LVL32:
+ 352              	.L19:
   79:Core/Src/Application/Motor_Communicator/motor_communicator.c ****             }
- 355              		.loc 1 79 24 view .LVU88
- 356              	.LBE4:
+ 353              		.loc 1 79 24 view .LVU88
+ 354              	.LBE3:
   99:Core/Src/Application/Motor_Communicator/motor_communicator.c ****             break;
- 357              		.loc 1 99 20 view .LVU89
- 358 0052 0220     		movs	r0, #2
- 359              	.LVL33:
+ 355              		.loc 1 99 20 view .LVU89
+ 356 0052 0220     		movs	r0, #2
+ 357              	.LVL33:
   99:Core/Src/Application/Motor_Communicator/motor_communicator.c ****             break;
- 360              		.loc 1 99 20 view .LVU90
- 361 0054 E7E7     		b	.L18
- 362              	.LVL34:
- 363              	.L20:
+ 358              		.loc 1 99 20 view .LVU90
+ 359 0054 E7E7     		b	.L18
+ 360              	.LVL34:
+ 361              	.L20:
   99:Core/Src/Application/Motor_Communicator/motor_communicator.c ****             break;
- 364              		.loc 1 99 20 view .LVU91
- 365 0056 0220     		movs	r0, #2
- 366              	.LVL35:
+ 362              		.loc 1 99 20 view .LVU91
+ 363 0056 0220     		movs	r0, #2
+ 364              	.LVL35:
   99:Core/Src/Application/Motor_Communicator/motor_communicator.c ****             break;
- 367              		.loc 1 99 20 view .LVU92
- 368 0058 E5E7     		b	.L18
- 369              	.L26:
- 370 005a 00BF     		.align	2
- 371              	.L25:
- 372 005c 00000000 		.word	pwc_topic.0
- 373 0060 00000000 		.word	tx_data
- 374 0064 00000000 		.word	.LC0
- 375 0068 00000000 		.word	huart2
- 376              		.cfi_endproc
- 377              	.LFE170:
- 379              		.section	.bss.pwc_topic.0,"aw",%nobits
- 380              		.align	2
- 383              	pwc_topic.0:
- 384 0000 0000     		.space	2
- 385              		.global	MotorCommunicator
- 386              		.section	.rodata.MotorCommunicator,"a"
- 387              		.align	2
- 390              	MotorCommunicator:
- 391 0000 00000000 		.word	new
- 392              		.global	motor_communicator
- 393              		.section	.bss.motor_communicator,"aw",%nobits
- 394              		.align	2
- 397              	motor_communicator:
- 398 0000 00000000 		.space	4
- 399              		.global	ao_motor_communicator
- 400              		.section	.bss.ao_motor_communicator,"aw",%nobits
- 401              		.align	2
- 404              	ao_motor_communicator:
- 405 0000 00000000 		.space	4
- 406              		.section	.bss.tx_data,"aw",%nobits
- 407              		.align	2
- 410              	tx_data:
- 411 0000 00000000 		.space	15
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s 			page 11
+ 365              		.loc 1 99 20 view .LVU92
+ 366 0058 E5E7     		b	.L18
+ 367              	.L26:
+ 368 005a 00BF     		.align	2
+ 369              	.L25:
+ 370 005c 00000000 		.word	pwc_topic.0
+ 371 0060 00000000 		.word	tx_data
+ 372 0064 00000000 		.word	.LC0
+ 373 0068 00000000 		.word	huart2
+ 374              		.cfi_endproc
+ 375              	.LFE170:
+ 377              		.section	.bss.pwc_topic.0,"aw",%nobits
+ 378              		.align	2
+ 381              	pwc_topic.0:
+ 382 0000 0000     		.space	2
+ 383              		.global	MotorCommunicator
+ 384              		.section	.rodata.MotorCommunicator,"a"
+ 385              		.align	2
+ 388              	MotorCommunicator:
+ 389 0000 00000000 		.word	new
+ 390              		.global	motor_communicator
+ 391              		.section	.bss.motor_communicator,"aw",%nobits
+ 392              		.align	2
+ 395              	motor_communicator:
+ 396 0000 00000000 		.space	4
+ 397              		.global	ao_motor_communicator
+ 398              		.section	.bss.ao_motor_communicator,"aw",%nobits
+ 399              		.align	2
+ 402              	ao_motor_communicator:
+ 403 0000 00000000 		.space	4
+ 404              		.section	.bss.tx_data,"aw",%nobits
+ 405              		.align	2
+ 408              	tx_data:
+ 409 0000 00000000 		.space	15
+ 409      00000000 
+ 409      00000000 
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cchSDxR8.s 			page 11
 
 
- 411      00000000 
- 411      00000000 
- 411      000000
- 412              		.text
- 413              	.Letext0:
- 414              		.file 2 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
- 415              		.file 3 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
- 416              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h"
- 417              		.file 5 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
- 418              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
- 419              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
- 420              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h"
- 421              		.file 9 "ThirdParty/FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h"
- 422              		.file 10 "ThirdParty/FreeRTOS/include/FreeRTOS.h"
- 423              		.file 11 "ThirdParty/FreeRTOS/include/task.h"
- 424              		.file 12 "ThirdParty/FreeRTOS/include/queue.h"
- 425              		.file 13 "Core/Src/Middleware/Active_Object/active_object.h"
- 426              		.file 14 "Core/Src/Middleware/Topic/topic.h"
- 427              		.file 15 "Core/Src/Application/Motor_Communicator/motor_communicator.h"
- 428              		.file 16 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-g
- 429              		.file 17 "<built-in>"
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s 			page 12
+ 409      000000
+ 410              		.text
+ 411              	.Letext0:
+ 412              		.file 2 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
+ 413              		.file 3 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
+ 414              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h"
+ 415              		.file 5 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
+ 416              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 417              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 418              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h"
+ 419              		.file 9 "ThirdParty/FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h"
+ 420              		.file 10 "ThirdParty/FreeRTOS/include/FreeRTOS.h"
+ 421              		.file 11 "ThirdParty/FreeRTOS/include/task.h"
+ 422              		.file 12 "ThirdParty/FreeRTOS/include/queue.h"
+ 423              		.file 13 "Core/Src/Middleware/Active_Object/active_object.h"
+ 424              		.file 14 "Core/Src/Middleware/Topic/topic.h"
+ 425              		.file 15 "Core/Src/Application/Motor_Communicator/motor_communicator.h"
+ 426              		.file 16 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-g
+ 427              		.file 17 "Core/Src/printf.h"
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\cchSDxR8.s 			page 12
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 motor_communicator.c
-C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s:21     .text.initial:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s:26     .text.initial:00000000 initial
-C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s:51     .text.sending:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s:56     .text.sending:00000000 sending
-C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s:114    .text.new:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s:119    .text.new:00000000 new
-C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s:180    .text.new:00000040 $d
-C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s:257    .text.wait:00000000 wait
-C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s:224    .text.public:00000000 public
-C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s:196    .text.publicFromISR:00000000 publicFromISR
-C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s:404    .bss.ao_motor_communicator:00000000 ao_motor_communicator
-C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s:397    .bss.motor_communicator:00000000 motor_communicator
-C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s:191    .text.publicFromISR:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s:219    .text.public:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s:248    .rodata.wait.str1.4:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s:252    .text.wait:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s:372    .text.wait:0000005c $d
-C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s:383    .bss.pwc_topic.0:00000000 pwc_topic.0
-C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s:410    .bss.tx_data:00000000 tx_data
-C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s:380    .bss.pwc_topic.0:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s:390    .rodata.MotorCommunicator:00000000 MotorCommunicator
-C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s:387    .rodata.MotorCommunicator:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s:394    .bss.motor_communicator:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s:401    .bss.ao_motor_communicator:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\cc37z6ZR.s:407    .bss.tx_data:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\cchSDxR8.s:21     .text.initial:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\cchSDxR8.s:26     .text.initial:00000000 initial
+C:\Users\ACER\AppData\Local\Temp\cchSDxR8.s:51     .text.sending:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\cchSDxR8.s:56     .text.sending:00000000 sending
+C:\Users\ACER\AppData\Local\Temp\cchSDxR8.s:114    .text.new:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\cchSDxR8.s:119    .text.new:00000000 new
+C:\Users\ACER\AppData\Local\Temp\cchSDxR8.s:180    .text.new:00000040 $d
+C:\Users\ACER\AppData\Local\Temp\cchSDxR8.s:257    .text.wait:00000000 wait
+C:\Users\ACER\AppData\Local\Temp\cchSDxR8.s:224    .text.public:00000000 public
+C:\Users\ACER\AppData\Local\Temp\cchSDxR8.s:196    .text.publicFromISR:00000000 publicFromISR
+C:\Users\ACER\AppData\Local\Temp\cchSDxR8.s:402    .bss.ao_motor_communicator:00000000 ao_motor_communicator
+C:\Users\ACER\AppData\Local\Temp\cchSDxR8.s:395    .bss.motor_communicator:00000000 motor_communicator
+C:\Users\ACER\AppData\Local\Temp\cchSDxR8.s:191    .text.publicFromISR:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\cchSDxR8.s:219    .text.public:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\cchSDxR8.s:248    .rodata.wait.str1.4:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\cchSDxR8.s:252    .text.wait:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\cchSDxR8.s:370    .text.wait:0000005c $d
+C:\Users\ACER\AppData\Local\Temp\cchSDxR8.s:381    .bss.pwc_topic.0:00000000 pwc_topic.0
+C:\Users\ACER\AppData\Local\Temp\cchSDxR8.s:408    .bss.tx_data:00000000 tx_data
+C:\Users\ACER\AppData\Local\Temp\cchSDxR8.s:378    .bss.pwc_topic.0:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\cchSDxR8.s:388    .rodata.MotorCommunicator:00000000 MotorCommunicator
+C:\Users\ACER\AppData\Local\Temp\cchSDxR8.s:385    .rodata.MotorCommunicator:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\cchSDxR8.s:392    .bss.motor_communicator:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\cchSDxR8.s:399    .bss.ao_motor_communicator:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\cchSDxR8.s:405    .bss.tx_data:00000000 $d
 
 UNDEFINED SYMBOLS
 Ao_new
@@ -659,7 +657,7 @@ xQueueGenericCreate
 xQueueGenericSendFromISR
 xQueueGenericSend
 xQueuePeek
-sprintf
+sprintf_
 strlen
 HAL_UART_Transmit_IT
 huart2

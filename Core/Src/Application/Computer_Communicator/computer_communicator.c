@@ -77,7 +77,8 @@ static Status wait(struct ComputerCommunicator *const self, Event const * const 
 
             if(is_success)
             {
-                sprintf(tx_data , "S%.3f %.3f\n", state_topic.pendlm.angle, state_topic.motor.angle);
+                // sprintf(tx_data , "S%.3f %.3f\n", state_topic.pendlm.angle, state_topic.motor.angle);
+                sprintf(tx_data , ">v:%.3f\n>a:%.3f\n", state_topic.pendlm.vel, state_topic.pendlm.angle);
                 HAL_UART_Transmit_IT(&huart3, (uint8_t *)tx_data, (unsigned)strlen(tx_data));
 
                 self->super.handler = (StateHandler)self->sending;

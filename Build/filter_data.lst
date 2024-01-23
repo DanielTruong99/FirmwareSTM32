@@ -1,0 +1,165 @@
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccol2vcU.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"filter_data.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Core/Src/Application/State_Estimator/Dsp/filter_data.c"
+  20              		.global	motor_butterworth_coeffs
+  21              		.section	.data.motor_butterworth_coeffs,"aw"
+  22              		.align	2
+  25              	motor_butterworth_coeffs:
+  26 0000 A0CD8A3A 		.word	982175136
+  27 0004 A0CD0A3B 		.word	990563744
+  28 0008 A0CD8A3A 		.word	982175136
+  29 000c 106AFE3F 		.word	1073637904
+  30 0010 BBE97DBF 		.word	-1082267205
+  31 0014 89B0893A 		.word	982102153
+  32 0018 89B0093B 		.word	990490761
+  33 001c 89B0893A 		.word	982102153
+  34 0020 845FFC3F 		.word	1073504132
+  35 0024 68D279BF 		.word	-1082535320
+  36 0028 969E883A 		.word	982032022
+  37 002c 969E083B 		.word	990420630
+  38 0030 969E883A 		.word	982032022
+  39 0034 6369FA3F 		.word	1073375587
+  40 0038 03E475BF 		.word	-1082792957
+  41 003c 969B873A 		.word	981965718
+  42 0040 969B073B 		.word	990354326
+  43 0044 969B873A 		.word	981965718
+  44 0048 AA8EF83F 		.word	1073254058
+  45 004c 8C2C72BF 		.word	-1083036532
+  46 0050 F8AA863A 		.word	981904120
+  47 0054 F8AA063B 		.word	990292728
+  48 0058 F8AA863A 		.word	981904120
+  49 005c A3D5F63F 		.word	1073141155
+  50 0060 9BB86EBF 		.word	-1083262821
+  51 0064 C5CF853A 		.word	981848005
+  52 0068 C5CF053B 		.word	990236613
+  53 006c C5CF853A 		.word	981848005
+  54 0070 DD43F53F 		.word	1073038301
+  55 0074 5A936BBF 		.word	-1083468966
+  56 0078 A30C853A 		.word	981798051
+  57 007c A30C053B 		.word	990186659
+  58 0080 A30C853A 		.word	981798051
+  59 0084 33DEF33F 		.word	1072946739
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccol2vcU.s 			page 2
+
+
+  60 0088 7EC668BF 		.word	-1083652482
+  61 008c D163843A 		.word	981754833
+  62 0090 D163043B 		.word	990143441
+  63 0094 D163843A 		.word	981754833
+  64 0098 C5A8F23F 		.word	1072867525
+  65 009c 525A66BF 		.word	-1083811246
+  66 00a0 32D7833A 		.word	981718834
+  67 00a4 32D7033B 		.word	990107442
+  68 00a8 32D7833A 		.word	981718834
+  69 00ac 06A7F13F 		.word	1072801542
+  70 00b0 BB5564BF 		.word	-1083943493
+  71 00b4 4968833A 		.word	981690441
+  72 00b8 4968033B 		.word	990079049
+  73 00bc 4968833A 		.word	981690441
+  74 00c0 BCDBF03F 		.word	1072749500
+  75 00c4 48BE62BF 		.word	-1084047800
+  76 00c8 3F18833A 		.word	981669951
+  77 00cc 3F18033B 		.word	990058559
+  78 00d0 3F18833A 		.word	981669951
+  79 00d4 0749F03F 		.word	1072711943
+  80 00d8 3E9861BF 		.word	-1084123074
+  81 00dc E5E7823A 		.word	981657573
+  82 00e0 E5E7023B 		.word	990046181
+  83 00e4 E5E7823A 		.word	981657573
+  84 00e8 68F0EF3F 		.word	1072689256
+  85 00ec A0E660BF 		.word	-1084168544
+  86 00f0 DD69013D 		.word	1023502813
+  87 00f4 DD69013D 		.word	1023502813
+  88 00f8 00000000 		.word	0
+  89 00fc C4D26F3F 		.word	1064293060
+  90 0100 00000080 		.word	-2147483648
+  91              		.global	pendlm_butterworth_coeffs
+  92              		.section	.data.pendlm_butterworth_coeffs,"aw"
+  93              		.align	2
+  96              	pendlm_butterworth_coeffs:
+  97 0000 E6B1CD38 		.word	953004518
+  98 0004 E6B14D39 		.word	961393126
+  99 0008 E6B1CD38 		.word	953004518
+ 100 000c 618DFF3F 		.word	1073712481
+ 101 0010 79347FBF 		.word	-1082182535
+ 102 0014 DF10CD38 		.word	952963295
+ 103 0018 DF104D39 		.word	961351903
+ 104 001c DF10CD38 		.word	952963295
+ 105 0020 53C5FE3F 		.word	1073661267
+ 106 0024 49A47DBF 		.word	-1082284983
+ 107 0028 BF76CC38 		.word	952923839
+ 108 002c BF764C39 		.word	961312447
+ 109 0030 BF76CC38 		.word	952923839
+ 110 0034 D805FE3F 		.word	1073612248
+ 111 0038 3E257CBF 		.word	-1082383042
+ 112 003c 2CE7CB38 		.word	952887084
+ 113 0040 2CE74B39 		.word	961275692
+ 114 0044 2CE7CB38 		.word	952887084
+ 115 0048 7753FD3F 		.word	1073566583
+ 116 004c 6CC07ABF 		.word	-1082474388
+ 117 0050 7D65CB38 		.word	952853885
+ 118 0054 7D654B39 		.word	961242493
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccol2vcU.s 			page 3
+
+
+ 119 0058 7D65CB38 		.word	952853885
+ 120 005c 5AB2FC3F 		.word	1073525338
+ 121 0060 207E79BF 		.word	-1082556896
+ 122 0064 ABF4CA38 		.word	952825003
+ 123 0068 ABF44A39 		.word	961213611
+ 124 006c ABF4CA38 		.word	952825003
+ 125 0070 2F26FC3F 		.word	1073489455
+ 126 0074 BD6578BF 		.word	-1082628675
+ 127 0078 4297CA38 		.word	952801090
+ 128 007c 42974A39 		.word	961189698
+ 129 0080 4297CA38 		.word	952801090
+ 130 0084 22B2FB3F 		.word	1073459746
+ 131 0088 977D77BF 		.word	-1082688105
+ 132 008c 574FCA38 		.word	952782679
+ 133 0090 574F4A39 		.word	961171287
+ 134 0094 574FCA38 		.word	952782679
+ 135 0098 C858FB3F 		.word	1073436872
+ 136 009c DACA76BF 		.word	-1082733862
+ 137 00a0 801ECA38 		.word	952770176
+ 138 00a4 801E4A39 		.word	961158784
+ 139 00a8 801ECA38 		.word	952770176
+ 140 00ac 1B1CFB3F 		.word	1073421339
+ 141 00b0 795176BF 		.word	-1082764935
+ 142 00b4 D005CA38 		.word	952763856
+ 143 00b8 D0054A39 		.word	961152464
+ 144 00bc D005CA38 		.word	952763856
+ 145 00c0 6FFDFA3F 		.word	1073413487
+ 146 00c4 1E1476BF 		.word	-1082780642
+ 147              		.text
+ 148              	.Letext0:
+ 149              		.file 2 "Drivers/CMSIS/DSP/Include/arm_math.h"
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccol2vcU.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 filter_data.c
+C:\Users\ACER\AppData\Local\Temp\ccol2vcU.s:25     .data.motor_butterworth_coeffs:00000000 motor_butterworth_coeffs
+C:\Users\ACER\AppData\Local\Temp\ccol2vcU.s:22     .data.motor_butterworth_coeffs:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccol2vcU.s:96     .data.pendlm_butterworth_coeffs:00000000 pendlm_butterworth_coeffs
+C:\Users\ACER\AppData\Local\Temp\ccol2vcU.s:93     .data.pendlm_butterworth_coeffs:00000000 $d
+
+NO UNDEFINED SYMBOLS

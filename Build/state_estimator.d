@@ -40,6 +40,7 @@ Build/state_estimator.o: \
  Core/Src/Middleware/Topic/topic.h Core/Src/Drivers/Encoder/encoder.h \
  Core/Src/Application/State_Estimator/state_estimator.h \
  Core/Src/Application/State_Estimator/Dsp/dsp.h \
+ Core/Src/Application/State_Estimator/Dsp/filter_data.h \
  Core/Src/Application/Computer_Communicator/computer_communicator.h \
  Core/Src/printf.h
 Core/Src/Application/State_Estimator/state_estimator.h:
@@ -87,5 +88,6 @@ Core/Src/Middleware/Topic/topic.h:
 Core/Src/Drivers/Encoder/encoder.h:
 Core/Src/Application/State_Estimator/state_estimator.h:
 Core/Src/Application/State_Estimator/Dsp/dsp.h:
+Core/Src/Application/State_Estimator/Dsp/filter_data.h:
 Core/Src/Application/Computer_Communicator/computer_communicator.h:
 Core/Src/printf.h:

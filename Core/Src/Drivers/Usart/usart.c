@@ -138,7 +138,7 @@ static void UART_Init(UART_HandleTypeDef* huart)
     }
     else if(huart->Instance==USART3)
     {
-        huart->Init.BaudRate = 250000;
+        huart->Init.BaudRate = 230400;
         huart->Init.WordLength = UART_WORDLENGTH_8B;
         huart->Init.StopBits = UART_STOPBITS_1;
         huart->Init.Parity = UART_PARITY_NONE;

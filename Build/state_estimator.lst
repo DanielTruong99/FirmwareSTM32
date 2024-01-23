@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s 			page 1
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccuK42eg.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s 			page 1
   40              		.loc 1 16 23 view .LVU5
   41 0004 0360     		str	r3, [r0]
   17:Core/Src/Application/State_Estimator/state_estimator.c ****   return status;
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s 			page 2
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccuK42eg.s 			page 2
 
 
   42              		.loc 1 17 3 is_stmt 1 view .LVU6
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s 			page 1
   87              		.loc 1 28 7 is_stmt 1 view .LVU16
   88 0012 1548     		ldr	r0, .L8
   89              	.LVL5:
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s 			page 3
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccuK42eg.s 			page 3
 
 
   90              		.loc 1 28 7 is_stmt 0 view .LVU17
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s 			page 1
   63:Core/Src/Application/State_Estimator/state_estimator.c ****       
   64:Core/Src/Application/State_Estimator/state_estimator.c ****   }
   65:Core/Src/Application/State_Estimator/state_estimator.c **** 
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s 			page 4
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccuK42eg.s 			page 4
 
 
   66:Core/Src/Application/State_Estimator/state_estimator.c ****   return status;
@@ -223,7 +223,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s 			page 1
  135              	.LVL14:
   46:Core/Src/Application/State_Estimator/state_estimator.c ****       }
  136              		.loc 1 46 29 view .LVU36
- 137 003e 036B     		ldr	r3, [r0, #48]
+ 137 003e 036D     		ldr	r3, [r0, #80]
   46:Core/Src/Application/State_Estimator/state_estimator.c ****       }
  138              		.loc 1 46 9 view .LVU37
  139 0040 0D4A     		ldr	r2, .L8+16
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s 			page 1
  146 0046 D4F8E030 		ldr	r3, [r4, #224]
   50:Core/Src/Application/State_Estimator/state_estimator.c ****       static const Event state_evt = {STATE_UPDATED_SIG};
  147              		.loc 1 50 7 view .LVU40
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s 			page 5
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccuK42eg.s 			page 5
 
 
  148 004a 0B49     		ldr	r1, .L8+16
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s 			page 1
   69:Core/Src/Application/State_Estimator/state_estimator.c **** void public(QueueHandle_t xQueue, const void * pvItemToQueue)
   70:Core/Src/Application/State_Estimator/state_estimator.c **** {
  195              		.loc 1 70 1 is_stmt 1 view -0
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s 			page 6
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccuK42eg.s 			page 6
 
 
  196              		.cfi_startproc
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s 			page 1
  246              		.syntax unified
  247              		.thumb
  248              		.thumb_func
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s 			page 7
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccuK42eg.s 			page 7
 
 
  250              	new:
@@ -406,7 +406,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s 			page 1
   87:Core/Src/Application/State_Estimator/state_estimator.c ****   self->data_processor = ( struct Dsp * ) pvPortMalloc( sizeof( struct Dsp ) );
  283              		.loc 1 87 3 view .LVU68
  284              		.loc 1 87 43 is_stmt 0 view .LVU69
- 285 0020 4020     		movs	r0, #64
+ 285 0020 6020     		movs	r0, #96
  286 0022 FFF7FEFF 		bl	pvPortMalloc
  287              	.LVL24:
  288              		.loc 1 87 24 discriminator 1 view .LVU70
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s 			page 1
   89:Core/Src/Application/State_Estimator/state_estimator.c **** 
   90:Core/Src/Application/State_Estimator/state_estimator.c ****   /*Cache Ao for using in Encoder driver*/
   91:Core/Src/Application/State_Estimator/state_estimator.c ****   ao_estimator = &self->super;
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s 			page 8
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccuK42eg.s 			page 8
 
 
  293              		.loc 1 91 3 view .LVU72
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s 			page 1
  346 0000 00000000 		.space	24
  346      00000000 
  346      00000000 
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s 			page 9
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccuK42eg.s 			page 9
 
 
  346      00000000 
@@ -522,35 +522,35 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s 			page 1
  391              		.file 17 "Core/Src/Application/Computer_Communicator/computer_communicator.h"
  392              		.file 18 "Core/Src/Application/State_Estimator/state_estimator.h"
  393              		.file 19 "ThirdParty/FreeRTOS/include/portable.h"
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s 			page 10
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccuK42eg.s 			page 10
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 state_estimator.c
-C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s:21     .text.initial:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s:27     .text.initial:00000000 initial
-C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s:52     .text.wait:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s:58     .text.wait:00000000 wait
-C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s:173    .text.wait:00000068 $d
-C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s:351    .bss.encoder_topic.2:00000000 encoder_topic.2
-C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s:345    .bss.state_topic.1:00000000 state_topic.1
-C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s:372    .bss.ao_estimator:00000000 ao_estimator
-C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s:339    .rodata.state_evt.0:00000000 state_evt.0
-C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s:186    .text.public:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s:192    .text.public:00000000 public
-C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s:216    .text.publicFromISR:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s:222    .text.publicFromISR:00000000 publicFromISR
-C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s:245    .text.new:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s:250    .text.new:00000000 new
-C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s:326    .text.new:00000054 $d
-C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s:365    .bss.state_estimator:00000000 state_estimator
-C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s:336    .rodata.state_evt.0:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s:342    .bss.state_topic.1:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s:348    .bss.encoder_topic.2:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s:358    .rodata.StateEstimator:00000000 StateEstimator
-C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s:355    .rodata.StateEstimator:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s:362    .bss.state_estimator:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccL0s3a7.s:369    .bss.ao_estimator:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccuK42eg.s:21     .text.initial:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccuK42eg.s:27     .text.initial:00000000 initial
+C:\Users\ACER\AppData\Local\Temp\ccuK42eg.s:52     .text.wait:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccuK42eg.s:58     .text.wait:00000000 wait
+C:\Users\ACER\AppData\Local\Temp\ccuK42eg.s:173    .text.wait:00000068 $d
+C:\Users\ACER\AppData\Local\Temp\ccuK42eg.s:351    .bss.encoder_topic.2:00000000 encoder_topic.2
+C:\Users\ACER\AppData\Local\Temp\ccuK42eg.s:345    .bss.state_topic.1:00000000 state_topic.1
+C:\Users\ACER\AppData\Local\Temp\ccuK42eg.s:372    .bss.ao_estimator:00000000 ao_estimator
+C:\Users\ACER\AppData\Local\Temp\ccuK42eg.s:339    .rodata.state_evt.0:00000000 state_evt.0
+C:\Users\ACER\AppData\Local\Temp\ccuK42eg.s:186    .text.public:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccuK42eg.s:192    .text.public:00000000 public
+C:\Users\ACER\AppData\Local\Temp\ccuK42eg.s:216    .text.publicFromISR:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccuK42eg.s:222    .text.publicFromISR:00000000 publicFromISR
+C:\Users\ACER\AppData\Local\Temp\ccuK42eg.s:245    .text.new:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccuK42eg.s:250    .text.new:00000000 new
+C:\Users\ACER\AppData\Local\Temp\ccuK42eg.s:326    .text.new:00000054 $d
+C:\Users\ACER\AppData\Local\Temp\ccuK42eg.s:365    .bss.state_estimator:00000000 state_estimator
+C:\Users\ACER\AppData\Local\Temp\ccuK42eg.s:336    .rodata.state_evt.0:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccuK42eg.s:342    .bss.state_topic.1:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccuK42eg.s:348    .bss.encoder_topic.2:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccuK42eg.s:358    .rodata.StateEstimator:00000000 StateEstimator
+C:\Users\ACER\AppData\Local\Temp\ccuK42eg.s:355    .rodata.StateEstimator:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccuK42eg.s:362    .bss.state_estimator:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccuK42eg.s:369    .bss.ao_estimator:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_TIM_Base_Start_IT

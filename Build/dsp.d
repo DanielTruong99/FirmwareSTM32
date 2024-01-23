@@ -41,7 +41,7 @@ Build/dsp.o: Core/Src/Application/State_Estimator/Dsp/dsp.c \
  Drivers/CMSIS/DSP/Include/arm_math.h Core/Src/Middleware/Topic/topic.h \
  Core/Src/Application/State_Estimator/Dsp/dsp.h \
  Core/Src/Application/Computer_Communicator/computer_communicator.h \
- Core/Src/printf.h
+ Core/Src/printf.h Core/Src/Application/State_Estimator/Dsp/filter_data.h
 Core/Src/Application/State_Estimator/Dsp/dsp.h:
 Core/Src/Drivers/Encoder/encoder.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
@@ -89,3 +89,4 @@ Core/Src/Middleware/Topic/topic.h:
 Core/Src/Application/State_Estimator/Dsp/dsp.h:
 Core/Src/Application/Computer_Communicator/computer_communicator.h:
 Core/Src/printf.h:
+Core/Src/Application/State_Estimator/Dsp/filter_data.h:

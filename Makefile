@@ -45,6 +45,7 @@ Core/Src/Application/Computer_Communicator/computer_communicator.c \
 Core/Src/Application/Motor_Communicator/motor_communicator.c \
 Core/Src/Application/State_Estimator/state_estimator.c \
 Core/Src/Application/State_Estimator/Dsp/dsp.c \
+Core/Src/Application/State_Estimator/Dsp/filter_data.c \
 Core/Src/Middleware/Active_Object/active_object.c \
 Core/Src/Drivers/Usart/usart.c \
 Core/Src/Drivers/Encoder/encoder.c \

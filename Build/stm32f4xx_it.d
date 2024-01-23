@@ -37,11 +37,12 @@ Build/stm32f4xx_it.o: Core/Src/stm32f4xx_it.c Core/Src/main.h \
  ThirdParty/FreeRTOS/include/mpu_wrappers.h \
  ThirdParty/FreeRTOS/include/queue.h ThirdParty/FreeRTOS/include/task.h \
  ThirdParty/FreeRTOS/include/list.h Core/Src/Middleware/Topic/topic.h \
- Drivers/CMSIS/DSP/Include/arm_math.h \
+ Drivers/CMSIS/DSP/Include/arm_math.h Core/Src/printf.h \
  Core/Src/Application/Computer_Communicator/computer_communicator.h \
  Core/Src/Application/State_Estimator/state_estimator.h \
  Core/Src/Drivers/Encoder/encoder.h \
- Core/Src/Application/State_Estimator/Dsp/dsp.h Core/Src/printf.h \
+ Core/Src/Application/State_Estimator/Dsp/dsp.h \
+ Core/Src/Application/State_Estimator/Dsp/filter_data.h \
  Core/Src/Drivers/System_Config/system_config.h Core/Src/stm32f4xx_it.h
 Core/Src/main.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
@@ -87,10 +88,11 @@ ThirdParty/FreeRTOS/include/task.h:
 ThirdParty/FreeRTOS/include/list.h:
 Core/Src/Middleware/Topic/topic.h:
 Drivers/CMSIS/DSP/Include/arm_math.h:
+Core/Src/printf.h:
 Core/Src/Application/Computer_Communicator/computer_communicator.h:
 Core/Src/Application/State_Estimator/state_estimator.h:
 Core/Src/Drivers/Encoder/encoder.h:
 Core/Src/Application/State_Estimator/Dsp/dsp.h:
-Core/Src/printf.h:
+Core/Src/Application/State_Estimator/Dsp/filter_data.h:
 Core/Src/Drivers/System_Config/system_config.h:
 Core/Src/stm32f4xx_it.h:

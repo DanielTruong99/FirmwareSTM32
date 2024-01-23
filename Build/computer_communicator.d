@@ -41,6 +41,7 @@ Build/computer_communicator.o: \
  Core/Src/Application/State_Estimator/state_estimator.h \
  Core/Src/Drivers/Encoder/encoder.h \
  Core/Src/Application/State_Estimator/Dsp/dsp.h \
+ Core/Src/Application/State_Estimator/Dsp/filter_data.h \
  Core/Src/Application/Computer_Communicator/computer_communicator.h \
  Core/Src/printf.h
 Core/Src/Application/Computer_Communicator/computer_communicator.h:
@@ -88,5 +89,6 @@ Drivers/CMSIS/DSP/Include/arm_math.h:
 Core/Src/Application/State_Estimator/state_estimator.h:
 Core/Src/Drivers/Encoder/encoder.h:
 Core/Src/Application/State_Estimator/Dsp/dsp.h:
+Core/Src/Application/State_Estimator/Dsp/filter_data.h:
 Core/Src/Application/Computer_Communicator/computer_communicator.h:
 Core/Src/printf.h:
