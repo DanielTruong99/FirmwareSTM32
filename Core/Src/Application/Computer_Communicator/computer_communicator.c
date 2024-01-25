@@ -1,14 +1,20 @@
 #include "computer_communicator.h"
 
+/*This is owned by USART driver*/
+char rx_byte_data;
+
+//
 extern UART_HandleTypeDef huart3;
 extern struct StateEstimator * state_estimator;
+extern struct MotorCommunicator * motor_communicator;
+extern struct Ao * ao_motor_communicator;
 static char tx_data[30];
-static char rx_data[15];
 struct Ao * ao_computer_communicator;
 struct ComputerCommunicator * computer_communicator;
 
 #define decimal(x) (int16_t)((x - (int16_t)x) * 100)
 #define integer(x) (int16_t)x
+
 
 static Status initial(struct ComputerCommunicator *const self, Event const * const event)
 {
@@ -34,7 +40,6 @@ static Status sending(struct ComputerCommunicator *const self, Event const * con
         {
             self->super.handler = (StateHandler)self->wait;
             status = TRAN_STATUS;
-
             break;
         }
 
@@ -65,6 +70,7 @@ static Status wait(struct ComputerCommunicator *const self, Event const * const 
     {
         case ENTRY_SIG:
         {
+            HAL_UART_Receive_IT(&huart3, &rx_byte_data, 1);           
             status = HANDLED_STATUS;
             break;
         }
@@ -78,7 +84,7 @@ static Status wait(struct ComputerCommunicator *const self, Event const * const 
             if(is_success)
             {
                 // sprintf(tx_data , "S%.3f %.3f\n", state_topic.pendlm.angle, state_topic.motor.angle);
-                sprintf(tx_data , ">motor:%.3f\n>pendl:%.3f\n", state_topic.motor.angle, state_topic.pendlm.angle);
+                sprintf(tx_data , "S%.3f %.3f %.3f %.3f\n", state_topic.cart.angle, state_topic.cart.vel, state_topic.pendlm.angle, state_topic.pendlm.vel);
                 HAL_UART_Transmit_IT(&huart3, (uint8_t *)tx_data, (unsigned)strlen(tx_data));
 
                 self->super.handler = (StateHandler)self->sending;
@@ -136,6 +142,7 @@ static void new(struct ComputerCommunicator * const self)
 
   /*Initialize Queue for Mailbox as subsribers, publishers*/
   self->state_sub = state_estimator->state_pub;
+  self->received_message_sub = xQueueCreate( 1, sizeof( RecivedMessage ) );
 }
 const struct ComputerCommunicatorClass ComputerCommunicator={.new=&new};
 

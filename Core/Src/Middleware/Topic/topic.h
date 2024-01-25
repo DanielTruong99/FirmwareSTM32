@@ -29,6 +29,10 @@ typedef struct PWCStruct
   int16_t d;
 } PWC;
 
-
+typedef struct RecivedMessageStruct
+{
+  char message[7];
+  uint8_t length;
+}RecivedMessage;
 
 #endif /* _TOPIC_H */

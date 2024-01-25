@@ -27,7 +27,7 @@ int main(void)
   // State Estimator Task
   StateEstimator.new(&state_estimator);
   state_estimator.super.start(state_estimator_ao,
-                              3,
+                              2,
                               20,
                               3000,
                               0U);
@@ -35,9 +35,9 @@ int main(void)
   // Motor Communicator Task
   MotorCommunicator.new(&motor_communicator);
   motor_communicator.super.start(motor_communicator_ao,
-                              2,
+                              3,
                               15,
-                              configMINIMAL_STACK_SIZE + 126,
+                              1000,
                               0U);        
 
   // Computer Communicator Task

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s 			page 1
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s 			page 1
   28:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->apply = &Differentiator_apply;
   29:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
   30:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     /*Initialize data members*/
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s 			page 2
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s 			page 2
 
 
   31:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->sample_time = sample_time;
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s 			page 1
   53:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->reduced_angle[0] = fabsf(estimated_angle - reading_angle) > self->threshold ? estimated_a
   61              		.loc 1 53 5 is_stmt 1 view .LVU14
   62              		.loc 1 53 52 is_stmt 0 view .LVU15
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s 			page 3
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s 			page 3
 
 
   63 0030 77EEC76A 		vsub.f32	s13, s15, s14
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s 			page 1
   64:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     /*Assign member functions*/
   65:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->apply = &Reducer_apply;
   66:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s 			page 4
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s 			page 4
 
 
   67:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     /*Initialize data members*/
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s 			page 1
  150              		@ args = 0, pretend = 0, frame = 0
  151              		@ frame_needed = 0, uses_anonymous_args = 0
  152              		.loc 1 81 1 is_stmt 0 view .LVU44
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s 			page 5
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s 			page 5
 
 
  153 0000 10B5     		push	{r4, lr}
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s 			page 1
  197              		.align	1
  198              		.syntax unified
  199              		.thumb
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s 			page 6
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s 			page 6
 
 
  200              		.thumb_func
@@ -317,15 +317,15 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s 			page 1
   97:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->estimated_motor_data.angle = self->filtered_motor_angle;
  210              		.loc 1 97 5 view .LVU62
  211              		.loc 1 97 44 is_stmt 0 view .LVU63
- 212 0000 D0ED086A 		vldr.32	s13, [r0, #32]
+ 212 0000 90ED087A 		vldr.32	s14, [r0, #32]
  213              		.loc 1 97 38 view .LVU64
- 214 0004 C0ED0C6A 		vstr.32	s13, [r0, #48]
+ 214 0004 80ED0C7A 		vstr.32	s14, [r0, #48]
   98:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->estimated_motor_data.vel = self->filtered_motor_vel;
  215              		.loc 1 98 5 is_stmt 1 view .LVU65
  216              		.loc 1 98 42 is_stmt 0 view .LVU66
- 217 0008 90ED0A7A 		vldr.32	s14, [r0, #40]
+ 217 0008 D0ED0A7A 		vldr.32	s15, [r0, #40]
  218              		.loc 1 98 36 view .LVU67
- 219 000c 80ED0D7A 		vstr.32	s14, [r0, #52]
+ 219 000c C0ED0D7A 		vstr.32	s15, [r0, #52]
   99:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->estimated_pendlm_data.angle = self->filtered_pendlm_angle;
  220              		.loc 1 99 5 is_stmt 1 view .LVU68
  221              		.loc 1 99 45 is_stmt 0 view .LVU69
@@ -344,709 +344,698 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s 			page 1
  104:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     * estimated_cart_data.angle = x 
  105:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     * estimated_cart_data.vel = v
  106:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     */
- 107:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->estimated_cart_data.angle = self->previous_x + self->filtered_motor_angle * self->gear_ra
+ 107:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->estimated_cart_data.angle = self->filtered_motor_angle * self->gear_ratio;
  230              		.loc 1 107 5 is_stmt 1 view .LVU74
- 231              		.loc 1 107 43 is_stmt 0 view .LVU75
- 232 0018 D0ED057A 		vldr.32	s15, [r0, #20]
- 233              		.loc 1 107 91 view .LVU76
- 234 001c 90ED046A 		vldr.32	s12, [r0, #16]
- 235              		.loc 1 107 85 view .LVU77
- 236 0020 66EE866A 		vmul.f32	s13, s13, s12
- 237              		.loc 1 107 56 view .LVU78
- 238 0024 77EEA67A 		vadd.f32	s15, s15, s13
- 239              		.loc 1 107 37 view .LVU79
- 240 0028 C0ED127A 		vstr.32	s15, [r0, #72]
+ 231              		.loc 1 107 72 is_stmt 0 view .LVU75
+ 232 0018 D0ED046A 		vldr.32	s13, [r0, #16]
+ 233              		.loc 1 107 66 view .LVU76
+ 234 001c 27EE267A 		vmul.f32	s14, s14, s13
+ 235              		.loc 1 107 37 view .LVU77
+ 236 0020 80ED127A 		vstr.32	s14, [r0, #72]
  108:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->estimated_cart_data.vel = self->filtered_motor_vel * self->gear_ratio;
- 241              		.loc 1 108 5 is_stmt 1 view .LVU80
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s 			page 7
+ 237              		.loc 1 108 5 is_stmt 1 view .LVU78
+ 238              		.loc 1 108 62 is_stmt 0 view .LVU79
+ 239 0024 67EEA67A 		vmul.f32	s15, s15, s13
+ 240              		.loc 1 108 35 view .LVU80
+ 241 0028 C0ED137A 		vstr.32	s15, [r0, #76]
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s 			page 7
 
 
- 242              		.loc 1 108 62 is_stmt 0 view .LVU81
- 243 002c 27EE067A 		vmul.f32	s14, s14, s12
- 244              		.loc 1 108 35 view .LVU82
- 245 0030 80ED137A 		vstr.32	s14, [r0, #76]
- 109:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->previous_x = self->estimated_cart_data.angle;
- 246              		.loc 1 109 5 is_stmt 1 view .LVU83
- 247              		.loc 1 109 22 is_stmt 0 view .LVU84
- 248 0034 C0ED057A 		vstr.32	s15, [r0, #20]
- 110:Core/Src/Application/State_Estimator/Dsp/dsp.c **** }
- 249              		.loc 1 110 1 view .LVU85
- 250 0038 7047     		bx	lr
- 251              		.cfi_endproc
- 252              	.LFE174:
- 254              		.section	.text.processNewData,"ax",%progbits
- 255              		.align	1
- 256              		.syntax unified
- 257              		.thumb
- 258              		.thumb_func
- 260              	processNewData:
- 261              	.LVL11:
- 262              	.LFB175:
- 111:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 112:Core/Src/Application/State_Estimator/Dsp/dsp.c **** static void processNewData(struct Dsp * const self, Encoder const * const encoder_topic, State * co
- 113:Core/Src/Application/State_Estimator/Dsp/dsp.c **** {
- 263              		.loc 1 113 1 is_stmt 1 view -0
- 264              		.cfi_startproc
- 265              		@ args = 0, pretend = 0, frame = 0
- 266              		@ frame_needed = 0, uses_anonymous_args = 0
- 267              		.loc 1 113 1 is_stmt 0 view .LVU87
- 268 0000 38B5     		push	{r3, r4, r5, lr}
- 269              	.LCFI1:
- 270              		.cfi_def_cfa_offset 16
- 271              		.cfi_offset 3, -16
- 272              		.cfi_offset 4, -12
- 273              		.cfi_offset 5, -8
- 274              		.cfi_offset 14, -4
- 275 0002 0446     		mov	r4, r0
- 276 0004 1546     		mov	r5, r2
- 114:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     /*Output to self->motor_angle, pendlm_angle*/
- 115:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->cvtAngle(self, encoder_topic);
- 277              		.loc 1 115 5 is_stmt 1 view .LVU88
- 278              		.loc 1 115 9 is_stmt 0 view .LVU89
- 279 0006 836E     		ldr	r3, [r0, #104]
- 280              		.loc 1 115 5 view .LVU90
- 281 0008 9847     		blx	r3
- 282              	.LVL12:
- 116:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 117:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     /*Output to self->filtered_motor_angle, self->filtered_pendlm_angle*/
- 118:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->filter(self);
- 283              		.loc 1 118 5 is_stmt 1 view .LVU91
- 284              		.loc 1 118 9 is_stmt 0 view .LVU92
- 285 000a E36E     		ldr	r3, [r4, #108]
- 286              		.loc 1 118 5 view .LVU93
- 287 000c 2046     		mov	r0, r4
- 288 000e 9847     		blx	r3
- 289              	.LVL13:
- 119:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s 			page 8
+ 109:Core/Src/Application/State_Estimator/Dsp/dsp.c **** }
+ 242              		.loc 1 109 1 view .LVU81
+ 243 002c 7047     		bx	lr
+ 244              		.cfi_endproc
+ 245              	.LFE174:
+ 247              		.section	.text.processNewData,"ax",%progbits
+ 248              		.align	1
+ 249              		.syntax unified
+ 250              		.thumb
+ 251              		.thumb_func
+ 253              	processNewData:
+ 254              	.LVL11:
+ 255              	.LFB175:
+ 110:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
+ 111:Core/Src/Application/State_Estimator/Dsp/dsp.c **** static void processNewData(struct Dsp * const self, Encoder const * const encoder_topic, State * co
+ 112:Core/Src/Application/State_Estimator/Dsp/dsp.c **** {
+ 256              		.loc 1 112 1 is_stmt 1 view -0
+ 257              		.cfi_startproc
+ 258              		@ args = 0, pretend = 0, frame = 0
+ 259              		@ frame_needed = 0, uses_anonymous_args = 0
+ 260              		.loc 1 112 1 is_stmt 0 view .LVU83
+ 261 0000 38B5     		push	{r3, r4, r5, lr}
+ 262              	.LCFI1:
+ 263              		.cfi_def_cfa_offset 16
+ 264              		.cfi_offset 3, -16
+ 265              		.cfi_offset 4, -12
+ 266              		.cfi_offset 5, -8
+ 267              		.cfi_offset 14, -4
+ 268 0002 0446     		mov	r4, r0
+ 269 0004 1546     		mov	r5, r2
+ 113:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     /*Output to self->motor_angle, pendlm_angle*/
+ 114:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->cvtAngle(self, encoder_topic);
+ 270              		.loc 1 114 5 is_stmt 1 view .LVU84
+ 271              		.loc 1 114 9 is_stmt 0 view .LVU85
+ 272 0006 836E     		ldr	r3, [r0, #104]
+ 273              		.loc 1 114 5 view .LVU86
+ 274 0008 9847     		blx	r3
+ 275              	.LVL12:
+ 115:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
+ 116:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     /*Output to self->filtered_motor_angle, self->filtered_pendlm_angle*/
+ 117:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->filter(self);
+ 276              		.loc 1 117 5 is_stmt 1 view .LVU87
+ 277              		.loc 1 117 9 is_stmt 0 view .LVU88
+ 278 000a E36E     		ldr	r3, [r4, #108]
+ 279              		.loc 1 117 5 view .LVU89
+ 280 000c 2046     		mov	r0, r4
+ 281 000e 9847     		blx	r3
+ 282              	.LVL13:
+ 118:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
+ 119:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     /*Output to self->estimated_motor_data, self->estimated_pendlm_data*/
+ 120:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->estimate(self);
+ 283              		.loc 1 120 5 is_stmt 1 view .LVU90
+ 284              		.loc 1 120 9 is_stmt 0 view .LVU91
+ 285 0010 236F     		ldr	r3, [r4, #112]
+ 286              		.loc 1 120 5 view .LVU92
+ 287 0012 2046     		mov	r0, r4
+ 288 0014 9847     		blx	r3
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s 			page 8
 
 
- 120:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     /*Output to self->estimated_motor_data, self->estimated_pendlm_data*/
- 121:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->estimate(self);
- 290              		.loc 1 121 5 is_stmt 1 view .LVU94
- 291              		.loc 1 121 9 is_stmt 0 view .LVU95
- 292 0010 236F     		ldr	r3, [r4, #112]
- 293              		.loc 1 121 5 view .LVU96
- 294 0012 2046     		mov	r0, r4
- 295 0014 9847     		blx	r3
- 296              	.LVL14:
- 122:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 123:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     /*Copy estimated data into state_topic*/
- 124:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     state_topic->motor = self->estimated_motor_data;
- 297              		.loc 1 124 5 is_stmt 1 view .LVU97
- 298              		.loc 1 124 24 is_stmt 0 view .LVU98
- 299 0016 04F13003 		add	r3, r4, #48
- 300 001a 93E80700 		ldm	r3, {r0, r1, r2}
- 301 001e 85E80700 		stm	r5, {r0, r1, r2}
- 125:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     state_topic->pendlm = self->estimated_pendlm_data;
- 302              		.loc 1 125 5 is_stmt 1 view .LVU99
- 303              		.loc 1 125 25 is_stmt 0 view .LVU100
- 304 0022 05F10C03 		add	r3, r5, #12
- 305 0026 04F13C02 		add	r2, r4, #60
- 306 002a 07CA     		ldm	r2, {r0, r1, r2}
- 307 002c 83E80700 		stm	r3, {r0, r1, r2}
- 126:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     state_topic->cart = self->estimated_cart_data;
- 308              		.loc 1 126 5 is_stmt 1 view .LVU101
- 309              		.loc 1 126 23 is_stmt 0 view .LVU102
- 310 0030 1835     		adds	r5, r5, #24
- 311              	.LVL15:
- 312              		.loc 1 126 23 view .LVU103
- 313 0032 4834     		adds	r4, r4, #72
- 314              	.LVL16:
- 315              		.loc 1 126 23 view .LVU104
- 316 0034 94E80700 		ldm	r4, {r0, r1, r2}
- 317 0038 85E80700 		stm	r5, {r0, r1, r2}
- 127:Core/Src/Application/State_Estimator/Dsp/dsp.c **** }
- 318              		.loc 1 127 1 view .LVU105
- 319 003c 38BD     		pop	{r3, r4, r5, pc}
- 320              		.loc 1 127 1 view .LVU106
- 321              		.cfi_endproc
- 322              	.LFE175:
- 324              		.section	.text.Differentiator_apply,"ax",%progbits
- 325              		.align	1
- 326              		.syntax unified
- 327              		.thumb
- 328              		.thumb_func
- 330              	Differentiator_apply:
- 331              	.LVL17:
- 332              	.LFB168:
+ 289              	.LVL14:
+ 121:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
+ 122:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     /*Copy estimated data into state_topic*/
+ 123:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     state_topic->motor = self->estimated_motor_data;
+ 290              		.loc 1 123 5 is_stmt 1 view .LVU93
+ 291              		.loc 1 123 24 is_stmt 0 view .LVU94
+ 292 0016 04F13003 		add	r3, r4, #48
+ 293 001a 93E80700 		ldm	r3, {r0, r1, r2}
+ 294 001e 85E80700 		stm	r5, {r0, r1, r2}
+ 124:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     state_topic->pendlm = self->estimated_pendlm_data;
+ 295              		.loc 1 124 5 is_stmt 1 view .LVU95
+ 296              		.loc 1 124 25 is_stmt 0 view .LVU96
+ 297 0022 05F10C03 		add	r3, r5, #12
+ 298 0026 04F13C02 		add	r2, r4, #60
+ 299 002a 07CA     		ldm	r2, {r0, r1, r2}
+ 300 002c 83E80700 		stm	r3, {r0, r1, r2}
+ 125:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     state_topic->cart = self->estimated_cart_data;
+ 301              		.loc 1 125 5 is_stmt 1 view .LVU97
+ 302              		.loc 1 125 23 is_stmt 0 view .LVU98
+ 303 0030 1835     		adds	r5, r5, #24
+ 304              	.LVL15:
+ 305              		.loc 1 125 23 view .LVU99
+ 306 0032 4834     		adds	r4, r4, #72
+ 307              	.LVL16:
+ 308              		.loc 1 125 23 view .LVU100
+ 309 0034 94E80700 		ldm	r4, {r0, r1, r2}
+ 310 0038 85E80700 		stm	r5, {r0, r1, r2}
+ 126:Core/Src/Application/State_Estimator/Dsp/dsp.c **** }
+ 311              		.loc 1 126 1 view .LVU101
+ 312 003c 38BD     		pop	{r3, r4, r5, pc}
+ 313              		.loc 1 126 1 view .LVU102
+ 314              		.cfi_endproc
+ 315              	.LFE175:
+ 317              		.section	.text.Differentiator_apply,"ax",%progbits
+ 318              		.align	1
+ 319              		.syntax unified
+ 320              		.thumb
+ 321              		.thumb_func
+ 323              	Differentiator_apply:
+ 324              	.LVL17:
+ 325              	.LFB168:
    6:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     float32_t diff_x;
- 333              		.loc 1 6 1 is_stmt 1 view -0
- 334              		.cfi_startproc
- 335              		@ args = 0, pretend = 0, frame = 8
- 336              		@ frame_needed = 0, uses_anonymous_args = 0
+ 326              		.loc 1 6 1 is_stmt 1 view -0
+ 327              		.cfi_startproc
+ 328              		@ args = 0, pretend = 0, frame = 8
+ 329              		@ frame_needed = 0, uses_anonymous_args = 0
    6:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     float32_t diff_x;
- 337              		.loc 1 6 1 is_stmt 0 view .LVU108
- 338 0000 10B5     		push	{r4, lr}
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s 			page 9
+ 330              		.loc 1 6 1 is_stmt 0 view .LVU104
+ 331 0000 10B5     		push	{r4, lr}
+ 332              	.LCFI2:
+ 333              		.cfi_def_cfa_offset 8
+ 334              		.cfi_offset 4, -8
+ 335              		.cfi_offset 14, -4
+ 336 0002 82B0     		sub	sp, sp, #8
+ 337              	.LCFI3:
+ 338              		.cfi_def_cfa_offset 16
+ 339 0004 1446     		mov	r4, r2
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s 			page 9
 
 
- 339              	.LCFI2:
- 340              		.cfi_def_cfa_offset 8
- 341              		.cfi_offset 4, -8
- 342              		.cfi_offset 14, -4
- 343 0002 82B0     		sub	sp, sp, #8
- 344              	.LCFI3:
- 345              		.cfi_def_cfa_offset 16
- 346 0004 1446     		mov	r4, r2
    7:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     float32_t filtered_diff_x;
- 347              		.loc 1 7 5 is_stmt 1 view .LVU109
+ 340              		.loc 1 7 5 is_stmt 1 view .LVU105
    8:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     float32_t x = *input;
- 348              		.loc 1 8 5 view .LVU110
+ 341              		.loc 1 8 5 view .LVU106
    9:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 349              		.loc 1 9 5 view .LVU111
+ 342              		.loc 1 9 5 view .LVU107
    9:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 350              		.loc 1 9 15 is_stmt 0 view .LVU112
- 351 0006 D1ED006A 		vldr.32	s13, [r1]
- 352              	.LVL18:
+ 343              		.loc 1 9 15 is_stmt 0 view .LVU108
+ 344 0006 D1ED006A 		vldr.32	s13, [r1]
+ 345              	.LVL18:
   12:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 353              		.loc 1 12 5 is_stmt 1 view .LVU113
+ 346              		.loc 1 12 5 is_stmt 1 view .LVU109
   12:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 354              		.loc 1 12 26 is_stmt 0 view .LVU114
- 355 000a D0ED007A 		vldr.32	s15, [r0]
+ 347              		.loc 1 12 26 is_stmt 0 view .LVU110
+ 348 000a D0ED007A 		vldr.32	s15, [r0]
   12:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 356              		.loc 1 12 30 view .LVU115
- 357 000e 67EEA67A 		vmul.f32	s15, s15, s13
+ 349              		.loc 1 12 30 view .LVU111
+ 350 000e 67EEA67A 		vmul.f32	s15, s15, s13
   12:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 358              		.loc 1 12 48 view .LVU116
- 359 0012 90ED017A 		vldr.32	s14, [r0, #4]
+ 351              		.loc 1 12 48 view .LVU112
+ 352 0012 90ED017A 		vldr.32	s14, [r0, #4]
   12:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 360              		.loc 1 12 65 view .LVU117
- 361 0016 90ED056A 		vldr.32	s12, [r0, #20]
+ 353              		.loc 1 12 65 view .LVU113
+ 354 0016 90ED056A 		vldr.32	s12, [r0, #20]
   12:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 362              		.loc 1 12 52 view .LVU118
- 363 001a 27EE067A 		vmul.f32	s14, s14, s12
+ 355              		.loc 1 12 52 view .LVU114
+ 356 001a 27EE067A 		vmul.f32	s14, s14, s12
   12:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 364              		.loc 1 12 34 view .LVU119
- 365 001e 77EE877A 		vadd.f32	s15, s15, s14
+ 357              		.loc 1 12 34 view .LVU115
+ 358 001e 77EE877A 		vadd.f32	s15, s15, s14
   12:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 366              		.loc 1 12 83 view .LVU120
- 367 0022 90ED027A 		vldr.32	s14, [r0, #8]
+ 359              		.loc 1 12 83 view .LVU116
+ 360 0022 90ED027A 		vldr.32	s14, [r0, #8]
   12:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 368              		.loc 1 12 100 view .LVU121
- 369 0026 D0ED065A 		vldr.32	s11, [r0, #24]
+ 361              		.loc 1 12 100 view .LVU117
+ 362 0026 D0ED065A 		vldr.32	s11, [r0, #24]
   12:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 370              		.loc 1 12 87 view .LVU122
- 371 002a 27EE257A 		vmul.f32	s14, s14, s11
+ 363              		.loc 1 12 87 view .LVU118
+ 364 002a 27EE257A 		vmul.f32	s14, s14, s11
   12:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 372              		.loc 1 12 69 view .LVU123
- 373 002e 77EE877A 		vadd.f32	s15, s15, s14
+ 365              		.loc 1 12 69 view .LVU119
+ 366 002e 77EE877A 		vadd.f32	s15, s15, s14
   12:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 374              		.loc 1 12 12 view .LVU124
- 375 0032 CDED017A 		vstr.32	s15, [sp, #4]
+ 367              		.loc 1 12 12 view .LVU120
+ 368 0032 CDED017A 		vstr.32	s15, [sp, #4]
   15:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     
- 376              		.loc 1 15 5 is_stmt 1 view .LVU125
+ 369              		.loc 1 15 5 is_stmt 1 view .LVU121
   15:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     
- 377              		.loc 1 15 20 is_stmt 0 view .LVU126
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s 			page 10
-
-
- 378 0036 80ED066A 		vstr.32	s12, [r0, #24]
+ 370              		.loc 1 15 20 is_stmt 0 view .LVU122
+ 371 0036 80ED066A 		vstr.32	s12, [r0, #24]
   15:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     
- 379              		.loc 1 15 38 is_stmt 1 view .LVU127
+ 372              		.loc 1 15 38 is_stmt 1 view .LVU123
   15:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     
- 380              		.loc 1 15 53 is_stmt 0 view .LVU128
- 381 003a C0ED056A 		vstr.32	s13, [r0, #20]
+ 373              		.loc 1 15 53 is_stmt 0 view .LVU124
+ 374 003a C0ED056A 		vstr.32	s13, [r0, #20]
   18:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     arm_biquad_cascade_df2T_f32(&self->filter, &diff_x, &filtered_diff_x, 1);
- 382              		.loc 1 18 5 is_stmt 1 view .LVU129
+ 375              		.loc 1 18 5 is_stmt 1 view .LVU125
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s 			page 10
+
+
   18:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     arm_biquad_cascade_df2T_f32(&self->filter, &diff_x, &filtered_diff_x, 1);
- 383              		.loc 1 18 28 is_stmt 0 view .LVU130
- 384 003e 0123     		movs	r3, #1
- 385 0040 00F8183F 		strb	r3, [r0, #24]!
- 386              	.LVL19:
+ 376              		.loc 1 18 28 is_stmt 0 view .LVU126
+ 377 003e 0123     		movs	r3, #1
+ 378 0040 00F8183F 		strb	r3, [r0, #24]!
+ 379              	.LVL19:
   19:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 387              		.loc 1 19 5 is_stmt 1 view .LVU131
- 388 0044 6A46     		mov	r2, sp
- 389              	.LVL20:
+ 380              		.loc 1 19 5 is_stmt 1 view .LVU127
+ 381 0044 6A46     		mov	r2, sp
+ 382              	.LVL20:
   19:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 390              		.loc 1 19 5 is_stmt 0 view .LVU132
- 391 0046 01A9     		add	r1, sp, #4
- 392              	.LVL21:
+ 383              		.loc 1 19 5 is_stmt 0 view .LVU128
+ 384 0046 01A9     		add	r1, sp, #4
+ 385              	.LVL21:
   19:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 393              		.loc 1 19 5 view .LVU133
- 394 0048 FFF7FEFF 		bl	arm_biquad_cascade_df2T_f32
- 395              	.LVL22:
+ 386              		.loc 1 19 5 view .LVU129
+ 387 0048 FFF7FEFF 		bl	arm_biquad_cascade_df2T_f32
+ 388              	.LVL22:
   22:Core/Src/Application/State_Estimator/Dsp/dsp.c **** }
- 396              		.loc 1 22 5 is_stmt 1 view .LVU134
+ 389              		.loc 1 22 5 is_stmt 1 view .LVU130
   22:Core/Src/Application/State_Estimator/Dsp/dsp.c **** }
- 397              		.loc 1 22 13 is_stmt 0 view .LVU135
- 398 004c 009B     		ldr	r3, [sp]	@ float
- 399 004e 2360     		str	r3, [r4]	@ float
+ 390              		.loc 1 22 13 is_stmt 0 view .LVU131
+ 391 004c 009B     		ldr	r3, [sp]	@ float
+ 392 004e 2360     		str	r3, [r4]	@ float
   23:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 400              		.loc 1 23 1 view .LVU136
- 401 0050 02B0     		add	sp, sp, #8
- 402              	.LCFI4:
- 403              		.cfi_def_cfa_offset 8
- 404              		@ sp needed
- 405 0052 10BD     		pop	{r4, pc}
+ 393              		.loc 1 23 1 view .LVU132
+ 394 0050 02B0     		add	sp, sp, #8
+ 395              	.LCFI4:
+ 396              		.cfi_def_cfa_offset 8
+ 397              		@ sp needed
+ 398 0052 10BD     		pop	{r4, pc}
   23:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 406              		.loc 1 23 1 view .LVU137
- 407              		.cfi_endproc
- 408              	.LFE168:
- 410              		.section	.text.Differentiator_new,"ax",%progbits
- 411              		.align	1
- 412              		.global	Differentiator_new
- 413              		.syntax unified
- 414              		.thumb
- 415              		.thumb_func
- 417              	Differentiator_new:
- 418              	.LVL23:
- 419              	.LFB169:
+ 399              		.loc 1 23 1 view .LVU133
+ 400              		.cfi_endproc
+ 401              	.LFE168:
+ 403              		.section	.text.Differentiator_new,"ax",%progbits
+ 404              		.align	1
+ 405              		.global	Differentiator_new
+ 406              		.syntax unified
+ 407              		.thumb
+ 408              		.thumb_func
+ 410              	Differentiator_new:
+ 411              	.LVL23:
+ 412              	.LFB169:
   26:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     /*Assign member functions*/
- 420              		.loc 1 26 1 is_stmt 1 view -0
- 421              		.cfi_startproc
- 422              		@ args = 0, pretend = 0, frame = 0
- 423              		@ frame_needed = 0, uses_anonymous_args = 0
+ 413              		.loc 1 26 1 is_stmt 1 view -0
+ 414              		.cfi_startproc
+ 415              		@ args = 0, pretend = 0, frame = 0
+ 416              		@ frame_needed = 0, uses_anonymous_args = 0
   26:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     /*Assign member functions*/
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s 			page 11
+ 417              		.loc 1 26 1 is_stmt 0 view .LVU135
+ 418 0000 70B5     		push	{r4, r5, r6, lr}
+ 419              	.LCFI5:
+ 420              		.cfi_def_cfa_offset 16
+ 421              		.cfi_offset 4, -16
+ 422              		.cfi_offset 5, -12
+ 423              		.cfi_offset 6, -8
+ 424              		.cfi_offset 14, -4
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s 			page 11
 
 
- 424              		.loc 1 26 1 is_stmt 0 view .LVU139
- 425 0000 70B5     		push	{r4, r5, r6, lr}
- 426              	.LCFI5:
- 427              		.cfi_def_cfa_offset 16
- 428              		.cfi_offset 4, -16
- 429              		.cfi_offset 5, -12
- 430              		.cfi_offset 6, -8
- 431              		.cfi_offset 14, -4
- 432 0002 0446     		mov	r4, r0
- 433 0004 0D46     		mov	r5, r1
- 434 0006 1646     		mov	r6, r2
+ 425 0002 0446     		mov	r4, r0
+ 426 0004 0D46     		mov	r5, r1
+ 427 0006 1646     		mov	r6, r2
   28:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 435              		.loc 1 28 5 is_stmt 1 view .LVU140
+ 428              		.loc 1 28 5 is_stmt 1 view .LVU136
   28:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 436              		.loc 1 28 17 is_stmt 0 view .LVU141
- 437 0008 134B     		ldr	r3, .L15
- 438 000a 8362     		str	r3, [r0, #40]
+ 429              		.loc 1 28 17 is_stmt 0 view .LVU137
+ 430 0008 134B     		ldr	r3, .L15
+ 431 000a 8362     		str	r3, [r0, #40]
   31:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->coeffs[0] = 3.0F / (2.0F * self->sample_time);
- 439              		.loc 1 31 5 is_stmt 1 view .LVU142
+ 432              		.loc 1 31 5 is_stmt 1 view .LVU138
   31:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->coeffs[0] = 3.0F / (2.0F * self->sample_time);
- 440              		.loc 1 31 23 is_stmt 0 view .LVU143
- 441 000c 80ED030A 		vstr.32	s0, [r0, #12]
+ 433              		.loc 1 31 23 is_stmt 0 view .LVU139
+ 434 000c 80ED030A 		vstr.32	s0, [r0, #12]
   32:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->coeffs[1] = -4.0F / (2.0F * self->sample_time);
- 442              		.loc 1 32 5 is_stmt 1 view .LVU144
+ 435              		.loc 1 32 5 is_stmt 1 view .LVU140
   32:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->coeffs[1] = -4.0F / (2.0F * self->sample_time);
- 443              		.loc 1 32 36 is_stmt 0 view .LVU145
- 444 0010 30EE000A 		vadd.f32	s0, s0, s0
- 445              	.LVL24:
+ 436              		.loc 1 32 36 is_stmt 0 view .LVU141
+ 437 0010 30EE000A 		vadd.f32	s0, s0, s0
+ 438              	.LVL24:
   32:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->coeffs[1] = -4.0F / (2.0F * self->sample_time);
- 446              		.loc 1 32 28 view .LVU146
- 447 0014 B0EE087A 		vmov.f32	s14, #3.0e+0
- 448 0018 C7EE007A 		vdiv.f32	s15, s14, s0
+ 439              		.loc 1 32 28 view .LVU142
+ 440 0014 B0EE087A 		vmov.f32	s14, #3.0e+0
+ 441 0018 C7EE007A 		vdiv.f32	s15, s14, s0
   32:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->coeffs[1] = -4.0F / (2.0F * self->sample_time);
- 449              		.loc 1 32 21 view .LVU147
- 450 001c C0ED007A 		vstr.32	s15, [r0]
+ 442              		.loc 1 32 21 view .LVU143
+ 443 001c C0ED007A 		vstr.32	s15, [r0]
   33:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->coeffs[2] = 1.0F / (2.0F * self->sample_time);
- 451              		.loc 1 33 5 is_stmt 1 view .LVU148
+ 444              		.loc 1 33 5 is_stmt 1 view .LVU144
   33:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->coeffs[2] = 1.0F / (2.0F * self->sample_time);
- 452              		.loc 1 33 29 is_stmt 0 view .LVU149
- 453 0020 B9EE007A 		vmov.f32	s14, #-4.0e+0
- 454 0024 C7EE007A 		vdiv.f32	s15, s14, s0
+ 445              		.loc 1 33 29 is_stmt 0 view .LVU145
+ 446 0020 B9EE007A 		vmov.f32	s14, #-4.0e+0
+ 447 0024 C7EE007A 		vdiv.f32	s15, s14, s0
   33:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->coeffs[2] = 1.0F / (2.0F * self->sample_time);
- 455              		.loc 1 33 21 view .LVU150
- 456 0028 C0ED017A 		vstr.32	s15, [r0, #4]
+ 448              		.loc 1 33 21 view .LVU146
+ 449 0028 C0ED017A 		vstr.32	s15, [r0, #4]
   34:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->state[0] = 0.0F; 
- 457              		.loc 1 34 5 is_stmt 1 view .LVU151
+ 450              		.loc 1 34 5 is_stmt 1 view .LVU147
   34:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->state[0] = 0.0F; 
- 458              		.loc 1 34 28 is_stmt 0 view .LVU152
- 459 002c B7EE007A 		vmov.f32	s14, #1.0e+0
- 460 0030 C7EE007A 		vdiv.f32	s15, s14, s0
+ 451              		.loc 1 34 28 is_stmt 0 view .LVU148
+ 452 002c B7EE007A 		vmov.f32	s14, #1.0e+0
+ 453 0030 C7EE007A 		vdiv.f32	s15, s14, s0
   34:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->state[0] = 0.0F; 
- 461              		.loc 1 34 21 view .LVU153
- 462 0034 C0ED027A 		vstr.32	s15, [r0, #8]
+ 454              		.loc 1 34 21 view .LVU149
+ 455 0034 C0ED027A 		vstr.32	s15, [r0, #8]
   35:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->state[1] = 0.0F;
- 463              		.loc 1 35 5 is_stmt 1 view .LVU154
+ 456              		.loc 1 35 5 is_stmt 1 view .LVU150
   35:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->state[1] = 0.0F;
- 464              		.loc 1 35 20 is_stmt 0 view .LVU155
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s 			page 12
+ 457              		.loc 1 35 20 is_stmt 0 view .LVU151
+ 458 0038 0023     		movs	r3, #0
+ 459 003a 0361     		str	r3, [r0, #16]	@ float
+  36:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
+ 460              		.loc 1 36 5 is_stmt 1 view .LVU152
+  36:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
+ 461              		.loc 1 36 20 is_stmt 0 view .LVU153
+ 462 003c 4361     		str	r3, [r0, #20]	@ float
+  39:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s 			page 12
 
 
- 465 0038 0023     		movs	r3, #0
- 466 003a 0361     		str	r3, [r0, #16]	@ float
-  36:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 467              		.loc 1 36 5 is_stmt 1 view .LVU156
-  36:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 468              		.loc 1 36 20 is_stmt 0 view .LVU157
- 469 003c 4361     		str	r3, [r0, #20]	@ float
+ 463              		.loc 1 39 5 is_stmt 1 view .LVU154
   39:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 470              		.loc 1 39 5 is_stmt 1 view .LVU158
+ 464              		.loc 1 39 42 is_stmt 0 view .LVU155
+ 465 003e C800     		lsls	r0, r1, #3
+ 466              	.LVL25:
   39:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 471              		.loc 1 39 42 is_stmt 0 view .LVU159
- 472 003e C800     		lsls	r0, r1, #3
- 473              	.LVL25:
+ 467              		.loc 1 39 42 view .LVU156
+ 468 0040 FFF7FEFF 		bl	pvPortMalloc
+ 469              	.LVL26:
   39:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 474              		.loc 1 39 42 view .LVU160
- 475 0040 FFF7FEFF 		bl	pvPortMalloc
- 476              	.LVL26:
+ 470              		.loc 1 39 42 view .LVU157
+ 471 0044 0346     		mov	r3, r0
   39:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 477              		.loc 1 39 42 view .LVU161
- 478 0044 0346     		mov	r3, r0
-  39:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 479              		.loc 1 39 24 discriminator 1 view .LVU162
- 480 0046 6062     		str	r0, [r4, #36]
+ 472              		.loc 1 39 24 discriminator 1 view .LVU158
+ 473 0046 6062     		str	r0, [r4, #36]
   41:Core/Src/Application/State_Estimator/Dsp/dsp.c **** }
- 481              		.loc 1 41 5 is_stmt 1 view .LVU163
- 482 0048 3246     		mov	r2, r6
- 483 004a 2946     		mov	r1, r5
- 484 004c 04F11800 		add	r0, r4, #24
- 485 0050 FFF7FEFF 		bl	arm_biquad_cascade_df2T_init_f32
- 486              	.LVL27:
+ 474              		.loc 1 41 5 is_stmt 1 view .LVU159
+ 475 0048 3246     		mov	r2, r6
+ 476 004a 2946     		mov	r1, r5
+ 477 004c 04F11800 		add	r0, r4, #24
+ 478 0050 FFF7FEFF 		bl	arm_biquad_cascade_df2T_init_f32
+ 479              	.LVL27:
   42:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 487              		.loc 1 42 1 is_stmt 0 view .LVU164
- 488 0054 70BD     		pop	{r4, r5, r6, pc}
- 489              	.LVL28:
- 490              	.L16:
+ 480              		.loc 1 42 1 is_stmt 0 view .LVU160
+ 481 0054 70BD     		pop	{r4, r5, r6, pc}
+ 482              	.LVL28:
+ 483              	.L16:
   42:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 491              		.loc 1 42 1 view .LVU165
- 492 0056 00BF     		.align	2
- 493              	.L15:
- 494 0058 00000000 		.word	Differentiator_apply
- 495              		.cfi_endproc
- 496              	.LFE169:
- 498              		.section	.text.Reducer_new,"ax",%progbits
- 499              		.align	1
- 500              		.global	Reducer_new
- 501              		.syntax unified
- 502              		.thumb
- 503              		.thumb_func
- 505              	Reducer_new:
- 506              	.LVL29:
- 507              	.LFB171:
+ 484              		.loc 1 42 1 view .LVU161
+ 485 0056 00BF     		.align	2
+ 486              	.L15:
+ 487 0058 00000000 		.word	Differentiator_apply
+ 488              		.cfi_endproc
+ 489              	.LFE169:
+ 491              		.section	.text.Reducer_new,"ax",%progbits
+ 492              		.align	1
+ 493              		.global	Reducer_new
+ 494              		.syntax unified
+ 495              		.thumb
+ 496              		.thumb_func
+ 498              	Reducer_new:
+ 499              	.LVL29:
+ 500              	.LFB171:
   63:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     /*Assign member functions*/
- 508              		.loc 1 63 1 is_stmt 1 view -0
- 509              		.cfi_startproc
- 510              		@ args = 0, pretend = 0, frame = 0
- 511              		@ frame_needed = 0, uses_anonymous_args = 0
- 512              		@ link register save eliminated.
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s 			page 13
+ 501              		.loc 1 63 1 is_stmt 1 view -0
+ 502              		.cfi_startproc
+ 503              		@ args = 0, pretend = 0, frame = 0
+ 504              		@ frame_needed = 0, uses_anonymous_args = 0
+ 505              		@ link register save eliminated.
+  65:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
+ 506              		.loc 1 65 5 view .LVU163
+  65:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
+ 507              		.loc 1 65 17 is_stmt 0 view .LVU164
+ 508 0000 044B     		ldr	r3, .L18
+ 509 0002 4361     		str	r3, [r0, #20]
+  68:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->reduced_angle[0] = 0.0F; self->reduced_angle[1] = 0.0F;
+ 510              		.loc 1 68 5 is_stmt 1 view .LVU165
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s 			page 13
 
 
-  65:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 513              		.loc 1 65 5 view .LVU167
-  65:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 514              		.loc 1 65 17 is_stmt 0 view .LVU168
- 515 0000 044B     		ldr	r3, .L18
- 516 0002 4361     		str	r3, [r0, #20]
   68:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->reduced_angle[0] = 0.0F; self->reduced_angle[1] = 0.0F;
- 517              		.loc 1 68 5 is_stmt 1 view .LVU169
-  68:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->reduced_angle[0] = 0.0F; self->reduced_angle[1] = 0.0F;
- 518              		.loc 1 68 21 is_stmt 0 view .LVU170
- 519 0004 80ED000A 		vstr.32	s0, [r0]
+ 511              		.loc 1 68 21 is_stmt 0 view .LVU166
+ 512 0004 80ED000A 		vstr.32	s0, [r0]
   69:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->reduced_angle[2] = 0.0F; self->reduced_angle[3] = 0.0F;
- 520              		.loc 1 69 5 is_stmt 1 view .LVU171
+ 513              		.loc 1 69 5 is_stmt 1 view .LVU167
   69:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->reduced_angle[2] = 0.0F; self->reduced_angle[3] = 0.0F;
- 521              		.loc 1 69 28 is_stmt 0 view .LVU172
- 522 0008 0023     		movs	r3, #0
- 523 000a 4360     		str	r3, [r0, #4]	@ float
+ 514              		.loc 1 69 28 is_stmt 0 view .LVU168
+ 515 0008 0023     		movs	r3, #0
+ 516 000a 4360     		str	r3, [r0, #4]	@ float
   69:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->reduced_angle[2] = 0.0F; self->reduced_angle[3] = 0.0F;
- 524              		.loc 1 69 36 is_stmt 1 view .LVU173
+ 517              		.loc 1 69 36 is_stmt 1 view .LVU169
   69:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->reduced_angle[2] = 0.0F; self->reduced_angle[3] = 0.0F;
- 525              		.loc 1 69 59 is_stmt 0 view .LVU174
- 526 000c 8360     		str	r3, [r0, #8]	@ float
+ 518              		.loc 1 69 59 is_stmt 0 view .LVU170
+ 519 000c 8360     		str	r3, [r0, #8]	@ float
   70:Core/Src/Application/State_Estimator/Dsp/dsp.c **** }
- 527              		.loc 1 70 5 is_stmt 1 view .LVU175
+ 520              		.loc 1 70 5 is_stmt 1 view .LVU171
   70:Core/Src/Application/State_Estimator/Dsp/dsp.c **** }
- 528              		.loc 1 70 28 is_stmt 0 view .LVU176
- 529 000e C360     		str	r3, [r0, #12]	@ float
+ 521              		.loc 1 70 28 is_stmt 0 view .LVU172
+ 522 000e C360     		str	r3, [r0, #12]	@ float
   70:Core/Src/Application/State_Estimator/Dsp/dsp.c **** }
- 530              		.loc 1 70 36 is_stmt 1 view .LVU177
+ 523              		.loc 1 70 36 is_stmt 1 view .LVU173
   70:Core/Src/Application/State_Estimator/Dsp/dsp.c **** }
- 531              		.loc 1 70 59 is_stmt 0 view .LVU178
- 532 0010 0361     		str	r3, [r0, #16]	@ float
+ 524              		.loc 1 70 59 is_stmt 0 view .LVU174
+ 525 0010 0361     		str	r3, [r0, #16]	@ float
   71:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 533              		.loc 1 71 1 view .LVU179
- 534 0012 7047     		bx	lr
- 535              	.L19:
- 536              		.align	2
- 537              	.L18:
- 538 0014 00000000 		.word	Reducer_apply
- 539              		.cfi_endproc
- 540              	.LFE171:
- 542              		.section	.text.Dsp_new,"ax",%progbits
- 543              		.align	1
- 544              		.global	Dsp_new
- 545              		.syntax unified
- 546              		.thumb
- 547              		.thumb_func
- 549              	Dsp_new:
- 550              	.LVL30:
- 551              	.LFB176:
- 128:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 129:Core/Src/Application/State_Estimator/Dsp/dsp.c **** void Dsp_new(struct Dsp * const self)
- 130:Core/Src/Application/State_Estimator/Dsp/dsp.c **** {
- 552              		.loc 1 130 1 is_stmt 1 view -0
- 553              		.cfi_startproc
- 554              		@ args = 0, pretend = 0, frame = 0
- 555              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s 			page 14
+ 526              		.loc 1 71 1 view .LVU175
+ 527 0012 7047     		bx	lr
+ 528              	.L19:
+ 529              		.align	2
+ 530              	.L18:
+ 531 0014 00000000 		.word	Reducer_apply
+ 532              		.cfi_endproc
+ 533              	.LFE171:
+ 535              		.section	.text.Dsp_new,"ax",%progbits
+ 536              		.align	1
+ 537              		.global	Dsp_new
+ 538              		.syntax unified
+ 539              		.thumb
+ 540              		.thumb_func
+ 542              	Dsp_new:
+ 543              	.LVL30:
+ 544              	.LFB176:
+ 127:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
+ 128:Core/Src/Application/State_Estimator/Dsp/dsp.c **** void Dsp_new(struct Dsp * const self)
+ 129:Core/Src/Application/State_Estimator/Dsp/dsp.c **** {
+ 545              		.loc 1 129 1 is_stmt 1 view -0
+ 546              		.cfi_startproc
+ 547              		@ args = 0, pretend = 0, frame = 0
+ 548              		@ frame_needed = 0, uses_anonymous_args = 0
+ 549              		.loc 1 129 1 is_stmt 0 view .LVU177
+ 550 0000 38B5     		push	{r3, r4, r5, lr}
+ 551              	.LCFI6:
+ 552              		.cfi_def_cfa_offset 16
+ 553              		.cfi_offset 3, -16
+ 554              		.cfi_offset 4, -12
+ 555              		.cfi_offset 5, -8
+ 556              		.cfi_offset 14, -4
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s 			page 14
 
 
- 556              		.loc 1 130 1 is_stmt 0 view .LVU181
- 557 0000 38B5     		push	{r3, r4, r5, lr}
- 558              	.LCFI6:
- 559              		.cfi_def_cfa_offset 16
- 560              		.cfi_offset 3, -16
- 561              		.cfi_offset 4, -12
- 562              		.cfi_offset 5, -8
- 563              		.cfi_offset 14, -4
- 564 0002 2DED028B 		vpush.64	{d8}
- 565              	.LCFI7:
- 566              		.cfi_def_cfa_offset 24
- 567              		.cfi_offset 80, -24
- 568              		.cfi_offset 81, -20
- 569 0006 0446     		mov	r4, r0
- 131:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     /*Assign function pointer*/
- 132:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->processNewData = &processNewData;
- 570              		.loc 1 132 5 is_stmt 1 view .LVU182
- 571              		.loc 1 132 26 is_stmt 0 view .LVU183
- 572 0008 264B     		ldr	r3, .L22
- 573 000a 4366     		str	r3, [r0, #100]
- 133:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->cvtAngle = &cvtAngle;
- 574              		.loc 1 133 5 is_stmt 1 view .LVU184
- 575              		.loc 1 133 20 is_stmt 0 view .LVU185
- 576 000c 264B     		ldr	r3, .L22+4
- 577 000e 8366     		str	r3, [r0, #104]
- 134:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->estimate = &estimate;
- 578              		.loc 1 134 5 is_stmt 1 view .LVU186
- 579              		.loc 1 134 20 is_stmt 0 view .LVU187
- 580 0010 264B     		ldr	r3, .L22+8
- 581 0012 0367     		str	r3, [r0, #112]
- 135:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->filter = &filter;
- 582              		.loc 1 135 5 is_stmt 1 view .LVU188
- 583              		.loc 1 135 18 is_stmt 0 view .LVU189
- 584 0014 264B     		ldr	r3, .L22+12
- 585 0016 C366     		str	r3, [r0, #108]
- 136:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 137:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     /*Define resolution for encoders*/
- 138:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->motor_resol = 2.0F * (float32_t)PI / (4.0F * 500.0F);
- 586              		.loc 1 138 5 is_stmt 1 view .LVU190
- 587              		.loc 1 138 23 is_stmt 0 view .LVU191
- 588 0018 264B     		ldr	r3, .L22+16
- 589 001a 8360     		str	r3, [r0, #8]	@ float
- 139:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->pendlm_resol = 2.0F * (float32_t)PI / (4.0F * 1000.0F);
- 590              		.loc 1 139 5 is_stmt 1 view .LVU192
- 591              		.loc 1 139 24 is_stmt 0 view .LVU193
- 592 001c 264B     		ldr	r3, .L22+20
- 593 001e C360     		str	r3, [r0, #12]	@ float
- 140:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 141:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     /*Initialize value for data member*/
- 142:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->motor_angle = 0.0F; self->pendlm_angle = 0.0F;
+ 557 0002 2DED028B 		vpush.64	{d8}
+ 558              	.LCFI7:
+ 559              		.cfi_def_cfa_offset 24
+ 560              		.cfi_offset 80, -24
+ 561              		.cfi_offset 81, -20
+ 562 0006 0446     		mov	r4, r0
+ 130:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     /*Assign function pointer*/
+ 131:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->processNewData = &processNewData;
+ 563              		.loc 1 131 5 is_stmt 1 view .LVU178
+ 564              		.loc 1 131 26 is_stmt 0 view .LVU179
+ 565 0008 264B     		ldr	r3, .L22
+ 566 000a 4366     		str	r3, [r0, #100]
+ 132:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->cvtAngle = &cvtAngle;
+ 567              		.loc 1 132 5 is_stmt 1 view .LVU180
+ 568              		.loc 1 132 20 is_stmt 0 view .LVU181
+ 569 000c 264B     		ldr	r3, .L22+4
+ 570 000e 8366     		str	r3, [r0, #104]
+ 133:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->estimate = &estimate;
+ 571              		.loc 1 133 5 is_stmt 1 view .LVU182
+ 572              		.loc 1 133 20 is_stmt 0 view .LVU183
+ 573 0010 264B     		ldr	r3, .L22+8
+ 574 0012 0367     		str	r3, [r0, #112]
+ 134:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->filter = &filter;
+ 575              		.loc 1 134 5 is_stmt 1 view .LVU184
+ 576              		.loc 1 134 18 is_stmt 0 view .LVU185
+ 577 0014 264B     		ldr	r3, .L22+12
+ 578 0016 C366     		str	r3, [r0, #108]
+ 135:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
+ 136:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     /*Define resolution for encoders*/
+ 137:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->motor_resol = 2.0F * (float32_t)PI / (4.0F * 500.0F);
+ 579              		.loc 1 137 5 is_stmt 1 view .LVU186
+ 580              		.loc 1 137 23 is_stmt 0 view .LVU187
+ 581 0018 264B     		ldr	r3, .L22+16
+ 582 001a 8360     		str	r3, [r0, #8]	@ float
+ 138:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->pendlm_resol = 2.0F * (float32_t)PI / (4.0F * 1000.0F);
+ 583              		.loc 1 138 5 is_stmt 1 view .LVU188
+ 584              		.loc 1 138 24 is_stmt 0 view .LVU189
+ 585 001c 264B     		ldr	r3, .L22+20
+ 586 001e C360     		str	r3, [r0, #12]	@ float
+ 139:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
+ 140:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     /*Initialize value for data member*/
+ 141:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->motor_angle = 0.0F; self->pendlm_angle = 0.0F;
+ 587              		.loc 1 141 5 is_stmt 1 view .LVU190
+ 588              		.loc 1 141 23 is_stmt 0 view .LVU191
+ 589 0020 0025     		movs	r5, #0
+ 590 0022 8561     		str	r5, [r0, #24]	@ float
+ 591              		.loc 1 141 31 is_stmt 1 view .LVU192
+ 592              		.loc 1 141 50 is_stmt 0 view .LVU193
+ 593 0024 C561     		str	r5, [r0, #28]	@ float
+ 142:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->raw_motor_angle = 0.0F; self->raw_pendlm_angle = 0.0F;
  594              		.loc 1 142 5 is_stmt 1 view .LVU194
- 595              		.loc 1 142 23 is_stmt 0 view .LVU195
- 596 0020 0025     		movs	r5, #0
- 597 0022 8561     		str	r5, [r0, #24]	@ float
- 598              		.loc 1 142 31 is_stmt 1 view .LVU196
- 599              		.loc 1 142 50 is_stmt 0 view .LVU197
- 600 0024 C561     		str	r5, [r0, #28]	@ float
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s 			page 15
+ 595              		.loc 1 142 27 is_stmt 0 view .LVU195
+ 596 0026 0560     		str	r5, [r0]	@ float
+ 597              		.loc 1 142 35 is_stmt 1 view .LVU196
+ 598              		.loc 1 142 58 is_stmt 0 view .LVU197
+ 599 0028 4560     		str	r5, [r0, #4]	@ float
+ 143:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->filtered_motor_angle = 0.0F; self->filtered_pendlm_angle = 0.0F;
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s 			page 15
 
 
- 143:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->raw_motor_angle = 0.0F; self->raw_pendlm_angle = 0.0F;
- 601              		.loc 1 143 5 is_stmt 1 view .LVU198
- 602              		.loc 1 143 27 is_stmt 0 view .LVU199
- 603 0026 0560     		str	r5, [r0]	@ float
- 604              		.loc 1 143 35 is_stmt 1 view .LVU200
- 605              		.loc 1 143 58 is_stmt 0 view .LVU201
- 606 0028 4560     		str	r5, [r0, #4]	@ float
- 144:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->filtered_motor_angle = 0.0F; self->filtered_pendlm_angle = 0.0F;
- 607              		.loc 1 144 5 is_stmt 1 view .LVU202
- 608              		.loc 1 144 32 is_stmt 0 view .LVU203
- 609 002a 0562     		str	r5, [r0, #32]	@ float
- 610              		.loc 1 144 40 is_stmt 1 view .LVU204
- 611              		.loc 1 144 68 is_stmt 0 view .LVU205
- 612 002c 4562     		str	r5, [r0, #36]	@ float
- 145:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->filtered_motor_vel = 0.0F; self->filtered_pendlm_vel = 0.0F;
- 613              		.loc 1 145 5 is_stmt 1 view .LVU206
- 614              		.loc 1 145 30 is_stmt 0 view .LVU207
- 615 002e 8562     		str	r5, [r0, #40]	@ float
- 616              		.loc 1 145 38 is_stmt 1 view .LVU208
- 617              		.loc 1 145 64 is_stmt 0 view .LVU209
- 618 0030 C562     		str	r5, [r0, #44]	@ float
- 146:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 147:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     /*Initialize Reducers*/
- 148:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->motor_reducer = ( struct Reducer * ) pvPortMalloc( sizeof( struct Reducer ) );
- 619              		.loc 1 148 5 is_stmt 1 view .LVU210
- 620              		.loc 1 148 48 is_stmt 0 view .LVU211
- 621 0032 1820     		movs	r0, #24
- 622              	.LVL31:
- 623              		.loc 1 148 48 view .LVU212
- 624 0034 FFF7FEFF 		bl	pvPortMalloc
- 625              	.LVL32:
- 626              		.loc 1 148 25 discriminator 1 view .LVU213
- 627 0038 6065     		str	r0, [r4, #84]
- 149:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->pendlm_reducer = ( struct Reducer * ) pvPortMalloc( sizeof( struct Reducer ) );
- 628              		.loc 1 149 5 is_stmt 1 view .LVU214
- 629              		.loc 1 149 49 is_stmt 0 view .LVU215
- 630 003a 1820     		movs	r0, #24
- 631 003c FFF7FEFF 		bl	pvPortMalloc
- 632              	.LVL33:
- 633              		.loc 1 149 26 discriminator 1 view .LVU216
- 634 0040 A065     		str	r0, [r4, #88]
- 150:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     Reducer_new(self->motor_reducer, 30.0F); 
- 635              		.loc 1 150 5 is_stmt 1 view .LVU217
- 636 0042 B3EE0E0A 		vmov.f32	s0, #3.0e+1
- 637 0046 606D     		ldr	r0, [r4, #84]
- 638 0048 FFF7FEFF 		bl	Reducer_new
- 639              	.LVL34:
- 151:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     Reducer_new(self->pendlm_reducer, 0.5F);
- 640              		.loc 1 151 5 view .LVU218
- 641 004c B6EE000A 		vmov.f32	s0, #5.0e-1
- 642 0050 A06D     		ldr	r0, [r4, #88]
- 643 0052 FFF7FEFF 		bl	Reducer_new
- 644              	.LVL35:
- 152:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 153:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     /*Initialize Differentiators*/
- 154:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->motor_differentiator = ( Differentiator * ) pvPortMalloc( sizeof(Differentiator) );
- 645              		.loc 1 154 5 view .LVU219
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s 			page 16
+ 600              		.loc 1 143 5 is_stmt 1 view .LVU198
+ 601              		.loc 1 143 32 is_stmt 0 view .LVU199
+ 602 002a 0562     		str	r5, [r0, #32]	@ float
+ 603              		.loc 1 143 40 is_stmt 1 view .LVU200
+ 604              		.loc 1 143 68 is_stmt 0 view .LVU201
+ 605 002c 4562     		str	r5, [r0, #36]	@ float
+ 144:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->filtered_motor_vel = 0.0F; self->filtered_pendlm_vel = 0.0F;
+ 606              		.loc 1 144 5 is_stmt 1 view .LVU202
+ 607              		.loc 1 144 30 is_stmt 0 view .LVU203
+ 608 002e 8562     		str	r5, [r0, #40]	@ float
+ 609              		.loc 1 144 38 is_stmt 1 view .LVU204
+ 610              		.loc 1 144 64 is_stmt 0 view .LVU205
+ 611 0030 C562     		str	r5, [r0, #44]	@ float
+ 145:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
+ 146:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     /*Initialize Reducers*/
+ 147:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->motor_reducer = ( struct Reducer * ) pvPortMalloc( sizeof( struct Reducer ) );
+ 612              		.loc 1 147 5 is_stmt 1 view .LVU206
+ 613              		.loc 1 147 48 is_stmt 0 view .LVU207
+ 614 0032 1820     		movs	r0, #24
+ 615              	.LVL31:
+ 616              		.loc 1 147 48 view .LVU208
+ 617 0034 FFF7FEFF 		bl	pvPortMalloc
+ 618              	.LVL32:
+ 619              		.loc 1 147 25 discriminator 1 view .LVU209
+ 620 0038 6065     		str	r0, [r4, #84]
+ 148:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->pendlm_reducer = ( struct Reducer * ) pvPortMalloc( sizeof( struct Reducer ) );
+ 621              		.loc 1 148 5 is_stmt 1 view .LVU210
+ 622              		.loc 1 148 49 is_stmt 0 view .LVU211
+ 623 003a 1820     		movs	r0, #24
+ 624 003c FFF7FEFF 		bl	pvPortMalloc
+ 625              	.LVL33:
+ 626              		.loc 1 148 26 discriminator 1 view .LVU212
+ 627 0040 A065     		str	r0, [r4, #88]
+ 149:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     Reducer_new(self->motor_reducer, 30.0F); 
+ 628              		.loc 1 149 5 is_stmt 1 view .LVU213
+ 629 0042 B3EE0E0A 		vmov.f32	s0, #3.0e+1
+ 630 0046 606D     		ldr	r0, [r4, #84]
+ 631 0048 FFF7FEFF 		bl	Reducer_new
+ 632              	.LVL34:
+ 150:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     Reducer_new(self->pendlm_reducer, 0.5F);
+ 633              		.loc 1 150 5 view .LVU214
+ 634 004c B6EE000A 		vmov.f32	s0, #5.0e-1
+ 635 0050 A06D     		ldr	r0, [r4, #88]
+ 636 0052 FFF7FEFF 		bl	Reducer_new
+ 637              	.LVL35:
+ 151:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
+ 152:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     /*Initialize Differentiators*/
+ 153:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->motor_differentiator = ( Differentiator * ) pvPortMalloc( sizeof(Differentiator) );
+ 638              		.loc 1 153 5 view .LVU215
+ 639              		.loc 1 153 55 is_stmt 0 view .LVU216
+ 640 0056 2C20     		movs	r0, #44
+ 641 0058 FFF7FEFF 		bl	pvPortMalloc
+ 642              	.LVL36:
+ 643              		.loc 1 153 32 discriminator 1 view .LVU217
+ 644 005c E065     		str	r0, [r4, #92]
+ 154:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->pendlm_differentiator = ( Differentiator * ) pvPortMalloc( sizeof(Differentiator) );
+ 645              		.loc 1 154 5 is_stmt 1 view .LVU218
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s 			page 16
 
 
- 646              		.loc 1 154 55 is_stmt 0 view .LVU220
- 647 0056 2C20     		movs	r0, #44
- 648 0058 FFF7FEFF 		bl	pvPortMalloc
- 649              	.LVL36:
- 650              		.loc 1 154 32 discriminator 1 view .LVU221
- 651 005c E065     		str	r0, [r4, #92]
- 155:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->pendlm_differentiator = ( Differentiator * ) pvPortMalloc( sizeof(Differentiator) );
- 652              		.loc 1 155 5 is_stmt 1 view .LVU222
- 653              		.loc 1 155 56 is_stmt 0 view .LVU223
- 654 005e 2C20     		movs	r0, #44
- 655 0060 FFF7FEFF 		bl	pvPortMalloc
- 656              	.LVL37:
- 657              		.loc 1 155 33 discriminator 1 view .LVU224
- 658 0064 2066     		str	r0, [r4, #96]
- 156:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     Differentiator_new(self->motor_differentiator, 1E-3F, MOTOR_FILTER_STAGES_NUM, &motor_butterwor
- 659              		.loc 1 156 5 is_stmt 1 view .LVU225
- 660 0066 9FED158A 		vldr.32	s16, .L22+24
- 661 006a 154A     		ldr	r2, .L22+28
- 662 006c 0121     		movs	r1, #1
- 663 006e B0EE480A 		vmov.f32	s0, s16
- 664 0072 E06D     		ldr	r0, [r4, #92]
- 665 0074 FFF7FEFF 		bl	Differentiator_new
- 666              	.LVL38:
- 157:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     Differentiator_new(self->pendlm_differentiator, 1E-3F, PENDULM_FILTER_STAGES_NUM, &pendlm_butte
- 667              		.loc 1 157 5 view .LVU226
- 668 0078 124A     		ldr	r2, .L22+32
- 669 007a 0121     		movs	r1, #1
- 670 007c B0EE480A 		vmov.f32	s0, s16
- 671 0080 206E     		ldr	r0, [r4, #96]
- 672 0082 FFF7FEFF 		bl	Differentiator_new
- 673              	.LVL39:
- 158:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 159:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     /*Initialize estimated data output*/
- 160:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->estimated_motor_data.angle = 0.0F;
- 674              		.loc 1 160 5 view .LVU227
- 675              		.loc 1 160 38 is_stmt 0 view .LVU228
- 676 0086 2563     		str	r5, [r4, #48]	@ float
- 161:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->estimated_motor_data.vel = 0.0F;
- 677              		.loc 1 161 5 is_stmt 1 view .LVU229
- 678              		.loc 1 161 36 is_stmt 0 view .LVU230
- 679 0088 6563     		str	r5, [r4, #52]	@ float
- 162:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->estimated_motor_data.acc = 0.0F;
- 680              		.loc 1 162 5 is_stmt 1 view .LVU231
- 681              		.loc 1 162 36 is_stmt 0 view .LVU232
- 682 008a A563     		str	r5, [r4, #56]	@ float
- 163:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->estimated_pendlm_data.angle = 0.0F;
- 683              		.loc 1 163 5 is_stmt 1 view .LVU233
- 684              		.loc 1 163 39 is_stmt 0 view .LVU234
- 685 008c E563     		str	r5, [r4, #60]	@ float
- 164:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->estimated_pendlm_data.vel = 0.0F;
- 686              		.loc 1 164 5 is_stmt 1 view .LVU235
- 687              		.loc 1 164 37 is_stmt 0 view .LVU236
- 688 008e 2564     		str	r5, [r4, #64]	@ float
- 165:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->estimated_pendlm_data.acc = 0.0F;
- 689              		.loc 1 165 5 is_stmt 1 view .LVU237
- 690              		.loc 1 165 37 is_stmt 0 view .LVU238
- 691 0090 6564     		str	r5, [r4, #68]	@ float
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s 			page 17
+ 646              		.loc 1 154 56 is_stmt 0 view .LVU219
+ 647 005e 2C20     		movs	r0, #44
+ 648 0060 FFF7FEFF 		bl	pvPortMalloc
+ 649              	.LVL37:
+ 650              		.loc 1 154 33 discriminator 1 view .LVU220
+ 651 0064 2066     		str	r0, [r4, #96]
+ 155:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     Differentiator_new(self->motor_differentiator, 1E-3F, MOTOR_FILTER_STAGES_NUM, &motor_butterwor
+ 652              		.loc 1 155 5 is_stmt 1 view .LVU221
+ 653 0066 9FED158A 		vldr.32	s16, .L22+24
+ 654 006a 154A     		ldr	r2, .L22+28
+ 655 006c 0121     		movs	r1, #1
+ 656 006e B0EE480A 		vmov.f32	s0, s16
+ 657 0072 E06D     		ldr	r0, [r4, #92]
+ 658 0074 FFF7FEFF 		bl	Differentiator_new
+ 659              	.LVL38:
+ 156:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     Differentiator_new(self->pendlm_differentiator, 1E-3F, PENDULM_FILTER_STAGES_NUM, &pendlm_butte
+ 660              		.loc 1 156 5 view .LVU222
+ 661 0078 124A     		ldr	r2, .L22+32
+ 662 007a 0121     		movs	r1, #1
+ 663 007c B0EE480A 		vmov.f32	s0, s16
+ 664 0080 206E     		ldr	r0, [r4, #96]
+ 665 0082 FFF7FEFF 		bl	Differentiator_new
+ 666              	.LVL39:
+ 157:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
+ 158:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     /*Initialize estimated data output*/
+ 159:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->estimated_motor_data.angle = 0.0F;
+ 667              		.loc 1 159 5 view .LVU223
+ 668              		.loc 1 159 38 is_stmt 0 view .LVU224
+ 669 0086 2563     		str	r5, [r4, #48]	@ float
+ 160:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->estimated_motor_data.vel = 0.0F;
+ 670              		.loc 1 160 5 is_stmt 1 view .LVU225
+ 671              		.loc 1 160 36 is_stmt 0 view .LVU226
+ 672 0088 6563     		str	r5, [r4, #52]	@ float
+ 161:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->estimated_motor_data.acc = 0.0F;
+ 673              		.loc 1 161 5 is_stmt 1 view .LVU227
+ 674              		.loc 1 161 36 is_stmt 0 view .LVU228
+ 675 008a A563     		str	r5, [r4, #56]	@ float
+ 162:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->estimated_pendlm_data.angle = 0.0F;
+ 676              		.loc 1 162 5 is_stmt 1 view .LVU229
+ 677              		.loc 1 162 39 is_stmt 0 view .LVU230
+ 678 008c E563     		str	r5, [r4, #60]	@ float
+ 163:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->estimated_pendlm_data.vel = 0.0F;
+ 679              		.loc 1 163 5 is_stmt 1 view .LVU231
+ 680              		.loc 1 163 37 is_stmt 0 view .LVU232
+ 681 008e 2564     		str	r5, [r4, #64]	@ float
+ 164:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->estimated_pendlm_data.acc = 0.0F;
+ 682              		.loc 1 164 5 is_stmt 1 view .LVU233
+ 683              		.loc 1 164 37 is_stmt 0 view .LVU234
+ 684 0090 6564     		str	r5, [r4, #68]	@ float
+ 165:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->estimated_cart_data.angle = 0.0F; // angle = x 
+ 685              		.loc 1 165 5 is_stmt 1 view .LVU235
+ 686              		.loc 1 165 37 is_stmt 0 view .LVU236
+ 687 0092 A564     		str	r5, [r4, #72]	@ float
+ 166:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->estimated_cart_data.vel = 0.0F;
+ 688              		.loc 1 166 5 is_stmt 1 view .LVU237
+ 689              		.loc 1 166 35 is_stmt 0 view .LVU238
+ 690 0094 E564     		str	r5, [r4, #76]	@ float
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s 			page 17
 
 
- 166:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->estimated_cart_data.angle = 0.0F; // angle = x 
- 692              		.loc 1 166 5 is_stmt 1 view .LVU239
- 693              		.loc 1 166 37 is_stmt 0 view .LVU240
- 694 0092 A564     		str	r5, [r4, #72]	@ float
- 167:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->estimated_cart_data.vel = 0.0F;
- 695              		.loc 1 167 5 is_stmt 1 view .LVU241
- 696              		.loc 1 167 35 is_stmt 0 view .LVU242
- 697 0094 E564     		str	r5, [r4, #76]	@ float
- 168:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
- 169:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     /**/
- 170:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     /*Initialize gear ratio value
- 171:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     * The assigned value: 
- 172:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     *    self->gear_ratio = gear_ratio * motor_gear_radius
- 173:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     */
- 174:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->gear_ratio = ( 1.0F / 14.0F ) * 0.011F;
- 698              		.loc 1 174 5 is_stmt 1 view .LVU243
- 699              		.loc 1 174 22 is_stmt 0 view .LVU244
- 700 0096 0C4B     		ldr	r3, .L22+36
- 701 0098 2361     		str	r3, [r4, #16]	@ float
- 175:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->previous_x = 0.0F;
- 702              		.loc 1 175 5 is_stmt 1 view .LVU245
- 703              		.loc 1 175 22 is_stmt 0 view .LVU246
- 704 009a 6561     		str	r5, [r4, #20]	@ float
- 176:Core/Src/Application/State_Estimator/Dsp/dsp.c **** }
- 705              		.loc 1 176 1 view .LVU247
- 706 009c BDEC028B 		vldm	sp!, {d8}
- 707              	.LCFI8:
- 708              		.cfi_restore 80
- 709              		.cfi_restore 81
- 710              		.cfi_def_cfa_offset 16
- 711 00a0 38BD     		pop	{r3, r4, r5, pc}
- 712              	.LVL40:
- 713              	.L23:
- 714              		.loc 1 176 1 view .LVU248
- 715 00a2 00BF     		.align	2
- 716              	.L22:
- 717 00a4 00000000 		.word	processNewData
- 718 00a8 00000000 		.word	cvtAngle
- 719 00ac 00000000 		.word	estimate
- 720 00b0 00000000 		.word	filter
- 721 00b4 2EE34D3B 		.word	994960174
- 722 00b8 2EE3CD3A 		.word	986571566
- 723 00bc 6F12833A 		.word	981668463
- 724 00c0 00000000 		.word	motor_butterworth_coeffs
- 725 00c4 00000000 		.word	pendlm_butterworth_coeffs
- 726 00c8 65F84D3A 		.word	978188389
- 727              		.cfi_endproc
- 728              	.LFE176:
- 730              		.text
- 731              	.Letext0:
- 732              		.file 2 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
- 733              		.file 3 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
- 734              		.file 4 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
- 735              		.file 5 "Drivers/CMSIS/DSP/Include/arm_math.h"
- 736              		.file 6 "Core/Src/Middleware/Topic/topic.h"
- 737              		.file 7 "Core/Src/Application/State_Estimator/Dsp/dsp.h"
- 738              		.file 8 "ThirdParty/FreeRTOS/include/portable.h"
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s 			page 18
-
-
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s 			page 19
+ 167:Core/Src/Application/State_Estimator/Dsp/dsp.c **** 
+ 168:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     /**/
+ 169:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     /*Initialize gear ratio value
+ 170:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     * The assigned value: 
+ 171:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     *    self->gear_ratio = gear_ratio * motor_gear_radius
+ 172:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     */
+ 173:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->gear_ratio = ( 1.0F / 14.0F ) * 0.011F;
+ 691              		.loc 1 173 5 is_stmt 1 view .LVU239
+ 692              		.loc 1 173 22 is_stmt 0 view .LVU240
+ 693 0096 0C4B     		ldr	r3, .L22+36
+ 694 0098 2361     		str	r3, [r4, #16]	@ float
+ 174:Core/Src/Application/State_Estimator/Dsp/dsp.c ****     self->previous_x = 0.0F;
+ 695              		.loc 1 174 5 is_stmt 1 view .LVU241
+ 696              		.loc 1 174 22 is_stmt 0 view .LVU242
+ 697 009a 6561     		str	r5, [r4, #20]	@ float
+ 175:Core/Src/Application/State_Estimator/Dsp/dsp.c **** }
+ 698              		.loc 1 175 1 view .LVU243
+ 699 009c BDEC028B 		vldm	sp!, {d8}
+ 700              	.LCFI8:
+ 701              		.cfi_restore 80
+ 702              		.cfi_restore 81
+ 703              		.cfi_def_cfa_offset 16
+ 704 00a0 38BD     		pop	{r3, r4, r5, pc}
+ 705              	.LVL40:
+ 706              	.L23:
+ 707              		.loc 1 175 1 view .LVU244
+ 708 00a2 00BF     		.align	2
+ 709              	.L22:
+ 710 00a4 00000000 		.word	processNewData
+ 711 00a8 00000000 		.word	cvtAngle
+ 712 00ac 00000000 		.word	estimate
+ 713 00b0 00000000 		.word	filter
+ 714 00b4 2EE34D3B 		.word	994960174
+ 715 00b8 2EE3CD3A 		.word	986571566
+ 716 00bc 6F12833A 		.word	981668463
+ 717 00c0 00000000 		.word	motor_butterworth_coeffs
+ 718 00c4 00000000 		.word	pendlm_butterworth_coeffs
+ 719 00c8 65F84D3A 		.word	978188389
+ 720              		.cfi_endproc
+ 721              	.LFE176:
+ 723              		.text
+ 724              	.Letext0:
+ 725              		.file 2 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
+ 726              		.file 3 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
+ 727              		.file 4 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
+ 728              		.file 5 "Drivers/CMSIS/DSP/Include/arm_math.h"
+ 729              		.file 6 "Core/Src/Middleware/Topic/topic.h"
+ 730              		.file 7 "Core/Src/Application/State_Estimator/Dsp/dsp.h"
+ 731              		.file 8 "ThirdParty/FreeRTOS/include/portable.h"
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s 			page 18
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 dsp.c
-C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s:21     .text.Reducer_apply:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s:26     .text.Reducer_apply:00000000 Reducer_apply
-C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s:101    .text.cvtAngle:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s:106    .text.cvtAngle:00000000 cvtAngle
-C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s:140    .text.filter:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s:145    .text.filter:00000000 filter
-C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s:197    .text.estimate:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s:202    .text.estimate:00000000 estimate
-C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s:255    .text.processNewData:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s:260    .text.processNewData:00000000 processNewData
-C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s:325    .text.Differentiator_apply:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s:330    .text.Differentiator_apply:00000000 Differentiator_apply
-C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s:411    .text.Differentiator_new:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s:417    .text.Differentiator_new:00000000 Differentiator_new
-C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s:494    .text.Differentiator_new:00000058 $d
-C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s:499    .text.Reducer_new:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s:505    .text.Reducer_new:00000000 Reducer_new
-C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s:538    .text.Reducer_new:00000014 $d
-C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s:543    .text.Dsp_new:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s:549    .text.Dsp_new:00000000 Dsp_new
-C:\Users\ACER\AppData\Local\Temp\ccvwcBEY.s:717    .text.Dsp_new:000000a4 $d
+C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s:21     .text.Reducer_apply:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s:26     .text.Reducer_apply:00000000 Reducer_apply
+C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s:101    .text.cvtAngle:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s:106    .text.cvtAngle:00000000 cvtAngle
+C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s:140    .text.filter:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s:145    .text.filter:00000000 filter
+C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s:197    .text.estimate:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s:202    .text.estimate:00000000 estimate
+C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s:248    .text.processNewData:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s:253    .text.processNewData:00000000 processNewData
+C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s:318    .text.Differentiator_apply:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s:323    .text.Differentiator_apply:00000000 Differentiator_apply
+C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s:404    .text.Differentiator_new:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s:410    .text.Differentiator_new:00000000 Differentiator_new
+C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s:487    .text.Differentiator_new:00000058 $d
+C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s:492    .text.Reducer_new:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s:498    .text.Reducer_new:00000000 Reducer_new
+C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s:531    .text.Reducer_new:00000014 $d
+C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s:536    .text.Dsp_new:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s:542    .text.Dsp_new:00000000 Dsp_new
+C:\Users\ACER\AppData\Local\Temp\ccPlPKxi.s:710    .text.Dsp_new:000000a4 $d
 
 UNDEFINED SYMBOLS
 arm_biquad_cascade_df2T_f32

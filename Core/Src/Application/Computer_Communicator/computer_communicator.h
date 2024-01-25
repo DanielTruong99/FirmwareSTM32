@@ -6,14 +6,16 @@
 #include "topic.h"
 #include "state_estimator.h"
 #include "printf.h"
+#include "motor_communicator.h"
 
-enum ComputerCommunicatorEvent{SENSOR_SENDED_SIG = USER_SIG + 1, STATE_UPDATED_SIG};
+enum ComputerCommunicatorEvent{SENSOR_SENDED_SIG = USER_SIG + 1, STATE_UPDATED_SIG, NEW_MESSAGE_SIG};
 
 struct ComputerCommunicator
 {
     // Members --------------------------------
     struct Ao super;
     QueueHandle_t state_sub;
+    QueueHandle_t received_message_sub;
 
 
 

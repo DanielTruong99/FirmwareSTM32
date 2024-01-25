@@ -5,6 +5,33 @@ UART_HandleTypeDef huart2;
 UART_HandleTypeDef huart3;
 extern struct Ao * ao_motor_communicator;
 extern struct Ao * ao_computer_communicator;
+extern struct ComputerCommunicator * computer_communicator;
+extern struct MotorCommunicator * motor_communicator;
+extern char rx_byte_data;
+
+static const uint32_t TEN_POWER[] = {1, 10, 100, 1000};
+
+static int16_t ExtractMessage(RecivedMessage * received_message)
+{
+    int16_t d = 0;
+    int16_t sign = 1;
+    uint8_t n = received_message->length;
+    uint8_t num;
+
+    for(int index = 0; index < n; index++)
+    {
+        if(received_message->message[index] == '-')
+        {
+            sign = -1;
+            continue;
+        }
+
+        num = received_message->message[index] - '0';
+        d = d + (int16_t)(num * TEN_POWER[n - 1 - index]);
+    }
+
+    return d * sign;
+}
 
 static void UART_Init(UART_HandleTypeDef* huart);
 
@@ -38,9 +65,56 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
   */
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
-  // sprintf(tx_data, "Hello World Hi\n");
-  // HAL_UART_Transmit_IT(&huart2, tx_data, (unsigned)strlen(tx_data));
-  // HAL_UART_Receive_IT(&huart2, rx_data, 3);
+    BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+
+    if(huart->Instance == USART3)
+    {
+        static RecivedMessage recived_message = {.length = 0}; 
+        static uint8_t is_data_comming = 0;
+        static char byte_data;
+        static const uint8_t max_length = 4;
+        byte_data = rx_byte_data; 
+    
+        if(is_data_comming == 1) /*Have recived 'S'*/
+        {
+            
+            if(byte_data != 'S' && byte_data != 10) /*Not 'S' and '\n'*/
+            {
+                recived_message.message[recived_message.length] = byte_data;
+                recived_message.length++;
+                if(recived_message.length > max_length)
+                {
+                    recived_message.length = 0;
+                    is_data_comming = 0;
+                }
+            }
+            else if(byte_data == 10)  /*End of Line '\n'*/
+            {
+                static PWC pulse_width_command;
+                static int16_t d;
+                static const Event pwc_evt = {PWC_TRIGGER_SIG};
+                d = ExtractMessage(&recived_message);
+                pulse_width_command.d = d;
+                xQueueOverwriteFromISR(motor_communicator->pwc_sub, &pulse_width_command, &xHigherPriorityTaskWoken);
+                ao_motor_communicator->postFromISR(ao_motor_communicator, &pwc_evt, &xHigherPriorityTaskWoken);
+                recived_message.length = 0;
+                is_data_comming = 0;
+            }
+        }
+        else 
+        {
+            if(byte_data == 'S') /*Witnessed double 'S'*/
+            {
+                if(recived_message.length != 0) recived_message.length = 0;
+                is_data_comming = 1;
+            }          
+        }
+
+        /*Enable Rx Interrupt, waiting for new byte data*/
+        HAL_UART_Receive_IT(huart, &rx_byte_data, 1);
+    }
+
+    portEND_SWITCHING_ISR(xHigherPriorityTaskWoken);
 }
 
 /**

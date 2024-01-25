@@ -17,7 +17,7 @@
             // "interface": "swd",
             // "liveWatch": {
             //     "enabled": true,
-            //     "samplesPerSecond": 20
+            //     "samplesPerSecond": 10
             // },
     
             "configFiles": [

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s 			page 1
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -30,43 +30,49 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s 			page 1
   28              	.LFB168:
    1:Core/Src/Application/Computer_Communicator/computer_communicator.c **** #include "computer_communicator.h"
    2:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
-   3:Core/Src/Application/Computer_Communicator/computer_communicator.c **** extern UART_HandleTypeDef huart3;
-   4:Core/Src/Application/Computer_Communicator/computer_communicator.c **** extern struct StateEstimator * state_estimator;
-   5:Core/Src/Application/Computer_Communicator/computer_communicator.c **** static char tx_data[30];
-   6:Core/Src/Application/Computer_Communicator/computer_communicator.c **** static char rx_data[15];
-   7:Core/Src/Application/Computer_Communicator/computer_communicator.c **** struct Ao * ao_computer_communicator;
-   8:Core/Src/Application/Computer_Communicator/computer_communicator.c **** struct ComputerCommunicator * computer_communicator;
-   9:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
-  10:Core/Src/Application/Computer_Communicator/computer_communicator.c **** #define decimal(x) (int16_t)((x - (int16_t)x) * 100)
-  11:Core/Src/Application/Computer_Communicator/computer_communicator.c **** #define integer(x) (int16_t)x
-  12:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
-  13:Core/Src/Application/Computer_Communicator/computer_communicator.c **** static Status initial(struct ComputerCommunicator *const self, Event const * const event)
-  14:Core/Src/Application/Computer_Communicator/computer_communicator.c **** {
-  29              		.loc 1 14 1 view -0
+   3:Core/Src/Application/Computer_Communicator/computer_communicator.c **** /*This is owned by USART driver*/
+   4:Core/Src/Application/Computer_Communicator/computer_communicator.c **** char rx_byte_data;
+   5:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+   6:Core/Src/Application/Computer_Communicator/computer_communicator.c **** //
+   7:Core/Src/Application/Computer_Communicator/computer_communicator.c **** extern UART_HandleTypeDef huart3;
+   8:Core/Src/Application/Computer_Communicator/computer_communicator.c **** extern struct StateEstimator * state_estimator;
+   9:Core/Src/Application/Computer_Communicator/computer_communicator.c **** extern struct MotorCommunicator * motor_communicator;
+  10:Core/Src/Application/Computer_Communicator/computer_communicator.c **** extern struct Ao * ao_motor_communicator;
+  11:Core/Src/Application/Computer_Communicator/computer_communicator.c **** static char tx_data[30];
+  12:Core/Src/Application/Computer_Communicator/computer_communicator.c **** struct Ao * ao_computer_communicator;
+  13:Core/Src/Application/Computer_Communicator/computer_communicator.c **** struct ComputerCommunicator * computer_communicator;
+  14:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+  15:Core/Src/Application/Computer_Communicator/computer_communicator.c **** #define decimal(x) (int16_t)((x - (int16_t)x) * 100)
+  16:Core/Src/Application/Computer_Communicator/computer_communicator.c **** #define integer(x) (int16_t)x
+  17:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+  18:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+  19:Core/Src/Application/Computer_Communicator/computer_communicator.c **** static Status initial(struct ComputerCommunicator *const self, Event const * const event)
+  20:Core/Src/Application/Computer_Communicator/computer_communicator.c **** {
+  29              		.loc 1 20 1 view -0
   30              		.cfi_startproc
   31              		@ args = 0, pretend = 0, frame = 0
   32              		@ frame_needed = 0, uses_anonymous_args = 0
   33              		@ link register save eliminated.
-  15:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   Status status;
-  34              		.loc 1 15 3 view .LVU1
-  16:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   status = TRAN_STATUS;
-  35              		.loc 1 16 3 view .LVU2
-  17:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   self->super.handler = (StateHandler)self->wait;
-  36              		.loc 1 17 3 view .LVU3
-  37              		.loc 1 17 43 is_stmt 0 view .LVU4
-  38 0000 D0F8D430 		ldr	r3, [r0, #212]
-  39              		.loc 1 17 23 view .LVU5
+  21:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   Status status;
+  34              		.loc 1 21 3 view .LVU1
+  22:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   status = TRAN_STATUS;
+  35              		.loc 1 22 3 view .LVU2
+  23:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   self->super.handler = (StateHandler)self->wait;
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s 			page 2
+
+
+  36              		.loc 1 23 3 view .LVU3
+  37              		.loc 1 23 43 is_stmt 0 view .LVU4
+  38 0000 D0F8D830 		ldr	r3, [r0, #216]
+  39              		.loc 1 23 23 view .LVU5
   40 0004 0360     		str	r3, [r0]
-  18:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   return status;
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s 			page 2
-
-
-  41              		.loc 1 18 3 is_stmt 1 view .LVU6
-  19:Core/Src/Application/Computer_Communicator/computer_communicator.c **** }
-  42              		.loc 1 19 1 is_stmt 0 view .LVU7
+  24:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   return status;
+  41              		.loc 1 24 3 is_stmt 1 view .LVU6
+  25:Core/Src/Application/Computer_Communicator/computer_communicator.c **** }
+  42              		.loc 1 25 1 is_stmt 0 view .LVU7
   43 0006 0020     		movs	r0, #0
   44              	.LVL1:
-  45              		.loc 1 19 1 view .LVU8
+  45              		.loc 1 25 1 view .LVU8
   46 0008 7047     		bx	lr
   47              		.cfi_endproc
   48              	.LFE168:
@@ -78,671 +84,713 @@ ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s 			page 1
   56              	sending:
   57              	.LVL2:
   58              	.LFB169:
-  20:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
-  21:Core/Src/Application/Computer_Communicator/computer_communicator.c **** static Status sending(struct ComputerCommunicator *const self, Event const * const event)
-  22:Core/Src/Application/Computer_Communicator/computer_communicator.c **** {
-  59              		.loc 1 22 1 is_stmt 1 view -0
+  26:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+  27:Core/Src/Application/Computer_Communicator/computer_communicator.c **** static Status sending(struct ComputerCommunicator *const self, Event const * const event)
+  28:Core/Src/Application/Computer_Communicator/computer_communicator.c **** {
+  59              		.loc 1 28 1 is_stmt 1 view -0
   60              		.cfi_startproc
   61              		@ args = 0, pretend = 0, frame = 0
   62              		@ frame_needed = 0, uses_anonymous_args = 0
   63              		@ link register save eliminated.
-  23:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     Status status;
-  64              		.loc 1 23 5 view .LVU10
-  24:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     
-  25:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     switch (event->signal)
-  65              		.loc 1 25 5 view .LVU11
-  66              		.loc 1 25 18 is_stmt 0 view .LVU12
+  29:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     Status status;
+  64              		.loc 1 29 5 view .LVU10
+  30:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     
+  31:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     switch (event->signal)
+  65              		.loc 1 31 5 view .LVU11
+  66              		.loc 1 31 18 is_stmt 0 view .LVU12
   67 0000 0B88     		ldrh	r3, [r1]
-  68              		.loc 1 25 5 view .LVU13
+  68              		.loc 1 31 5 view .LVU13
   69 0002 022B     		cmp	r3, #2
   70 0004 06D9     		bls	.L7
   71 0006 042B     		cmp	r3, #4
   72 0008 0AD1     		bne	.L6
-  26:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     {
-  27:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         case ENTRY_SIG:
-  28:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         {
-  29:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             status = HANDLED_STATUS;
-  30:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             break;
-  31:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         }
-  32:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
-  33:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         case SENSOR_SENDED_SIG:
+  32:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     {
+  33:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         case ENTRY_SIG:
   34:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         {
-  35:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             self->super.handler = (StateHandler)self->wait;
-  73              		.loc 1 35 13 is_stmt 1 view .LVU14
-  74              		.loc 1 35 53 is_stmt 0 view .LVU15
-  75 000a D0F8D430 		ldr	r3, [r0, #212]
-  76              		.loc 1 35 33 view .LVU16
+  35:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             status = HANDLED_STATUS;
+  36:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             break;
+  37:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         }
+  38:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+  39:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         case SENSOR_SENDED_SIG:
+  40:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         {
+  41:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             self->super.handler = (StateHandler)self->wait;
+  73              		.loc 1 41 13 is_stmt 1 view .LVU14
+  74              		.loc 1 41 53 is_stmt 0 view .LVU15
+  75 000a D0F8D830 		ldr	r3, [r0, #216]
+  76              		.loc 1 41 33 view .LVU16
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s 			page 3
+
+
   77 000e 0360     		str	r3, [r0]
-  36:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             status = TRAN_STATUS;
-  78              		.loc 1 36 13 is_stmt 1 view .LVU17
+  42:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             status = TRAN_STATUS;
+  78              		.loc 1 42 13 is_stmt 1 view .LVU17
   79              	.LVL3:
-  37:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
-  38:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             break;
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s 			page 3
-
-
-  80              		.loc 1 38 13 view .LVU18
-  36:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             status = TRAN_STATUS;
-  81              		.loc 1 36 20 is_stmt 0 view .LVU19
+  43:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             break;
+  80              		.loc 1 43 13 view .LVU18
+  42:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             status = TRAN_STATUS;
+  81              		.loc 1 42 20 is_stmt 0 view .LVU19
   82 0010 0020     		movs	r0, #0
   83              	.LVL4:
-  84              		.loc 1 38 13 view .LVU20
+  84              		.loc 1 43 13 view .LVU20
   85 0012 7047     		bx	lr
   86              	.LVL5:
   87              	.L7:
-  25:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     {
-  88              		.loc 1 25 5 view .LVU21
+  31:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     {
+  88              		.loc 1 31 5 view .LVU21
   89 0014 1BB2     		sxth	r3, r3
   90 0016 0BB1     		cbz	r3, .L5
   91 0018 0120     		movs	r0, #1
   92              	.LVL6:
-  25:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     {
-  93              		.loc 1 25 5 view .LVU22
+  31:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     {
+  93              		.loc 1 31 5 view .LVU22
   94 001a 7047     		bx	lr
   95              	.LVL7:
   96              	.L5:
-  39:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         }
-  40:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
-  41:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
-  42:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         case EXIT_SIG:
-  43:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         {
-  44:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             status = HANDLED_STATUS;
-  45:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             break;
-  46:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         }
-  47:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         
-  48:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         default:
-  49:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         {
-  50:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             status = IGNORED_STATUS;
-  97              		.loc 1 50 20 view .LVU23
+  44:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         }
+  45:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+  46:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+  47:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         case EXIT_SIG:
+  48:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         {
+  49:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             status = HANDLED_STATUS;
+  50:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             break;
+  51:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         }
+  52:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         
+  53:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         default:
+  54:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         {
+  55:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             status = IGNORED_STATUS;
+  97              		.loc 1 55 20 view .LVU23
   98 001c 0220     		movs	r0, #2
   99              	.LVL8:
- 100              		.loc 1 50 20 view .LVU24
+ 100              		.loc 1 55 20 view .LVU24
  101 001e 7047     		bx	lr
  102              	.LVL9:
  103              	.L6:
- 104              		.loc 1 50 20 view .LVU25
+ 104              		.loc 1 55 20 view .LVU25
  105 0020 0220     		movs	r0, #2
  106              	.LVL10:
-  51:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             break;
-  52:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         }
-  53:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         
-  54:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     }
-  55:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
-  56:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     return status;
- 107              		.loc 1 56 5 is_stmt 1 view .LVU26
-  57:Core/Src/Application/Computer_Communicator/computer_communicator.c **** }
- 108              		.loc 1 57 1 is_stmt 0 view .LVU27
+  56:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             break;
+  57:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         }
+  58:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         
+  59:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     }
+  60:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+  61:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     return status;
+ 107              		.loc 1 61 5 is_stmt 1 view .LVU26
+  62:Core/Src/Application/Computer_Communicator/computer_communicator.c **** }
+ 108              		.loc 1 62 1 is_stmt 0 view .LVU27
  109 0022 7047     		bx	lr
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s 			page 4
+
+
  110              		.cfi_endproc
  111              	.LFE169:
  113              		.section	.text.new,"ax",%progbits
  114              		.align	1
  115              		.syntax unified
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s 			page 4
-
-
  116              		.thumb
  117              		.thumb_func
  119              	new:
  120              	.LVL11:
  121              	.LFB173:
-  58:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
-  59:Core/Src/Application/Computer_Communicator/computer_communicator.c **** static Status wait(struct ComputerCommunicator *const self, Event const * const event)
-  60:Core/Src/Application/Computer_Communicator/computer_communicator.c **** {
-  61:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
-  62:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     Status status;
-  63:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     
-  64:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     switch (event->signal)
-  65:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     {
-  66:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         case ENTRY_SIG:
-  67:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         {
-  68:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             status = HANDLED_STATUS;
-  69:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             break;
-  70:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         }
-  71:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
-  72:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         case STATE_UPDATED_SIG:
-  73:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         {
-  74:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             static State state_topic = {0};
-  75:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             BaseType_t is_success;
-  76:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             is_success = xQueuePeek(state_estimator->state_pub, &state_topic, 0);
+  63:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+  64:Core/Src/Application/Computer_Communicator/computer_communicator.c **** static Status wait(struct ComputerCommunicator *const self, Event const * const event)
+  65:Core/Src/Application/Computer_Communicator/computer_communicator.c **** {
+  66:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+  67:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     Status status;
+  68:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     
+  69:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     switch (event->signal)
+  70:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     {
+  71:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         case ENTRY_SIG:
+  72:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         {
+  73:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             HAL_UART_Receive_IT(&huart3, &rx_byte_data, 1);           
+  74:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             status = HANDLED_STATUS;
+  75:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             break;
+  76:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         }
   77:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
-  78:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             if(is_success)
-  79:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             {
-  80:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 // sprintf(tx_data , "S%.3f %.3f\n", state_topic.pendlm.angle, state_topic.motor.an
-  81:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 sprintf(tx_data , ">motor:%.3f\n>pendl:%.3f\n", state_topic.motor.angle, state_topi
-  82:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 HAL_UART_Transmit_IT(&huart3, (uint8_t *)tx_data, (unsigned)strlen(tx_data));
+  78:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         case STATE_UPDATED_SIG:
+  79:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         {
+  80:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             static State state_topic = {0};
+  81:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             BaseType_t is_success;
+  82:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             is_success = xQueuePeek(state_estimator->state_pub, &state_topic, 0);
   83:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
-  84:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 self->super.handler = (StateHandler)self->sending;
-  85:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 status = TRAN_STATUS;
-  86:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             }
-  87:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             else
-  88:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             {
-  89:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 status = HANDLED_STATUS;
-  90:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             }
-  91:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         
-  92:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             break;
-  93:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         }
-  94:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
-  95:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         case EXIT_SIG:
-  96:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         {
-  97:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
-  98:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         
-  99:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             status = HANDLED_STATUS;
- 100:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             break;
- 101:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         }
- 102:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         
- 103:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         default:
- 104:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         {
- 105:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             status = IGNORED_STATUS;
+  84:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             if(is_success)
+  85:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             {
+  86:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 // sprintf(tx_data , "S%.3f %.3f\n", state_topic.pendlm.angle, state_topic.motor.an
+  87:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 sprintf(tx_data , "S%.3f %.3f %.3f %.3f\n", state_topic.cart.angle, state_topic.car
+  88:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 HAL_UART_Transmit_IT(&huart3, (uint8_t *)tx_data, (unsigned)strlen(tx_data));
+  89:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+  90:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 self->super.handler = (StateHandler)self->sending;
+  91:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 status = TRAN_STATUS;
+  92:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             }
+  93:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             else
+  94:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             {
+  95:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 status = HANDLED_STATUS;
+  96:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             }
+  97:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         
+  98:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             break;
+  99:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         }
+ 100:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+ 101:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         case EXIT_SIG:
+ 102:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         {
+ 103:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+ 104:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         
+ 105:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             status = HANDLED_STATUS;
  106:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             break;
  107:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         }
  108:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         
- 109:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     }
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s 			page 5
+ 109:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         default:
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s 			page 5
 
 
- 110:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
- 111:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     return status;
- 112:Core/Src/Application/Computer_Communicator/computer_communicator.c **** }
- 113:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
- 114:Core/Src/Application/Computer_Communicator/computer_communicator.c **** static void public(QueueHandle_t xQueue, const void * pvItemToQueue)
- 115:Core/Src/Application/Computer_Communicator/computer_communicator.c **** {
- 116:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   xQueueOverwrite(xQueue, pvItemToQueue);
- 117:Core/Src/Application/Computer_Communicator/computer_communicator.c **** }
- 118:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
- 119:Core/Src/Application/Computer_Communicator/computer_communicator.c **** static void publicFromISR(QueueHandle_t xQueue, const void * pvItemToQueue, BaseType_t *pxHigherPri
- 120:Core/Src/Application/Computer_Communicator/computer_communicator.c **** {
- 121:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   xQueueOverwriteFromISR(xQueue, pvItemToQueue, pxHigherPriorityTaskWoken);
- 122:Core/Src/Application/Computer_Communicator/computer_communicator.c **** }
- 123:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
- 124:Core/Src/Application/Computer_Communicator/computer_communicator.c **** static void new(struct ComputerCommunicator * const self)
- 125:Core/Src/Application/Computer_Communicator/computer_communicator.c **** {
- 122              		.loc 1 125 1 is_stmt 1 view -0
+ 110:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         {
+ 111:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             status = IGNORED_STATUS;
+ 112:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             break;
+ 113:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         }
+ 114:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         
+ 115:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     }
+ 116:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+ 117:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     return status;
+ 118:Core/Src/Application/Computer_Communicator/computer_communicator.c **** }
+ 119:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+ 120:Core/Src/Application/Computer_Communicator/computer_communicator.c **** static void public(QueueHandle_t xQueue, const void * pvItemToQueue)
+ 121:Core/Src/Application/Computer_Communicator/computer_communicator.c **** {
+ 122:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   xQueueOverwrite(xQueue, pvItemToQueue);
+ 123:Core/Src/Application/Computer_Communicator/computer_communicator.c **** }
+ 124:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+ 125:Core/Src/Application/Computer_Communicator/computer_communicator.c **** static void publicFromISR(QueueHandle_t xQueue, const void * pvItemToQueue, BaseType_t *pxHigherPri
+ 126:Core/Src/Application/Computer_Communicator/computer_communicator.c **** {
+ 127:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   xQueueOverwriteFromISR(xQueue, pvItemToQueue, pxHigherPriorityTaskWoken);
+ 128:Core/Src/Application/Computer_Communicator/computer_communicator.c **** }
+ 129:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+ 130:Core/Src/Application/Computer_Communicator/computer_communicator.c **** static void new(struct ComputerCommunicator * const self)
+ 131:Core/Src/Application/Computer_Communicator/computer_communicator.c **** {
+ 122              		.loc 1 131 1 is_stmt 1 view -0
  123              		.cfi_startproc
  124              		@ args = 0, pretend = 0, frame = 0
  125              		@ frame_needed = 0, uses_anonymous_args = 0
- 126              		.loc 1 125 1 is_stmt 0 view .LVU29
+ 126              		.loc 1 131 1 is_stmt 0 view .LVU29
  127 0000 10B5     		push	{r4, lr}
  128              	.LCFI0:
  129              		.cfi_def_cfa_offset 8
  130              		.cfi_offset 4, -8
  131              		.cfi_offset 14, -4
  132 0002 0446     		mov	r4, r0
- 126:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   /*Specify function pointer*/
- 127:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   self->initial=&initial; self->wait=&wait; self->sending=&sending;
- 133              		.loc 1 127 3 is_stmt 1 view .LVU30
- 134              		.loc 1 127 16 is_stmt 0 view .LVU31
- 135 0004 0D49     		ldr	r1, .L10
- 136 0006 C0F8D010 		str	r1, [r0, #208]
- 137              		.loc 1 127 27 is_stmt 1 view .LVU32
- 138              		.loc 1 127 37 is_stmt 0 view .LVU33
- 139 000a 0D4B     		ldr	r3, .L10+4
- 140 000c C0F8D430 		str	r3, [r0, #212]
- 141              		.loc 1 127 45 is_stmt 1 view .LVU34
- 142              		.loc 1 127 58 is_stmt 0 view .LVU35
- 143 0010 0C4B     		ldr	r3, .L10+8
- 144 0012 C0F8D830 		str	r3, [r0, #216]
- 128:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   self->public=&public; self->publicFromISR = &publicFromISR;
- 145              		.loc 1 128 3 is_stmt 1 view .LVU36
- 146              		.loc 1 128 15 is_stmt 0 view .LVU37
- 147 0016 0C4B     		ldr	r3, .L10+12
- 148 0018 C0F8DC30 		str	r3, [r0, #220]
- 149              		.loc 1 128 25 is_stmt 1 view .LVU38
- 150              		.loc 1 128 45 is_stmt 0 view .LVU39
- 151 001c 0B4B     		ldr	r3, .L10+16
- 152 001e C0F8E030 		str	r3, [r0, #224]
- 129:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
- 130:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   /*Initialize members*/
- 131:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   Ao_new(&self->super, (StateHandler)&initial);
- 153              		.loc 1 131 3 is_stmt 1 view .LVU40
+ 132:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   /*Specify function pointer*/
+ 133:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   self->initial=&initial; self->wait=&wait; self->sending=&sending;
+ 133              		.loc 1 133 3 is_stmt 1 view .LVU30
+ 134              		.loc 1 133 16 is_stmt 0 view .LVU31
+ 135 0004 1149     		ldr	r1, .L10
+ 136 0006 C0F8D410 		str	r1, [r0, #212]
+ 137              		.loc 1 133 27 is_stmt 1 view .LVU32
+ 138              		.loc 1 133 37 is_stmt 0 view .LVU33
+ 139 000a 114B     		ldr	r3, .L10+4
+ 140 000c C0F8D830 		str	r3, [r0, #216]
+ 141              		.loc 1 133 45 is_stmt 1 view .LVU34
+ 142              		.loc 1 133 58 is_stmt 0 view .LVU35
+ 143 0010 104B     		ldr	r3, .L10+8
+ 144 0012 C0F8DC30 		str	r3, [r0, #220]
+ 134:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   self->public=&public; self->publicFromISR = &publicFromISR;
+ 145              		.loc 1 134 3 is_stmt 1 view .LVU36
+ 146              		.loc 1 134 15 is_stmt 0 view .LVU37
+ 147 0016 104B     		ldr	r3, .L10+12
+ 148 0018 C0F8E030 		str	r3, [r0, #224]
+ 149              		.loc 1 134 25 is_stmt 1 view .LVU38
+ 150              		.loc 1 134 45 is_stmt 0 view .LVU39
+ 151 001c 0F4B     		ldr	r3, .L10+16
+ 152 001e C0F8E430 		str	r3, [r0, #228]
+ 135:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s 			page 6
+
+
+ 136:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   /*Initialize members*/
+ 137:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   Ao_new(&self->super, (StateHandler)&initial);
+ 153              		.loc 1 137 3 is_stmt 1 view .LVU40
  154 0022 FFF7FEFF 		bl	Ao_new
  155              	.LVL12:
- 132:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s 			page 6
-
-
- 133:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   /*Cache Ao for using in Encoder driver*/
- 134:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   ao_computer_communicator = &self->super;
- 156              		.loc 1 134 3 view .LVU41
- 157              		.loc 1 134 28 is_stmt 0 view .LVU42
- 158 0026 0A4B     		ldr	r3, .L10+20
+ 138:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+ 139:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   /*Cache Ao for using in Encoder driver*/
+ 140:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   ao_computer_communicator = &self->super;
+ 156              		.loc 1 140 3 view .LVU41
+ 157              		.loc 1 140 28 is_stmt 0 view .LVU42
+ 158 0026 0E4B     		ldr	r3, .L10+20
  159 0028 1C60     		str	r4, [r3]
- 135:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   computer_communicator = self;
- 160              		.loc 1 135 3 is_stmt 1 view .LVU43
- 161              		.loc 1 135 25 is_stmt 0 view .LVU44
- 162 002a 0A4B     		ldr	r3, .L10+24
+ 141:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   computer_communicator = self;
+ 160              		.loc 1 141 3 is_stmt 1 view .LVU43
+ 161              		.loc 1 141 25 is_stmt 0 view .LVU44
+ 162 002a 0E4B     		ldr	r3, .L10+24
  163 002c 1C60     		str	r4, [r3]
- 136:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
- 137:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   /*Initialize Queue for Mailbox as subsribers, publishers*/
- 138:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   self->state_sub = state_estimator->state_pub;
- 164              		.loc 1 138 3 is_stmt 1 view .LVU45
- 165              		.loc 1 138 36 is_stmt 0 view .LVU46
- 166 002e 0A4B     		ldr	r3, .L10+28
+ 142:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+ 143:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   /*Initialize Queue for Mailbox as subsribers, publishers*/
+ 144:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   self->state_sub = state_estimator->state_pub;
+ 164              		.loc 1 144 3 is_stmt 1 view .LVU45
+ 165              		.loc 1 144 36 is_stmt 0 view .LVU46
+ 166 002e 0E4B     		ldr	r3, .L10+28
  167 0030 1B68     		ldr	r3, [r3]
  168 0032 D3F8D430 		ldr	r3, [r3, #212]
- 169              		.loc 1 138 19 view .LVU47
+ 169              		.loc 1 144 19 view .LVU47
  170 0036 C4F8CC30 		str	r3, [r4, #204]
- 139:Core/Src/Application/Computer_Communicator/computer_communicator.c **** }
- 171              		.loc 1 139 1 view .LVU48
- 172 003a 10BD     		pop	{r4, pc}
- 173              	.LVL13:
- 174              	.L11:
- 175              		.loc 1 139 1 view .LVU49
- 176              		.align	2
- 177              	.L10:
- 178 003c 00000000 		.word	initial
- 179 0040 00000000 		.word	wait
- 180 0044 00000000 		.word	sending
- 181 0048 00000000 		.word	public
- 182 004c 00000000 		.word	publicFromISR
- 183 0050 00000000 		.word	ao_computer_communicator
- 184 0054 00000000 		.word	computer_communicator
- 185 0058 00000000 		.word	state_estimator
- 186              		.cfi_endproc
- 187              	.LFE173:
- 189              		.section	.text.publicFromISR,"ax",%progbits
- 190              		.align	1
- 191              		.syntax unified
- 192              		.thumb
- 193              		.thumb_func
- 195              	publicFromISR:
- 196              	.LVL14:
- 197              	.LFB172:
- 120:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   xQueueOverwriteFromISR(xQueue, pvItemToQueue, pxHigherPriorityTaskWoken);
- 198              		.loc 1 120 1 is_stmt 1 view -0
- 199              		.cfi_startproc
- 200              		@ args = 0, pretend = 0, frame = 0
- 201              		@ frame_needed = 0, uses_anonymous_args = 0
- 120:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   xQueueOverwriteFromISR(xQueue, pvItemToQueue, pxHigherPriorityTaskWoken);
- 202              		.loc 1 120 1 is_stmt 0 view .LVU51
- 203 0000 08B5     		push	{r3, lr}
- 204              	.LCFI1:
- 205              		.cfi_def_cfa_offset 8
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s 			page 7
+ 145:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   self->received_message_sub = xQueueCreate( 1, sizeof( RecivedMessage ) );
+ 171              		.loc 1 145 3 is_stmt 1 view .LVU48
+ 172              		.loc 1 145 32 is_stmt 0 view .LVU49
+ 173 003a 0022     		movs	r2, #0
+ 174 003c 0821     		movs	r1, #8
+ 175 003e 0120     		movs	r0, #1
+ 176 0040 FFF7FEFF 		bl	xQueueGenericCreate
+ 177              	.LVL13:
+ 178              		.loc 1 145 30 discriminator 1 view .LVU50
+ 179 0044 C4F8D000 		str	r0, [r4, #208]
+ 146:Core/Src/Application/Computer_Communicator/computer_communicator.c **** }
+ 180              		.loc 1 146 1 view .LVU51
+ 181 0048 10BD     		pop	{r4, pc}
+ 182              	.LVL14:
+ 183              	.L11:
+ 184              		.loc 1 146 1 view .LVU52
+ 185 004a 00BF     		.align	2
+ 186              	.L10:
+ 187 004c 00000000 		.word	initial
+ 188 0050 00000000 		.word	wait
+ 189 0054 00000000 		.word	sending
+ 190 0058 00000000 		.word	public
+ 191 005c 00000000 		.word	publicFromISR
+ 192 0060 00000000 		.word	ao_computer_communicator
+ 193 0064 00000000 		.word	computer_communicator
+ 194 0068 00000000 		.word	state_estimator
+ 195              		.cfi_endproc
+ 196              	.LFE173:
+ 198              		.section	.text.publicFromISR,"ax",%progbits
+ 199              		.align	1
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s 			page 7
 
 
- 206              		.cfi_offset 3, -8
- 207              		.cfi_offset 14, -4
- 121:Core/Src/Application/Computer_Communicator/computer_communicator.c **** }
- 208              		.loc 1 121 3 is_stmt 1 view .LVU52
- 209 0002 0223     		movs	r3, #2
- 210 0004 FFF7FEFF 		bl	xQueueGenericSendFromISR
- 211              	.LVL15:
- 122:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
- 212              		.loc 1 122 1 is_stmt 0 view .LVU53
- 213 0008 08BD     		pop	{r3, pc}
- 214              		.cfi_endproc
- 215              	.LFE172:
- 217              		.section	.text.public,"ax",%progbits
- 218              		.align	1
- 219              		.syntax unified
- 220              		.thumb
- 221              		.thumb_func
- 223              	public:
- 224              	.LVL16:
- 225              	.LFB171:
- 115:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   xQueueOverwrite(xQueue, pvItemToQueue);
- 226              		.loc 1 115 1 is_stmt 1 view -0
- 227              		.cfi_startproc
- 228              		@ args = 0, pretend = 0, frame = 0
- 229              		@ frame_needed = 0, uses_anonymous_args = 0
- 115:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   xQueueOverwrite(xQueue, pvItemToQueue);
- 230              		.loc 1 115 1 is_stmt 0 view .LVU55
- 231 0000 08B5     		push	{r3, lr}
- 232              	.LCFI2:
- 233              		.cfi_def_cfa_offset 8
- 234              		.cfi_offset 3, -8
- 235              		.cfi_offset 14, -4
- 116:Core/Src/Application/Computer_Communicator/computer_communicator.c **** }
- 236              		.loc 1 116 3 is_stmt 1 view .LVU56
- 237 0002 0223     		movs	r3, #2
- 238 0004 0022     		movs	r2, #0
- 239 0006 FFF7FEFF 		bl	xQueueGenericSend
- 240              	.LVL17:
- 117:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
- 241              		.loc 1 117 1 is_stmt 0 view .LVU57
- 242 000a 08BD     		pop	{r3, pc}
- 243              		.cfi_endproc
- 244              	.LFE171:
- 246              		.global	__aeabi_f2d
- 247              		.section	.rodata.wait.str1.4,"aMS",%progbits,1
- 248              		.align	2
- 249              	.LC0:
- 250 0000 3E6D6F74 		.ascii	">motor:%.3f\012>pendl:%.3f\012\000"
- 250      6F723A25 
- 250      2E33660A 
- 250      3E70656E 
- 250      646C3A25 
- 251              		.section	.text.wait,"ax",%progbits
- 252              		.align	1
- 253              		.syntax unified
- 254              		.thumb
- 255              		.thumb_func
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s 			page 8
+ 200              		.syntax unified
+ 201              		.thumb
+ 202              		.thumb_func
+ 204              	publicFromISR:
+ 205              	.LVL15:
+ 206              	.LFB172:
+ 126:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   xQueueOverwriteFromISR(xQueue, pvItemToQueue, pxHigherPriorityTaskWoken);
+ 207              		.loc 1 126 1 is_stmt 1 view -0
+ 208              		.cfi_startproc
+ 209              		@ args = 0, pretend = 0, frame = 0
+ 210              		@ frame_needed = 0, uses_anonymous_args = 0
+ 126:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   xQueueOverwriteFromISR(xQueue, pvItemToQueue, pxHigherPriorityTaskWoken);
+ 211              		.loc 1 126 1 is_stmt 0 view .LVU54
+ 212 0000 08B5     		push	{r3, lr}
+ 213              	.LCFI1:
+ 214              		.cfi_def_cfa_offset 8
+ 215              		.cfi_offset 3, -8
+ 216              		.cfi_offset 14, -4
+ 127:Core/Src/Application/Computer_Communicator/computer_communicator.c **** }
+ 217              		.loc 1 127 3 is_stmt 1 view .LVU55
+ 218 0002 0223     		movs	r3, #2
+ 219 0004 FFF7FEFF 		bl	xQueueGenericSendFromISR
+ 220              	.LVL16:
+ 128:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+ 221              		.loc 1 128 1 is_stmt 0 view .LVU56
+ 222 0008 08BD     		pop	{r3, pc}
+ 223              		.cfi_endproc
+ 224              	.LFE172:
+ 226              		.section	.text.public,"ax",%progbits
+ 227              		.align	1
+ 228              		.syntax unified
+ 229              		.thumb
+ 230              		.thumb_func
+ 232              	public:
+ 233              	.LVL17:
+ 234              	.LFB171:
+ 121:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   xQueueOverwrite(xQueue, pvItemToQueue);
+ 235              		.loc 1 121 1 is_stmt 1 view -0
+ 236              		.cfi_startproc
+ 237              		@ args = 0, pretend = 0, frame = 0
+ 238              		@ frame_needed = 0, uses_anonymous_args = 0
+ 121:Core/Src/Application/Computer_Communicator/computer_communicator.c ****   xQueueOverwrite(xQueue, pvItemToQueue);
+ 239              		.loc 1 121 1 is_stmt 0 view .LVU58
+ 240 0000 08B5     		push	{r3, lr}
+ 241              	.LCFI2:
+ 242              		.cfi_def_cfa_offset 8
+ 243              		.cfi_offset 3, -8
+ 244              		.cfi_offset 14, -4
+ 122:Core/Src/Application/Computer_Communicator/computer_communicator.c **** }
+ 245              		.loc 1 122 3 is_stmt 1 view .LVU59
+ 246 0002 0223     		movs	r3, #2
+ 247 0004 0022     		movs	r2, #0
+ 248 0006 FFF7FEFF 		bl	xQueueGenericSend
+ 249              	.LVL18:
+ 123:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+ 250              		.loc 1 123 1 is_stmt 0 view .LVU60
+ 251 000a 08BD     		pop	{r3, pc}
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s 			page 8
 
 
- 257              	wait:
- 258              	.LVL18:
- 259              	.LFB170:
-  60:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
- 260              		.loc 1 60 1 is_stmt 1 view -0
- 261              		.cfi_startproc
- 262              		@ args = 0, pretend = 0, frame = 0
- 263              		@ frame_needed = 0, uses_anonymous_args = 0
-  62:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     
- 264              		.loc 1 62 5 view .LVU59
-  64:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     {
- 265              		.loc 1 64 5 view .LVU60
-  64:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     {
- 266              		.loc 1 64 18 is_stmt 0 view .LVU61
- 267 0000 0B88     		ldrh	r3, [r1]
-  64:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     {
- 268              		.loc 1 64 5 view .LVU62
- 269 0002 022B     		cmp	r3, #2
- 270 0004 12D9     		bls	.L25
-  60:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
- 271              		.loc 1 60 1 view .LVU63
- 272 0006 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
- 273              	.LCFI3:
- 274              		.cfi_def_cfa_offset 24
- 275              		.cfi_offset 4, -24
- 276              		.cfi_offset 5, -20
- 277              		.cfi_offset 6, -16
- 278              		.cfi_offset 7, -12
- 279              		.cfi_offset 8, -8
- 280              		.cfi_offset 14, -4
- 281 000a 82B0     		sub	sp, sp, #8
- 282              	.LCFI4:
+ 252              		.cfi_endproc
+ 253              	.LFE171:
+ 255              		.global	__aeabi_f2d
+ 256              		.section	.rodata.wait.str1.4,"aMS",%progbits,1
+ 257              		.align	2
+ 258              	.LC0:
+ 259 0000 53252E33 		.ascii	"S%.3f %.3f %.3f %.3f\012\000"
+ 259      6620252E 
+ 259      33662025 
+ 259      2E336620 
+ 259      252E3366 
+ 260              		.section	.text.wait,"ax",%progbits
+ 261              		.align	1
+ 262              		.syntax unified
+ 263              		.thumb
+ 264              		.thumb_func
+ 266              	wait:
+ 267              	.LVL19:
+ 268              	.LFB170:
+  65:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+ 269              		.loc 1 65 1 is_stmt 1 view -0
+ 270              		.cfi_startproc
+ 271              		@ args = 0, pretend = 0, frame = 0
+ 272              		@ frame_needed = 0, uses_anonymous_args = 0
+  67:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     
+ 273              		.loc 1 67 5 view .LVU62
+  69:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     {
+ 274              		.loc 1 69 5 view .LVU63
+  69:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     {
+ 275              		.loc 1 69 18 is_stmt 0 view .LVU64
+ 276 0000 0B88     		ldrh	r3, [r1]
+  69:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     {
+ 277              		.loc 1 69 5 view .LVU65
+ 278 0002 022B     		cmp	r3, #2
+ 279 0004 4AD0     		beq	.L19
+  65:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+ 280              		.loc 1 65 1 view .LVU66
+ 281 0006 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 282              	.LCFI3:
  283              		.cfi_def_cfa_offset 32
- 284 000c 0446     		mov	r4, r0
-  64:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     {
- 285              		.loc 1 64 5 view .LVU64
- 286 000e 052B     		cmp	r3, #5
- 287 0010 33D1     		bne	.L20
- 288              	.LBB2:
-  74:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             BaseType_t is_success;
- 289              		.loc 1 74 13 is_stmt 1 view .LVU65
-  75:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             is_success = xQueuePeek(state_estimator->state_pub, &state_topic, 0);
- 290              		.loc 1 75 13 view .LVU66
-  76:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
- 291              		.loc 1 76 13 view .LVU67
-  76:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
- 292              		.loc 1 76 52 is_stmt 0 view .LVU68
- 293 0012 1B4B     		ldr	r3, .L27
- 294 0014 1B68     		ldr	r3, [r3]
-  76:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
- 295              		.loc 1 76 26 view .LVU69
- 296 0016 0022     		movs	r2, #0
- 297 0018 1A49     		ldr	r1, .L27+4
- 298              	.LVL19:
-  76:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
- 299              		.loc 1 76 26 view .LVU70
- 300 001a D3F8D400 		ldr	r0, [r3, #212]
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s 			page 9
+ 284              		.cfi_offset 4, -32
+ 285              		.cfi_offset 5, -28
+ 286              		.cfi_offset 6, -24
+ 287              		.cfi_offset 7, -20
+ 288              		.cfi_offset 8, -16
+ 289              		.cfi_offset 9, -12
+ 290              		.cfi_offset 10, -8
+ 291              		.cfi_offset 14, -4
+ 292 000a 86B0     		sub	sp, sp, #24
+ 293              	.LCFI4:
+ 294              		.cfi_def_cfa_offset 56
+ 295 000c 0446     		mov	r4, r0
+  69:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     {
+ 296              		.loc 1 69 5 view .LVU67
+ 297 000e 052B     		cmp	r3, #5
+ 298 0010 0AD0     		beq	.L18
+ 299 0012 012B     		cmp	r3, #1
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s 			page 9
 
 
- 301              	.LVL20:
-  76:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
- 302              		.loc 1 76 26 view .LVU71
- 303 001e FFF7FEFF 		bl	xQueuePeek
- 304              	.LVL21:
-  78:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             {
- 305              		.loc 1 78 13 is_stmt 1 view .LVU72
-  78:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             {
- 306              		.loc 1 78 15 is_stmt 0 view .LVU73
- 307 0022 38B9     		cbnz	r0, .L26
-  89:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             }
- 308              		.loc 1 89 24 view .LVU74
- 309 0024 0120     		movs	r0, #1
+ 300 0014 44D1     		bne	.L20
+  73:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             status = HANDLED_STATUS;
+ 301              		.loc 1 73 13 is_stmt 1 view .LVU68
+ 302 0016 0122     		movs	r2, #1
+ 303 0018 2249     		ldr	r1, .L27
+ 304              	.LVL20:
+  73:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             status = HANDLED_STATUS;
+ 305              		.loc 1 73 13 is_stmt 0 view .LVU69
+ 306 001a 2348     		ldr	r0, .L27+4
+ 307              	.LVL21:
+  73:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             status = HANDLED_STATUS;
+ 308              		.loc 1 73 13 view .LVU70
+ 309 001c FFF7FEFF 		bl	HAL_UART_Receive_IT
  310              	.LVL22:
- 311              	.L18:
-  89:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             }
- 312              		.loc 1 89 24 view .LVU75
- 313              	.LBE2:
- 111:Core/Src/Application/Computer_Communicator/computer_communicator.c **** }
- 314              		.loc 1 111 5 is_stmt 1 view .LVU76
- 112:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
- 315              		.loc 1 112 1 is_stmt 0 view .LVU77
- 316 0026 02B0     		add	sp, sp, #8
- 317              	.LCFI5:
- 318              		.cfi_def_cfa_offset 24
- 319              		@ sp needed
- 320 0028 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
- 321              	.LVL23:
- 322              	.L25:
- 323              	.LCFI6:
- 324              		.cfi_def_cfa_offset 0
- 325              		.cfi_restore 4
- 326              		.cfi_restore 5
- 327              		.cfi_restore 6
- 328              		.cfi_restore 7
- 329              		.cfi_restore 8
- 330              		.cfi_restore 14
-  64:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     {
- 331              		.loc 1 64 5 view .LVU78
- 332 002c 1BB2     		sxth	r3, r3
- 333 002e 13B3     		cbz	r3, .L19
- 334 0030 0120     		movs	r0, #1
- 335              	.LVL24:
-  64:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     {
- 336              		.loc 1 64 5 view .LVU79
- 337 0032 7047     		bx	lr
- 338              	.LVL25:
- 339              	.L26:
- 340              	.LCFI7:
- 341              		.cfi_def_cfa_offset 32
- 342              		.cfi_offset 4, -24
- 343              		.cfi_offset 5, -20
- 344              		.cfi_offset 6, -16
- 345              		.cfi_offset 7, -12
- 346              		.cfi_offset 8, -8
- 347              		.cfi_offset 14, -4
- 348              	.LBB3:
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s 			page 10
-
-
-  81:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 HAL_UART_Transmit_IT(&huart3, (uint8_t *)tx_data, (unsigned)strlen(tx_data));
- 349              		.loc 1 81 17 is_stmt 1 view .LVU80
-  81:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 HAL_UART_Transmit_IT(&huart3, (uint8_t *)tx_data, (unsigned)strlen(tx_data));
- 350              		.loc 1 81 82 is_stmt 0 view .LVU81
- 351 0034 134B     		ldr	r3, .L27+4
-  81:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 HAL_UART_Transmit_IT(&huart3, (uint8_t *)tx_data, (unsigned)strlen(tx_data));
- 352              		.loc 1 81 108 view .LVU82
- 353 0036 D3F80C80 		ldr	r8, [r3, #12]	@ float
-  81:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 HAL_UART_Transmit_IT(&huart3, (uint8_t *)tx_data, (unsigned)strlen(tx_data));
- 354              		.loc 1 81 17 view .LVU83
- 355 003a 1868     		ldr	r0, [r3]	@ float
- 356              	.LVL26:
-  81:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 HAL_UART_Transmit_IT(&huart3, (uint8_t *)tx_data, (unsigned)strlen(tx_data));
- 357              		.loc 1 81 17 view .LVU84
- 358 003c FFF7FEFF 		bl	__aeabi_f2d
- 359              	.LVL27:
- 360 0040 0646     		mov	r6, r0
- 361 0042 0F46     		mov	r7, r1
- 362 0044 104D     		ldr	r5, .L27+8
- 363 0046 4046     		mov	r0, r8	@ float
- 364 0048 FFF7FEFF 		bl	__aeabi_f2d
- 365              	.LVL28:
- 366 004c CDE90001 		strd	r0, [sp]
- 367 0050 3246     		mov	r2, r6
- 368 0052 3B46     		mov	r3, r7
- 369 0054 0D49     		ldr	r1, .L27+12
- 370 0056 2846     		mov	r0, r5
- 371 0058 FFF7FEFF 		bl	sprintf_
- 372              	.LVL29:
+  74:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             break;
+ 311              		.loc 1 74 13 is_stmt 1 view .LVU71
+  75:Core/Src/Application/Computer_Communicator/computer_communicator.c ****         }
+ 312              		.loc 1 75 13 view .LVU72
+  74:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             break;
+ 313              		.loc 1 74 20 is_stmt 0 view .LVU73
+ 314 0020 0120     		movs	r0, #1
+ 315              	.LVL23:
+ 316              	.L17:
+ 117:Core/Src/Application/Computer_Communicator/computer_communicator.c **** }
+ 317              		.loc 1 117 5 is_stmt 1 view .LVU74
+ 118:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+ 318              		.loc 1 118 1 is_stmt 0 view .LVU75
+ 319 0022 06B0     		add	sp, sp, #24
+ 320              	.LCFI5:
+ 321              		.cfi_remember_state
+ 322              		.cfi_def_cfa_offset 32
+ 323              		@ sp needed
+ 324 0024 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 325              	.LVL24:
+ 326              	.L18:
+ 327              	.LCFI6:
+ 328              		.cfi_restore_state
+ 329              	.LBB2:
+  80:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             BaseType_t is_success;
+ 330              		.loc 1 80 13 is_stmt 1 view .LVU76
+  81:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             is_success = xQueuePeek(state_estimator->state_pub, &state_topic, 0);
+ 331              		.loc 1 81 13 view .LVU77
   82:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
- 373              		.loc 1 82 17 is_stmt 1 view .LVU85
+ 332              		.loc 1 82 13 view .LVU78
   82:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
- 374              		.loc 1 82 77 is_stmt 0 view .LVU86
- 375 005c 2846     		mov	r0, r5
- 376 005e FFF7FEFF 		bl	strlen
- 377              	.LVL30:
+ 333              		.loc 1 82 52 is_stmt 0 view .LVU79
+ 334 0028 204B     		ldr	r3, .L27+8
+ 335 002a 1B68     		ldr	r3, [r3]
   82:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
- 378              		.loc 1 82 17 discriminator 1 view .LVU87
- 379 0062 82B2     		uxth	r2, r0
- 380 0064 2946     		mov	r1, r5
- 381 0066 0A48     		ldr	r0, .L27+16
- 382 0068 FFF7FEFF 		bl	HAL_UART_Transmit_IT
- 383              	.LVL31:
-  84:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 status = TRAN_STATUS;
- 384              		.loc 1 84 17 is_stmt 1 view .LVU88
-  84:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 status = TRAN_STATUS;
- 385              		.loc 1 84 57 is_stmt 0 view .LVU89
- 386 006c D4F8D830 		ldr	r3, [r4, #216]
-  84:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 status = TRAN_STATUS;
- 387              		.loc 1 84 37 view .LVU90
- 388 0070 2360     		str	r3, [r4]
-  85:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             }
- 389              		.loc 1 85 17 is_stmt 1 view .LVU91
- 390              	.LVL32:
-  85:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             }
- 391              		.loc 1 85 24 is_stmt 0 view .LVU92
- 392 0072 0020     		movs	r0, #0
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s 			page 11
+ 336              		.loc 1 82 26 view .LVU80
+ 337 002c 0022     		movs	r2, #0
+ 338 002e 2049     		ldr	r1, .L27+12
+ 339              	.LVL25:
+  82:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+ 340              		.loc 1 82 26 view .LVU81
+ 341 0030 D3F8D400 		ldr	r0, [r3, #212]
+ 342              	.LVL26:
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s 			page 10
 
 
- 393 0074 D7E7     		b	.L18
- 394              	.LVL33:
- 395              	.L19:
- 396              	.LCFI8:
- 397              		.cfi_def_cfa_offset 0
- 398              		.cfi_restore 4
- 399              		.cfi_restore 5
- 400              		.cfi_restore 6
- 401              		.cfi_restore 7
- 402              		.cfi_restore 8
- 403              		.cfi_restore 14
-  85:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             }
- 404              		.loc 1 85 24 view .LVU93
- 405              	.LBE3:
- 105:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             break;
- 406              		.loc 1 105 20 view .LVU94
- 407 0076 0220     		movs	r0, #2
- 408              	.LVL34:
- 111:Core/Src/Application/Computer_Communicator/computer_communicator.c **** }
- 409              		.loc 1 111 5 is_stmt 1 view .LVU95
- 112:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
- 410              		.loc 1 112 1 is_stmt 0 view .LVU96
- 411 0078 7047     		bx	lr
- 412              	.LVL35:
- 413              	.L20:
- 414              	.LCFI9:
- 415              		.cfi_def_cfa_offset 32
- 416              		.cfi_offset 4, -24
- 417              		.cfi_offset 5, -20
- 418              		.cfi_offset 6, -16
- 419              		.cfi_offset 7, -12
- 420              		.cfi_offset 8, -8
- 421              		.cfi_offset 14, -4
- 105:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             break;
- 422              		.loc 1 105 20 view .LVU97
- 423 007a 0220     		movs	r0, #2
- 424              	.LVL36:
- 105:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             break;
- 425              		.loc 1 105 20 view .LVU98
- 426 007c D3E7     		b	.L18
- 427              	.L28:
- 428 007e 00BF     		.align	2
- 429              	.L27:
- 430 0080 00000000 		.word	state_estimator
- 431 0084 00000000 		.word	state_topic.0
- 432 0088 00000000 		.word	tx_data
- 433 008c 00000000 		.word	.LC0
- 434 0090 00000000 		.word	huart3
- 435              		.cfi_endproc
- 436              	.LFE170:
- 438              		.section	.bss.state_topic.0,"aw",%nobits
- 439              		.align	2
- 442              	state_topic.0:
- 443 0000 00000000 		.space	36
- 443      00000000 
- 443      00000000 
- 443      00000000 
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s 			page 12
+  82:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+ 343              		.loc 1 82 26 view .LVU82
+ 344 0034 FFF7FEFF 		bl	xQueuePeek
+ 345              	.LVL27:
+  84:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             {
+ 346              		.loc 1 84 13 is_stmt 1 view .LVU83
+  84:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             {
+ 347              		.loc 1 84 15 is_stmt 0 view .LVU84
+ 348 0038 08B9     		cbnz	r0, .L26
+  95:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             }
+ 349              		.loc 1 95 24 view .LVU85
+ 350 003a 0120     		movs	r0, #1
+ 351              	.LVL28:
+  95:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             }
+ 352              		.loc 1 95 24 view .LVU86
+ 353 003c F1E7     		b	.L17
+ 354              	.LVL29:
+ 355              	.L26:
+  87:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 HAL_UART_Transmit_IT(&huart3, (uint8_t *)tx_data, (unsigned)strlen(tx_data));
+ 356              		.loc 1 87 17 is_stmt 1 view .LVU87
+  87:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 HAL_UART_Transmit_IT(&huart3, (uint8_t *)tx_data, (unsigned)strlen(tx_data));
+ 357              		.loc 1 87 77 is_stmt 0 view .LVU88
+ 358 003e 1C4B     		ldr	r3, .L27+12
+  87:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 HAL_UART_Transmit_IT(&huart3, (uint8_t *)tx_data, (unsigned)strlen(tx_data));
+ 359              		.loc 1 87 101 view .LVU89
+ 360 0040 D3F81C80 		ldr	r8, [r3, #28]	@ float
+  87:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 HAL_UART_Transmit_IT(&huart3, (uint8_t *)tx_data, (unsigned)strlen(tx_data));
+ 361              		.loc 1 87 125 view .LVU90
+ 362 0044 D3F80C90 		ldr	r9, [r3, #12]	@ float
+  87:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 HAL_UART_Transmit_IT(&huart3, (uint8_t *)tx_data, (unsigned)strlen(tx_data));
+ 363              		.loc 1 87 151 view .LVU91
+ 364 0048 D3F810A0 		ldr	r10, [r3, #16]	@ float
+  87:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 HAL_UART_Transmit_IT(&huart3, (uint8_t *)tx_data, (unsigned)strlen(tx_data));
+ 365              		.loc 1 87 17 view .LVU92
+ 366 004c 9869     		ldr	r0, [r3, #24]	@ float
+ 367              	.LVL30:
+  87:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 HAL_UART_Transmit_IT(&huart3, (uint8_t *)tx_data, (unsigned)strlen(tx_data));
+ 368              		.loc 1 87 17 view .LVU93
+ 369 004e FFF7FEFF 		bl	__aeabi_f2d
+ 370              	.LVL31:
+ 371 0052 0646     		mov	r6, r0
+ 372 0054 0F46     		mov	r7, r1
+ 373 0056 174D     		ldr	r5, .L27+16
+ 374 0058 5046     		mov	r0, r10	@ float
+ 375 005a FFF7FEFF 		bl	__aeabi_f2d
+ 376              	.LVL32:
+ 377 005e CDE90401 		strd	r0, [sp, #16]
+ 378 0062 4846     		mov	r0, r9	@ float
+ 379 0064 FFF7FEFF 		bl	__aeabi_f2d
+ 380              	.LVL33:
+ 381 0068 CDE90201 		strd	r0, [sp, #8]
+ 382 006c 4046     		mov	r0, r8	@ float
+ 383 006e FFF7FEFF 		bl	__aeabi_f2d
+ 384              	.LVL34:
+ 385 0072 CDE90001 		strd	r0, [sp]
+ 386 0076 3246     		mov	r2, r6
+ 387 0078 3B46     		mov	r3, r7
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s 			page 11
 
 
- 443      00000000 
- 444              		.global	ComputerCommunicator
- 445              		.section	.rodata.ComputerCommunicator,"a"
- 446              		.align	2
- 449              	ComputerCommunicator:
- 450 0000 00000000 		.word	new
- 451              		.global	computer_communicator
- 452              		.section	.bss.computer_communicator,"aw",%nobits
- 453              		.align	2
- 456              	computer_communicator:
- 457 0000 00000000 		.space	4
- 458              		.global	ao_computer_communicator
- 459              		.section	.bss.ao_computer_communicator,"aw",%nobits
- 460              		.align	2
- 463              	ao_computer_communicator:
- 464 0000 00000000 		.space	4
- 465              		.section	.bss.tx_data,"aw",%nobits
- 466              		.align	2
- 469              	tx_data:
- 470 0000 00000000 		.space	30
- 470      00000000 
- 470      00000000 
- 470      00000000 
- 470      00000000 
- 471              		.text
- 472              	.Letext0:
- 473              		.file 2 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
- 474              		.file 3 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
- 475              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h"
- 476              		.file 5 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
- 477              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
- 478              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
- 479              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h"
- 480              		.file 9 "ThirdParty/FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h"
- 481              		.file 10 "ThirdParty/FreeRTOS/include/FreeRTOS.h"
- 482              		.file 11 "ThirdParty/FreeRTOS/include/task.h"
- 483              		.file 12 "ThirdParty/FreeRTOS/include/queue.h"
- 484              		.file 13 "Core/Src/Middleware/Active_Object/active_object.h"
- 485              		.file 14 "Drivers/CMSIS/DSP/Include/arm_math.h"
- 486              		.file 15 "Core/Src/Middleware/Topic/topic.h"
- 487              		.file 16 "Core/Src/Application/State_Estimator/Dsp/dsp.h"
- 488              		.file 17 "Core/Src/Application/State_Estimator/state_estimator.h"
- 489              		.file 18 "Core/Src/Application/Computer_Communicator/computer_communicator.h"
- 490              		.file 19 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-g
- 491              		.file 20 "Core/Src/printf.h"
-ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s 			page 13
+ 388 007a 0F49     		ldr	r1, .L27+20
+ 389 007c 2846     		mov	r0, r5
+ 390 007e FFF7FEFF 		bl	sprintf_
+ 391              	.LVL35:
+  88:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+ 392              		.loc 1 88 17 is_stmt 1 view .LVU94
+  88:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+ 393              		.loc 1 88 77 is_stmt 0 view .LVU95
+ 394 0082 2846     		mov	r0, r5
+ 395 0084 FFF7FEFF 		bl	strlen
+ 396              	.LVL36:
+  88:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+ 397              		.loc 1 88 17 discriminator 1 view .LVU96
+ 398 0088 82B2     		uxth	r2, r0
+ 399 008a 2946     		mov	r1, r5
+ 400 008c 0648     		ldr	r0, .L27+4
+ 401 008e FFF7FEFF 		bl	HAL_UART_Transmit_IT
+ 402              	.LVL37:
+  90:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 status = TRAN_STATUS;
+ 403              		.loc 1 90 17 is_stmt 1 view .LVU97
+  90:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 status = TRAN_STATUS;
+ 404              		.loc 1 90 57 is_stmt 0 view .LVU98
+ 405 0092 D4F8DC30 		ldr	r3, [r4, #220]
+  90:Core/Src/Application/Computer_Communicator/computer_communicator.c ****                 status = TRAN_STATUS;
+ 406              		.loc 1 90 37 view .LVU99
+ 407 0096 2360     		str	r3, [r4]
+  91:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             }
+ 408              		.loc 1 91 17 is_stmt 1 view .LVU100
+ 409              	.LVL38:
+  91:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             }
+ 410              		.loc 1 91 24 is_stmt 0 view .LVU101
+ 411 0098 0020     		movs	r0, #0
+ 412 009a C2E7     		b	.L17
+ 413              	.LVL39:
+ 414              	.L19:
+ 415              	.LCFI7:
+ 416              		.cfi_def_cfa_offset 0
+ 417              		.cfi_restore 4
+ 418              		.cfi_restore 5
+ 419              		.cfi_restore 6
+ 420              		.cfi_restore 7
+ 421              		.cfi_restore 8
+ 422              		.cfi_restore 9
+ 423              		.cfi_restore 10
+ 424              		.cfi_restore 14
+  91:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             }
+ 425              		.loc 1 91 24 view .LVU102
+ 426              	.LBE2:
+  69:Core/Src/Application/Computer_Communicator/computer_communicator.c ****     {
+ 427              		.loc 1 69 5 view .LVU103
+ 428 009c 0120     		movs	r0, #1
+ 429              	.LVL40:
+ 117:Core/Src/Application/Computer_Communicator/computer_communicator.c **** }
+ 430              		.loc 1 117 5 is_stmt 1 view .LVU104
+ 118:Core/Src/Application/Computer_Communicator/computer_communicator.c **** 
+ 431              		.loc 1 118 1 is_stmt 0 view .LVU105
+ 432 009e 7047     		bx	lr
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s 			page 12
+
+
+ 433              	.LVL41:
+ 434              	.L20:
+ 435              	.LCFI8:
+ 436              		.cfi_def_cfa_offset 56
+ 437              		.cfi_offset 4, -32
+ 438              		.cfi_offset 5, -28
+ 439              		.cfi_offset 6, -24
+ 440              		.cfi_offset 7, -20
+ 441              		.cfi_offset 8, -16
+ 442              		.cfi_offset 9, -12
+ 443              		.cfi_offset 10, -8
+ 444              		.cfi_offset 14, -4
+ 111:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             break;
+ 445              		.loc 1 111 20 view .LVU106
+ 446 00a0 0220     		movs	r0, #2
+ 447              	.LVL42:
+ 111:Core/Src/Application/Computer_Communicator/computer_communicator.c ****             break;
+ 448              		.loc 1 111 20 view .LVU107
+ 449 00a2 BEE7     		b	.L17
+ 450              	.L28:
+ 451              		.align	2
+ 452              	.L27:
+ 453 00a4 00000000 		.word	rx_byte_data
+ 454 00a8 00000000 		.word	huart3
+ 455 00ac 00000000 		.word	state_estimator
+ 456 00b0 00000000 		.word	state_topic.0
+ 457 00b4 00000000 		.word	tx_data
+ 458 00b8 00000000 		.word	.LC0
+ 459              		.cfi_endproc
+ 460              	.LFE170:
+ 462              		.section	.bss.state_topic.0,"aw",%nobits
+ 463              		.align	2
+ 466              	state_topic.0:
+ 467 0000 00000000 		.space	36
+ 467      00000000 
+ 467      00000000 
+ 467      00000000 
+ 467      00000000 
+ 468              		.global	ComputerCommunicator
+ 469              		.section	.rodata.ComputerCommunicator,"a"
+ 470              		.align	2
+ 473              	ComputerCommunicator:
+ 474 0000 00000000 		.word	new
+ 475              		.global	computer_communicator
+ 476              		.section	.bss.computer_communicator,"aw",%nobits
+ 477              		.align	2
+ 480              	computer_communicator:
+ 481 0000 00000000 		.space	4
+ 482              		.global	ao_computer_communicator
+ 483              		.section	.bss.ao_computer_communicator,"aw",%nobits
+ 484              		.align	2
+ 487              	ao_computer_communicator:
+ 488 0000 00000000 		.space	4
+ 489              		.section	.bss.tx_data,"aw",%nobits
+ 490              		.align	2
+ 493              	tx_data:
+ 494 0000 00000000 		.space	30
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s 			page 13
+
+
+ 494      00000000 
+ 494      00000000 
+ 494      00000000 
+ 494      00000000 
+ 495              		.global	rx_byte_data
+ 496              		.section	.bss.rx_byte_data,"aw",%nobits
+ 499              	rx_byte_data:
+ 500 0000 00       		.space	1
+ 501              		.text
+ 502              	.Letext0:
+ 503              		.file 2 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
+ 504              		.file 3 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
+ 505              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h"
+ 506              		.file 5 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-gn
+ 507              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 508              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 509              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h"
+ 510              		.file 9 "ThirdParty/FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h"
+ 511              		.file 10 "ThirdParty/FreeRTOS/include/FreeRTOS.h"
+ 512              		.file 11 "ThirdParty/FreeRTOS/include/task.h"
+ 513              		.file 12 "ThirdParty/FreeRTOS/include/queue.h"
+ 514              		.file 13 "Core/Src/Middleware/Active_Object/active_object.h"
+ 515              		.file 14 "Drivers/CMSIS/DSP/Include/arm_math.h"
+ 516              		.file 15 "Core/Src/Middleware/Topic/topic.h"
+ 517              		.file 16 "Core/Src/Application/State_Estimator/Dsp/dsp.h"
+ 518              		.file 17 "Core/Src/Application/State_Estimator/state_estimator.h"
+ 519              		.file 18 "Core/Src/Application/Computer_Communicator/computer_communicator.h"
+ 520              		.file 19 "D:/Software/Arm Toolchain/arm-gnu-toolchain-13.2.rel1-mingw-w64-i686-arm-none-eabi/arm-g
+ 521              		.file 20 "Core/Src/printf.h"
+ARM GAS  C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s 			page 14
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 computer_communicator.c
-C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:21     .text.initial:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:26     .text.initial:00000000 initial
-C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:51     .text.sending:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:56     .text.sending:00000000 sending
-C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:114    .text.new:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:119    .text.new:00000000 new
-C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:178    .text.new:0000003c $d
-C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:257    .text.wait:00000000 wait
-C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:223    .text.public:00000000 public
-C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:195    .text.publicFromISR:00000000 publicFromISR
-C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:463    .bss.ao_computer_communicator:00000000 ao_computer_communicator
-C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:456    .bss.computer_communicator:00000000 computer_communicator
-C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:190    .text.publicFromISR:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:218    .text.public:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:248    .rodata.wait.str1.4:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:252    .text.wait:00000000 $t
-C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:430    .text.wait:00000080 $d
-C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:442    .bss.state_topic.0:00000000 state_topic.0
-C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:469    .bss.tx_data:00000000 tx_data
-C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:439    .bss.state_topic.0:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:449    .rodata.ComputerCommunicator:00000000 ComputerCommunicator
-C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:446    .rodata.ComputerCommunicator:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:453    .bss.computer_communicator:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:460    .bss.ao_computer_communicator:00000000 $d
-C:\Users\ACER\AppData\Local\Temp\ccQLRMJZ.s:466    .bss.tx_data:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s:21     .text.initial:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s:26     .text.initial:00000000 initial
+C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s:51     .text.sending:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s:56     .text.sending:00000000 sending
+C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s:114    .text.new:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s:119    .text.new:00000000 new
+C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s:187    .text.new:0000004c $d
+C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s:266    .text.wait:00000000 wait
+C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s:232    .text.public:00000000 public
+C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s:204    .text.publicFromISR:00000000 publicFromISR
+C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s:487    .bss.ao_computer_communicator:00000000 ao_computer_communicator
+C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s:480    .bss.computer_communicator:00000000 computer_communicator
+C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s:199    .text.publicFromISR:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s:227    .text.public:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s:257    .rodata.wait.str1.4:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s:261    .text.wait:00000000 $t
+C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s:453    .text.wait:000000a4 $d
+C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s:499    .bss.rx_byte_data:00000000 rx_byte_data
+C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s:466    .bss.state_topic.0:00000000 state_topic.0
+C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s:493    .bss.tx_data:00000000 tx_data
+C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s:463    .bss.state_topic.0:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s:473    .rodata.ComputerCommunicator:00000000 ComputerCommunicator
+C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s:470    .rodata.ComputerCommunicator:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s:477    .bss.computer_communicator:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s:484    .bss.ao_computer_communicator:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s:490    .bss.tx_data:00000000 $d
+C:\Users\ACER\AppData\Local\Temp\ccqEsFlX.s:500    .bss.rx_byte_data:00000000 $d
 
 UNDEFINED SYMBOLS
 Ao_new
+xQueueGenericCreate
 state_estimator
 xQueueGenericSendFromISR
 xQueueGenericSend
 __aeabi_f2d
+HAL_UART_Receive_IT
 xQueuePeek
 sprintf_
 strlen

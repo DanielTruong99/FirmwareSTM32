@@ -104,9 +104,8 @@ static void estimate(struct Dsp * const self)
     * estimated_cart_data.angle = x 
     * estimated_cart_data.vel = v
     */
-    self->estimated_cart_data.angle = self->previous_x + self->filtered_motor_angle * self->gear_ratio;
+    self->estimated_cart_data.angle = self->filtered_motor_angle * self->gear_ratio;
     self->estimated_cart_data.vel = self->filtered_motor_vel * self->gear_ratio;
-    self->previous_x = self->estimated_cart_data.angle;
 }
 
 static void processNewData(struct Dsp * const self, Encoder const * const encoder_topic, State * const state_topic)
